@@ -1,0 +1,82 @@
+﻿@{
+    //var currentUser = HttpContext.Current.Items["CurrentUser"] as EmgenexBusinessPortal.Areas.Business.Models.CurrentUserDetails;
+    var currentUser = HttpContext.Current.Items["CurrentUser"] as EmgenexBusinessPortal.Models.UserDetailsModel;
+    string[] roles = { "EDTADSLOC" };
+
+    var hasVisibilityRight = currentUser.Roles.Contains("BusinessAdmin") || currentUser.UserPrivileges.Any(a => roles != null && roles.Any(b => b == a));
+}
+
+<div class="sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="table table-responsive table-bordered" style="background-color: #0e3859; border-top-right-radius: 15px; color: white; border-bottom-right-radius: 15px;">
+        <br />
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Roles", "Index", "Roles", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Departments", "Index", "Departments", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Sales Team", "Index", "RepGroups", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Users", "Index", "Users", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Sales Reps", "Index", "Reps", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Services", "Index", "EnrolledServices", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        @*<div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-md-10 sbtxtalign">@Html.ActionLink("Report Columns", "Index", "ReportColumns", new { area = "Business" }, null)</div>
+                <hr class="linealign" />
+            </div>*@
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Business Profile", "Edit", "BusinessProfile", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Marketing Categories", "Index", "MarketingCategories", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Document Types", "Index", "DocumentTypes", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Task Types", "Index", "TaskTypes", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>
+        @if (hasVisibilityRight)
+        {
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-md-10 sbtxtalign">@Html.ActionLink("LocationId Settings", "Index", "Address", new { area = "Business" }, null)</div>
+                <hr class="linealign" />
+            </div>
+
+        }
+        @*<div class="row">
+            <div class="col-xs-2 col-md-2"></div>
+            <div class="col-md-10 sbtxtalign">@Html.ActionLink("Notification Settings", "Index", "NotificationSettings", new { area = "Business" }, null)</div>
+            <hr class="linealign" />
+        </div>*@
+    </div>
+</div>

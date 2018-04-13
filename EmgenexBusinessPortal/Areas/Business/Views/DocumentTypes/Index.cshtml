@@ -1,0 +1,58 @@
+﻿@model IEnumerable<EBP.Business.Database.LookupDocumentType>
+
+@{
+    ViewBag.Title = "Document Type";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Document Type")
+        </th>
+        <th>
+            @Html.DisplayName("Created On")
+        </th>
+        <th>
+            @Html.DisplayName("Created By")
+        </th>
+        <th>
+            @Html.DisplayName("Updated On")
+        </th>
+        <th>
+            @Html.DisplayName("Updated By")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

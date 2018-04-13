@@ -1,0 +1,1044 @@
+﻿<style>
+    .enrservice {
+        height: 34px;
+        width: 120px;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 35px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 34px;
+    }
+
+    .filter-toggle-btn {
+        margin-right: 10px;
+    }
+
+    .filter-actionbox .form-control.datesingle-select {
+        background-color: white;
+        border-color: #aaaaaa !important;
+        background-position: right 6px center;
+    }
+
+    .lead-top-search .dropdown-menu {
+        min-width: 220px !important;
+    }
+
+        .lead-top-search .dropdown-menu li {
+        }
+
+            .lead-top-search .dropdown-menu li:hover {
+                background: #f5f5f5;
+            }
+
+    /* this is important! make sure you define this here or in jQuery codef */
+    .resizer {
+        position: absolute;
+        top: 0;
+        right: -8px;
+        bottom: 0;
+        left: auto;
+        width: 16px;
+        cursor: col-resize;
+    }
+
+
+    /*
+
+      */
+    /*.table-fixed thead {
+    width: 97%;
+      }
+      .table-fixed tbody {
+    height: 230px;
+    overflow-y: auto;
+    width: 100%;
+      }
+      .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+      }
+      .table-fixed tbody td, .table-fixed thead > tr> th {
+    float: left;
+    border-bottom-width: 0;
+      }*/
+
+
+    /*Add Form - Start*/
+
+    #SalesAddWrap td > .form-control[type="text"] {
+        min-width: 150px;
+    }
+
+    #SalesAddWrap .input-group.date > .form-control[type="text"] {
+        min-width: 100px;
+    }
+
+    /*Add Form - End*/
+
+    #salesComposeForm .form-control {
+        width: 180px !important;
+        height: 35px !important;
+        overflow: hidden;
+    }
+
+    #salesComposeForm th, #salesComposeForm td {
+        width: 200px;
+    }
+
+    #salesComposeForm thead {
+        /*display:table-header-group;*/
+        display: block;
+    }
+
+    #salesComposeForm tbody#editBody {
+        /*display:table-row-group;*/
+        display: block;
+        height: 100px;
+        /*overflow-y: hidden;*/
+        overflow-x: hidden;
+        padding-top: 10px;
+    }
+
+    #salesComposeForm td {
+        padding: 5px !important;
+        vertical-align: middle;
+        vertical-align: middle;
+        position: relative;
+        vertical-align: top;
+    }
+
+    #salesComposeForm .btn-form-submit {
+        padding: 6px 20px;
+        margin: 1px;
+    }
+
+    .table-responsive {
+        overflow: hidden;
+    }
+
+    #salesComposeForm .ui-select-container i.caret {
+        display: none;
+    }
+
+    #salesComposeForm .ui-select-container input.ui-select-search {
+        height: inherit !important;
+    }
+
+    #salesComposeForm .ui-select-placeholder.text-muted.ng-binding {
+        margin: 0 !important;
+    }
+
+    #salesComposeForm .ui-select-bootstrap .ui-select-match-text span {
+        margin: 0 !important;
+    }
+
+    /*#salesComposeForm tbody td:first-of-type, #salesComposeForm thead th:first-of-type{
+    position: absolute;
+    width: 5em;
+    left: 0;
+    top: auto;
+    border-top-width: 1px;
+      }*/
+
+
+    tbody > tr.tr-ident.invalid-data {
+        background: #f5f7ff;
+    }
+
+    /*tbody td{
+        border:1px solid #222;
+    }*/
+
+    /*#salesComposeForm{
+        border:1px solid #222;
+    }*/
+
+    .editFixedFooter {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f0f4f6;
+        padding: 10px;
+    }
+
+        .editFixedFooter .pagination {
+            margin: 0 !important;
+        }
+
+    /*#salesComposeForm .fa-spin {
+        display: none;
+    }*/
+
+    .posting .fa-spin {
+        display: block !important;
+    }
+
+    .posting .fa-check, .posting .fa.fa-floppy-o {
+        display: none !important;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .green {
+        color: green;
+    }
+
+    #salesComposeForm .cleartext {
+        right: 12px;
+        position: absolute;
+        top: 16px;
+    }
+
+    th[data-column-name="Patient"] {
+        min-width: 300px;
+    }
+
+    [data-column-id="ReportFinanceId"] {
+        display: none;
+    }
+
+    /*.dots-td-1 .dropdown-menu {
+        right: 30px;
+        left: inherit;
+        top: -15px;
+        box-shadow: none;
+        background: #fff;
+        border: 1px solid #d8d7d7;
+        border-radius: 2px;
+    }*/
+
+    /*.dots-td-1 .dropdown-menu:before {
+            border-color: rgba(204, 204, 204, 0);
+            border-left-color: #d8d7d7;
+            border-width: 11px;
+            margin-top: -11px;
+        }
+
+        .dots-td-1 .dropdown-menu:after, .dots-td-1 .dropdown-menu:before {
+            left: 100%;
+            top: 20px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }*/
+    #dots-td ul li a {
+        white-space: nowrap;
+    }
+
+    .display-none {
+        display: none;
+    }
+
+    .expandedsales {
+        background: #dde7ed !important;
+        border-left: 2px solid #cfcfcf;
+    }
+
+        .expandedsales > tbody > tr > td:first-child {
+            padding-left: 16px;
+        }
+
+        .expandedsales > tbody > tr:first-child > td {
+            font-weight: bold;
+        }
+
+        .expandedsales > tbody > tr:hover {
+            background: #dde7ed !important;
+        }
+
+    .dropdown-menu a.selected {
+        border-left: 3px solid #347ab6 !important;
+        background: #f0f4f6;
+        padding-left: 17px;
+        border: 1px solid #ffffff;
+    }
+</style>
+
+<div class="lead-content-wrapper slide-left" ng-init="init()" ng-show="authData.isAuth" ng-hide="loadSalesOnHideDetail">
+    <div class="lead-top-search ll">
+        <div class="row ">
+            <div class="col-lg-2 col-sm-12 leads-result">
+                <i ng-show="salesLoading" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                <span ng-if="!showLogView">
+                    {{model.Pager.TotalCount| number}} Records<span style="font-family:inherit" ng-show="affectedFilterCount>0"> matching <span>{{affectedFilters.join(' | ')}}</span></span>
+                    <span>{{salesFilter.GroupBy>0?"| Grouped by "+(salesFilter.GroupBy==1?"Practice":salesFilter.GroupBy==2?"Rep":"Sales Team"):""}}</span>
+                </span>
+            </div>
+
+            <div class="col-lg-10 col-sm-12" style="padding:0">
+                <div class="row">
+                    <div class="col-lg-9 col-sm-6 add-lnk-outerwrap" style="padding-right:0">
+                        <div class="btn-group" style="float: right;margin-right: 4px;" ng-if="showLogView!=true">
+                            <button type="button" class="btn btn-primary">
+                                Group By
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" style="min-width: 158px !important;">
+                                <li ng-repeat="item in lookUps.lookupSalesGroupbyValues">
+                                    <a ng-hide="(item.Id == 0 && (salesFilter.GroupBy == 0 ||  salesFilter.GroupBy == null)) || (item.Id != 0 && lookUps.lookupGroups==null)" ng-click="salesFilter.GroupBy = item.Id" style="border-bottom: 1px solid #eaeaea;padding-top: 0;">
+                                        <i ng-if="item.Id!=0" class="fa fa-object-group" style="margin-right: 5px;"></i>
+                                        {{item.Id==0?'Remove Grouping':item.Value}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btn-group" style="float: right;margin-right: 4px;" ng-if="showLogView!=true && showByPrevilege('SLSIMPRT')">
+                            <button type="button" class="btn btn-primary">
+                                <i ng-show="uploadingReport" class="fa fa-spinner fa-spin ng-animate-disabled ng-hide"></i>
+                                <i ng-show="excelExportLoading" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                                Import/Export
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" style="min-width: 138px !important;">
+                                <li>
+                                    <div style="padding: 3px 20px;">
+                                        <label for="file-input" style="line-height:1.5; margin-bottom:0; font-weight:normal;color:black;cursor:pointer">
+                                            <i class="fa fa-paperclip" style="margin-right:7px"></i>
+                                            Import
+                                        </label>
+                                        <input id="file-input" type="file" ng-model="currentSales.files" ng-change="fileUpload(currentSales.files, false)" name="files" base-sixty-four-input minsize="500" required minnum="1" style="display:none">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div style="padding: 3px 20px;" ng-show="showByPrevilege('SLSIMPRT')">
+                                        <label for="file-input-finance" style="line-height:1.5; margin-bottom:0; font-weight:normal;color:black;cursor:pointer;    white-space: nowrap;">
+                                            <!--<i ng-show="uploadingReport" class="fa fa-spinner fa-spin ng-animate-disabled ng-hide"></i>-->
+                                            <i class="fa fa-paperclip" style="margin-right:7px"></i>
+                                            Import Billing
+                                        </label>
+                                        <input id="file-input-finance" type="file" ng-model="currentSales.files" ng-change="fileUpload(currentSales.files, true)" name="files-finance" base-sixty-four-input minsize="500" required minnum="1" style="display:none">
+                                    </div>
+                                </li>
+                                <li>
+                                    <a ng-click="exportData()">
+                                        <i class="fa fa-file-excel-o" style="margin-right: 5px;"></i>
+                                        Export
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pull-right add-lnk-wrp" ng-if="showByPrevilege('SLSIMPRT')!=true" style="margin-left:5px">
+                            <a class="btn btn-primary pull-right filter-toggle-btn" ng-click="exportData()">
+                                <span ng-hide="showLogView">Export</span>
+                                <i ng-show="excelExportLoading" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+
+                            </a>
+                        </div>
+
+                        <div class="btn-group" style="float: right;margin-right: 4px;" ng-if="showLogView!=true && showByPrevilege('SLSIMPRT') && model!=null">
+                            <button type="button" class="btn btn-primary">
+                                Add/Edit
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" style="min-width: 106px !important;">
+                                <li ng-if="showByPrevilege('SLSIMPRT')">
+                                    <a ng-click="addNewRow(true)" style="color:black;padding: 3px 20px; ">
+                                        <i class="fa fa-plus ng-animate-disabled"></i>
+                                        <span ng-hide="showLogView">Add</span>
+                                    </a>
+                                </li>
+                                <li ng-if="showByPrevilege('SLSIMPRT')">
+                                    <a ng-click="toggleEditView()">
+                                        <i class="fa fa-pencil-square-o ng-animate-disabled"></i>
+                                        Edit
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pull-right add-lnk-wrp" ng-show="showByPrevilege('SLSIMPRT')" style="margin-left:5px">
+                            <a class="btn btn-primary pull-right filter-toggle-btn" ng-click="showLog(true)">
+                                <i class="fa fa-history ng-animate-disabled" ng-hide="logLoading && showLogView==false"></i>
+                                <i class="fa fa-history fa-spin ng-animate-disabled" ng-show="logLoading"></i>
+                                <span ng-hide="showLogView">Log</span>
+                                <span ng-show="showLogView">Sales</span>
+                            </a>
+                        </div>
+
+                        <a class="btn btn-primary pull-right filter-toggle-btn" ng-click="toggleFilter();"><i class="fa fa-filter"></i> Filter</a>
+
+                        <select ui-select2="select2Options" ng-model="salesFilter.ServiceId" class="enrservice pull-right" ng-change="loadFilters()">
+                            <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                        </select>
+
+                        <!--<select ui-select2="select2Options" ng-model="selectedPeriod" data-placeholder="Select Period" style="width:150px">
+                            <option ng-repeat="tag in lookUps.DashboardPeriods" value="{{tag.Id}}">{{tag.Value}}</option>
+                        </select>-->
+
+                        <select data-placeholder="Select Period" ui-select2 ng-model="selectedPeriod" style="width:150px" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.DashboardPeriods">
+                            <option value="0">Select Periods</option>
+                        </select>
+
+                        <!--<ui-select-choices repeat="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.DashboardPeriods">
+                            <span ng-bind-html="selectedItem.Value"></span>
+                        </ui-select-choices>-->
+                    </div>
+                    <div class="col-lg-3 col-sm-6 srch-bx">
+                        <div class="pull-left input-group search-lead">
+                            <input class="form-control" placeholder="Search Sales Activity" name="" id="" type="text" ng-model="salesFilter.Keyword" clearable>
+                            <div class="input-group-btn">
+                                <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="pull-right dropdown" uib-dropdown>
+                            <a class="settings-icon" uib-dropdown-toggle><i class="fa fa-cog"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-form" uib-dropdown-menu>
+                                <li>
+                                    <h3>Visible Columns</h3>
+                                </li>
+                                <li ng-repeat="dFilter in salesFilter.DynamicFilters">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkboxS1" ng-model="dFilter.IsVisible">
+                                        <label for="checkboxS1"></label>
+                                        <span class="select-title">{{dFilter.DisplayName}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row lead-list-wrap" id="lead-list-wrap">
+        <div ng-hide="showLogView==false">
+            <div class="col-lg-3 filter-lead" ng-show="showFilter">
+                <span class="close-cross pull-right"><a ng-click="toggleFilter();" id="filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+                <div class="clearfix"></div>
+                <div class="filter-results">
+                    <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                    <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="filter-actionbox">
+                    <!--<datepicker date-format="MM-dd-yyyy">
+                        <input type="text" class="form-control" ng-model="salesFilter.LogDateFrom" value="{{salesFilter.LogDateFrom|date:'MM-dd-yyyy'}}" placeholder="Log date From" />
+                    </datepicker>
+                    <datepicker date-format="MM-dd-yyyy">
+                        <input type="text" class="form-control" ng-model="salesFilter.LogDateTo" value="{{salesFilter.LogDateTo|date:'MM-dd-yyyy'}}" placeholder="Log date To" />
+                    </datepicker>-->
+
+                    <div class="dropdown" style="margin-bottom:20px">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{salesFilter.LogDateFrom|date:'MM-dd-yyyy'}}" placeholder="Log Date From" id="lblLogDateFrom" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblLogDateFrom">
+                            <datetimepicker data-ng-model="salesFilter.LogDateFrom" data-datetimepicker-config="{ dropdownSelector: '#lblLogDateFrom', startView:'day', minView:'day' }"></datetimepicker>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown" style="margin-bottom:20px">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{salesFilter.LogDateTo|date:'MM-dd-yyyy'}}" placeholder="Log Date To" id="lblLogDateTo" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblLogDateTo">
+                            <datetimepicker data-ng-model="salesFilter.LogDateTo" data-datetimepicker-config="{ dropdownSelector: '#lblLogDateTo', startView:'day', minView:'day' }"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="{{listClass}} listbox-lead" ng-show="showLogView!=null && showLogView==true">
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <table class="ListingTable table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span>ImportedDate</span></th>
+                                    <th><span>Rows Imported</span></th>
+                                    <th><span>Resolved</span></th>
+                                    <th><span>Rows Skipped</span></th>
+                                    <th><span>Rows Inserted</span></th>
+                                    <th><span>Rows Updated</span></th>
+                                    <th><span>Need attention</span></th>
+                                    <th><span>ImportedFrom</span></th>
+                                    <th><span>ImportedFilePath</span></th>
+                                    <th><span>File Type</span></th> 
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="logItem in logModel.List">
+                                <td>{{logItem.ImportedDate | date:"MM/dd/yyyy h:mm a"}}</td>
+                                <td><a>{{logItem.RowsImported}}</a></td>
+                                <td><a ng-click="showSalesByLogId(logItem.Id, [1,2])">{{logItem.RowsResolved}}</a></td>
+                                <td><a ng-click="showSalesByLogId(logItem.Id, [3])">{{logItem.RowsSkipped}}</a></td>
+                                <td><a ng-click="showSalesByLogId(logItem.Id, [1])">{{logItem.RowsInserted}}</a></td>
+                                <td><a ng-click="showSalesByLogId(logItem.Id, [2])">{{logItem.RowsUpdated}}</a></td>
+                                <td><a ng-click="showSalesByLogId(logItem.Id, [5])">{{logItem.NotReolved}}</a></td>
+                                <td>
+                                    {{logItem.ImportedFrom}}
+                                </td>
+                                <td> <a href="{{logItem.SourceFileUrl}}">{{logItem.SourceFileName}}</a></td>
+                                <td>{{logItem.FileType}}</td>
+                            </tr>
+                        </table>
+                        <!--<div style="width:25px; height:100%" id="verticalScroller">
+                            <div></div>
+                        </div>-->
+                    </div>
+                    <div class="paging-wrap">
+                        <div class="pull-left"> <uib-pagination total-items="logModel.Pager.TotalCount" ng-model="salesFilter.CurrentPage" items-per-page="salesFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                        <span ng-hide="showDetails" class="pull-left show-text">
+                            Showing {{logModel.Pager.Skip+1}} to {{(logModel.Pager.Skip + logModel.Pager.Take)>logModel.Pager.TotalCount?logModel.Pager.TotalCount:(logModel.Pager.Skip + logModel.Pager.Take)}} of {{logModel.Pager.TotalCount}} ({{logModel.Pager.TotalPage}} Pages )
+                        </span>
+                        <div class="row-count-drop pull-left" ng-hide="showDetails">
+                            <select class="form-control" ng-model="salesFilter.PageSize">
+                                <option value="" disabled="" selected="" hidden="">Row Count</option>
+                                <option ng-selected="25==salesFilter.PageSize">25</option>
+                                <option ng-selected="50==salesFilter.PageSize">50</option>
+                                <option ng-selected="100==salesFilter.PageSize">100</option>
+                                <option ng-selected="500==salesFilter.PageSize">500</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-hide="showLogView==true">
+            <div class="col-lg-3 filter-lead" ng-show="showFilter">
+                <span class="close-cross pull-right"><a ng-click="toggleFilter();" id="filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+                <div class="clearfix"></div>
+                <div class="filter-results">
+                    <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                    <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="filter-actionbox">
+                    <!--<fieldset class="form-group">
+                        <select data-placeholder="Select Period" ui-select2 ng-model="selectedPeriod" style="width:150px" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.DashboardPeriods">
+                            <option value="0">Select Periods</option>
+                        </select>
+                    </fieldset>-->
+
+                    <fieldset class="form-group">
+                        <ui-select ng-model="salesFilter.PracticeId" title="Select Practice">
+                            <ui-select-match placeholder="Select {{practicePlchldr}}" allow-clear="true">
+                                <span ng-bind="$select.selected.Value"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.Id as item in (lookupPracticeList | filter: $select.search)" refresh="getallAccounts($select.search)" minimum-input-length="1" refresh-delay="500">
+                                <span ng-bind="item.Value"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <ui-select ng-model="salesFilter.ProviderId" title="Select Provider">
+                            <ui-select-match placeholder="Select {{providerPlchldr}}" allow-clear="true">
+                                <span ng-bind="$select.selected.Value"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.Id as item in (lookUps.lookupProviders | filter: $select.search)" refresh="getallproviders($select.search)" minimum-input-length="1" refresh-delay="500">
+                                <span ng-bind="item.Value"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </fieldset>
+
+                    <div class="dropdown" style="margin-bottom:20px">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{salesFilter.CollectedDateFrom|date:'MM-dd-yyyy'}}" placeholder="{{collectedDatePlchldr}} From" id="lblCollectedDateFrom" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblCollectedDateFrom">
+                            <datetimepicker data-ng-model="salesFilter.CollectedDateFrom" data-datetimepicker-config="{ dropdownSelector: '#lblCollectedDateFrom', startView:'day', minView:'day' }"></datetimepicker>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown" style="margin-bottom:20px">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{salesFilter.CollectedDateTo|date:'MM-dd-yyyy'}}" placeholder="{{collectedDatePlchldr}} To" id="lblCollectedDateTo" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblCollectedDateTo">
+                            <datetimepicker data-ng-model="salesFilter.CollectedDateTo" data-datetimepicker-config="{ dropdownSelector: '#lblCollectedDateTo', startView:'day', minView:'day' }"></datetimepicker>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown" style="margin-bottom:20px">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{salesFilter.ReceivedDateFrom|date:'MM-dd-yyyy'}}" placeholder="{{receivedDatePlchldr}} From" id="lblReceivedDateFrom" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblReceivedDateFrom">
+                            <datetimepicker data-ng-model="salesFilter.ReceivedDateFrom" data-datetimepicker-config="{ dropdownSelector: '#lblReceivedDateFrom', startView:'day', minView:'day' }"></datetimepicker>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown" style="margin-bottom:20px">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{salesFilter.ReceivedDateTo|date:'MM-dd-yyyy'}}" placeholder="{{receivedDatePlchldr}} To" id="lblReceivedDateTo" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblReceivedDateTo">
+                            <datetimepicker data-ng-model="salesFilter.ReceivedDateTo" data-datetimepicker-config="{ dropdownSelector: '#lblReceivedDateTo', startView:'day', minView:'day' }"></datetimepicker>
+                        </ul>
+                    </div>
+
+                    <fieldset class="form-group" ng-hide="lookUps.lookupGroups==null">
+                        <ui-select ng-model="salesFilter.RepGroupId" title="Select {{salesTeamPlchldr}}">
+                            <ui-select-match placeholder="Select Sales Team" allow-clear="true">
+                                <span ng-bind="$select.selected.Value"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.Id as item in (lookUps.lookupGroups | filter: $select.search)">
+                                <span ng-bind="item.Value"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </fieldset>
+
+                    <fieldset class="form-group" ng-hide="lookUps.lookupReps==null">
+                        <ui-select ng-model="salesFilter.RepId" title="Select {{repPlchldr}}">
+                            <ui-select-match placeholder="Select Reps" allow-clear="true">
+                                <span ng-bind="$select.selected.Value"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | repfilter: (salesFilter.RepGroupId) && { ParentId: salesFilter.RepGroupId }:true | filter: $select.search)">
+                                <span ng-bind="item.Value"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </fieldset>
+                    <fieldset class="form-group" ng-repeat="dFilter in salesFilter.DynamicFilters" ng-if="dFilter.ShowInFilter">
+                        <input type="text" ng-model="dFilter.ColumnValue" placeholder="{{dFilter.ColumnName}}" class="form-control" style="background: white;height: 41px;border-color: #aaaaaa !important;" />
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- Code here was for Grouped data -->
+            <div class="{{listClass}} listbox-lead" id="listbox-lead" ng-if="isGroupedData && !isEditView">
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <div id="exportable">
+                            <table id="salesGroupView" class="ListingTable table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:60%"
+                                            ng-click="setSelectedColumn({ColumnName:1})"
+                                            ng-class="salesFilter.orderBy=='asc'?{selectedAsc: salesFilter.sortKey == 1}:{selectedDesc: salesFilter.sortKey == 1}">
+                                            <span>{{salesFilter.GroupBy==1?"Practice Name":salesFilter.GroupBy==2?"Rep Name":"Sales Team"}}</span>
+                                        </th>
+                                        <th style="width:20%"
+                                            ng-click="setSelectedColumn({ColumnName:2})"
+                                            ng-class="salesFilter.orderBy=='asc'?{selectedAsc: salesFilter.sortKey==2}:{selectedDesc: salesFilter.sortKey==2}">
+                                            <span>Sales</span>
+                                        </th>
+                                        <th style="width:20%"
+                                            ng-click="setSelectedColumn({ColumnName:3})"
+                                            ng-class="salesFilter.orderBy=='asc'?{selectedAsc: salesFilter.sortKey==3}:{selectedDesc: salesFilter.sortKey==3}">
+                                            <span>Last Activity On</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="groupedSales in model.List">
+                                        <td colspan="3" style="padding:0">
+                                            <table class="ListingTable table table-hover {{groupedSales.GroupedItem==null?'':'expandedsales'}}" style="margin-bottom:0">
+                                                <tr>
+                                                    <td class="lead-name-lnk" ng-click="loadGroupedSubSales(true, groupedSales)" style="border-bottom:0;width:60%">
+                                                        {{groupedSales.KeyName.trim().length>0?groupedSales.KeyName:"[Missing Information]"}} {{groupedSales.GroupedItem==null?"[+]":"[-]"}}
+                                                    </td>
+                                                    <td class="lead-name-lnk" ng-click="loadGroupedSubSales(true, groupedSales)" style="border-bottom:0;width:20%">
+                                                        <span ng-style="groupedSales.KeyName.trim().length>0?{'color':'none'}:{'color':'red'}">{{groupedSales.Count}}</span>
+                                                    </td>
+                                                    <td class="lead-name-lnk" ng-click="loadGroupedSubSales(true, groupedSales)" style="border-bottom:0;width:20%">
+                                                        {{groupedSales.LastActivityOn | date:'MM-dd-yyyy'}}
+                                                    </td>
+                                                </tr>
+                                                <tr class="toogleView" ng-if="groupedSales.GroupedItem.List.length > 0">
+                                                    <td colspan="3" style="padding:0;padding-bottom: 15px;">
+                                                        <div class="{{listClass}} listbox-lead" id="listbox-lead" style="background: #dde7ec;border-left:0">
+                                                            <div class="line-table-wrap" style="background: #f0f4f6;">
+                                                                <div class="table-responsive" style="min-height: auto;">
+                                                                    <div id="exportable">
+                                                                        <table id="leadtable" class="ListingTable table table-hover" style="background: #f0f4f6;">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th ng-show="header.IsVisible" ng-repeat="header in salesFilter.DynamicFilters" ng-click="setSelectedSubListColumn(header,groupedSales)" ng-class="groupedSales.orderBy=='asc'?{selectedAsc: header.ColumnName == groupedSales.sortKey}:{selectedDesc: header.ColumnName == groupedSales.sortKey}">
+                                                                                        <span>{{header.DisplayName}}</span>
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr ng-repeat="sales in groupedSales.GroupedItem.List" class="{{sales.ReportId == currentSales.ReportId && showDetails?'activelink':''}}">
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.CollectedDate">
+                                                                                        {{sales['CollectionDate']|date:'MM-dd-yyyy'}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.ReceivedDate">
+                                                                                        {{sales['ReceivedDate']|date:'MM-dd-yyyy'}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.ReportedDate">
+                                                                                        {{sales.ReportedDate|date:'MM-dd-yyyy'}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.WrittenOn">
+                                                                                        {{sales.WrittenOn|date:'MM-dd-yyyy'}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Practice">
+                                                                                        {{sales.Practice}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Provider">
+                                                                                        {{sales.Provider}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.SalesTeam">
+                                                                                        {{sales.RepGroup}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.RepName">
+                                                                                        {{sales.RepName}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Patient">
+                                                                                        {{sales.Patient}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.SpecimenId">
+                                                                                        {{sales.SpecimenId}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.BilledDate">
+                                                                                        {{sales.BilledDate | date:'MM-dd-yyyy'}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.PaidDate">
+                                                                                        {{sales.PaidDate | date:'MM-dd-yyyy'}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Charges">
+                                                                                        {{sales.Charges | currency:"$":2}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.PaidAmount">
+                                                                                        {{sales.PaidAmount | currency:"$":2}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.AdjustAmount">
+                                                                                        {{sales.AdjustAmount | currency:"$":2}}
+                                                                                    </td>
+                                                                                    <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.AdjustReason">
+                                                                                        {{sales.AdjustReason}}
+                                                                                    </td>
+                                                                                    <td ng-repeat="column in  sales.ReportColumnValues" ng-show="salesFilter.Columns[column.ColumnName]" ng-click="showDetailsView(sales.ReportId)">{{column.Value}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="paging-wrap">
+                                                                    <div class="pull-left"> <uib-pagination ng-change="doSubListPaging(groupedSales)" total-items="groupedSales.GroupedItem.Pager.TotalCount" ng-model="groupedSales.CurrentPage" items-per-page="groupedSales.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                                                                    <span ng-hide="showDetails" class="pull-left show-text">
+                                                                        Showing {{groupedSales.GroupedItem.Pager.Skip+1}} to {{(groupedSales.GroupedItem.Pager.Skip + groupedSales.GroupedItem.Pager.Take)>groupedSales.GroupedItem.Pager.TotalCount?groupedSales.GroupedItem.Pager.TotalCount:(groupedSales.GroupedItem.Pager.Skip + groupedSales.GroupedItem.Pager.Take)}} of {{groupedSales.GroupedItem.Pager.TotalCount}} ({{groupedSales.GroupedItem.Pager.TotalPage}} Pages)
+                                                                    </span>
+                                                                    <div class="row-count-drop pull-left" ng-hide="showDetails">
+                                                                        <select class="form-control" ng-model="groupedSales.PageSize" ng-change="doSubListPaging(groupedSales)">
+                                                                            <option value="" disabled="" selected="" hidden="">Row Count</option>
+                                                                            <option ng-selected="25==groupedSales.PageSize">25</option>
+                                                                            <option ng-selected="50==groupedSales.PageSize">50</option>
+                                                                            <option ng-selected="100==groupedSales.PageSize">100</option>
+                                                                            <option ng-selected="500==groupedSales.PageSize">500</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="paging-wrap">
+                        <div class="pull-left"> <uib-pagination total-items="model.Pager.TotalCount" ng-model="salesFilter.CurrentPage" items-per-page="salesFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                        <span ng-hide="showDetails" class="pull-left show-text">Showing {{model.Pager.Skip+1}} to {{(model.Pager.Skip + model.Pager.Take)>model.Pager.TotalCount?model.Pager.TotalCount:(model.Pager.Skip + model.Pager.Take)}} of {{model.Pager.TotalCount}} ({{model.Pager.TotalPage}} Pages )</span>
+                        <div class="row-count-drop pull-left" ng-hide="showDetails">
+                            <select class="form-control" ng-model="salesFilter.PageSize">
+                                <option value="" disabled="" selected="" hidden="">Row Count</option>
+                                <option ng-selected="25==salesFilter.PageSize">25</option>
+                                <option ng-selected="50==salesFilter.PageSize">50</option>
+                                <option ng-selected="100==salesFilter.PageSize">100</option>
+                                <option ng-selected="500==salesFilter.PageSize">500</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="{{listClass}} listbox-lead" id="listbox-lead" ng-hide="isEditView || isGroupedData">
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <div id="exportable">
+                            <table id="leadtable" class="ListingTable table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-show="header.IsVisible" ng-repeat="header in salesFilter.DynamicFilters" ng-click="setSelectedColumn(header)" ng-class="salesFilter.orderBy=='asc'?{selectedAsc: header.ColumnName == salesFilter.sortKey}:{selectedDesc: header.ColumnName == salesFilter.sortKey}">
+                                            <span>{{header.DisplayName}}</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="sales in model.List" class="{{sales.ReportId == currentSales.ReportId && showDetails?'activelink':''}}">
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.CollectedDate">
+                                            {{sales['CollectionDate']|date:'MM-dd-yyyy'}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.ReceivedDate">
+                                            {{sales['ReceivedDate']|date:'MM-dd-yyyy'}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.ReportedDate">
+                                            {{sales.ReportedDate|date:'MM-dd-yyyy'}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.WrittenOn">
+                                            {{sales.WrittenOn|date:'MM-dd-yyyy'}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Practice">
+                                            {{sales.Practice}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Provider">
+                                            {{sales.Provider}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.SalesTeam">
+                                            {{sales.RepGroup}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.RepName">
+                                            {{sales.RepName}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Patient">
+                                            {{sales.Patient}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.SpecimenId">
+                                            {{sales.SpecimenId}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.BilledDate">
+                                            {{sales.BilledDate | date:'MM-dd-yyyy'}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.PaidDate">
+                                            {{sales.PaidDate | date:'MM-dd-yyyy'}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.Charges">
+                                            {{sales.Charges | currency:"$":2}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.PaidAmount">
+                                            {{sales.PaidAmount | currency:"$":2}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.AdjustAmount">
+                                            {{sales.AdjustAmount | currency:"$":2}}
+                                        </td>
+                                        <td class="lead-name-lnk" ng-click="showDetailsView(sales.ReportId)" ng-show="salesFilter.Columns.AdjustReason">
+                                            {{sales.AdjustReason}}
+                                        </td>
+                                        <td ng-repeat="column in  sales.ReportColumnValues" ng-show="salesFilter.Columns[column.ColumnName]" ng-click="showDetailsView(sales.ReportId)">{{column.Value}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="paging-wrap">
+                        <div class="pull-left"> <uib-pagination total-items="model.Pager.TotalCount" ng-model="salesFilter.CurrentPage" items-per-page="salesFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                        <!--<uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination pull-left" boundary-links="true" force-ellipses="true"></uib-pagination>-->
+                        <span ng-hide="showDetails" class="pull-left show-text">Showing {{model.Pager.Skip+1}} to {{(model.Pager.Skip + model.Pager.Take)>model.Pager.TotalCount?model.Pager.TotalCount:(model.Pager.Skip + model.Pager.Take)}} of {{model.Pager.TotalCount}} ({{model.Pager.TotalPage}} Pages )</span>
+                        <div class="row-count-drop pull-left" ng-hide="showDetails">
+                            <select class="form-control" ng-model="salesFilter.PageSize">
+                                <option value="" disabled="" selected="" hidden="">Row Count</option>
+                                <option ng-selected="25==salesFilter.PageSize">25</option>
+                                <option ng-selected="50==salesFilter.PageSize">50</option>
+                                <option ng-selected="100==salesFilter.PageSize">100</option>
+                                <option ng-selected="500==salesFilter.PageSize">500</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="{{listClass}} listbox-lead" ng-if="isEditView" id="salesComposeForm" style="position:relative">
+                <div class="line-table-wrap table-responsive" id="editTable">
+                    <table id="SalesAddWrap" class="table table-hover" style="background-color:#fff; padding:0 5px 0 5px">
+                        <thead>
+                            <tr>
+                                <th style="width:99px"></th>
+                                <th style="width:50px"></th>
+                                <th ng-repeat="header in salesFilter.DynamicFilters" ng-show="header.IsVisible" data-column-name="{{header.ColumnName}}">
+                                    <span>{{header.DisplayName}}</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="editBody">
+                            <tr id="sales-row-{{sales.ReportId}}{{$index}}" ng-repeat="sales in model.List" class="tr-ident{{sales.ReportId == currentSales.ReportId && showDetails ? ' activelink':''}}{{(sales.PracticeId <= 0 || sales.ProviderId <= 0 || sales.SpecimenId.length <= 0|| (sales.ReportId <= 0 && sales.IsSpecimenExists)) ? ' invalid-data' : ' valid-data'}}">
+                                <td>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="hidden" name="ReportId" value="{{sales.ReportId}}" />
+                                                    <input type="hidden" name="ReportFinanceId" value="{{sales.ReportFinanceId}}" />
+                                                    <input type="hidden" name="RepId" value="{{sales.RepId}}" />
+                                                    <a class="btn btn-form-submit btn-save" data-report="sales.ReportId" ng-click="submitSalesCompose('sales-row-' + sales.ReportId + $index, true)">
+                                                        <i class="fa {{(sales.PracticeId <= 0 || sales.ProviderId <= 0 || sales.SpecimenId.length <= 0|| (sales.ReportId <= 0 && sales.IsSpecimenExists)) ? 'fa-exclamation-triangle' : 'fa-floppy-o'}}" style="margin-right: 5px;"></i>
+                                                        <i class="fa fa-spinner fa-spin ng-animate-disabled display-none"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <i ng-if="sales.LastParsedData.ImportStatus==5"
+                                                       class="fa fa-exclamation-triangle pull-left {{(sales.PracticeId <= 0 || sales.ProviderId <= 0 || sales.SpecimenId.length <= 0|| (sales.ReportId <= 0 && sales.IsSpecimenExists)) ? 'red' : 'green'}}"
+                                                       title="Parser log"
+                                                       rel="popover"
+                                                       data-trigger="click"
+                                                       data-popover-content="#popover{{$index}}">
+                                                    </i>
+                                                    <div id="popover{{$index}}" class="hide">
+                                                        <ul class="nav nav-pills nav-stacked">
+                                                            <li ng-repeat="msg in sales.LastParsedData.ImpotMessages">
+                                                                <a>
+                                                                    <i class="fa fa-exclamation-triangle" style="margin-right: 5px;" ng-show="isCritical(msg.Message)"></i>
+                                                                    {{msg.Message}}
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.CollectedDate">
+                                                    <div ng-init="fitSize($index)" ng-if="$index==currentListCount-1"></div>
+                                                    <datepicker date-format="MM-dd-yyyy">
+                                                        <input type="text" class="form-control" name="CollectionDate" placeholder="Collection Date" value="{{sales['CollectionDate']|date:'MM-dd-yyyy'}}" />
+                                                    </datepicker>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.ReceivedDate">
+                                                    <datepicker date-format="MM-dd-yyyy">
+                                                        <input type="text" class="form-control" name="ReceivedDate" placeholder="Received Date" value="{{sales['ReceivedDate']|date:'MM-dd-yyyy'}}" />
+                                                    </datepicker>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.ReportedDate">
+                                                    <datepicker date-format="MM-dd-yyyy">
+                                                        <input type="text" class="input-large form-control" value="{{sales['ReportedDate']|date:'MM-dd-yyyy'}}" name="ReportedDate" placeholder="Reported Date" />
+                                                    </datepicker>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.WrittenOn">
+                                                    <input type="text" class="input-large form-control" value="{{sales['WrittenOn']|date:'MM-dd-yyyy'}}" name="WrittenOn" placeholder="Written On" readonly />
+                                                </td>
+                                                <td class="lead-name-lnk form-group" ng-show="salesFilter.Columns.Practice">
+                                                    <input type="hidden" name="Practice" value="{{sales.Practice.trim()}}" />
+                                                    <ui-select data-model="{{sales.PracticeId}}" ng-model="sales.PracticeId" data-name="PracticeId" title="Select Account" on-select="drpOnSelect($item, sales, 1)"
+                                                               skip-focusser="true">
+                                                        <ui-select-match placeholder="{{sales.Practice.trim().length > 0 ? sales.Practice : 'Select Account'}}">
+                                                            {{sales.Practice.trim()}}
+                                                        </ui-select-match>
+                                                        <ui-select-choices repeat="item.Id as item in (lookupPracticeList | filter: $select.search)" refresh="getallAccounts($select.search)" minimum-input-length="1" refresh-delay="500">
+                                                            <span ng-bind="item.Value"></span>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                    <i class="fa fa-times cleartext" ng-show="sales.PracticeId > 0" ng-click="undoChanges(sales)"></i>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.Provider">
+                                                    <ui-select data-model="{{sales.ProviderId}}" ng-model="sales.ProviderId" data-name="ProviderId" title="Select Provider" on-select="drpOnSelect($item, sales, 2)" skip-focusser="false">
+                                                        <ui-select-match placeholder="{{sales.Provider.trim().length > 0 ? sales.Provider : 'Select Provider'}}">
+                                                            {{sales.Provider}}
+                                                        </ui-select-match>
+                                                        <ui-select-choices repeat="item.Id as item in (lookupProviderList | filter: $select.search)" refresh="getallProviders($select.search)" minimum-input-length="1" refresh-delay="500">
+                                                            <span ng-bind="item.Value"></span>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                    <i class="fa fa-times cleartext" ng-show="sales.ProviderId > 0" ng-click="undoChanges(sales)"></i>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.SalesTeam">
+                                                    <input type="text" class="form-control" value="{{sales.RepGroup}}" name="SalesTeam" readonly />
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.RepName">
+                                                    <input type="text" class="form-control" value="{{sales.RepName}}" name="RepName" readonly />
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.Patient">
+                                                    <div class="col-lg-12" style="min-width: 300px;">
+                                                        <div class="col-lg-4" style="padding: 0;">
+                                                            <span style="border: 1px solid #bdbdbd;z-index:999;position :absolute;font-size: 9.8px;border-radius: 4px 0 0 0;width: 100%;padding-left: 8px;background: #f1f1f1;color: #676767;">Patient Id</span>
+                                                            <input type="text" class="form-control" value="{{sales.PatientId}}" name="PatientId" style="width: 100% !important;padding-right: 5px;padding-left: 5px;padding-bottom: 0;padding-top: 12px;border-radius: 5px 5px 0 5px;" />
+                                                        </div>
+                                                        <div class="col-lg-4" style="padding: 0;">
+                                                            <span style="border: 1px solid #bdbdbd;z-index:999;position :absolute;font-size: 9.8px;padding: 0px 6px;width: 100%;padding-left: 8px;background: #f1f1f1;color: #676767;margin-left: -1px;">First Name</span>
+                                                            <input type="text" class="form-control" value="{{sales.PatientFirstName}}" name="PatientFirstName" style="width: 100% !important;padding-right: 5px;padding-left: 5px;padding-bottom: 0;padding-top: 12px;border-radius: 0;margin-left: -1px;" />
+                                                        </div>
+                                                        <div class="col-lg-4" style="padding: 0;">
+                                                            <span style="border: 1px solid #bdbdbd;z-index:999;position :absolute;font-size: 9.8px;padding: 0px 6px;border-radius: 0px 4px 0 0;width: 100%;padding-left: 8px;background: #f1f1f1;color: #676767;margin-left: -2PX;">Last Name</span>
+                                                            <input type="text" class="form-control" value="{{sales.PatientLastName}}" name="PatientLastName" style="width: 100% !important;padding-right: 5px;padding-left: 5px;margin-left: -2px;padding-bottom: 0;padding-top: 12px;border-radius: 5px 5px 0 0;" />
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.SpecimenId">
+                                                    <input type="text" class="form-control" ng-model="sales.SpecimenId" value="{{sales.SpecimenId}}" name="SpecimenId" ng-blur="isSpecimenExists(sales)" />
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.BilledDate">
+                                                    <datepicker date-format="MM-dd-yyyy">
+                                                        <input type="text" value="{{sales.BilledDate|date:'MM-dd-yyyy'}}" class="input-large form-control" name="PaidDate" placeholder="Billed Date" />
+                                                    </datepicker>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.PaidDate">
+                                                    <datepicker date-format="MM-dd-yyyy">
+                                                        <input type="text" class="input-large form-control" value="{{sales.PaidDate|date:'MM-dd-yyyy'}}" name="PaidDate" placeholder="Paid Date" />
+                                                    </datepicker>
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.Charges">
+                                                    <input type="text" name="Charges" class="form-control" value="{{sales.Charges | setDecimal:2}}" placeholder="Charges" />
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.PaidAmount">
+                                                    <input type="text" name="PaidAmount" class="form-control" value="{{sales.PaidAmount | setDecimal:2}}" placeholder="PaidAmount" />
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.AdjustAmount">
+                                                    <input type="text" name="AdjustAmount" class="form-control" value="{{sales.AdjustAmount | setDecimal:2}}" placeholder="AdjustAmount" />
+                                                </td>
+                                                <td class="lead-name-lnk" ng-show="salesFilter.Columns.AdjustReason">
+                                                    <input type="text" name="AdjustReason" class="form-control" value="{{sales.AdjustReason}}" placeholder="AdjustReason" />
+                                                </td>
+                                                <td ng-repeat="column in  sales.ReportColumnValues" ng-show="salesFilter.Columns[column.ColumnName]">
+                                                    <span class="dynField">
+                                                        <input type="text" class="form-control" value="{{column.Value}}" data-column-id="{{column.ColumnId}}" name="{{salesFilter.Columns[column.ColumnName]}}" placeholder="column.DisplayName" />
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr ng-if="sales.FinanceDataRecordCount>1" class="toogleView">
+                                <td ng-repeat="(key, value) in sales.FinanceDataList[0]"><b>{{key}}</b></td>
+                            </tr>
+                            <tr ng-repeat="financeData in sales.FinanceDataList" class="toogleView">
+                                <td ng-repeat="(key, value) in financeData">
+                                    <input type="text" class="form-control" value="{{value}}" name="{{key}}" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tableScroller" style="width:17px; height:100%; display:block; overflow-y:scroll; overflow-x:hidden; position:absolute; right:16px; top:57px">
+                    <div style="display:block; height:1px; width:1px">.</div>
+                </div>
+                <div class="editFixedFooter" style="">
+                    <div class="col-md-6">
+                        <uib-pagination total-items="model.Pager.TotalCount" ng-model="salesFilter.CurrentPage" items-per-page="salesFilter.PageSize"
+                                        boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false"
+                                        class="pagination-sm">
+                        </uib-pagination>
+                    </div>
+                    <div class="col-md-4" style="text-align:right">
+                        <a class="btn btn-form-submit" ng-click="toggleEditView()">
+                            <i class="fa fa-window-close" style="margin-right: 5px;"></i>
+                            Cancel
+                        </a>
+                        <a class="btn btn-form-submit" ng-click="addNewRow(false)">
+                            <i class="fa fa-plus" style="margin-right: 5px;"></i>
+                            Add New Row
+                        </a>
+                        <a class="btn btn-form-submit btn-save" ng-click="submitSalesCompose('salesComposeForm', false)" ng-disabled="isDisable">
+                            <i class="fa fa-floppy-o" style="margin-right: 5px;" ng-hide="isDisable"></i>
+                            <i class="fa fa-spinner fa-spin ng-animate-disabled" ng-show="isDisable" style="float: left;margin-top: 3px;margin-right: 5px;"></i>
+                            Save
+                        </a>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12 lead-info-wrap slide-left" id="lead-info-wrap" ng-show="showDetails">
+    <ng-include src="templateUrl('/Controlpanel/Views/Sales/salesDetails.html?1234')"></ng-include>
+</div>
+
+<script>
+    $('body').on('click', function (e) {
+        $('[rel="popover"]').each(function () {
+            //the 'is' for buttons that trigger popups
+            //the 'has' for icons within a button that triggers a popup
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
+</script>

@@ -1,0 +1,169 @@
+﻿
+<style>
+    .taskSub {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-height: 14px; /* fallback */
+        max-height: 14px; /* fallback */
+    }
+
+    .taskDesc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        line-height: 18px; /* fallback */
+        max-height: 36px; /* fallback */
+    }
+</style>
+
+<div class="lead-content-wrapper slide-left" ng-init="init()">
+    <!--<div class="lead-top-search ll" ng-include="'/Controlpanel/Views/tasks/taskHeader.html?i=20'">
+    </div>-->
+    <div class="lead-top-search ll">
+        <ng-include src="templateUrl('/Controlpanel/Views/tasks/taskHeader.html')"></ng-include>
+    </div>
+    <div class="row lead-list-wrap lead-list-wrap-white" id="lead-list-wrap">
+
+        <div class="col-lg-3 filter-lead taskFilterView" id="filter-lead" ng-show="showFilter">
+            <span class="close-cross pull-right"><a ng-click="toggleFilter();" id="filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+            <div class="clearfix"></div>
+            <div class="filter-results">
+                <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="filter-actionbox">
+
+                <!--<fieldset class="form-group">
+                    <input type="text" ng-model="tasksFilter.ReferenceNumber" placeholder="Reference Number" class="form-control" style="background: white;height: 41px;border-color: #aaaaaa !important;" />
+                </fieldset>-->
+                <fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.RequestType" title="Request Type">
+                        <ui-select-match placeholder="Request Type" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.TaskTypes | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.Status" title="Status">
+                        <ui-select-match placeholder="Status" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupTaskStatus | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.DueOn" title="Due On">
+                        <ui-select-match placeholder="Due On" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupPeriods | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.RequestedBy" title="Requested by">
+                        <ui-select-match placeholder="Requested by" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupTaskUsers | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.AssignedTo" title="To">
+                        <ui-select-match placeholder="To" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupTaskUsers | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.AssignedOrRequest" title="Assigned to me/Requested by me">
+                        <ui-select-match placeholder="Assigned to me/Requested by me" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (RequestOrAssigned | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <!--<fieldset class="form-group">
+                    <ui-select ng-model="tasksFilter.Priority" title="Priority">
+                        <ui-select-match placeholder="Priority" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.TaskPriorities | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>-->
+            </div>
+        </div>
+
+        <div class="task-detail row" ng-show="showDetails">
+            <div class="col-sm-4 col-md-3 task-detail-left">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                    <div id="taskListView" class="tasklistscroll" style="overflow: hidden; width: auto; height: 100%;">
+                        <div class="row task-list-dtl {{task.TaskId==currentTask.TaskId?'task-lst-act':''}} {{task.StatusId == 3 ? 'completed':''}}" ng-class="" ng-repeat="task in model.List" ng-click="showDetailsView(task)">
+                            <div>
+                                <div class="col-sm-8 tsk-dtl-lft">
+                                    <div class="taskby">
+                                        <h4><strong>From:</strong> {{task.RequestedUsers.length > 0 ? getNameArray(task.RequestedUsers) : task.RequestedUser.Name}}</h4>
+                                        <h4 style="margin-top:3px"><strong>To:</strong> {{getNameArray(task.AssignedUsersList)}}</h4>
+                                        <!--<strong>Cc:</strong>{{getNameArray(task.WatchersList)}}-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 tsk-date-rgt">
+                                    <span class="tsk-dt">{{task.CreatedOn | date:'MMM dd'}}</span>
+                                    <span class="tsk-due {{task.IsToday ? 'tsk-due-org' : (isDateFuture(task.TargetDate) ? 'tsk-due-red' : 'tsk-due-org')}}" ng-show="task.TargetDate!=null && task.StatusId != 3">
+                                        Due {{task.IsToday ? 'Today' : (toLocalTime(task.TargetDate)|dateSuffix)}}
+                                    </span>
+                                    <span class="tsk-due tsk-due-grn" ng-show="task.StatusId == 3">Completed</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="taskfor">
+                                        <span>
+                                            
+                                            <span class="taskSub"><i ng-show="task.PriorityTypeId==1" class="fa fa-exclamation-circle tsk-due-red" aria-hidden="true"></i>{{task.TaskType!=null ? task.TaskType + " - ":""}}{{task.Subject | limitTo : 80}}</span><!--<span ng-show="task.Subject.length > 23">...</span>-->
+                                        </span>
+                                        <!--<p class="taskDesc">{{task.ShortDescription | limitTo : 170}}</p>-->
+                                        <!--<span ng-show="task.ShortDescription.length > 70">...</span>-->
+                                        <p ng-bind-html="task.ShortDescription | limitTo : 170"></p>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="width:100%;text-align:center;background:white">
+                            <i ng-show="tasksLoading || loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-sm-8 {{detailViewClass}} task-detail-right slide-left" ng-include="'/Controlpanel/Views/tasks/taskDetails.html?i=405'" id="lead-info-wrap"></div>-->
+
+            <div class="col-sm-8 {{detailViewClass}} task-detail-right slide-left" id="lead-info-wrap">
+                <ng-include src="templateUrl('/Controlpanel/Views/tasks/taskDetails.html?1')"></ng-include>
+            </div>
+        </div>
+    </div>
+</div>

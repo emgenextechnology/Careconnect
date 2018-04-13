@@ -1,0 +1,94 @@
+﻿@model EBP.Business.Entity.Practice.EntityPracticeAddress
+
+@{
+    if (Model.LocationId != null)
+    {
+        ViewBag.Title = "Edit LocationId";
+    }
+    else
+    {
+        ViewBag.Title = "Add LocationId";
+    }
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.PracticeName)
+        @Html.HiddenFor(model => model.Line1)
+        @Html.HiddenFor(model => model.Line2)
+        @Html.HiddenFor(model => model.City)
+        @Html.HiddenFor(model => model.State)
+        @Html.HiddenFor(model => model.AddressType)
+        @Html.HiddenFor(model => model.Zip)
+
+        <div class="form-group">
+            <div class="form-group">
+                @Html.Label("Practice Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.PracticeName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Address 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Line1, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Address 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Line2, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("City", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("State", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Address Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.AddressType, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Zip", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("LocationId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.LocationId, new { @class = "form-control" })
+                    @Html.ValidationMessage("Error", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

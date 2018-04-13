@@ -1,0 +1,59 @@
+﻿@model EBP.Business.Database.LookupDocumentType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Document Type</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Document Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

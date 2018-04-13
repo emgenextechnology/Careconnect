@@ -1,0 +1,37 @@
+﻿<span class="close-cross pull-right"><a ng-click="toggleFilter();" id=" filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+<div class="clearfix"></div>
+<div class="filter-results">
+    <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+    <a class="reset-filter pull-right" ng-click="" >Reset</a>
+    <div class="clearfix"></div>
+</div>
+<div class="filter-actionbox">
+    
+        <fieldset class="form-group">
+            <select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.Period" data-placeholder="Select Periods" ng-change="filterChange()">
+                <option value=""></option>
+                <option ng-repeat="tag in lookUps.lookupPeriods" value="{{tag.Id}}">{{tag.Value}}</option>
+            </select>
+        </fieldset>
+        <fieldset class="form-group">
+            <select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.RepGroupId" data-placeholder="Select Rep Groups">
+                <option value="">Select Rep Groups</option>
+                <option ng-repeat="tag in lookUps.lookupGroups" value="{{tag.Id}}">{{tag.Value}}</option>
+            </select>
+        </fieldset>
+        <fieldset class="form-group">
+            <select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.RepId" data-placeholder="Select Reps">
+                <option value="">Select Reps</option>
+                <option ng-repeat="tag in lookUps.lookupReps" value="{{tag.Id}}">{{tag.Value}}</option><!--|filter:{ParentId:leadFilter.RepGroupId}-->
+            </select>
+        </fieldset>
+        <fieldset class="form-group">
+            <select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.LeadStatus" data-placeholder="Select Status">
+                <option value="">Select Status</option>
+                <option ng-repeat="tag in lookUps.lookupStatus" value="{{tag.Id}}">{{tag.Value}}</option>
+            </select>
+        </fieldset>
+    
+</div>
+
+{{leadFilter}}

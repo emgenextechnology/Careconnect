@@ -1,0 +1,51 @@
+﻿@model EBP.Business.Database.ReportStaticColumnConfig
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportStaticColumnConfig</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ColumnName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColumnName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColumnOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColumnOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LookupEnrolledService.ServiceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookupEnrolledService.ServiceName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

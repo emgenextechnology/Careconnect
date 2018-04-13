@@ -1,0 +1,13 @@
+﻿<fields>
+  
+  <ReportFinance HasMultipleFinanceData="true" DeleteFinanceData="true">
+    <ReportKey>Ailmt Name</ReportKey>
+    <Charges>Amount Charge</Charges>
+    <PaidAmount>Total Receipts1</PaidAmount>
+    <AdjustAmount>Amount Adjust</AdjustAmount>
+    <BilledDate></BilledDate>
+    <PaidDate></PaidDate>
+    <AdjustReason></AdjustReason>
+  </ReportFinance>  
+  
+</fields>

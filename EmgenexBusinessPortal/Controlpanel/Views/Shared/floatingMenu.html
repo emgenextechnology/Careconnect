@@ -1,0 +1,24 @@
+﻿<div id="container-floating" ng-show="showByPrevilege('WRTSK') || showByPrevilege('WRLD') || showByPrevilege('WRACNT')">
+    <div class="nd3 nds" ng-show="showByPrevilege('WRTSK')" ng-click="addTask()">
+        <a href="" data-toggle="modal" data-target="#addtask" style="display:block">
+            <span class="tool-tip-flticn"><strong>Add Task</strong></span>
+            <p class="letter"><img src="/Controlpanel/Content/images/task-icon-white.png" width="22" alt="" /></p>
+        </a>
+    </div>
+    <div class="nd2 nds" ng-show="showByPrevilege('WRLD')">
+        <a href="" data-toggle="modal" data-target="#addlead" ng-click="addLead()">
+            <span class="tool-tip-flticn"><strong>Add Lead</strong></span>
+            <p class="letter"><img src="/Controlpanel/Content/images/lead-icon-white.png" width="22" alt="" /></p>
+        </a>
+    </div>
+    <div class="nd1 nds" ng-show="showByPrevilege('WRACNT')">
+        <a href="" data-toggle="modal" data-target="#addaccount" ng-click="addAccount()">
+            <span class="tool-tip-flticn"><strong>Add Account</strong></span>
+            <p class="letter"><img src="/Controlpanel/Content/images/accounts-icon-white.png" width="22" alt="" /></p>
+        </a>
+    </div>
+    <div id="floating-button" class="fltng-btn">
+        <p class="plus">+</p>
+        <img class="edit" src="/Controlpanel/Content/images/edit.png">
+    </div>
+</div>

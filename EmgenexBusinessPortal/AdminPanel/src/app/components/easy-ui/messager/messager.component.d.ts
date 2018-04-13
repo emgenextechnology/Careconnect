@@ -1,0 +1,36 @@
+import { ElementRef } from '@angular/core';
+import { DialogComponent } from '../dialog/dialog.component';
+import { BodyTemplateDirective } from '../base/template-base';
+import { MessagerService } from './messager.service';
+export declare const MESSAGER_TEMPLATE: string;
+export declare class MessagerComponent extends DialogComponent {
+    hostRef: ElementRef;
+    messagerService: MessagerService;
+    inputRef: ElementRef;
+    bodyTemplate: BodyTemplateDirective;
+    title: string;
+    bodyStyle: Object;
+    modal: boolean;
+    icon: string;
+    msg: string;
+    ok: string;
+    cancel: string;
+    buttons: any[];
+    messagerType: string;
+    inputValue: string;
+    resultValue: any;
+    options: any;
+    originalOptions: any;
+    _closed: boolean;
+    _bodyCls: string;
+    bodyCls: string;
+    readonly messagerIcon: string;
+    constructor(hostRef: ElementRef, messagerService: MessagerService);
+    openDialog(options: any, type?: string): void;
+    closeDialog(result?: any): void;
+    saveState(options: any): void;
+    restoreState(): void;
+    buildAlertOptions(options: any): any;
+    buildConfirmOptions(options: any): any;
+    buildPromptOptions(options: any): any;
+}

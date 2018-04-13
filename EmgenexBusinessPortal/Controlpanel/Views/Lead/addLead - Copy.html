@@ -1,0 +1,253 @@
+﻿<div class="modal-dialog modal-lg" role="document">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Add Lead</h4>
+        </div>
+        <div class="modal-body-form">
+            <div class="form-repeater-box">
+                <h2>Account</h2>
+                <div class="row">
+                    <div class="col-sm-6 field-box">
+                        <fieldset class="form-group error-input">
+                            <input type="text" class="form-control" id="" placeholder="Account Name" ng-model="currentLead.Practice.Name">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 field-box">
+                        <fieldset class="form-group">
+                            <select class="form-control" ng-model="currentLead.Practice.SpecialityTypeId">
+                                <option value="" selected>Select Speciality type</option>
+                                <option ng-repeat="tag in lookupPracticeType" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-6 field-box">
+                        <fieldset ng-show="currentLead.Practice.SpecialityTypeId==2" class="form-group error-input">
+                            <select class="form-control" ui-select2 multiple ng-model="currentLead.Practice.SpecialityIds" data-placeholder="Select Specialities">
+                                <option ng-repeat="tag in lookupSpecialities" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                        <fieldset ng-show="currentLead.Practice.SpecialityTypeId==1" class="form-group error-input">
+                            <select class="form-control" style="width: 400px;" ui-select2 ng-model="currentLead.Practice.SpecialityIds" data-placeholder="Select Speciality">
+                                <option value="" selected>Select Speciality</option>
+                                <option ng-repeat="tag in lookupSpecialities" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                        <fieldset ng-show="currentLead.Practice.SpecialityTypeId==3" class="form-group error-input">
+                            <input type="text" class="form-control" id="" placeholder="New speciality" ng-model="currentLead.Practice.Specialities[0].NewSpecialityName">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 field-box">
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" placeholder="Address Line 1" ng-model="currentLead.Practice.Address[0].Line1">
+                            <input type="text" class="form-control" placeholder="Address Line 1" ng-model="currentLead.Practice.Address[1].Line1">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 field-box">
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" id="" placeholder="Address Line 2" ng-model="currentLead.Practice.Address[0].Line2">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 field-box">
+                        <fieldset class="form-group error-input">
+                            <input type="text" class="form-control" id="" placeholder="City" ng-model="currentLead.Practice.Address[0].City">
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4 field-box">
+                        <fieldset class="form-group">
+                            <select class="form-control" data-placeholder="Select State" ng-model="currentLead.Practice.Address[0].StateId">
+                                <option value="">Select State</option>
+                                <option ng-repeat="tag in lookupStates" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4 field-box">
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" id="" placeholder="Zip Code" ng-model="currentLead.Practice.Address[0].Zip" ui-mask="99999-9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 field-box">
+                        <fieldset class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone Number" ng-model="currentLead.Practice.Address[0].Phone[0].PhoneNumber" ui-mask="(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4 field-box">
+                        <fieldset class="form-group">
+                            <input type="tel" class="form-control" placeholder="Ext" ng-model="currentLead.Practice.Address[0].Phone[0].Extension" ui-mask="99999" ui-mask-placeholder ui-mask-placeholder-char="_">
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4 field-box">
+                        <fieldset class="form-group">
+                            <input type="tel" class="form-control" placeholder="Fax" ng-model="currentLead.Practice.Address[0].Fax"  ui-mask="(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="form-repeater-box">
+                <h2>Additional Locations</h2>
+                <div class="repeatingsection-location">
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Address Line 1" ng-model="currentLead.Practice.Address[1].Line1">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Address Line 2" ng-model="currentLead.Practice.Address[1].Line2">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="City" ng-model="currentLead.Practice.Address[1].City">
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control" ng-model="currentLead.Practice.Address[1].StateId" data-placeholder="Select State">
+                                    <option ng-repeat="tag in lookupStates" value="{{tag.Id}}">{{tag.Value}}</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Zip Code" ng-model="currentLead.Practice.Address[1].Zip">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="tel" class="form-control" id="" placeholder="Phone Number" ng-model="currentLead.Practice.Address[1].Phone[0].PhoneNumber">
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="tel" class="form-control" id="" placeholder="Ext" ng-model="currentLead.Practice.Address[1].Phone[0].Extension">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Manager Name">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <a href="#" class="cancel-location remove-repeat">- Remove Location</a>
+                </div>
+                <a href="#" class="add-location add-repat">+ Add Location</a>
+            </div>
+            <div class="form-repeater-box">
+                <h2>Provider</h2>
+                <div class="repeatingsection-provider">
+                    <div class="row">
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name">
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" placeholder="Middle Name">
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control" ng-model="currentLead.Providers[0].DegreeId" data-placeholder="Select State">
+                                    <option ng-repeat="tag in lookupProviderDegree" value="{{tag.Id}}">{{tag.Value}}</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="NPI#">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <div class="radio">
+                                <span class="same-loctn-title">Location Same As Practice</span>
+                                <label class="md-radio-group" for="radio5">
+                                    <input type="radio" name="smoke" id="radio5" class="md-radiobox" checked="checked" />
+                                    <span class="md-check-radio"></span>Yes
+                                </label>
+                                <label class="md-radio-group" for="radio6">
+                                    <input type="radio" name="smoke" id="radio6" class="md-radiobox" />
+                                    <span class="md-check-radio"></span>No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="cancel-provider remove-repeat">- Remove Provider</a>
+                </div>
+                <a href="#" class="add-provider add-repat">+ Add Provider</a>
+            </div>
+            <div class="form-repeater-box">
+                <h2>Additional Details</h2>
+                <div class="repeatingsection-provider">
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control" ng-model="currentLead.RepGroupId" data-placeholder="Select State">
+                                    <option ng-repeat="tag in lookupGroups" value="{{tag.Id}}">{{tag.Value}}</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control" ng-model="currentLead.RepId" data-placeholder="Select State">
+                                    <option ng-repeat="tag in lookupReps" value="{{tag.Id}}">{{tag.Value}}</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control selectpicker" ng-model="currentLead.LeadSourceId">
+                                    <option value="" disabled="" selected="" hidden="">Lead Source</option>
+                                    <option ng-repeat="tag in lookupLeadSources" value="{{tag.Id}}">{{tag.Value}}</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="" placeholder="Lead's service interest"></textarea>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-form-submit" ng-click="submit()">Submit</button>
+        </div>
+    </div>

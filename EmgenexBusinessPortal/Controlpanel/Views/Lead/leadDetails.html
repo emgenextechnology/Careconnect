@@ -1,0 +1,118 @@
+﻿
+<div class="lead-info-top">
+    <h2 class="pull-left" style="position:relative"><span>{{currentLead.Practice.Name}}</span><!--<div class="loading" ng-show="loadingDetails"></div>--><i ng-show="loadingDetails" class="fa fa-spinner fa-spin ng-animate-disabled"></i></h2>
+    <span class="close-cross pull-right"><a ng-click="hideDetailsView()" id="lead-info-close"><img src="/Controlpanel/Content/images/cross-white.png" alt="Close" width="16"></a></span>
+    <div class="pull-right lead-btn-group" ng-hide="currentLead==null">
+        <a class="btn" ng-click="addTask(currentLead.LeadId)"><img src="/Controlpanel/Content/images/task-icon-white.png" alt="Add Task" width="20" ng-hide="addingToTask"><i ng-show="addingToTask" class="fa fa-spinner fa-spin ng-animate-disabled"></i>Add Task</a>
+        <a class="btn" ng-click="createpdf(currentLead.LeadId)"><i ng-show="LeadViewpdf" class="fa fa-spinner fa-spin ng-animate-disabled"></i><img src="/Controlpanel/Content/images/pdf-white.png" alt="PDF" width="18">PDF</a>
+        <a ng-click="setFlag()" class="btn {{currentLead.HasFlag?'active':''}}" ng-show="showByPrevilege('WRLD')"><img src="/Controlpanel/Content/images/white-flag.png" alt="Flag" width="18" ng-hide="loadingFlagUpdate"><i ng-show="loadingFlagUpdate" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Flag</a>
+        <a ng-click="setStatus()" class="btn" ng-show="showByPrevilege('WRLD')">
+            <img src="/Controlpanel/Content/images/{{currentLead.IsActive?'white-cross.png':'white-round-tick.png'}}" alt="Active/Inactive" width="17" ng-hide="loadingStatusUpdate">
+            <i ng-show="loadingStatusUpdate" class="fa fa-spinner fa-spin ng-animate-disabled"></i> {{currentLead.IsActive?'Inactivate':'Activate'}}
+        </a>
+        <a class="btn" ng-click="convertToAccount(currentLead.LeadId)" ng-show="showByPrevilege('WRACNT')"><img src="/Controlpanel/Content/images/accounts-icon-white.png" alt="Convert Account" width="18">Convert to Account</a>
+        <a class="btn" ng-click="editLead(currentLead.LeadId)" ng-show="showByPrevilege('WRLD')"><img src="/Controlpanel/Content/images/edit.png" alt="Edit" width="18" ng-hide="loadingEdit"><i ng-show="loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Edit </a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="lead-dtl-wrpbx">
+    <div class="info-ldrepeater-box">
+        <!--<div class="info-ldbox-head">Primary Location ({{(currentLead.Practice.Address|filter:{ AddressTypeId: '1' }).length}})</div>-->
+        <div class="info-ldbox-head">Locations ({{currentLead.Practice.Address.length}})</div>
+        <div class="row row-eq-height info-address">
+            <div class="col-sm-6 col-md-3" ng-repeat="address in currentLead.Practice.Address" ng-if="address.AddressTypeId==1">
+                <div class="row lead-loc-box">
+                    <div class="col-sm-2 adr-thmb-ld"><img src="/Controlpanel/Content/images/address-org-pin.png" width="35" alt="Location" /></div>
+                    <div class="col-sm-10 adr-rgt-ld">
+                        <address>
+                            {{address.Line1}}, {{address.Line2}} <br />{{address.City}}, {{address.State}} {{address.Zip}}<br /> T: {{address.Phone[0].PhoneNumber | tel}} Ext: {{address.Phone[0].Extension}}
+                            <span ng-show="address.AddressTypeId==1"><br />F: {{address.Fax | tel}} </span>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        <!--</div>
+        <div class="row row-eq-height info-address">-->
+            <div class="col-sm-6 col-md-3" ng-repeat="address in currentLead.Practice.Address" ng-if="address.AddressTypeId!=1">
+                <div class="row lead-loc-box">
+                    <div class="col-sm-2 adr-thmb-ld"><img src="/Controlpanel/Content/images/address-pin.png" width="35" alt="Location" /></div>
+                    <div class="col-sm-10 adr-rgt-ld">
+                        <address>
+                            {{address.Line1}}, {{address.Line2}} <br />{{address.City}}, {{address.State}} {{address.Zip}}<br /> T: {{address.Phone[0].PhoneNumber | tel}} Ext: {{address.Phone[0].Extension}}
+                            <br />F: {{address.Fax | tel}}
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="info-ldrepeater-box">
+        <div class="info-ldbox-head">Locations ({{(currentLead.Practice.Address|filter:{ AddressTypeId: '!1' }).length}})</div>
+    </div>-->
+    <div class="info-ldrepeater-box">
+        <div class="info-ldbox-head">Providers ({{currentLead.Practice.Providers.length}})</div>
+        <div class="row row-eq-height info-address">
+            <div class="col-sm-6 col-md-3" ng-repeat="provider in currentLead.Practice.Providers">
+                <div class="row lead-loc-box">
+                    <div class="col-sm-2 adr-thmb-ld"><img src="/Controlpanel/Content/images/provider-icon.png" width="35" alt="Provider" /></div>
+                    <div class="col-sm-10 adr-rgt-ld">
+                        <address class="provider-name">
+                            <strong>{{provider.FirstName}} {{provider.LastName}}, {{provider.ShortCode==null?provider.DegreeName:provider.ShortCode}}</strong><!--<br />{{provider.DegreeName}}--><br />NPI#{{provider.NPI}}
+                        </address>
+                        <address>
+                            {{provider.Address.Line1}}, {{provider.Address.Line2}} <br /> {{provider.Address.City}}, {{provider.Address.State}} {{provider.Address.Zip}}<br />T: {{provider.Address.Phone[0].PhoneNumber | tel}} Ext: {{provider.Address.Phone[0].Extension}}<br />F: {{provider.Address.Fax | tel}}
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-ldrepeater-box">
+        <div class="info-ldbox-head">Additional Details</div>
+        <div class="col-md-6 info-ld-addtn">
+            <div class="col-sm-3 col-lg-4"><strong>Speciality Type</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.Practice.SpecialityTypeId<=0?'None':currentLead.Practice.SpecialityTypeId==3?currentLead.Practice.SpecialityType :currentLead.Practice.Specialities.length==1? 'Single Speciality -':'Multi Speciality -'}} <span ng-repeat="spl in currentLead.Practice.Specialities">{{spl.NewSpecialityName}}, </span></div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Sales Team</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.Rep.GroupName}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Rep Name</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.Rep.Name}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Manager Name</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.Rep.ManagerName}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Source</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.LeadSourceId!=5?currentLead.LeadSourceName:currentLead.OtherLeadSource}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Service Interest</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.LeadServiceIntrest}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Created By</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.CreatedByName}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Created On</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentLead.CreatedOn|date:'MM-dd-yyyy'}}</div><div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="info-ldrepeater-box" style="clear:both">
+        <div class="info-ldbox-head clearfix"><i ng-show="loadingNotes" class="fa fa-spinner fa-spin ng-animate-disabled"></i>Notes</div>
+        <div class="info-ld-addtn" ng-if="currentLead.Notes.length>0">
+            <a ng-click="loadNotes()" ng-show="moreNotes" class="" style="padding: 2px;text-align: center;width: 100%;display: block;background: #f1f1f1;border: 1px solid #e4e4e4;letter-spacing: 1px;"><b>Show Previous Notes</b></a>
+            <div class="note-box-repeater" ng-repeat="note in currentLead.Notes">
+                <div class="note-thumb-wrp">
+                    <img onerror="this.src='/Assets/default_profile_pic.jpg'" ng-src="{{note.UserDetails.ProfilePhoto}}" width="40" class="img-responsive" alt="User" />
+                </div>
+                <div class="note-info-wrp">
+                    <h3>
+                        {{note.UserDetails.Name}}
+                        <span ng-show="note.IsDayAgo">{{note.CreatedOn | date:'dd MMM yyyy h:mm a'}}</span>
+                        <span ng-hide="note.IsDayAgo" class="first" am-time-ago="note.CreatedOn | amUtc | amLocal"></span>
+                        <span style="margin:0"> ago</span>
+                    </h3>
+                    <p>{{note.Description}}</p>
+                </div>
+                <div ng-click="deleteNote(note)" class="fa fa-trash-o"></div>
+            </div>
+        </div>
+    </div>
+    <div class="note-inpbox" style="margin-top:10px">
+        <form name="noteForm" ng-submit="addNote()" novalidate>
+            <textarea class="form-control" placeholder="Enter Note" ng-model="note.Message"></textarea>
+            <button type="submit" class="btn btn-default pull-left" value="Save" ng-disabled="loadingNotes"><i ng-show="loadingNotes" class="fa fa-spinner fa-spin ng-animate-disabled"></i>Save</button>
+        </form>
+    </div>
+</div>

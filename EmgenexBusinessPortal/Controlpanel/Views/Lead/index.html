@@ -1,0 +1,245 @@
+﻿
+<style>
+    .green {
+        color: #00c500 !important;
+    }
+
+    .dots-td > .dropdown, .dots-td > .dropup {
+        position: absolute;
+    }
+</style>
+<!--<div id="editor" >
+    <div id="LeadDetails">
+        <form class="ui form">
+            <h4>Account Details 11</h4>
+            <hr />
+            <p><br /></p><br />
+            <table style="width:100%">
+                <tr>
+                    <td style="width:50%">
+                        <b>Account Name</b>
+                        <hr />
+                        Address
+                        <hr />
+
+                        <hr />
+                        <hr />
+                        <hr />
+                        <hr />
+
+                    </td>
+
+                    <td style="width:50%">
+                        Account Name
+                        <hr />
+                        Address
+                        <hr />
+
+                        <hr />
+                        <hr />
+                        <hr />
+                        <hr />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:100%" colspan="2">
+
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width:50%">
+                                    Account Name
+                                    <hr />
+                                    Address
+                                    <hr />
+
+                                    <hr />
+                                    <hr />
+                                    <hr />
+                                    <hr />
+                                </td>
+
+                                <td style="width:50%">
+                                    Account Name
+                                    <hr />
+                                    Address
+                                    <hr />
+
+                                    <hr />
+                                    <hr />
+                                    <hr />
+                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+
+
+        </form>
+    </div>
+</div>-->
+<div class="lead-content-wrapper slide-left" ng-show="authData.isAuth && showByPrevilege('RDLD')" ng-init="init()">
+    <div class="lead-top-search ll">
+        <ng-include src="templateUrl('/Controlpanel/Views/lead/leadHeader.html')"></ng-include>
+    </div>
+    <div class="row lead-list-wrap" id="lead-list-wrap">
+        <div class="col-lg-3 filter-lead" ng-show="showFilter">
+
+            <span class="close-cross pull-right"><a ng-click="toggleFilter();" id=" filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+            <div class="clearfix"></div>
+            <div class="filter-results">
+                <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="filter-actionbox">
+
+                <fieldset class="form-group">
+                    <!--<select id="period" style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.Period" data-placeholder="Select Periods">
+                        <option value="">Select periods</option>
+                        <option ng-repeat="tag in lookUps.lookupPeriods" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <!--<ui-select multiple on-remove="removed($item, $model)" theme="bootstrap" ng-disabled="ctrl.disabled" close-on-select="false" style="width: 800px;" title="Choose a person">
+                        <ui-select-match placeholder="Select person...">{{$item.Value}} &lt;{{$item.email}}&gt;</ui-select-match>
+                        <ui-select-choices repeat="person.Value as person in leadFilter.Period | propsFilter: {name: $select.search, age: $select.search}">
+                            <div ng-bind-html="person.Value | highlight: $select.search"></div>
+                            <small>
+                                email: {{person.Value}}
+                                age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+                            </small>
+                        </ui-select-choices>
+                    </ui-select>-->
+
+                    <ui-select ng-model="leadFilter.Period" title="Select Periods">
+                        <ui-select-match placeholder="Select Periods" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupPeriods | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--ng-hide="lookUps.lookupGroups==null"-->
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.RepGroupId" data-placeholder="Select Sales Team">
+                        <option value="">Select Sales Team</option>
+                        <option ng-repeat="tag in lookUps.lookupGroups" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="leadFilter.RepGroupId" title="Select Sales Team">
+                        <ui-select-match placeholder="Select Sales Team" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupGroups | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--ng-hide="lookUps.lookupReps==null"-->
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.RepId" data-placeholder="Select Reps">
+                        <option value="">Select Reps</option>
+                        <option ng-repeat="tag in lookUps.lookupReps | repfilter: (leadFilter.RepGroupId) && { ParentId: leadFilter.RepGroupId }:true" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="leadFilter.RepId" title="Select Reps">
+                        <ui-select-match placeholder="Select Reps" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | repfilter: (leadFilter.RepGroupId) && { ParentId: leadFilter.RepGroupId }:true | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="leadFilter.IsActive" data-placeholder="Active/Inactive">
+                        <option value="">Active/Inactive</option>
+                        <option value=true selected="selected">Active</option>
+                        <option value=false>Inactive</option>
+                    </select>-->
+                    <ui-select ng-model="leadFilter.IsActive" title="Active/Inactive">
+                        <ui-select-match placeholder="Active/Inactive" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookupLeadStatus | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+            </div>
+
+        </div>
+        <div class="{{listClass}} listbox-lead" id="listbox-lead">
+            <div class="line-table-wrap">
+                <div class="table-responsive">
+                    <table id="leadtable" datatable="" class="ListingTable table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="concern-name" ng-show="show.Name" ng-click="setSelectedColumn('PracticeName')" ng-class="leadFilter.orderBy=='asc'?{selectedAsc: 'PracticeName' == leadFilter.sortKey}:{selectedDesc: 'PracticeName' == leadFilter.sortKey}"><span>Name</span></th>
+                                <th ng-show="show.Age" ng-click="setSelectedColumn('CreatedOn')" ng-class="leadFilter.orderBy=='asc'?{selectedAsc: 'CreatedOn' == leadFilter.sortKey}:{selectedDesc: 'CreatedOn' == leadFilter.sortKey}"><span>Lead Age</span></th>
+                                <th ng-show="show.Group" ng-click="setSelectedColumn('RepGroupName')" ng-class="leadFilter.orderBy=='asc'?{selectedAsc: 'RepGroupName' == leadFilter.sortKey}:{selectedDesc: 'RepGroupName' == leadFilter.sortKey}"><span>Sales Team</span></th>
+                                <th ng-show="show.Rep" ng-click="setSelectedColumn('RepName')" ng-class="leadFilter.orderBy=='asc'?{selectedAsc: 'RepName' == leadFilter.sortKey}:{selectedDesc: 'RepName' == leadFilter.sortKey}"><span>Rep Name</span></th>
+                                <th ng-show="show.Status" ng-click="setSelectedColumn('IsActive')" ng-class="leadFilter.orderBy=='asc'?{selectedAsc: 'IsActive' == leadFilter.sortKey}:{selectedDesc: 'IsActive' == leadFilter.sortKey}"><span>Status</span></th>
+                                <th class="empty-th no-sorting"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="lead in model.List" class="{{lead.LeadId == currentLead.LeadId && showDetails?'activelink':''}}">
+                                <td class="concern-name lead-name-lnk" ng-click="showDetailsView(lead.LeadId)" ng-show="show.Name">
+                                    <img src="/Controlpanel/Content/images/red-flag.png" alt="" width="18" class="name-flag" ng-show="lead.HasFlag" />
+                                    <img src="/Controlpanel/Content/images/blue-round-tick.png" alt="" width="18" class="name-flag" ng-show="lead.HasTask" />
+                                    {{lead.Practice.Name}}
+                                </td>
+                                <td class="lead-name-lnk" ng-click="showDetailsView(lead.LeadId)" ng-show="show.Age" am-time-ago="lead.CreatedOn | amUtc | amLocal"></td>
+                                <td class="lead-name-lnk" ng-click="showDetailsView(lead.LeadId)" ng-show="show.Group">
+                                    {{lead.Rep.GroupName}}
+                                </td>
+                                <td class="lead-name-lnk" ng-click="showDetailsView(lead.LeadId)" ng-show="show.Rep">
+                                    {{lead.Rep.Name}}
+                                </td>
+                                <td class="lead-name-lnk" ng-click="showDetailsView(lead.LeadId)" ng-show="show.Status">
+                                    <span class="inactive-dot">
+                                        <i class="fa fa-circle {{lead.IsActive?'green':''}}"></i>
+                                        <span ng-show="lead.IsActive">Active</span>
+                                        <span ng-hide="lead.IsActive">Inactive</span>
+                                    </span>
+                                </td>
+                                <td class="dots-td">
+                                    <div class="dropdown">
+                                        <a uib-dropdown-toggle data-toggle="dropdown" style="cursor:pointer">
+                                            <img src="/Controlpanel/Content/images/dots.png" alt="User" width="4" style="margin: 3px 13px;">
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" uib-dropdown-menu>
+                                            <li><a ng-click="editLead(lead.LeadId)">Edit</a></li>
+                                            <li><a ng-click="addTask(lead.LeadId)">Add new task</a></li>
+                                            <li><a ng-click="convertToAccount(lead.LeadId)">Convert to account</a></li>
+                                            <li><a ng-click="setStatus(lead)">{{lead.IsActive?'Inactivate':'Activate'}}</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="paging-wrap">
+                    <div class="pull-left"> <uib-pagination total-items="model.Pager.TotalCount" ng-model="leadFilter.CurrentPage" items-per-page="leadFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                    <span ng-hide="showDetails" class="pull-left show-text">Showing {{model.Pager.Skip+1}} to {{(model.Pager.Skip + model.Pager.Take)>model.Pager.TotalCount?model.Pager.TotalCount:(model.Pager.Skip + model.Pager.Take)}} of {{model.Pager.TotalCount}} ({{model.Pager.TotalPage}} Pages)</span>
+                    <div class="row-count-drop pull-left" ng-hide="showDetails">
+                        <select class="form-control" ng-model="leadFilter.PageSize">
+                            <option value="" disabled="" selected="" hidden="">Row Count</option>
+                            <option ng-selected="25==leadFilter.PageSize">25</option>
+                            <option ng-selected="50==leadFilter.PageSize">50</option>
+                            <option ng-selected="100==leadFilter.PageSize">100</option>
+                            <option ng-selected="500==leadFilter.PageSize">500</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 lead-info-wrap slide-left" id="lead-info-wrap" ng-show="showDetails">
+            <ng-include src="templateUrl('/Controlpanel/Views/lead/leadDetails.html?63')"></ng-include>
+        </div>
+    </div>
+</div>

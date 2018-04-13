@@ -1,0 +1,157 @@
+﻿@model IEnumerable<EBP.Business.Database.Rep>
+@{
+    Layout = null;
+    var db = new EBP.Business.Database.CareConnectCrmEntities();
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Rep Name")
+        </th>
+        <th>
+            @Html.DisplayName("Sales Team")
+        </th>
+        <th>
+            @Html.DisplayName("Sales Director")
+        </th>
+        <th>
+            @Html.DisplayName("Managers")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayName("Services")
+        </th>
+        <th>
+            @Html.DisplayName("Created On")
+        </th>
+        <th>
+            @Html.DisplayName("Created By")
+        </th>
+        <th>
+            @Html.DisplayName("Updated On")
+        </th>
+        <th>
+            @Html.DisplayName("Updated By")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User2.FirstName) @Html.DisplayFor(modelItem => item.User2.LastName)<br />
+                <small>@@ @Html.DisplayFor(modelItem => item.User2.UserName)</small>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepGroup.RepGroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepGroup.User2.FirstName) @Html.DisplayFor(modelItem => item.RepGroup.User2.LastName)
+            </td>
+
+            <td>
+                @String.Join(", ", item.RepGroup.RepgroupManagerMappers.Select(a => a.User.FirstName + " " + a.User.LastName).ToArray())
+            </td>
+            <td>
+                Active
+            </td>
+            <td>
+                @String.Join(", ", db.RepServiceMappers.Where(a => a.RepId == item.Id).Select(p => p.LookupEnrolledService.ServiceName).ToArray())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User1.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<div class="col-sm-12 col-xs-12">
+    @if (ViewBag.TotalPage > 1)
+    {
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li>
+                    @Ajax.ActionLink("First", "Index", "Reps", new { page = 1, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "RepsListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+                <li>
+                    @Ajax.ActionLink("Previous", "Index", "Reps", new { page = (ViewBag.CurrentPage - 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "RepsListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+            }
+
+            @for (var page = (int)ViewBag.StartPage; page <= (int)ViewBag.EndPage; page++)
+            {
+                <li class="@(page == ViewBag.CurrentPage ? "active" : "")">
+                    @Ajax.ActionLink(@page.ToString(), "Index", "Reps", new { page = @page, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "RepsListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPage)
+            {
+                <li>
+                    @Ajax.ActionLink("Next", "Index", "Reps", new { page = (ViewBag.CurrentPage + 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "RepsListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Last", "Index", "Reps", new { page = (ViewBag.TotalPage), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "RepsListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+        </ul>
+    }
+</div>

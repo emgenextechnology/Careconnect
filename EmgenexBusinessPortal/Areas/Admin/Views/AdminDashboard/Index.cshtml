@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+ 
+}
+
+<h2>@ViewBag.Title </h2>
+
+<div>
+
+    Total active sessions: @HttpContext.Current.Application["LiveSessionsCount"];
+
+</div>

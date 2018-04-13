@@ -1,0 +1,9 @@
+Handle the case for Study Type - Urodynamics - Now it is hardcoded in mapper file
+Handle I_Drug.IconId and I_Medication.GeneId - Now these are hardcoded
+ClientID is hardcoded 4 places in FTP settings and Parser settings
+Rollback the things if something went wrong
+
+
+Clinical Report
+Lab type list based on ClientId - Now it is hardcoded - dropdown list
+Date parsing issue in listing pages

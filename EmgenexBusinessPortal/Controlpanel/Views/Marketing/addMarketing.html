@@ -1,0 +1,219 @@
+﻿
+<style>
+    .select2-container {
+        min-height: 20px;
+    }
+
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+        border: none;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 20px;
+    }
+
+    .select2-container--default .select2-selection--multiple {
+        border: none;
+        background-color: transparent;
+    }
+
+    .filter-actionbox .select2-container, .modal .select2-container {
+        width: 92% !important;
+        float: right;
+    }
+
+    .selectNoBorder {
+        color: #888 !important;
+        box-shadow: none !important;
+        border: none !important;
+        -webkit-box-shadow: none;
+        background-color: transparent !important;
+        float: left !important;
+        padding-left: 0;
+    }
+
+    .select2-container--default .select2-selection--single {
+        color: #888 !important;
+        box-shadow: none !important;
+        border: none !important;
+        -webkit-box-shadow: none;
+        background-color: transparent !important;
+    }
+
+    .form-control:focus {
+        border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .attachementList {
+        float: right;
+    }
+
+    .attachementItem {
+        font-size: 25px;
+        float: left;
+        padding: 5px;
+        position: relative;
+    }
+
+        .attachementItem i {
+            font-size: 14px;
+            color: #555;
+            position: absolute;
+            top: -5px;
+            right: -1px;
+        }
+
+            .attachementItem i:hover {
+                font-size: 14px;
+                color: #ff006e;
+                position: absolute;
+                top: -5px;
+                right: -1px;
+            }
+
+    .task-model-top {
+        margin-right: 25px;
+    }
+
+
+        .task-model-top .button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #ededed;
+            color: #666666;
+            border: 1px solid #cdcdcd;
+            margin-right: 10px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+            .task-model-top .button, .task-model-top .button label {
+                cursor: pointer;
+            }
+
+                .task-model-top .button:hover {
+                    background-color: #f3a536;
+                    border-color: #f3a536;
+                    -webkit-transition: all 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+                }
+
+    .select2-container .select2-search--inline .select2-search__field {
+        margin-top: 3px;
+    }
+
+    textarea, input {
+        padding: 10px;
+    }
+
+    .task-model-top a {
+        padding: 5px 10px !important;
+    }
+
+    .edit-file-list-close {
+        left: -7px;
+        position: relative;
+        top: -6px;
+    }
+
+    .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+        float: right;
+        margin-left: 10px;
+        margin-top: -1px;
+    }
+
+    .form-repeater-box-task textarea {
+        height: 320px;
+    }
+
+    .modal-header {
+        background-color: #f2f2f2;
+    }
+
+    .modal-body-form {
+        background-color: #fff;
+    }
+
+    .filed-box-task .form-control {
+        float: left !important;
+    }
+</style>
+
+<form name="MarketingForm" ng-submit="submitMarketing()" novalidate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" id="myModalLabel" ng-if="currentMarketing.Id!=null">ID:{{currentMarketing.Id}}</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="CloseModal()">
+            <span aria-hidden="true">×</span>
+        </button>
+
+        <div class="task-model-top pull-right">
+            <button type="submit" data-dismiss="modal" aria-label="Close" class="pull-right btn btn-default">Save<i ng-hide="sendSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i></button>
+
+        </div>
+    </div>
+    <div class="modal-body-form modal-body-form-tast">
+        <div class="form-repeater-box-task">
+            <div class="row">
+                <div class="col-sm-12 field-box filed-box-task">
+                    <input type="text" ng-model="currentMarketing.Name" class="form-control" name="Title" placeholder="Title" required />
+                </div>
+            </div>
+        </div>
+        <div class="form-repeater-box-task">
+            <div class="row">
+                <div class="col-sm-12 field-box">
+                    <textarea class="form-control" ng-model="currentMarketing.Description" name="Description" placeholder="Description" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-repeater-box-task">
+            <div class="row">
+                <div class="col-sm-12 field-box attachinp">
+                    <label>Attachment: </label>
+                    <!--<input id="file-input" type="file" ng-model="currentMarketing.files" ng-change="fileUpload(currentMarketing.files)" name="files" base-sixty-four-input multiple minsize="500" minnum="1">-->
+                    <div class="pull-left button">
+                        <label for="file-input" style="line-height:1.5;cursor:pointer; margin-bottom:0; font-weight:normal">
+                            <img src="/Controlpanel/Content/images/attach.png" alt="Attach" width="20">
+                            Attach
+                        </label>
+                        <input id="file-input" type="file" ng-model="currentMarketing.files" ng-change="fileUpload(currentMarketing.files)" name="files" base-sixty-four-input multiple minsize="500"  minnum="1" style="display:none">
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <!--<div class="col-md-2" ng-repeat="file in  currentMarketing.files">
+                            <i class="fa fa-close" ng-click="removeAttachmentUp(file)"></i>
+                            <img id="imageAttachment" ng-src="data:image/jpeg;base64,{{file.base64}}" height="100" width="100" alt="Tag" />
+                        </div>-->
+                        <div class="col-md-2" ng-repeat="file in base64Data">
+                            <i class="fa fa-close" ng-click="removeAttachmentUp(file)"></i>
+                            <img id="imageAttachment" ng-src="data:image/jpeg;base64,{{file.base64}}" height="100" width="100" alt="Tag" />
+                        </div>
+                        <div class="col-md-2" ng-repeat="file in  currentMarketing.FilesList">
+                            <i class="fa fa-close edit-file-list-close" ng-click="removeAttachment(file)"></i>
+                            <img id="imageAttachment" ng-src="{{file.FilePath}}" height="100" width="100" alt="Tag" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-repeater-box-task">
+            <div class="row">
+                <div class="col-sm-6 field-box filed-box-task">
+                    <select class=" form-control selectNoBorder" ui-select2="{allowClear: true}" ng-model="currentMarketing.DocumentTypeId" data-placeholder="Select MarketingType" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.lookupDocumentTypes">
+                        <option value="" disabled="" selected="">Marketing Type</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 field-box filed-box-task">
+                    <select class=" form-control selectNoBorder" ui-select2="{allowClear: true}" ng-model="currentMarketing.CategoryId" data-placeholder="Select Category" name="Category" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.lookupMarketingCategories" required>
+                        <option value="" disabled="" selected="">Categories</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

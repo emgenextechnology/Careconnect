@@ -1,0 +1,92 @@
+﻿@model EBP.Business.Database.ReportMaster
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LookupEnrolledService.ServiceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookupEnrolledService.ServiceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Practice.PracticeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practice.PracticeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Provider Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provider.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Rep Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User2.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollectedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollectedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,264 @@
+﻿
+<style>
+    .green {
+        color: #00c500 !important;
+    }
+
+    .dots-td > .dropdown, .dots-td > .dropup {
+        position: absolute;
+    }
+</style>
+
+<div class="lead-content-wrapper slide-left" ng-init="init()" ng-show="authData.isAuth">
+    <!--<div class="lead-top-search ll" ng-include="'/Controlpanel/Views/accounts/accountHeader.html'">
+    </div>-->
+    <div class="lead-top-search ll">
+        <div class="row ">
+            <div class="col-lg-5 col-sm-12 leads-result">
+                <i ng-show="accountLoading || loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i>{{model.Pager.TotalCount}} Accounts <span style="font-family:inherit" ng-show="affectedFilterCount>0"> matching <span>{{affectedFilters.join(' | ')}}</span></span>
+            </div>
+            <div class="col-lg-7 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 add-lnk-outerwrap">
+                        <div class="pull-right add-lnk-wrp">
+                            <a ng-click="newAccount()" class="btn btn-primary lead-add-btn" ng-show="showByPrevilege('WRACNT')">  <i ng-show="addingAccount" class="fa fa-spinner fa-spin ng-animate-disabled"></i> <span ng-hide="addingAccount">+</span> Add Account</a>
+                        </div>
+                        <a class="btn btn-primary pull-right filter-toggle-btn" ng-click="toggleFilter();"><i class="fa fa-filter"></i> Filter</a>
+                        <div class="btn-group pull-right filter-toggle-check" data-toggle="buttons-checkbox">
+                            <button class="btn" id="colors-1-toggle-1" uib-tooltip="Task associated with account" tooltip-placement="bottom">
+                                <img src="/Controlpanel/Content/images/{{accountFilter.HasTask==true?'blue':'grey'}}-round-tick.png" alt="" width="26" class="bottom-icon" ng-click="((accountFilter.HasTask==false)||(accountFilter.HasTask==null))?accountFilter.HasTask=true:accountFilter.HasTask=null" />
+                            </button>
+                            <button class="btn active" id="colors-1-toggle-0" uib-tooltip="Flag" tooltip-placement="bottom">
+                                <img src="/Controlpanel/Content/images/{{accountFilter.HasFlag==true?'red':'grey'}}-flag.png" alt="" width="26" class="bottom-icon" ng-click="((accountFilter.HasFlag==false)||(accountFilter.HasFlag==null))?accountFilter.HasFlag=true:accountFilter.HasFlag=null" /><!--<img src="/Controlpanel/Content/images/grey-flag.png" alt="" width="26" class="top-icon" />-->
+                            </button>
+                            <button class="btn active" id="colors-1-toggle-0" uib-tooltip="Accounts with Sales Activity" tooltip-placement="bottom">
+                                <img src="/Controlpanel/Content/images/sales-icon-{{accountFilter.HasReports==true?'orange':'grey'}}.png" alt="" width="26" class="bottom-icon" ng-click="((accountFilter.HasReports==false)||(accountFilter.HasReports==null))?accountFilter.HasReports=true:accountFilter.HasReports=null" /><!--<img src="/Controlpanel/Content/images/grey-flag.png" alt="" width="26" class="top-icon" />-->
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 srch-bx">
+                        <div class="pull-left input-group search-lead">
+                            <input class="form-control" placeholder="Search Accounts" name="" id="" type="text" ng-model="accountFilter.KeyWords" clearable>
+                            <div class="input-group-btn">
+                                <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="pull-right dropdown" uib-dropdown>
+                            <a class="settings-icon" uib-dropdown-toggle><i class="fa fa-cog"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-form" uib-dropdown-menu>
+                                <li><h3>Visible Columns</h3></li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS1" ng-model="show.Account"><label for="checkboxS1"></label><span class="select-title">Account</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS2" ng-model="show.EnrolledDate"><label for="checkboxS2"></label><span class="select-title">Enrolled Date</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS3" ng-model="show.Services"><label for="checkboxS3"></label><span class="select-title">Services</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS4" ng-model="show.Provider"><label for="checkboxS4"></label><span class="select-title">Provider</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.RepGroup"><label for="checkboxS5"></label><span class="select-title">Sales Team</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.RepName"><label for="checkboxS5"></label><span class="select-title">Rep Name</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.Status"><label for="checkboxS5"></label><span class="select-title">Status</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.Notes"><label for="checkboxS5"></label><span class="select-title">Notes</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row lead-list-wrap" id="lead-list-wrap">
+        <div class="col-lg-3 filter-lead" id="filter-lead" ng-show="showFilter">
+            <span class="close-cross pull-right"><a ng-click="toggleFilter();" id=" filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+            <div class="clearfix"></div>
+            <div class="filter-results">
+                <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="filter-actionbox">
+
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="accountFilter.Period" data-placeholder="Select Periods">
+                        <option value="">Select Period</option>
+                        <option ng-repeat="tag in lookUps.lookupPeriods" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="accountFilter.Period" title="Select Periods">
+                        <ui-select-match placeholder="Select Periods" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupPeriods | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="accountFilter.ServiceId" data-placeholder="Select Services">
+                        <option value="">Select Service</option>
+                        <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="accountFilter.ServiceId" title="Select Services">
+                        <ui-select-match placeholder="Select Services" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupServices | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="accountFilter.ProviderId" data-placeholder="Select Providers">
+                        <option value="">Select Provider</option>
+                        <option ng-repeat="tag in lookupProviders" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="accountFilter.ProviderId" title="Select Provider">
+                        <ui-select-match placeholder="Select Provider" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupProviders | filter: $select.search)" refresh="getallproviders($select.search)" minimum-input-length="1" refresh-delay="500">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <i ng-show="ProviderSpinner" class="fa fa-spinner fa-spin ng-animate-disabled" style="right: 20px;position: absolute;top: 12px;"></i>
+                </fieldset>
+                <fieldset class="form-group" ng-hide="lookUps.lookupGroups==null">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="accountFilter.RepGroupId" data-placeholder="Select Sales Team">
+                        <option value="">Select Sales Team</option>
+                        <option ng-repeat="tag in lookUps.lookupGroups" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="accountFilter.RepGroupId" title="Select Sales Team">
+                        <ui-select-match placeholder="Select Sales Team" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupGroups | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group" ng-hide="lookUps.lookupReps==null">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="accountFilter.RepId" data-placeholder="Select Reps">
+                        <option value="">Select Reps</option>
+                        <option ng-repeat="tag in lookUps.lookupReps |  repfilter: (accountFilter.RepGroupId) && { ParentId: accountFilter.RepGroupId }:true" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="accountFilter.RepId" title="Select Reps">
+                        <ui-select-match placeholder="Select Reps" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | repfilter: (accountFilter.RepGroupId) && { ParentId: accountFilter.RepGroupId }:true | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="accountFilter.AccountStatus" data-placeholder="Select Status">
+                        <option value="">Select Status</option>
+                        <option ng-repeat="tag in lookUps.lookupStatus" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="accountFilter.AccountStatus" title="Select Status">
+                        <ui-select-match placeholder="Select Status" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupStatus | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+            </div>
+        </div>
+        <div class="{{listClass}} listbox-lead" id="listbox-lead">
+            <div class="line-table-wrap">
+                <div class="table-responsive">
+                    <table id="leadtable" datatable="" class="ListingTable table table-hover">
+                        <thead>
+                            <tr>
+                                <th ng-show="show.Account" class="concern-name" ng-click="setSelectedColumn('PracticeName')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'PracticeName' == accountFilter.sortKey}:{selectedDesc: 'PracticeName' == accountFilter.sortKey}"><span>Account</span></th>
+                                <th ng-show="show.EnrolledDate" ng-click="setSelectedColumn('EnrolledDate')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'EnrolledDate' == accountFilter.sortKey}:{selectedDesc: 'EnrolledDate' == accountFilter.sortKey}"><span>Enrolled Date</span></th>
+                                <th ng-show="show.Services" ng-click="setSelectedColumn('ServicesCount')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'ServicesCount' == accountFilter.sortKey}:{selectedDesc: 'ServicesCount' == accountFilter.sortKey}"><span>Services</span></th>
+                                <th ng-show="show.Provider" ng-click="setSelectedColumn('ProvidersCount')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'ProvidersCount' == accountFilter.sortKey}:{selectedDesc: 'ProvidersCount' == accountFilter.sortKey}"><span>Provider</span></th>
+                                <th ng-show="show.RepGroup" ng-click="setSelectedColumn('RepGroupName')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'RepGroupName' == accountFilter.sortKey}:{selectedDesc: 'RepGroupName' == accountFilter.sortKey}"><span>Sales Team</span></th>
+                                <th ng-show="show.RepName" ng-click="setSelectedColumn('RepName')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'RepName' == accountFilter.sortKey}:{selectedDesc: 'RepName' == accountFilter.sortKey}"><span>Rep Name</span></th>
+                                <th ng-show="show.Status" ng-click="setSelectedColumn('ActivityStatus')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'ActivityStatus' == accountFilter.sortKey}:{selectedDesc: 'ActivityStatus' == accountFilter.sortKey}"><span>Status</span></th>
+                                <th ng-show="show.Notes" ng-click="setSelectedColumn('NotesCount')" ng-class="accountFilter.orderBy=='asc'?{selectedAsc: 'NotesCount' == accountFilter.sortKey}:{selectedDesc: 'NotesCount' == accountFilter.sortKey}"><span>Notes</span></th>
+                                <th class="empty-th no-sorting"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="account in model.List" class="{{account.Id == currentAccount.Id && showDetails?'activelink':''}}">
+                                <td ng-show="show.Account" class="concern-name lead-name-lnk" ng-click="showDetailsView(account.Id)">
+                                    <img src="/Controlpanel/Content/images/red-flag.png" alt="" width="18" class="name-flag" ng-show="account.HasFlag" />
+                                    <img src="/Controlpanel/Content/images/blue-round-tick.png" alt="" width="18" class="name-flag" ng-show="account.HasTask" />
+                                    {{account.Practice.Name}}
+                                </td>
+                                <td ng-show="show.EnrolledDate" class="lead-name-lnk" ng-click="showDetailsView(account.Id)">{{account.EnrolledDate | date:'MM-dd-yyyy'}}</td>
+                                <td ng-show="show.Services" class="lead-name-lnk" ng-click="showDetailsView(account.Id)"><span style="display:block;" uib-tooltip="{{account.ServiceNames.join(', ')}}" tooltip-placement="bottom-left"> {{account.ServiceNames.length}} </span></td>
+                                <td ng-show="show.Provider" class="lead-name-lnk" ng-click="showDetailsView(account.Id)"><span style="display:block;" uib-tooltip="{{account.ProviderNames.join(', ')}}" tooltip-placement="bottom-left"> {{account.ProviderNames.length}} </span></td>
+                                <td ng-show="show.RepGroup" class="lead-name-lnk" ng-click="showDetailsView(account.Id)">{{account.Rep.GroupName}}</td>
+                                <td ng-show="show.RepName" class="lead-name-lnk" ng-click="showDetailsView(account.Id)">{{account.Rep.Name}}</td>
+                                <td ng-show="show.Status" class="lead-name-lnk" ng-click="showDetailsView(account.Id)">
+                                    <span class="inactive-dot">
+                                        <i class="fa fa-circle {{(account.IsActive && account.ActivityStatus==2)?'green':''}}"></i>
+                                        <span ng-show="account.IsActive && account.ActivityStatus==1">New</span>
+                                        <span ng-show="account.IsActive && account.ActivityStatus==2">Active</span>
+                                        <span ng-show="account.IsActive && account.ActivityStatus==3">Dormant</span>
+                                        <span ng-show="!account.IsActive">Inactive</span>
+                                    </span>
+                                </td>
+
+                                <td ng-show="show.Notes" class="lead-name-lnk" ng-click="showDetailsView(account.Id)"><a><img src="/Controlpanel/Content/images/notes.png" alt="" width="15" class="name-flag" ng-show="account.NotesCount>0" /></a></td>
+                                <td class="dots-td">
+                                    <div class="dropdown">
+                                        <a uib-dropdown-toggle data-toggle="dropdown" style="cursor:pointer">
+                                            <img src="/Controlpanel/Content/images/dots.png" alt="User" width="4" style="margin: 3px 13px;">
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" uib-dropdown-menu>
+                                            <li><a ng-click="editAccount(account.Id)">Edit</a></li>
+                                            <li><a ng-click="addTask(account.Id)">Add new task</a></li>
+                                            <li><a ng-click="setStatus(account)">{{account.IsActive?'Inactivate':'Activate'}}</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="paging-wrap">
+                    <div class="pull-left"> <uib-pagination total-items="model.Pager.TotalCount" ng-model="accountFilter.CurrentPage" items-per-page="accountFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                    <!--<uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination pull-left" boundary-links="true" force-ellipses="true"></uib-pagination>-->
+                    <span ng-hide="showDetails" class="pull-left show-text">Showing {{model.Pager.Skip+1}} to {{(model.Pager.Skip + model.Pager.Take)>model.Pager.TotalCount?model.Pager.TotalCount:(model.Pager.Skip + model.Pager.Take)}} of {{model.Pager.TotalCount}} ({{model.Pager.TotalPage}} Pages)</span>
+                    <div class="row-count-drop pull-left" ng-hide="showDetails">
+                        <select class="form-control" ng-model="accountFilter.PageSize">
+                            <option value="" disabled="" selected="" hidden="">Row Count</option>
+                            <option ng-selected="25==accountFilter.PageSize">25</option>
+                            <option ng-selected="50==accountFilter.PageSize">50</option>
+                            <option ng-selected="100==accountFilter.PageSize">100</option>
+                            <option ng-selected="500==accountFilter.PageSize">500</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="col-lg-12 lead-info-wrap slide-left" ng-include="'/Controlpanel/Views/accounts/accountDetails.html?i=112'" id="lead-info-wrap" ng-show="showDetails">
+        </div>-->
+
+        <div class="col-lg-12 lead-info-wrap slide-left" id="lead-info-wrap" ng-show="showDetails">
+            <ng-include src="templateUrl('/Controlpanel/Views/accounts/accountDetails.html?29')"></ng-include>
+        </div>
+    </div>
+</div>

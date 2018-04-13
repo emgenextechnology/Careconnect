@@ -1,0 +1,45 @@
+﻿Uninstalling assembly 'C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.InstallLog
+   assemblypath = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe
+Removing EventLog source BoxSalesReportImportService.
+Service BoxSalesReportImportService is being removed from the system...
+Service BoxSalesReportImportService was successfully removed from the system.
+Installing assembly 'C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.InstallLog
+   assemblypath = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe
+Installing service BoxSalesReportImportService...
+Creating EventLog source BoxSalesReportImportService in log Application...
+Rolling back assembly 'C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.InstallLog
+   assemblypath = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe
+Restoring event log to previous state for source BoxSalesReportImportService.
+Uninstalling assembly 'C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.InstallLog
+   assemblypath = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe
+Removing EventLog source BoxSalesReportImportService.
+Warning: The source BoxSalesReportImportService is not registered on the local machine.
+Service BoxSalesReportImportService is being removed from the system...
+An exception occurred during the uninstallation of the System.ServiceProcess.ServiceInstaller installer.
+System.ComponentModel.Win32Exception: The specified service does not exist as an installed service
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Installing assembly 'C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.InstallLog
+   assemblypath = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe
+Installing service BoxSalesReportImportService...
+Service BoxSalesReportImportService has been successfully installed.
+Creating EventLog source BoxSalesReportImportService in log Application...
+Committing assembly 'C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.InstallLog
+   assemblypath = C:\Works\Hubspire\Careconnect\SVN\EBP.WindowsService\bin\Release\EBP.WindowsService.exe

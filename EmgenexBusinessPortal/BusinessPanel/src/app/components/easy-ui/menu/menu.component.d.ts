@@ -1,0 +1,38 @@
+import { QueryList, EventEmitter, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { MenuItemComponent } from './menu-item.component';
+export declare class MenuComponent {
+    hostRef: ElementRef;
+    renderer: Renderer2;
+    cdRef: ChangeDetectorRef;
+    containerRef: ElementRef;
+    subItems: QueryList<MenuItemComponent>;
+    menuCls: string;
+    menuStyle: any;
+    menuWidth: any;
+    left: number;
+    top: number;
+    zIndex: number;
+    inline: boolean;
+    noline: boolean;
+    closed: boolean;
+    duration: number;
+    itemClick: EventEmitter<{}>;
+    timer: any;
+    constructor(hostRef: ElementRef, renderer: Renderer2, cdRef: ChangeDetectorRef);
+    ngAfterContentInit(): void;
+    ngOnDestroy(): void;
+    ngAfterViewInit(): void;
+    onMouseOver(event: any): void;
+    onMouseOut(event: any): void;
+    initItems(): void;
+    findItem(value: any): MenuItemComponent;
+    unhighlight(): void;
+    show(left: number, top: number): void;
+    showAt(target: HTMLElement, align?: string): void;
+    showContextMenu(left: number, top: number): void;
+    hide(): void;
+    delayHide(): void;
+    alignTo(target: HTMLElement, align?: string): void;
+    alignContextMenu(): void;
+    static zIndex: number;
+}

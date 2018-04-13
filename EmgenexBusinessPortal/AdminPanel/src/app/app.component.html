@@ -1,0 +1,87 @@
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a routerLink="/" class="logo">
+                <img src="assets/images/logo.png" class="responsive-img" alt="logo" />
+            </a>
+            <ul class="right profile-nav">
+                <li>
+                    <a href="#" class="dropdown-button profile-name-circle" data-activates='profile-dropdown'>H</a>
+                    <ul id='profile-dropdown' class='dropdown-content'>
+                        <li>
+                            <a href="#!" class="login-pro-wrap">
+                                <div class="log-prof-pic left">
+                                    <img src="assets/images/roles.png" class="responsive-img circle" width="40" alt="admin-console-img">
+                                </div>
+                                <div class="profile-details">
+                                    <b class="prof-name">Administrator</b>
+                                    <span class="login-mailid">Admin@hubspire.com</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="logOff()">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="side-collapse">
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <a routerLink="/" class="slider-brand-logo">
+                <img src="assets/images/logo.png" class="responsive-img" alt="slider-brand-logo">
+            </a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/">Dashboard</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/business-profile">Business Profiles</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/countries">Countries</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/degrees">Degrees</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/leadsources">Lead Sources</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/notification-types">Notification Types</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/practice-specialitytypes">Practice Speciality Types</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/practice-types">Practice Types</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/privileges">Privileges</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/privilege-modules">Privilege Modules</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/states">States</a>
+        </li>
+    </ul>
+    <div class="slider-menu">
+        <a href="#" data-activates="slide-out" class="button-collapse slide-collapse-btn" style="float: left">
+            <i class="material-icons left">menu</i>
+            <span class="page-name">{{title}}</span>
+        </a>
+        <angular-loader style="float: left;margin-top: 11px;margin-left: 10px;"></angular-loader>
+        <angular-message style="float: left;margin-top: 11px;margin-left: 10px;"></angular-message>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

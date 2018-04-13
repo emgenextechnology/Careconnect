@@ -1,0 +1,147 @@
+﻿@model IEnumerable<EBP.Business.Entity.Practice.EntityPracticeAddress>
+
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Practice Name")
+        </th>
+        <th>
+            @Html.DisplayName("Address 1")
+        </th>
+        <th>
+            @Html.DisplayName("Address 2")
+        </th>
+        <th>
+            @Html.DisplayName("City")
+        </th>
+        <th>
+            @Html.DisplayName("State")
+        </th>
+        <th>
+            @Html.DisplayName("Zip")
+        </th>
+        <th>
+            @Html.DisplayName("Address Type")
+        </th>
+        <th>
+            @Html.DisplayName("LocationId")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PracticeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Line1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Line2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationId)
+            </td>
+            <td>
+                @if (item.LocationId == null)
+                {
+                    @Html.ActionLink("Add LocationId", "AddLocationId", new { id = item.Id })}
+                else
+                {
+                    @Html.ActionLink("Edit LocationId", "AddLocationId", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<div class="col-sm-12 col-xs-12">
+    @if (ViewBag.TotalPage > 1)
+    {
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li>
+                    @Ajax.ActionLink("First", "Index", "Address", new { page = 1, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "AddressListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+                <li>
+                    @Ajax.ActionLink("Previous", "Index", "Address", new { page = (ViewBag.CurrentPage - 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "AddressListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+            }
+
+            @for (var page = (int)ViewBag.StartPage; page <= (int)ViewBag.EndPage; page++)
+            {
+                <li class="@(page == ViewBag.CurrentPage ? "active" : "")">
+                    @Ajax.ActionLink(@page.ToString(), "Index", "Address", new { page = @page, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "AddressListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPage)
+            {
+                <li>
+                    @Ajax.ActionLink("Next", "Index", "Address", new { page = (ViewBag.CurrentPage + 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "AddressListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Last", "Index", "Address", new { page = (ViewBag.TotalPage), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "AddressListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+        </ul>
+    }
+</div>

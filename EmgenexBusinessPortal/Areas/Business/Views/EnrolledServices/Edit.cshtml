@@ -1,0 +1,185 @@
+﻿@model EmgenexBusinessPortal.Areas.Business.Models.EnrolledServiceModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Services</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.Hidden("OldServiceName", (string)@ViewBag.OldServiceName)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceName, "Service Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ServiceName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceDecription, "Service Decription", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+
+                @Html.TextAreaFor(model => model.ServiceDecription, new { @class = "form-control", required = "required", @maxlength = "50" })
+                @Html.ValidationMessageFor(model => model.ServiceDecription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImportMode, "Import Mode", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.ImportMode, EmgenexBusinessPortal.Helpers.LookUps.GetImportMode(), htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group" id="BoxUrlContainer">
+            @Html.LabelFor(model => model.BoxUrl, "Box Url", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.BoxUrl, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.BoxUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="FtpContainer">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Protocol, "Protocol", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.Protocol, EmgenexBusinessPortal.Helpers.LookUps.GetFtpProtocol(), htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HostName, "Service Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.HostName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.HostName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, "User Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", required = "required", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PortNumber, "Port Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.PortNumber, new { htmlAttributes = new { @class = "form-control" }, style = "width: 100%; height: 34px;background-color: #ffffff;border: 1px solid #cccccc;border-radius: 4px; " })
+                    @Html.ValidationMessageFor(model => model.PortNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RemotePath, "Remote Path", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.RemotePath, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RemotePath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceColor, "Service Color", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ServiceColor, new { htmlAttributes = new { @class = "form-control jscolor", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.ServiceColor, "", new { @class = "text-danger" })
+                @Html.ValidationMessage("ServiceColorError", new { @class = "text-danger" })
+                @Html.ValidationMessage("SelectColorError", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.CheckBox("IsActive")
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.CreatedBy)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $(function () {
+        if ($("#ImportMode").val() == '@((int)EBP.Business.Enums.ServiceReportImportModes.BoxAPI)') {
+            $("#FtpContainer").hide()
+            $("#BoxUrlContainer").show()
+            $('#BoxUrl').attr("required", true);
+            $('#HostName').removeAttr('required');
+            $('#Username').removeAttr('required');
+            $('#Password').removeAttr('required');
+        }
+        else if ($("#ImportMode").val() == '@((int)EBP.Business.Enums.ServiceReportImportModes.Ftp)') {
+            $("#FtpContainer").show()
+            $("#BoxUrlContainer").hide();
+            $('#BoxUrl').removeAttr('required');
+            $('#HostName').attr("required", true);
+            $('#Username').attr("required", true);
+            $('#Password').attr("required", true);
+        }
+        else {
+            $("#FtpContainer").hide()
+            $("#BoxUrlContainer").hide();
+            $('#BoxUrl').removeAttr('required');
+            $('#HostName').removeAttr('required');
+            $('#Username').removeAttr('required');
+            $('#Password').removeAttr('required');
+        }
+
+
+        $("#ImportMode").change(function () {
+            var value = $("#ImportMode").val();
+            if (value == '@((int)EBP.Business.Enums.ServiceReportImportModes.BoxAPI)') {
+                $("#FtpContainer").hide()
+                $("#BoxUrlContainer").show()
+                $('#BoxUrl').attr("required", true);
+                $('#HostName').removeAttr('required');
+                $('#Username').removeAttr('required');
+                $('#Password').removeAttr('required');
+            }
+            else if ($("#ImportMode").val() == '@((int)EBP.Business.Enums.ServiceReportImportModes.Ftp)') {
+                $("#FtpContainer").show()
+                $("#BoxUrlContainer").hide();
+                $('#BoxUrl').removeAttr('required');
+                $('#HostName').attr("required", true);
+                $('#Username').attr("required", true);
+                $('#Password').attr("required", true);
+            }
+            else {
+                $("#FtpContainer").hide()
+                $("#BoxUrlContainer").hide();
+                $('#BoxUrl').removeAttr('required');
+                $('#HostName').removeAttr('required');
+                $('#Username').removeAttr('required');
+                $('#Password').removeAttr('required');
+            }
+        });
+    });
+</script>

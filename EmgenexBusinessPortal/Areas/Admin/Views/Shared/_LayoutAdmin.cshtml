@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title -  Careconnect CRM</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Areas/Admin/Content/bootstrap-theme.css" rel="stylesheet" />*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    @*<link href="CRMcss/StickyFooter.css" rel="stylesheet" />
+    <link href="Content/sidebar.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />*@
+    <link href="~/Areas/Admin/Content/sidebar.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/site.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .activexx a {
+            color: orange;
+        }
+
+        li:hover a {
+            color: black !important;
+            background-color: white;
+        }
+
+        li a {
+            color: white;
+        }
+
+        li.active a {
+            color: #0099cc;
+            background-color: white;
+        } 
+        .pagination > li:last-child > a, .pagination > li:last-child > span {
+            color: black !important;
+        }
+        .pagination > li > a, .pagination > li > span {
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+        <div class="navbar navbar-header navbar-fixed-top" style="color:#0066cc;" id="navtop" role="navigation">
+            <div class="col-md-2 col-xs-11">
+                <a class="navbar-brand" id="navbarbrandtop" href="#">
+                    @*<img src="Images/Logo.png" style="cursor: context-menu; margin-top: -6px" />*@
+                    <h4> Careconnect CRM</h4>
+
+                </a>
+            </div>
+            @Html.Partial("_LoginPartial")
+            @*<a class="pull-right btn" id="btnsinout" style="margin-right: 35px; background-color: #0066cc">LOGOUT</a>*@
+        </div>
+
+        <div class="col-md-1 col-xs-1 "></div>
+        <nav class="navbar" id="navtopbottom" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            </div>
+        </nav>
+        <div>
+            <nav class="col-md-2">
+
+                <div id="dvUserManagement">
+                    @Html.Partial("_PartialSidebar")
+                </div>
+
+            </nav>
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+
+        </div>
+    <div class="footer" style="background-color: white; height: 3%">
+        <div style="text-align: center; padding-left: 400px">
+            <div>
+                Copyright © @DateTime.UtcNow.Year  Careconnect CRM. All rights reserved.
+                @*Emgenex © @DateTime.UtcNow.Year All Rights Reserved.*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

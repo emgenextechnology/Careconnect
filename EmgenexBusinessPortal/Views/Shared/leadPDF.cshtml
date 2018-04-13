@@ -1,0 +1,238 @@
+﻿@model EmgenexBusinessPortal.Models.PDFViewModel
+
+@{
+    var primaryAddress = Model.Address.FirstOrDefault(a => a.AddressTypeId == 1);
+    string Fax = string.Empty;
+    if (primaryAddress != null)
+    {
+        Fax = primaryAddress.Fax;
+    }
+}
+<body style="padding:20px;">
+
+    <table style="width:100%;background:#0066cc" cellspacing="0">
+        <tr>
+            <td style="height:55px;">
+                <img src="@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]/Controlpanel/Content/logo-emgen.png" style="height:50px;position:relative;right:300px" />
+            </td>
+        </tr>
+    </table>
+
+    <table style="width:100%;margin-top:10px;">
+        <tr>
+            <td style="width:30px"></td>
+            <td style="border-bottom:2px solid #00f;width:100%">
+                <div style="font-family:Helvetica;font-size:20px;">Lead Details</div>
+            </td>
+            <td style="width:30px"></td>
+        </tr>
+    </table>
+
+    <table style="width:100%;margin-top:10px;">
+        <tr>
+            <td style="width:30px"></td>
+            <td style="width:100%">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%">
+                            <table style="width:100%; font-size:12px" cellspacing="0">
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Account Name
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Model.Practice.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Fax
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Fax
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Sales Team
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Model.Rep.GroupName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Rep Name
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Model.Rep.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Manager Name
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Model.Rep.ManagerName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Created By
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Model.CreatedByName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        Created On
+                                    </td>
+                                    <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                        @Model.CreatedOn
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                        <td style="width:50%;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:30px"></td>
+        </tr>
+    </table>
+
+    <table style="width:100%;margin-top:10px;">
+        <tr>
+            <td style="width:30px"></td>
+            <td style="border-bottom:2px solid #00f;width:100%">
+                <div style="font-family:Helvetica;font-size:20px;">Location and Provider Information</div>
+            </td>
+            <td style="width:30px"></td>
+        </tr>
+    </table>
+
+    <table style="width:100%;margin-top:10px;">
+        <tr>
+            <td style="width:30px"></td>
+            <td style="width:100%">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%">
+                            <table style="width:100%; font-size:12px" cellspacing="0">
+                                @foreach (var item in Model.Address)
+                                {
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Address
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.Line1,@item.Line2 <br />@item.City,@item.State @item.Zip<br />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Phone
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.Phone.First().PhoneNumber
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Ext
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.Phone.First().Extension
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Manager Email
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.ManagerEmail
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Manager Phone
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.ManagerPhone
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Billing Contact
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.BillingContact
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Billing ContactEmail
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.BillingContactEmail
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Billing ContactPhone
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.BillingContactPhone
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                        <td style="width:50%;padding-left:50px">
+                            <table style="width:100%; font-size:12px;padding-left:50px;margin-left:20px" cellspacing="0">
+                                @foreach (var item in Model.Providers)
+                                {
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Provider
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.FirstName @item.LastName <br /> @item.Address.City, @item.Address.State @item.Address.Zip
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            Degree Type
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.DegreeName
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            NPI#
+                                        </td>
+                                        <td style="width:50%;border-bottom:1px solid #525252;padding:8px 0 6px;">
+                                            @item.NPI
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:30px"></td>
+        </tr>
+    </table>
+
+</body>

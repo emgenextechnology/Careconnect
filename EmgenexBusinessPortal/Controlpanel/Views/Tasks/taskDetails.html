@@ -1,0 +1,259 @@
+﻿
+<style>
+    .attach-wrap {
+        padding: 0 20px;
+        margin: 10px 0;
+    }
+
+        .attach-wrap > h5 {
+            font-weight: bold;
+        }
+
+        .attach-wrap > ul {
+            float: left;
+        }
+
+            .attach-wrap > ul > li {
+                background: #f1f1f1;
+                padding: 10px;
+                border-radius: 10px;
+                border: 4px solid #e2e2e2;
+                background-color: white;
+                box-shadow: inset 0 0 43px #dadada;
+                margin: 0px 5px 5px 0;
+                width: 295px;
+            }
+
+                .attach-wrap > ul > li > a {
+                    font-size: 12px;
+                }
+
+                    .attach-wrap > ul > li > a > i {
+                        font-size: 50px;
+                    }
+
+                .attach-wrap > ul > li > i {
+                    right: 0;
+                    font-size: 21px;
+                    float: right;
+                }
+
+    #taskDetailView {
+        min-height: 150px;
+    }
+
+        #taskDetailView ul {
+            list-style-type: initial;
+            margin-left: 17px;
+        }
+
+        #taskDetailView .attach-wrap ul {
+            list-style-type: none;
+        }
+
+    /*.tsk-dtl-infobox ul {
+        list-style-type: disc;
+    }*/
+</style>
+
+<div class="task-wrap-bx">
+    <!--ng-init="setHeight()"-->
+
+    <div class="tsk-dtl-top">
+        <div class="col-md-6">
+            <h2 class="pull-left" style="line-height:20px">
+                <strong>{{currentTask.ReferenceNumber}}</strong>: {{currentTask.TaskType.length > 0 ? currentTask.TaskType + ' - ':''}}{{currentTask.Subject}}
+                <!--<span ng-show="task.Subject.length > 50">...</span>-->
+            </h2>
+        </div>
+        <div class="col-md-6">
+            <div class="pull-right lead-btn-group">
+                <a ng-click="deleteTask(currentTask)" class="btn" ng-show="currentTask.HasDeleteRight">
+                    <img src="/Controlpanel/Content/images/white-cross.png" alt="Delete Task" width="17" ng-hide="loadingDeleteStatus">
+                    <i ng-show="loadingDeleteStatus" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Delete
+                </a>
+                <a class="btn" ng-click="taskLog(currentTask.TaskId)"><i class="fa fa-history" aria-hidden="true" ng-hide="loadingLog"></i><i ng-show="loadingLog" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Log </a>
+                <a ng-hide="currentTask.IsMeWatcher" ng-click="setPriority()" class="btn {{currentTask.PriorityTypeId==1?'active':''}}" ng-show="showByPrevilege('WRTSK')"><img src="/Controlpanel/Content/images/priority-circle-white.png" alt="Flag" width="18" ng-hide="loadingFlagUpdate"><i ng-show="loadingFlagUpdate" class="fa fa-spinner fa-spin ng-animate-disabled"></i> High Priority</a>
+                <a ng-hide="currentTask.IsMeWatcher" class="btn" ng-click="editTask(currentTask)" ng-show="showByPrevilege('WRTSK')"><img src="/Controlpanel/Content/images/edit.png" alt="Edit" width="18" ng-hide="loadingEdit"><i ng-show="loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Edit </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="taskDetailView" class="tasklistscroll">
+        <div class="tsk-dtl-cnt-wrp">
+            <div class="row tsk-dtl-assign">
+                <div class="col-sm-6 col-md-7 tsk-asn-lft">
+                    <div class="assign-name-bx">
+                        <span class="assign-name-sngle">
+                            <strong>To: </strong> {{getNameArray(currentTask.AssignedUsersList)}}
+                        </span>
+                        <!--<div class="dropdown" style="display: inline;">
+                            <span>
+                                <a class="dropdown-toggle my-toggle-select" id="dLabel1" role="button" data-toggle="dropdown" data-target="#" style="color:#6a6666">
+                                    <span>
+                                        <i ng-show="dueDateSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                                        <img ng-hide="dueDateSpinner" src="/Controlpanel/Content/images/date-picker.png" alt="Date" width="14" style="top: -3px;position: relative;">
+                                        <span ng-show="currentTask.TargetDate==null"> <strong> Due on: </strong>No Due Date</span>
+                                        <span ng-show="currentTask.TargetDate!=null"> <strong> Due on: </strong> {{currentTask.TargetDate|date:'MMM dd yyyy'}}</span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                                    <datetimepicker ng-change="dueDateChange(currentTask.TaskId, currentTask.TargetDate)" ng-model="currentTask.TargetDate" data-datetimepicker-config="{dropdownSelector: '#dLabel1', startView:'day', minView:'day'}"></datetimepicker>
+                                </ul>
+                            </span>
+                        </div>-->
+                        <!--<div ng-show="currentTask.AlertDate!=null" class="dropdown" style="display: inline; margin-left: 15px;">
+                            <span ng-show="currentTask.TargetDate!=null">
+                                <strong>
+                                    Alert on:
+                                </strong>
+                                <a class="dropdown-toggle my-toggle-select" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" style="color:#6a6666">
+                                    <span>
+                                        <i ng-show="alertDateSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                                        <img ng-hide="alertDateSpinner" src="/Controlpanel/Content/images/date-picker.png" alt="Date" width="14" style="top: -3px;position: relative;">
+                                        {{currentTask.AlertDate|date:'MMM dd yyyy'}}
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                                    <datetimepicker ng-model="currentTask.AlertDate" ng-change="alertDateChange(currentTask.TaskId,currentTask.AlertDate)" data-datetimepicker-config="{ dropdownSelector: '#dLabel2', startView:'day', minView:'day' }"></datetimepicker>
+                                </ul>
+                            </span>
+                        </div>-->
+                    </div>
+                    <div class="assign-name-bx" ng-hide="currentTask.WatchersList.length==0">
+                        <span>
+                            <strong>Cc:</strong> {{getNameArray(currentTask.WatchersList)}}
+                        </span>
+                    </div>
+                    <div class="assign-name-bx" ng-hide="currentTask.PracticeId==null">
+                        <span>
+                            <strong>Account:</strong> {{currentTask.PracticeName}}
+                        </span>
+                    </div>
+                    <div class="assign-name-bx">
+                        <span>
+                            <strong>Status:</strong> <span ng-show="currentTask.IsMeWatcher">{{currentTask.Status}}</span>
+                            <select ng-hide="currentTask.IsMeWatcher"
+                                    class="selectNoBorder"
+                                    style="border:0; outline:none"
+                                    ng-change="updateStatus(currentTask.StatusId)"
+                                    ng-model="currentTask.StatusId"
+                                    ng-options="c.id as c.name for c in statusList"></select>
+                            <i ng-show="loadingStatusView" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 tsk-asn-rgt">
+                    <strong>Created on:</strong> {{toLocalTime(currentTask.CreatedOn) | date:'MMM dd, yyyy h:mm a'}}<br>
+
+                    <span ng-show="currentTask.IsMeWatcher"> <strong>Due on:</strong> {{toLocalTime(currentTask.TargetDate) | date:'MMM dd, yyyy h:mm a'}} </span>
+                    <div class="dropdown" style="clear:both" ng-hide="currentTask.IsMeWatcher" ng-show="showByPrevilege('WRTSK')">
+                        <span>
+                            <a class="dropdown-toggle my-toggle-select" id="dLabel1" role="button" data-toggle="dropdown" data-target="#" style="color:#6a6666">
+                                <span>
+                                    <i ng-show="dueDateSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                                    <img ng-hide="dueDateSpinner" src="/Controlpanel/Content/images/date-picker.png" alt="Date" width="14" style="top: -3px;position: relative;">
+                                    <span ng-show="currentTask.TargetDate==null"> <strong> Due on: </strong>No Due Date</span>
+                                    <span ng-show="currentTask.TargetDate!=null">
+                                        <strong> Due on: </strong>{{toLocalTime(currentTask.TargetDate) | date:'MMM dd, yyyy h:mm a'}}
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                                <datetimepicker ng-change="dueDateChange(currentTask.TaskId, currentTask.TargetDate)" data-ng-model="currentTask.TargetDate" data-datetimepicker-config="{dropdownSelector: '#dLabel1', startView:'day'}"></datetimepicker>
+                            </ul>
+                        </span>
+                    </div>
+                    <div ng-if="currentTask.AlertDate!=null" class="dropdown">
+                        <span ng-if="currentTask.AlertDate!=null">
+                            <a class="dropdown-toggle my-toggle-select" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" style="color:#6a6666">
+                                <span>
+                                    <i ng-show="alertDateSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                                    <img ng-hide="alertDateSpinner" src="/Controlpanel/Content/images/date-picker.png" alt="Date" width="14" style="top: -3px;position: relative;">
+                                    <span>
+                                        <strong>Alert on:</strong>
+                                        {{toLocalTime(currentTask.AlertDate) | date:'MMM dd, yyyy h:mm a'}}
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                                <datetimepicker ng-model="currentTask.AlertDate" ng-change="alertDateChange(currentTask.TaskId,currentTask.AlertDate)" data-datetimepicker-config="{ dropdownSelector: '#dLabel2', startView:'day', minView:'day' }"></datetimepicker>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div style="color:black" class="tsk-dtl-infobox" ng-bind-html="currentTask.TaskDescription| to_trusted ">
+            </div>
+            <div class="info-ldrepeater-box">
+                <div class="info-ldbox-head"><i ng-show="loadingNotes" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Notes</div>
+                <div ng-init="initTaskDetail()" ng-if="Notes==null || Notes.length==0"></div>
+                <a ng-click="loadNotes()" ng-show="moreNotes" class="" style="padding: 2px;text-align: center;width: 100%;display: block;background: #f1f1f1;border: 1px solid #e4e4e4;letter-spacing: 1px;"><b>Show Previous Notes</b></a>
+                <div class="note-box-repeater" ng-repeat="note in Notes">
+                    <div class="note-thumb-wrp">
+                        <img onerror="this.src='/Assets/default_profile_pic.jpg'" ng-src="{{note.UserDetails.ProfilePhoto}}" width="40" class="img-responsive" alt="User" />
+                    </div>
+                    <div class="note-info-wrp">
+                        <h3>
+                            {{note.UserDetails.Name}}
+                            <span ng-show="note.IsDayAgo" class="first">{{note.CreatedOn | date:'dd MMM yyyy h:mm a'}}</span>
+                            <span ng-hide="note.IsDayAgo" class="first"><span am-time-ago="note.CreatedOn | amUtc | amLocal"></span> ago</span>
+                        </h3>
+                        <p>{{note.Description}}</p>
+                    </div>
+                    <div ng-click="deleteNote(note)" class="fa fa-trash-o"></div>
+                </div>
+            </div>
+            <div style="margin-bottom:30px;">
+                <div class="comment-box" style="display:block">
+                    <form name="noteForm" ng-submit="addNote()" novalidate>
+                        <div class="form-group note-inpbox">
+                            <textarea class="form-control" ng-model="note.Message" placeholder="Add note here..." style="height: auto;"></textarea>
+                        </div>
+                        <input type="submit" class="btn btn-default pull-left" value="Save Note" placeholder="Add your notes" ng-disabled="loadingNotes" />
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="attach-wrap col-md-12" ng-show="currentTask.FilesList.length">
+                    <h5>Attachments</h5>
+                    <ul>
+                        <li ng-repeat="file in currentTask.FilesList" class="pull-left">
+                            <i class="fa fa-close edit-file-list-close" ng-click="removeAttachment(null,file)"></i>
+                            <a href="{{file.FilePath}}" target="_blank">
+                                <i class="attachementItem fa fa-file{{fileType(file.FileType)}}"></i>
+                                {{file.FileName | limitTo : 25}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--<script>
+
+    function setHeight() {
+        var bodyHeight = $("body").outerHeight(),
+            headerHeight = $("header").outerHeight(),
+            taskHeaderHeight = $(".lead-top-search").outerHeight(),
+            detailViewHeaderHeight = $(".tsk-dtl-top").outerHeight(),
+                leftSidebarHeight = $('.left-sidebar > ul').outerHeight();
+
+        var taskListHeight = bodyHeight - (headerHeight + taskHeaderHeight),
+            taskDetailHeight = bodyHeight - (headerHeight + taskHeaderHeight + detailViewHeaderHeight);
+        $('#taskListView').height(taskListHeight - 4);
+        $('#taskDetailView').height(taskDetailHeight - 30);
+    }
+
+    $(function () {
+        $(window).resize(function () {
+            setHeight();
+        });
+        setHeight();
+        $("#taskDetailView").niceScroll({ cursorborder: "", cursorcolor: "#333" });
+    });
+
+</script>-->

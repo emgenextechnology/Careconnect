@@ -1,0 +1,181 @@
+
+===================================================================================================================================================================================
+============================================================== COPY SERVICE,PRACTICE,LEADS AND ALL OTHER DEPENDENCIES  ============================================================ 
+===================================================================================================================================================================================
+
+
+Copy a service from a business to another
+=========================================
+01. Create Business
+02. Create Roles
+03. Create Departments
+04. Create Users
+05. Set Privilages if extra privileges needed(Optional)
+06. Create Rep Groups
+07. Create(Convert) sales Reps
+08. Create dynamic columns
+09. Copy Addresses from old db
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------- ADDRESS ------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+select max(id) from address   --2172
+select * from address where id > 2172
+--delete from address where id > 2172
+--insert into address
+select [AddressTypeId]
+      ,[Line1]
+      ,[Line2]
+      ,[City]
+      ,[StateId]
+      ,[Zip]
+      ,[IsSecondery]
+      ,[Status]
+      ,[LocationId]
+      ,getdate()
+      ,344
+      ,null
+      ,null
+      ,id from address where id in(select addressid from practiceaddressmapper where practiceid in(
+select a.id from practice a 
+left join rep b on b.id = a.repid
+left join users c on c.id = b.userid
+left join RepGroup d on d.id = b.repgroupid
+left join lookupenrolledservices e on e.id = a.EntrolledServicesId
+where a.id in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9)))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------- PRACTICE ---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+select max(id) from practice --2029
+select * from practice where id > 2029
+--insert into practice
+select [PracticeName]
+      ,[PracticeTypeId]
+      ,[PracticeSpecialityType]
+      ,[ContactPreferenceId]
+      ,[RepId]
+      ,[ReportDeliveryPreference]
+      ,[ReportDeliveryFax]
+      ,[Email]
+      ,[FaxNumber]
+      ,[LastActivityDate]
+      ,getdate()
+      ,344
+      ,null
+      ,null
+      ,7
+      ,[id]
+      ,[EntrolledServicesId] from practice where id in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICEADDRESSMAPPER--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+select * from practice where id > 2029 and businessid=7
+select * from address where id > 2172
+select * from address where oldid = 7
+select * from practiceaddressmapper
+select a.id,a.oldid,b.practiceid,b.addressid,c.oldid,c.id from practice a
+left join practiceaddressmapper b on b.practiceid=a.oldid
+left join address c on c.oldid=b.addressid and c.createdon>=cast('2017-09-20' as date)
+where a.id > 2029 and a.businessid=7
+
+--insert into practiceaddressmapper 
+select c.id,a.id,b.managername,getdate(),344,null,null from practice a
+left join practiceaddressmapper b on b.practiceid=a.oldid
+left join address c on c.oldid=b.addressid and c.createdon>=cast('2017-09-20' as date)
+ where a.id > 2029 and a.businessid=7
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICEPROVIDERMAPPER-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+select * from practiceprovidermapper
+select a.id,a.oldid,b.practiceid,b.providerid from practice a
+left join practiceprovidermapper b on b.practiceid=a.oldid
+ where a.id > 2029 and a.businessid=7
+
+--insert into practiceprovidermapper 
+select a.id,b.providerid,getdate(),344,null,null from practice a
+left join practiceprovidermapper b on b.practiceid=a.oldid
+ where a.id > 2029 and a.businessid=7
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICEPROVIDERLOCATIONMAPPER-----------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ --insert into practiceproviderlocationmapper
+ select b.id,c.addressid,a.providerid,getdate(),344,null,null from practiceproviderlocationmapper a
+ left join practice b on b.oldid=a.practiceid and b.businessid=7  and b.createdon>=cast('2017-09-20' as date)
+ left join practiceaddressmapper c on c.practiceid=b.id and b.businessid=7 and c.addressid>2172 and c.addressid!=2196
+ where a.practiceid in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICESERVICEMAPPER--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--insert into practiceservicemapper
+select 21,b.id,getdate(),344,null,null from practiceservicemapper a
+left join practice b on b.oldid=a.practiceid and b.createdon>=cast('2017-09-20' as date)
+where EnrolledServiceId=9
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICESEPRACTICESPECIALITYRVICEMAPPER--------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--insert into PracticePracticeSpecialityMapper
+select a.practicespecialityid,b.id,getdate(),344,null,null from PracticePracticeSpecialityMapper a
+left join practice b on b.oldid=a.practiceid and b.createdon>=cast('2017-09-20' as date)
+where practiceid in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICECONTACT--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--insert into practicecontact
+select b.[Id]
+      ,a.[AddressId]
+      ,a.[PracticeOther]
+      ,a.[BillingContact]
+      ,a.[BillingContactPhone]
+      ,a.[ManagerName]
+      ,a.[ManagerEmail]
+      ,a.[ManagerPhone]
+      ,a.[BillingContactEmail]
+      ,a.[officedayshrs],getdate(),344,null,null from practicecontact a
+left join practice b on b.oldid=a.practiceid and b.createdon>=cast('2017-09-20' as date)
+where a.practiceid in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------PRACTICECONTACT--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+select *,case when repid=6 then 331 when repid=122 then 332 when repid=200 then 334 when repid=201 then 335 when repid=205 then 333 end from practice where businessid=7
+--update practice set repid = case when repid=6 then 331 when repid=122 then 332 when repid=200 then 334 when repid=201 then 335 when repid=205 then 333 end where businessid=7
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------LEADS------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--insert into leads
+select b.id,a.[LeadSourceId]
+      ,b.[RepId]
+      ,a.[LeadServiceIntrest]
+      ,a.[IsActive]
+      ,a.[LeadStatus]
+      ,a.[HasFlag]
+      ,getdate()
+      ,344
+      ,null
+      ,null
+      ,a.[OtherLeadSource]
+      ,a.[IsConverted]
+      ,7
+      ,a.id from leads a
+left join practice b on a.practiceid=b.oldid and b.createdon>=cast('2017-09-20' as date)
+where a.practiceid in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------ACCOUNTS---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ --insert into accounts
+ select b.id,a.enrolleddate,a.isactive,getdate(),344,null,null,7,a.id from accounts a
+ left join leads b on b.oldid=a.leadid and  b.createdon>=cast('2017-09-20' as date)
+ where a.leadid in(select id from leads where practiceid in(select practiceid from PracticeServiceMapper where EnrolledServiceId=9))
+
+

@@ -1,0 +1,21 @@
+select * from businessmaster where id=6
+
+select * from practice where businessid=6
+--delete from practice where businessid=6
+
+select * from leads where practiceid in(select id from practice where businessid=6)
+--delete from leads where practiceid in(select id from practice where businessid=6)
+select * from accounts where leadid in(select id from leads where practiceid in(select id from practice where businessid=6))
+--delete from accounts where leadid in(select id from leads where practiceid in(select id from practice where businessid=6))
+
+select * from practiceprovidermapper where practiceid in (select id from practice where businessid=6)
+--delete from practiceprovidermapper where practiceid in (select id from practice where businessid=6)
+select * from PracticeProviderLocationMapper where practiceid in (select id from practice where businessid=6)
+--delete from PracticeProviderLocationMapper where practiceid in (select id from practice where businessid=6)
+select * from PracticeServiceMapper where practiceid in (select id from practice where businessid=6)
+--delete from PracticeServiceMapper where practiceid in (select id from practice where businessid=6)
+select * from PracticeAddressMapper where practiceid in (select id from practice where businessid=6)
+--delete from PracticeAddressMapper where practiceid in (select id from practice where businessid=6)
+
+select * from reportmaster where businessid=6
+--delete from reportmaster where businessid=6

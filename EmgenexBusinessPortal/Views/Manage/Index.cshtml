@@ -1,0 +1,63 @@
+﻿@model EmgenexBusinessPortal.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage your account";
+    Layout = null;
+}
+<link href="/Controlpanel/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+<link href="/Content/style.css" rel="stylesheet" />
+<div class="container">
+    <div class="common-login-page">
+        <div class="careconnect-logo">
+            <a href="#"><img src="@ViewBag.Logo" onerror="this.src='/Assets/Logo_Not_Available.jpg';" class="img-responsive"></a> @ViewBag.businessName
+        </div>
+        <br />
+        <div class="wrapper padding-20x m-t-20">
+            <h3>@ViewBag.Title.</h3>
+            <p class="text-success">@ViewBag.StatusMessage</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Change your password", "ChangePassword", "Manage")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Pick a password", "SetPassword", "Manage")
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <span class="copy"><a href="#"><img src="/Controlpanel/Content/images/careconnect-logo.png" class="img-responsive"></a></span>
+        <br />
+        <br />
+        <br />
+        <a href="/@ViewBag.RelativeUrl">Back to dashboard</a>
+        @*@Html.ActionLink("Back to previous", null, null, null, new { href = Request.UrlReferrer })*@
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@*<div class="dashboard">
+        <div class="container">
+            <div class="wrapper padding-20x m-t-20">
+                <h3>@ViewBag.Title.</h3>
+                <p class="text-success">@ViewBag.StatusMessage</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            @if (Model.HasPassword)
+                            {
+                                @Html.ActionLink("Change your password", "ChangePassword","Manage")
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Pick a password", "SetPassword", "Manage")
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>*@

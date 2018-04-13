@@ -1,0 +1,92 @@
+Patient Id	:	1111111	Patient Name	:	FNAME LANAME	Practice Name	:	Mind Body Wellness Professionals
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	16911	Patient Name	:	Maria Rodriguez	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Patel Kunj	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Morris Cori	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Houghton Grant	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Lowden Ellea	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Connell Richard	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Adler Jay	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Chonka Cait	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Lobis Erin	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Egan Neil	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Vayner Boris	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Booth Lynn	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Pagan Carmen	Practice Name	:	Medical First
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Peterson Dor	Practice Name	:	Medical First
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Jones Henry	Practice Name	:	
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Seda David	Practice Name	:	New York Spine and Sport Rehabilitation Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Thompson Sherry	Practice Name	:	New York Spine and Sport Rehabilitation Medicine
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Brown Kimberly	Practice Name	:	Spine & Joint Pain Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Turiello Lisa	Practice Name	:	Spine & Joint Pain Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Conrow Earl	Practice Name	:	Spine & Joint Pain Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Watson Julia	Practice Name	:	Spine & Joint Pain Center
+Record successfully updated
+Finance data successfully updated
+
+Number of rows Inserted 	:	0	
+Number of rows Inserted 	:	22	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	0

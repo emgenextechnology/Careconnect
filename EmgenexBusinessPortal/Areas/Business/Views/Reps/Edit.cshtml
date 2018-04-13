@@ -1,0 +1,166 @@
+﻿@*@model EBP.Business.Database.Rep*@
+@model EmgenexBusinessPortal.Areas.Business.Models.RepModel
+@using EmgenexBusinessPortal.Extension;
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sales Reps</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, "UserName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("UserId", null, "Select", htmlAttributes: new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.RepGroupId, "Sales Team" + Model.RepGroupId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DropDownList("RepGroupId", null, "Select", htmlAttributes: new { @class = "form-control", required = "required" })
+                    @Html.DropDownList("RepGroupId", EmgenexBusinessPortal.Helpers.LookUps.GetRepGroups(Context.GetCurrentBusinessId(), Model.RepGroupId), "Select", htmlAttributes: new { @class = "form-control", @id = "RepGroupId", @name = "RepGroupId", required = "required" })
+                    @Html.DropDownListFor(m => m.RepGroupId, EmgenexBusinessPortal.Helpers.LookUps.GetRepGroups(Context.GetCurrentBusinessId(), Model.RepGroupId), "Select", htmlAttributes: new { @class = "form-control", @id = "RepGroupId", @name = "RepGroupId", required = "required" })
+                    @Html.ValidationMessageFor(model => model.RepGroupId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RepGroupId, "Sales Team", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <select class="form-control" id="RepGroupId" name="RepGroupId">
+                    <option>Select</option>
+                    @foreach (var item in EmgenexBusinessPortal.Helpers.LookUps.GetRepGroups(Context.GetCurrentBusinessId()))
+                    {
+                        int value = Convert.ToInt32(@item.Value);
+                        if (value == @Model.RepGroupId)
+                        {
+                            <option value="@item.Value" selected>@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.RepGroupId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.Label("Manager", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group float-label-control col-md-6">
+                    @Html.ListBox("ManagerId", (IEnumerable<SelectListItem>)ViewBag.Managers, new { @class = "js-example-basic-multiple form-control", disabled = "disabled", @id = "MangerId", multiple = "multiple" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.Label("Manager", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group float-label-control col-md-6">
+                @Html.ListBox("ManagerId", EmgenexBusinessPortal.Helpers.LookUps.GetManagers(Context.GetCurrentBusinessId()), new { @class = "js-example-basic-multiple form-control", disabled = "disabled", @id = "MangerId", multiple = "multiple" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.SignonDate, "Signon Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.SignonDate, "{0:MM-dd-yyyy}", new { @class = "form-control", placeholder = "MM-dd-yyyy", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.SignonDate, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                Services
+            </label>
+            <div class="col-md-6">
+                @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.Services)
+                {
+                    var id = "Services" + item.Value;
+                    <span class="col-md-4">
+                        <input type="checkbox" name="selectedServices" checked="@item.Selected" value="@item.Value" class="checkbox-inline" id="@id" />
+                        <label for="@id" class="control-label chklabel">@item.Text</label>
+                    </span>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<style>
+    .loadinggif {
+        background: url('/Areas/Business/Content/images/ajax-loader.gif') no-repeat center;
+    }
+</style>
+<script src="~/Scripts/select2/select2.min.js"></script>
+<link href="~/Scripts/select2/select2.css" rel="stylesheet" />
+<link href="~/Scripts/select2/select2-bootstrap.css" rel="stylesheet" />
+<script>
+    $(".js-example-basic-multiple").select2();
+    $(function () {
+        bindManagerName($('#RepGroupId').val());
+
+        //var _this = $('#SignonDate');
+        //var dateFormat = _this.val();
+        //if (dateFormat != "") {
+        //    _this.val($.datepicker.formatDate('mm-dd-yy', new Date(dateFormat)));
+        //}
+        //_this.datepicker({
+        //    dateFormat: 'mm-dd-yy'
+        //});
+    });
+
+    $('#RepGroupId').change(function () {
+        bindManagerName($(this).val());
+    });
+
+    function bindManagerName(id) {
+        var _this = $('#MangerId');
+        if (id > 0) {
+            _this.addClass('loadinggif');
+            $.ajax({
+                type: "POST",
+                url: "/Business/reps/GetManagerIds/" + id,
+                success: function (data) {
+                    _this.removeClass('loadinggif');
+                    //_this.val(data);
+                    var data = data.split(',');
+                    var selectedValues = data;
+                    _this.select2('val', selectedValues);
+                },
+            });
+        }
+        else {
+            _this.val("");
+        }
+    }
+</script>

@@ -1,0 +1,59 @@
+﻿@model EmgenexBusinessPortal.Models.NotificationsettingModel
+@{
+    ViewBag.Title = "Notification Settings";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+<h2>Edit Notification of @Model.Name </h2>
+<div id="UserNotification" style="width:100%; border:1px solid #ccc; float:left; padding:10px">
+    Notification Settings
+    <hr />
+    <form id="formNotification">
+        <table class="permissionTab">
+            <thead>
+                <tr>
+                    <td>Notification</td>
+                    <td>Active </td>
+                </tr>
+            </thead>
+            @foreach (var item in @Model.Notifications)
+            {
+                <tr>
+                    <td>
+                        @item.NotificationType
+                    </td>
+                    <td>
+
+                        @if (item.Status == true)
+                        {<input type="checkbox" checked="checked" data-typeid="@item.NotificationTypeId" data-key="isactive" />}
+                        else
+                        { <input type="checkbox" data-typeid="@item.NotificationTypeId" data-key="isactive" />}
+                    </td>
+                </tr>
+            }
+        </table>
+    </form>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('#formNotification input[type=checkbox]').change(function () {
+            var postModel = {
+                NotificationTypeId: $(this).data('typeid'),
+                UserId: '@Model.UserId',
+                Status: $(this).is(':checked')
+            };
+            $.ajax({
+                type: "POST",
+                url: " NotificationSettings",
+                data: { entity: postModel },
+            });
+        });
+
+    });
+
+</script>

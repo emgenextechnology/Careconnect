@@ -1,0 +1,47 @@
+﻿<fields>
+  <ReportMaster>
+    <PatientFirstName>Patient Name^1</PatientFirstName>
+    <PatientId></PatientId>
+    <PatientLastName>Patient Name^2</PatientLastName>
+    <SpecimenCollectionDate>Collected Date</SpecimenCollectionDate>
+    <SpecimenReceivedDate>Received Date</SpecimenReceivedDate>
+    <ReportedDate>Reported Date</ReportedDate>
+    <PracticeName>Practice Name</PracticeName>
+    <ProviderFirstName>Provider Name^1</ProviderFirstName>
+    <ProviderLastName>Provider Name^3</ProviderLastName>
+    <ProviderNpi>Provider NPI</ProviderNpi>
+    <RepFirstName></RepFirstName>
+    <RepLastName></RepLastName> 
+    <EmgenexLocationId></EmgenexLocationId>
+    <SpecimenId>Specimen ID</SpecimenId>
+  </ReportMaster>
+  
+  <ReportFinance>
+    <ReportKey></ReportKey>
+
+    <BilledDate DisplayName="Billed Date" SummaryFilter="true">Billed Date</BilledDate>
+    <PaidDate DisplayName="Paid Date" SummaryFilter="true">Paid Date</PaidDate>
+    <Charges>Billed Amount</Charges>
+    <PaidAmount>Paid Amount</PaidAmount>
+    <AdjustAmount DisplayName="Amount Adjust"></AdjustAmount>
+    <AdjustReason DisplayName="Adjust Reason"></AdjustReason>
+  </ReportFinance>
+  
+  <StaticColumns>
+    <CollectedDate DisplayName="Collected" IsVisible="true" SummaryFilter="true"></CollectedDate>
+    <ReceivedDate DisplayName="Received" IsVisible="true" SummaryFilter="true"></ReceivedDate>
+    <ReportedDate DisplayName="Reported" IsVisible="true" SummaryFilter="true"></ReportedDate>
+    <Practice DisplayName="Practice" IsVisible="true"></Practice>
+    <Provider DisplayName="Provider" IsVisible="true"></Provider>
+    <SalesTeam DisplayName="Sales Team" IsVisible="true"></SalesTeam>
+    <RepName DisplayName="Rep" IsVisible="true"></RepName>
+    <Patient DisplayName="Patient" IsVisible="true"></Patient>
+    <SpecimenId DisplayName="Specimen Id" IsVisible="true">Specimen ID</SpecimenId>
+    <BilledDate DisplayName="Billed Date" IsVisible="false"></BilledDate>
+    <PaidDate DisplayName="Paid Date" IsVisible="false"></PaidDate>
+    <Charges DisplayName="Billed Amount" IsVisible="true" SummaryGroupBy="true"></Charges>
+    <PaidAmount DisplayName="Paid Amount" IsVisible="true" SummaryGroupBy="true"></PaidAmount>
+    <AdjustAmount DisplayName="Amount Adjust" IsVisible="false"></AdjustAmount>
+    <AdjustReason DisplayName="Amount Reason" IsVisible="false"></AdjustReason>
+  </StaticColumns>
+</fields>

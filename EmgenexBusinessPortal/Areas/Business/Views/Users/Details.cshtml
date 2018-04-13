@@ -1,0 +1,97 @@
+﻿@model EBP.Business.Database.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+    var db = new EBP.Business.Database.CareConnectCrmEntities();
+    var userProfile = Model.UserProfiles.FirstOrDefault();
+    string loggedInTime = null;
+    if (userProfile != null)
+    {
+        loggedInTime = userProfile.LastLoggedInTime.ToString();
+        loggedInTime = string.IsNullOrEmpty(loggedInTime) ? "Not Available" : loggedInTime;
+    }
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Last Logged in Time")
+        </dt>
+
+        <dd>
+            @loggedInTime
+        </dd>
+        <dt>
+            @Html.DisplayName("First Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Last Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Phone Number")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sales Director")
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Reps2.Select(a => a.RepGroup.User2.FirstName + " " + a.RepGroup.User2.LastName).FirstOrDefault())*@
+            @db.Reps.Where(a => a.UserId == Model.Id).Select(a => a.RepGroup.User2.FirstName + " " + a.RepGroup.User2.LastName).FirstOrDefault()
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Roles")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.Roles.Select(a => a.Name).ToArray())
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Department")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.UserDepartments2.Select(a => a.Department.DepartmentName).ToArray())
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

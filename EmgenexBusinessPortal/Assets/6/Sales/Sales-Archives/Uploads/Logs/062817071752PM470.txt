@@ -1,0 +1,8 @@
+Patient Id	:	1111111	Patient Name	:	FNAME LANAME	Practice Name	:	Mind Body Wellness Professionals
+Record successfully updated
+Finance data successfully inserted
+
+Number of rows Inserted 	:	0	
+Number of rows Inserted 	:	1	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	0

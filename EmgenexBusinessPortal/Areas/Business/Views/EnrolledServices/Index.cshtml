@@ -1,0 +1,244 @@
+﻿@model IEnumerable<EBP.Business.Database.LookupEnrolledService>
+
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Services</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table" id="enrolledService">
+    <tr>
+        <th>
+            @Html.DisplayName("Service Name")
+        </th>
+        <th>
+            @Html.DisplayName("Active")
+        </th>
+        <th>
+            @Html.DisplayName("Import Mode")
+        </th>
+        <th>
+            @Html.DisplayName("Created On")
+        </th>
+        <th>
+            @Html.DisplayName("Created By")
+        </th>
+        <th>
+            @Html.DisplayName("Updated On")
+        </th>
+        <th>
+            @Html.DisplayName("Updated By")
+        </th>
+        <th>
+            @Html.DisplayName("Set default")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive.Value)
+            </td>
+            <td>
+                @{var ImportMode = EBP.Business.Enums.EnumHelper.GetEnumName<EBP.Business.Enums.ServiceReportImportModes>(item.ImportMode.HasValue ? item.ImportMode.Value : (int)EBP.Business.Enums.ServiceReportImportModes.FileSystem);}
+                @ImportMode
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User1.FirstName)
+            </td>
+            <td>
+                <label class="switch onoff">
+
+                    @if (item.Status == true)
+                    {
+                        <input type="checkbox" name="Setdefault" checked="checked" class="switch-input" data-serviceid="@item.Id" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Setdefault" data-serviceid="@item.Id" class="switch-input">
+                    }
+                    <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    <span class="switch-handle"></span>
+                </label>
+            </td>
+            <td>
+                @Html.ActionLink("Columns", "ReportColumns", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+                    }
+
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#enrolledService input[type=checkbox]').change(function () {
+            var _this = this;
+            var postModel = {
+                ServiceId: $(_this).data('serviceid'),
+                Status: $(_this).is(':checked')
+            };
+            //$('#enrolledService  input[type="checkbox"]').not(_this).prop('checked', false);
+            $(':checkbox[name=Setdefault]').not(_this).prop('checked', false);
+            //alert(JSON.stringify(postModel));
+            $.ajax({
+                type: "POST",
+                url: " enrolledservices/setdefaultService",
+                data: { entity: postModel }
+                //success: function (data) {
+                //    $('#enrolledService input[type="checkbox"]').not(value).prop('checked', false);
+                //}
+            });
+        });
+
+    });
+
+</script>
+<style>
+    .onoff.switch {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 64px;
+        height: 20px;
+        padding: 3px;
+        background-color: white;
+        border-radius: 18px;
+        box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        background-image: -webkit-linear-gradient(top, #eeeeee, white 25px);
+        background-image: -moz-linear-gradient(top, #eeeeee, white 25px);
+        background-image: -o-linear-gradient(top, #eeeeee, white 25px);
+        background-image: linear-gradient(to bottom, #eeeeee, white 25px);
+    }
+
+    .switch-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    .switch-label {
+        position: relative;
+        display: block;
+        height: inherit;
+        font-size: 10px;
+        text-transform: uppercase;
+        background: #c11;
+        border-radius: inherit;
+        -webkit-transition: 0.15s ease-out;
+        -moz-transition: 0.15s ease-out;
+        -o-transition: 0.15s ease-out;
+        transition: 0.15s ease-out;
+        -webkit-transition-property: opacity background;
+        -moz-transition-property: opacity background;
+        -o-transition-property: opacity background;
+        transition-property: opacity background;
+    }
+
+        .switch-label:before, .switch-label:after {
+            position: absolute;
+            top: 50%;
+            margin-top: -.5em;
+            line-height: 1;
+            -webkit-transition: inherit;
+            -moz-transition: inherit;
+            -o-transition: inherit;
+            transition: inherit;
+        }
+
+        .switch-label:before {
+            content: attr(data-off);
+            right: 11px;
+            color: #aaa;
+            text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .switch-label:after {
+            content: attr(data-on);
+            left: 11px;
+            color: white;
+            text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+        }
+
+    .switch-input:checked ~ .switch-label {
+        background: #47a8d8;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+    }
+
+        .switch-input:checked ~ .switch-label:before {
+            opacity: 0;
+        }
+
+        .switch-input:checked ~ .switch-label:after {
+            opacity: 1;
+        }
+
+    .switch-handle {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 18px;
+        height: 18px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        background-image: -webkit-linear-gradient(top, white 40%, #f0f0f0);
+        background-image: -moz-linear-gradient(top, white 40%, #f0f0f0);
+        background-image: -o-linear-gradient(top, white 40%, #f0f0f0);
+        background-image: linear-gradient(to bottom, white 40%, #f0f0f0);
+        -webkit-transition: left 0.15s ease-out;
+        -moz-transition: left 0.15s ease-out;
+        -o-transition: left 0.15s ease-out;
+        transition: left 0.15s ease-out;
+    }
+
+        .switch-handle:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -6px 0 0 -6px;
+            width: 12px;
+            height: 12px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+            background-image: -webkit-linear-gradient(top, #eeeeee, white);
+            background-image: -moz-linear-gradient(top, #eeeeee, white);
+            background-image: -o-linear-gradient(top, #eeeeee, white);
+            background-image: linear-gradient(to bottom, #eeeeee, white);
+        }
+
+    .switch-input:checked ~ .switch-handle {
+        left: 40px;
+        box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .switch-green > .switch-input:checked ~ .switch-label {
+        background: #4fb845;
+    }
+</style>

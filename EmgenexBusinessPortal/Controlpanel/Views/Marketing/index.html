@@ -1,0 +1,228 @@
+﻿<style>
+    .enrservice {
+        height: 34px;
+        width: 200px;
+    }
+
+    .dropdown-menu.date-picker {
+        position: relative;
+    }
+
+    .filter-actionbox .form-control.datesingle-select {
+        background-color: white;
+        border-color: #aaaaaa !important;
+        background-position: right 6px center;
+    }
+</style>
+
+<div class="lead-content-wrapper slide-left" ng-init="init()" ng-show="authData.isAuth">
+    <div class="lead-top-search ll">
+        <div class="row ">
+            <div class="col-lg-5 col-sm-12 leads-result">
+                <i ng-show="MarketingLoading " class="fa fa-spinner fa-spin ng-animate-disabled"></i>{{model.Pager.TotalCount| number}} Marketing materials <span style="font-family:inherit" ng-show="affectedFilterCount>0"> matching criteria <span>{{affectedFilters.join(' | ')}}</span></span>
+            </div>
+            <div class="col-lg-7 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 add-lnk-outerwrap">
+                        <div class="pull-right add-lnk-wrp">
+                            <!--<a ng-click="newMarketing()" class="btn btn-primary lead-add-btn" data-toggle="modal" data-target="#addmarketing"><span>+</span> Add Marketing</a>-->
+                            <a ng-click="newMarketing()" class="btn btn-primary lead-add-btn"><span>+</span> Add Marketing</a>
+                        </div>
+                        <a class="btn btn-primary pull-right filter-toggle-btn" ng-click="toggleFilter();"><i class="fa fa-filter"></i> Filter</a>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 srch-bx">
+                        <!--<form action="" method="">-->
+                        <div class="pull-left input-group search-lead">
+                            <input class="form-control" placeholder="Search" name="" id="" type="text" ng-model="MarketingFilter.Keyword" clearable>
+                            <div class="input-group-btn">
+                                <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        <!--<form>-->
+                        <div class="pull-right dropdown">
+                            <a class="dropdown-toggle settings-icon" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                <li><h3>Visible Columns</h3></li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label><span class="select-title">RX#</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkbox2"><label for="checkbox2"></label><span class="select-title">Request type</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkbox3"><label for="checkbox3"></label><span class="select-title">Requested by</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkbox4"><label for="checkbox4"></label><span class="select-title">Assigned to</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkbox5"><label for="checkbox5"></label><span class="select-title">Status</span></div>
+                                </li>
+                                <li>
+                                    <div class="checkbox"><input type="checkbox" id="checkbox6"><label for="checkbox6"></label><span class="select-title">Due on</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row lead-list-wrap" id="lead-list-wrap">
+        <div class="col-lg-3 filter-lead" ng-show="showFilter">
+            <span class="close-cross pull-right"><a ng-click="toggleFilter();" id=" filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+            <div class="clearfix"></div>
+            <div class="filter-results">
+                <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="filter-actionbox">
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="MarketingFilter.DocumentTypeId" data-placeholder="Marketing Type">
+                        <option value="">Marketing Type</option>
+                        <option ng-repeat="tag in lookUps.lookupDocumentTypes" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="MarketingFilter.DocumentTypeId" title="Marketing Type">
+                        <ui-select-match placeholder="Marketing Type" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupDocumentTypes | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="MarketingFilter.CategoryId" data-placeholder="Category">
+                        <option value="">Category</option>
+                        <option ng-repeat="tag in lookUps.lookupMarketingCategories" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="MarketingFilter.CategoryId" title="Category">
+                        <ui-select-match placeholder="Category" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupMarketingCategories | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="MarketingFilter.UserId" data-placeholder="Added By">
+                        <option value="">Added By</option>
+                        <option ng-repeat="tag in lookUps.lookupAddedBy" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="MarketingFilter.UserId" title="Added By">
+                        <ui-select-match placeholder="Added By" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupAddedBy | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+            </div>
+        </div>
+        <div class="{{listClass}} lead-info-wrap" id="marketing-info-wrap">
+             <!--<div class="task-detail row">
+               <div class="col-sm-7 col-md-8 task-detail-left task-eq-hgt">-->
+            <div class="line-table-wrap market-table">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr ng-repeat="Marketing in model.List">
+                            <td><img src="/Controlpanel/Content/images/jpg.jpg" alt="doc" ng-click="showDetailsView(Marketing.Id)" /></td>
+                            <td ng-click="showDetailsView(Marketing.Id)">
+                                <h3>{{Marketing.Name}}</h3>
+                                <p>{{Marketing.Description}}</p>
+                            <td class="dots-td">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><img src="/Controlpanel/Content/images/dots.png" alt="User" width="4"></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a ng-click="editMarketing(Marketing.Id)">Edit</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <!--</div>-->
+                <!--<div class="col-sm-5 col-md-4 task-detail-right task-eq-hgt">
+                <div class="lead-info-top">
+                    <h2 class="pull-left">UPCOMING EVENTS</h2>
+                    <span class="pull-right date-marketing">
+                        <select class="form-control selectpicker">
+                            <option value="" disabled="" selected="" hidden="">Date</option>
+                            <option>1/22/2016</option>
+                            <option>2/22/2016</option>
+                            <option>3/22/2016</option>
+                        </select>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row markt-date-box">
+                    <div class="col-sm-3 mrkt-date-status">
+                        <div class="date-status black-status">20 <span>Feb</span></div>
+                    </div>
+                    <div class="col-sm-9 mrkt-created">
+                        <h3>Home Remedies For Boils</h3>
+                        <p>Beauty is one of the most craved in the world.</p>
+                    </div>
+                </div>
+                <div class="row markt-date-box">
+                    <div class="col-sm-3 mrkt-date-status">
+                        <div class="date-status black-status">20 <span>Feb</span></div>
+                    </div>
+                    <div class="col-sm-9 mrkt-created">
+                        <h3>Home Remedies For Boils</h3>
+                        <p>Beauty is one of the most craved in the world.</p>
+                    </div>
+                </div>
+                <div class="row markt-date-box">
+                    <div class="col-sm-3 mrkt-date-status">
+                        <div class="date-status black-status">20 <span>Feb</span></div>
+                    </div>
+                    <div class="col-sm-9 mrkt-created">
+                        <h3>Home Remedies For Boils</h3>
+                        <p>Beauty is one of the most craved in the world.</p>
+                    </div>
+                </div>
+                <div class="row markt-date-box">
+                    <div class="col-sm-3 mrkt-date-status">
+                        <div class="date-status black-status">20 <span>Feb</span></div>
+                    </div>
+                    <div class="col-sm-9 mrkt-created">
+                        <h3>Home Remedies For Boils</h3>
+                        <p>Beauty is one of the most craved in the world.</p>
+                    </div>
+                </div>
+                <div class="row markt-date-box">
+                    <div class="col-sm-3 mrkt-date-status">
+                        <div class="date-status black-status">20 <span>Feb</span></div>
+                    </div>
+                    <div class="col-sm-9 mrkt-created">
+                        <h3>Home Remedies For Boils</h3>
+                        <p>Beauty is one of the most craved in the world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+                <div class="paging-wrap">
+                    <div class="pull-left"> <uib-pagination total-items="model.Pager.TotalCount" ng-model="MarketingFilter.CurrentPage" items-per-page="MarketingFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                    <span ng-hide="showDetails" class="pull-left show-text">Showing {{model.Pager.Skip+1}} to {{(model.Pager.Skip + model.Pager.Take)>model.Pager.TotalCount?model.Pager.TotalCount:(model.Pager.Skip + model.Pager.Take)}} of {{model.Pager.TotalCount}} ({{model.Pager.TotalPage}} Pages)</span>
+                    <div class="row-count-drop pull-left" ng-hide="showDetails">
+                        <select class="form-control" ng-model="MarketingFilter.PageSize">
+                            <option value="" disabled="" selected="" hidden="">Row Count</option>
+                            <option ng-selected="25==MarketingFilter.PageSize">25</option>
+                            <option ng-selected="50==MarketingFilter.PageSize">50</option>
+                            <option ng-selected="100==MarketingFilter.PageSize">100</option>
+                            <option ng-selected="500==MarketingFilter.PageSize">500</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-lg-9 lead-info-wrap slide-left" ng-include="'/Controlpanel/Views/Marketing/MarketingDetails.html?i=95545454550'" id="lead-info-wrap" ng-show="showDetails"> </div>-->
+        <div class="col-lg-9 lead-info-wrap slide-left" id="lead-info-wrap" ng-show="showDetails">
+            <ng-include src="templateUrl('/Controlpanel/Views/Marketing/MarketingDetails.html')"></ng-include>
+         </div>
+    </div>

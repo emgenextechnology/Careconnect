@@ -1,0 +1,8 @@
+Patient Id	:	232323	Patient Name	:	FName LName	Practice Name	:	Pain Management Center
+Record successfully updated
+Finance data successfully updated
+
+Number of rows Inserted 	:	0	
+Number of rows Inserted 	:	1	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	0

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8bf068e8aa9434385bfbc1dad11eae8" Name="Diagram1">
+        <EntityTypeShape EntityType="EPMDevModel.AccessLevel" Width="1.5" PointX="9.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Account" Width="1.5" PointX="10.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AccountService" Width="1.5" PointX="13" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AccountUploading" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Address" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AddressType" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Alert_Lead" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Alert" Width="1.5" PointX="15.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.BoardCertification" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Country" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Degree" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Dept" Width="1.5" PointX="17.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Dept_Group" Width="1.5" PointX="17.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.EnrolledService" Width="1.5" PointX="7.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.EntityType" Width="1.5" PointX="17.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Fellowship" Width="1.5" PointX="15.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Formulation" Width="1.5" PointX="17.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.HelpItemOrder" Width="1.5" PointX="12.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.HelpPriority" Width="1.5" PointX="19.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.HelpPriorityType" Width="1.5" PointX="19.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.HelpRequest" Width="1.5" PointX="19.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.HelpType" Width="1.5" PointX="19.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.InsurancePlan" Width="1.5" PointX="19.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.InsurancePlanType" Width="1.5" PointX="17.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Item" Width="1.5" PointX="19.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Lead" Width="1.5" PointX="0.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadSource" Width="1.5" PointX="2.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Licence" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Marketing" Width="1.5" PointX="4.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Note_Lead" Width="1.5" PointX="17.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Note" Width="1.5" PointX="15" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.NoteType" Width="1.5" PointX="12.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Patient" Width="1.5" PointX="21.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PaymentType" Width="1.5" PointX="21.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PgxReport1" Width="1.5" PointX="21.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Phone" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PhoneNumber" Width="1.5" PointX="6.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PhoneType" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Practice" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Practice_SpecialityType" Width="1.5" PointX="11.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PracticeContact" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PracticeProvider" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PracticeProviderLocation" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PracticeSpecialityType" Width="1.5" PointX="8.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.PracticeType" Width="1.5" PointX="21.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Privilege" Width="1.5" PointX="14.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Provider" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Rep" Width="1.5" PointX="21.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.RepGroup" Width="1.5" PointX="21.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Report" Width="1.5" PointX="10.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ReportStatu" Width="1.5" PointX="16.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ReportType" Width="1.5" PointX="23.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.RepStatu" Width="1.5" PointX="23.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Role" Width="1.5" PointX="15" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.RxcReport" Width="1.5" PointX="23.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.RxCScript" Width="1.5" PointX="23.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.RxcStatu" Width="1.5" PointX="23.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.RxPlanType" Width="1.5" PointX="18.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ScriptType" Width="1.5" PointX="23.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.SecurityLevel" Width="1.5" PointX="23.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Service" Width="1.5" PointX="10.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ServiceStatusType" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ServiceType" Width="1.5" PointX="2.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.State" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.StatusType" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.sysdiagram" Width="1.5" PointX="25.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Task" Width="1.5" PointX="25.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.tblGroup" Width="1.5" PointX="15" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.tblLocation" Width="1.5" PointX="4.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.tblService" Width="1.5" PointX="6.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Toxicology" Width="1.5" PointX="25.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.User" Width="1.5" PointX="12.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Access" Width="1.5" PointX="25.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AccountAddress" Width="1.5" PointX="25.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AccountProvider" Width="1.5" PointX="25.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AccountStatusType" Width="1.5" PointX="20.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AccountType" Width="1.5" PointX="25.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.AcctNote" Width="1.5" PointX="25.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Action" Width="1.5" PointX="14.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Admin" Width="1.5" PointX="16.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ContactInfo" Width="1.5" PointX="22.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ContactNote" Width="1.5" PointX="27.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Document" Width="1.5" PointX="27.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Entity" Width="1.5" PointX="27.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Folder" Width="1.5" PointX="8.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.HelpNote" Width="1.5" PointX="27.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadContact" Width="1.5" PointX="27.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadNote" Width="1.5" PointX="27.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadPracticeProvider" Width="1.5" PointX="27.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadStage" Width="1.5" PointX="27.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadStatu" Width="1.5" PointX="0.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.LeadTask" Width="1.5" PointX="18.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Permission" Width="1.5" PointX="24.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Provider_BoardCert" Width="1.5" PointX="26.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Provider_Fellowship" Width="1.5" PointX="28.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.ProviderNote" Width="1.5" PointX="29.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMDevModel.Rep_Srvc_Map" Width="1.5" PointX="29.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="EPMDevModel.FK_AccountService_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_AccountService_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Address_AddressType" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Address_States" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Phone_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_PracticeContact_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_PracticeProviderLocation_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_States_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Provider_Degree" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Licence_States" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Note_Lead_Notes" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Notes_NoteTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Phone_PhoneType" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_PracticeContact_Practice" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_PracticeProvider_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_PracticeProviderLocation_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_Roles_StatusTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_StatusTypes_StatusTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EPMDevModel.FK_tblGroup_StatusTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EPMDevModel.Practice_serviceId" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EPMDevModel.PracticeAddress" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EPMDevModel.PatientPgxreportMap" Width="1.5" PointX="30.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

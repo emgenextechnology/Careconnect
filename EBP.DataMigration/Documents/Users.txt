@@ -1,0 +1,77 @@
+Users DB Mapping
+
+1. The following fields are common for both tables.
+
+2. Following fields are missing from current user table and must be included
+
+3. Roles and Departments
+
+a. UserName
+
+b. FirstName
+
+c. LastName
+
+d. Email
+
+e. Phone number
+
+a. Middle Initial
+
+b. Status id
+
+c. Start_Date
+
+d. Created On
+
+e. Created By
+
+f. Updated on
+
+g. Updated By
+
+h. Manager id
+
+a. Tblgroup table under the current db will map to UserDepartments
+
+b. Roles table from current db will map to userroles table
+
+c. A listing of departments from the current prd table will be added to the
+
+userdepartments .
+
+d. When user data is migrated the userid that will go with a dept id will be done against a
+
+mapping of department ids from both databases.
+
+i. For ex department operations under current db is 21 but under new DB it may
+
+be 2. For all users that belong to deptid 21 under current db will now have dept
+
+id 2 in the new db.
+
+4. Open questions
+
+e. Roles mapping will be done in a similar fashion.
+
+a. There is no separate rep table required
+
+b. What will happen if a user leaves the company and is marked inactive. He should not
+
+appear in the listing of users.
+
+c. All accounts and sales activity that belong to that user must be marked inactive and
+
+hence will not appear in the summary sections of accounts/leads/tasks/sales activity.
+
+d. Role hierarchy must be maintained and hence a manager id field also must be added to
+
+the users table.
+
+e. Role hierarchy determines automatically controls data visibility.
+
+f. Created on, Created by, updated on, updated by must be there in all tables in the DB.
+
+Current db is missing these fields in many tables and has posed us many problems. As a
+
+rule add these columns to all tables.

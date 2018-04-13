@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54EDDFFB-B71A-4254-86AC-E407192CC4E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EBP.Business</RootNamespace>
+    <AssemblyName>EBP.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.BulkInsert, Version=6.0.2.8, Culture=neutral, PublicKeyToken=630a17433349cb76, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.BulkInsert-ef6.6.0.2.8\lib\Net45\EntityFramework.BulkInsert.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.MappingAPI, Version=6.0.0.7, Culture=neutral, PublicKeyToken=7ee2e825d201459e, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.0.0.7\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\Account.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Address.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\BusinessMaster.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CCBizModelNew.Context.cs">
+      <DependentUpon>CCBizModelNew.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Database\CCBizModelNew.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Database\CCBizModelNew.Designer.cs">
+      <DependentUpon>CCBizModelNew.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Database\CustomAttributes.cs" />
+    <Compile Include="Database\Department.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DepartmentPrivilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Lead.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupCountry.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupDegree.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupDocumentType.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupEnrolledService.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupLeadSource.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupMarketingCategory.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupNotificationType.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupPracticeSpecialityType.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupPracticeType.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupServiceColumn.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupState.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\LookupTaskType.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\MarketingAttachment.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\MarketingDocument.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ModulesMaster.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Note.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Notification.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NotificationUser.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Phone.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Practice.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PracticeAddressMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PracticeContact.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PracticePracticeSpecialityMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PracticeProviderLocationMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PracticeProviderMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PracticeServiceMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Privilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Provider.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Rep.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RepGroup.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RepgroupManagerMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ReportColumn.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ReportColumnValue.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ReportFinance.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ReportMaster.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ReportStaticColumnConfig.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RepServiceMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Role.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RolePrivilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SalesDepartmentPrivilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SalesImportDetail.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SalesImportMessage.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SalesImportSummery.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SalesRolePrivilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SalesUserPrivilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ServiceFtpInfo.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Task.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaskAttachment.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaskItem.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaskItemOrder.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaskLog.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaskUser.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TaskUserAlert.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserClaim.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserColumnVisibility.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserDepartment.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserLogin.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserNotificationMapper.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserPrivilege.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserProfile.cs">
+      <DependentUpon>CCBizModelNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Account\EntityAccount.cs" />
+    <Compile Include="Entity\Business\EntityBusiness.cs" />
+    <Compile Include="Entity\Business\EntityBusinessMaster.cs" />
+    <Compile Include="Entity\Country\EntityCountry.cs" />
+    <Compile Include="Entity\DashBoard\EntityAccountHighlight.cs" />
+    <Compile Include="Entity\DashBoard\EntitySalesPerformance.cs" />
+    <Compile Include="Entity\DashBoard\EntityStatistics.cs" />
+    <Compile Include="Entity\Degree\EntityDegrees.cs" />
+    <Compile Include="Entity\LeadSource\EntityLeadSource.cs" />
+    <Compile Include="Entity\Notification\EntityNotificationSettings.cs" />
+    <Compile Include="Entity\Notification\EntityNotificationType.cs" />
+    <Compile Include="Entity\ParsingLog\EntityParsingLog.cs" />
+    <Compile Include="Entity\PracticeSpeciality\EntityPracticeSpecialityType.cs" />
+    <Compile Include="Entity\PracticeType\EntityPracticeType.cs" />
+    <Compile Include="Entity\PrivilegeModules\EntityPrivilegeModules.cs" />
+    <Compile Include="Entity\Privileges\EntityDepartments.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entity\Privileges\EntityPrivilege.cs" />
+    <Compile Include="Entity\States\EntityStates.cs" />
+    <Compile Include="Entity\Users\EntityProfile.cs" />
+    <Compile Include="Entity\Users\EntityUsers.cs" />
+    <Compile Include="Entity\EntitySelectItem.cs" />
+    <Compile Include="Entity\EntityStatus.cs" />
+    <Compile Include="Entity\Services\EntityServices.cs" />
+    <Compile Include="Entity\RepGroups\EntityRepGroups.cs" />
+    <Compile Include="Entity\MarketingCategory\EntityMarketingCategories.cs" />
+    <Compile Include="Entity\TaskType\EntityTaskTypes.cs" />
+    <Compile Include="Entity\DocumentType\EntityDocumentTypes.cs" />
+    <Compile Include="Entity\Roles\EntityRoles.cs" />
+    <Compile Include="Entity\Departments\EntityDepartments.cs" />
+    <Compile Include="Entity\Lead\EntityLead.cs" />
+    <Compile Include="Entity\Marketing\EntityMarketing.cs" />
+    <Compile Include="Entity\Note\EntityNote.cs" />
+    <Compile Include="Entity\Notification\EntityNotification.cs" />
+    <Compile Include="Entity\Practice\EntityProviderAddress.cs" />
+    <Compile Include="Entity\Practice\EntityPracticeContact.cs" />
+    <Compile Include="Entity\Practice\EntityPracticePhone.cs" />
+    <Compile Include="Entity\Practice\EntityPracticeAddress.cs" />
+    <Compile Include="Entity\Practice\EntityPracticeProviderAddress.cs" />
+    <Compile Include="Entity\Practice\EntityPractice.cs" />
+    <Compile Include="Entity\Practice\EntityProvider.cs" />
+    <Compile Include="Entity\Practice\EntityPracticeSpeciality.cs" />
+    <Compile Include="Entity\Rep\EntityRep.cs" />
+    <Compile Include="Entity\Sales\EntitySales.cs" />
+    <Compile Include="Entity\Task\EntityTask.cs" />
+    <Compile Include="Entity\UserColumn\EntityUserColumn.cs" />
+    <Compile Include="Entity\UserProfile\EntityUser.cs" />
+    <Compile Include="Entity\_base\DataPager.cs" />
+    <Compile Include="Entity\_base\EntityBase.cs" />
+    <Compile Include="Entity\_base\EntityList.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Filter\FilterAccount.cs" />
+    <Compile Include="Filter\FilterAddress.cs" />
+    <Compile Include="Filter\FilterBusiness.cs" />
+    <Compile Include="Filter\FilterCountry.cs" />
+    <Compile Include="Filter\FilterDegree.cs" />
+    <Compile Include="Filter\FilterLeadSource.cs" />
+    <Compile Include="Filter\FilterNotificationType.cs" />
+    <Compile Include="Filter\FilterParsingLog.cs" />
+    <Compile Include="Filter\FilterPracticeType.cs" />
+    <Compile Include="Filter\FilterPrivilege.cs" />
+    <Compile Include="Filter\FilterPrivilegeModule.cs" />
+    <Compile Include="Filter\FilterStates.cs" />
+    <Compile Include="Filter\FilterUsers.cs" />
+    <Compile Include="Filter\FilterServices.cs" />
+    <Compile Include="Filter\FilterReps.cs" />
+    <Compile Include="Filter\FilterRepGroups.cs" />
+    <Compile Include="Filter\FilterMarketingCategories.cs" />
+    <Compile Include="Filter\FilterTaskTypes.cs" />
+    <Compile Include="Filter\FilterDocumentTypes.cs" />
+    <Compile Include="Filter\FilterRoles.cs" />
+    <Compile Include="Filter\FilterNote.cs" />
+    <Compile Include="Filter\FilterMarketing.cs" />
+    <Compile Include="Filter\FilterSales.cs" />
+    <Compile Include="Filter\FilterDepartments.cs" />
+    <Compile Include="Filter\FilterTask.cs" />
+    <Compile Include="Filter\FilterLead.cs" />
+    <Compile Include="Filter\PracticeSpecialityFilter.cs" />
+    <Compile Include="Filter\_base\SelectFilterBase.cs" />
+    <Compile Include="Global\Extension\DataResponseExt.cs" />
+    <Compile Include="Global\Extension\ExceptionExt.cs" />
+    <Compile Include="Global\Extension\HttpContextExt.cs" />
+    <Compile Include="Global\Statics.cs" />
+    <Compile Include="Helpers\GeneralHelpers.cs" />
+    <Compile Include="Helpers\RazorHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Notifications\TemplateManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RepositoryAccount.cs" />
+    <Compile Include="Repository\RepositoryAddress.cs" />
+    <Compile Include="Repository\RepositoryBusinessProfile.cs" />
+    <Compile Include="Repository\RepositoryCountries.cs" />
+    <Compile Include="Repository\RepositoryDegreescs.cs" />
+    <Compile Include="Repository\RepositoryLeadSource.cs" />
+    <Compile Include="Repository\RepositoryNotificationType.cs" />
+    <Compile Include="Repository\RepositoryParsingLog.cs" />
+    <Compile Include="Repository\RepositoryPracticeSpeciality.cs" />
+    <Compile Include="Repository\RepositoryPracticeType.cs" />
+    <Compile Include="Repository\RepositoryPrivilege.cs" />
+    <Compile Include="Repository\RepositoryPrivilegeModules.cs" />
+    <Compile Include="Repository\RepositoryStates.cs" />
+    <Compile Include="Repository\RepositoryUsers.cs" />
+    <Compile Include="Repository\RepositoryEnrolledServices.cs" />
+    <Compile Include="Repository\RepositoryReps.cs" />
+    <Compile Include="Repository\RepositoryRepGroups.cs" />
+    <Compile Include="Repository\RepositoryMarketingCategories.cs" />
+    <Compile Include="Repository\RepositoryTaskTypes.cs" />
+    <Compile Include="Repository\RepositoryDocumentTypes.cs" />
+    <Compile Include="Repository\RepositoryRoles.cs" />
+    <Compile Include="Repository\RepositoryMarketing.cs" />
+    <Compile Include="Repository\RepositoryColumnVisibility.cs" />
+    <Compile Include="Repository\RepositoryDepartments.cs" />
+    <Compile Include="Repository\RepositoryStatistics.cs" />
+    <Compile Include="Repository\RepositoryNote.cs" />
+    <Compile Include="Repository\RepositoryNotification.cs" />
+    <Compile Include="Repository\RepositorySales.cs" />
+    <Compile Include="Repository\RepositoryProvider.cs" />
+    <Compile Include="Repository\RepositoryTask.cs" />
+    <Compile Include="Repository\RepositoryLead.cs" />
+    <Compile Include="Repository\RepositoryLookups.cs" />
+    <Compile Include="Repository\RepositoryUserProfile.cs" />
+    <Compile Include="Repository\RepositoryPractice.cs" />
+    <Compile Include="Repository\_base\_Repository.cs" />
+    <Compile Include="Resource\CacheKeys.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CacheKeys.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\NotificationMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotificationMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Response\DataResponse.cs" />
+    <Compile Include="Services\Email.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Global\Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Database\CCBizModelNew.edmx.diagram">
+      <DependentUpon>CCBizModelNew.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\CacheKeys.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CacheKeys.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\NotificationMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotificationMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Database\CCBizModelNew.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CCBizModelNew.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\CCBizModelNew.Context.tt">
+      <DependentUpon>CCBizModelNew.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CCBizModelNew.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\CCBizModelNew.tt">
+      <DependentUpon>CCBizModelNew.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CCBizModelNew.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

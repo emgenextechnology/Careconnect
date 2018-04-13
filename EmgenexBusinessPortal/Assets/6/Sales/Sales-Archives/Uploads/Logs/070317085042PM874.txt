@@ -1,0 +1,64 @@
+Patient Id	:	55555	Patient Name	:	FName LName	Practice Name	:	Pain Management Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	334434	Patient Name	:	FName LName	Practice Name	:	Pain Management Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	232323	Patient Name	:	FName LName	Practice Name	:	Pain Management Center
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	FName LName	Practice Name	:	Overlook Medical System
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	1	Patient Name	:	aaa bb	Practice Name	:	Advanced Metabolic Medicine
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	1000036	Patient Name	:	FName Lname	Practice Name	:	A Plus Medical
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	1111111	Patient Name	:	FNAME LANAME	Practice Name	:	Mind Body Wellness Professionals
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	16911	Patient Name	:	Maria Rodriguez	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Hoagland Michele	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Buck Michael	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Fahr Evelyn	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Hartzell Cynthia	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Hann William	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Tonner Sean	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	0	Patient Name	:	Mancini Daniel	Practice Name	:	Premier Spine & Pain Management, PC
+Record successfully updated
+Finance data successfully updated
+
+Number of rows Inserted 	:	0	
+Number of rows Inserted 	:	15	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	0

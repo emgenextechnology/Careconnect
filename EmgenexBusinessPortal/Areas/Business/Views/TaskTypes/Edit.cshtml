@@ -1,0 +1,41 @@
+﻿@model EBP.Business.Database.LookupTaskType
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Task Type</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.BusinessId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskType, "Task Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.TaskType, new { htmlAttributes = new { @class = "form-control",required="required" } })
+                @Html.ValidationMessageFor(model => model.TaskType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.CreatedBy)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

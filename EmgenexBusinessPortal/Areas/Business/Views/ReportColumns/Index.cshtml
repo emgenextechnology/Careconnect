@@ -1,0 +1,83 @@
+﻿@model IEnumerable<EBP.Business.Database.ReportColumn>
+
+@{
+    ViewBag.Title = "Report Column";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report Column</h2>
+
+<p>
+    <div class="row col-md-12">
+        <div class="col-md-8">
+            @Html.ActionLink("Create New", "Create")
+        </div>
+        <div class="col-md-4 col-xs-3 hidden-xs  ">
+            @Html.DropDownList("Service", (IEnumerable<SelectListItem>)ViewBag.ServiceId, new { @class = "form-control", @value = ViewBag.Service, @onchange = "CallChangefunc(this.value)" })
+        </div>
+    </div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Service Name")
+        </th>
+        <th>
+            @Html.DisplayName("Column Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMandatory)
+        </th>
+        <th>
+            @Html.DisplayName("Created On")
+        </th>
+        <th>
+            @Html.DisplayName("Created By")
+        </th>
+        <th>
+            @Html.DisplayName("Updated On")
+        </th>
+        <th>
+            @Html.DisplayName("Updated By")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LookupEnrolledService.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColumnName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMandatory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User1.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    function CallChangefunc(val) {
+        window.location.href = "ReportColumns?ServiceId=" + val;
+    }
+</script>

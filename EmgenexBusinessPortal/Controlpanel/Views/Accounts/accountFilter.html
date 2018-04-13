@@ -1,0 +1,42 @@
+﻿<span class="close-cross pull-right"><a ng-click="toggleFilter();" id=" filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+<div class="clearfix"></div>
+<div class="filter-results">
+    <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+    <a class="reset-filter pull-right" ng-click="resetFilter()" >Reset</a>
+    <div class="clearfix"></div>
+</div>
+<div class="filter-actionbox">
+    
+    <fieldset class="form-group">
+        <select style="width: 400px;" ui-select2="select2Options" ng-model="filter.Period" data-placeholder="Select Periods">
+            <option ng-repeat="tag in lookUps.lookupPeriods" value="{{tag.Id}}">{{tag.Value}}</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <select style="width: 400px;" ui-select2="select2Options" ng-model="filter.ServiceId" data-placeholder="Select Services">
+            <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+
+        <select style="width: 400px;" ui-select2="select2Options" ng-model="filter.ProviderId" data-placeholder="Select Providers">
+            <option ng-repeat="tag in lookUps.lookupProviders" value="{{tag.Id}}">{{tag.Value}}</option>
+        </select>
+
+    </fieldset>
+    <fieldset class="form-group">
+        <select style="width: 400px;" ui-select2="select2Options" ng-model="filter.RepGroupId" data-placeholder="Select Rep Groups">
+            <option ng-repeat="tag in lookUps.lookupGroups" value="{{tag.Id}}">{{tag.Value}}</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <select style="width: 400px;" ui-select2="select2Options" ng-model="filter.RepId" data-placeholder="Select Reps">
+            <option ng-repeat="tag in lookUps.lookupReps | filter:{ParentId:filter.RepGroupId}" value="{{tag.Id}}">{{tag.Value}}</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <select style="width: 400px;" ui-select2="select2Options" ng-model="filter.LeadStatus" data-placeholder="Select Status">
+            <option ng-repeat="tag in lookUps.lookupStatus" value="{{tag.Id}}">{{tag.Value}}</option>
+        </select>
+    </fieldset>
+</div>

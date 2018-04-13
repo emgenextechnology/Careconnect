@@ -1,0 +1,190 @@
+﻿@model EBP.Business.Database.BusinessMaster
+@*@model EmgenexBusinessPortal.Areas.Business.Models.BusinessProfileModel*@
+@{
+    ViewBag.Title = "Business Profile";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Business Profile</h2>
+
+@using (Html.BeginForm("Edit", "BusinessProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Business Profile</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.CreatedOn)
+        @Html.HiddenFor(m => m.Status)
+        @Html.HiddenFor(m => m.Logo)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BusinessName, "Business Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.BusinessName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.BusinessName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.About, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control", type = "File" } })
+                @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DomainUrl, "Domain Url", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DomainUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DomainUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RelativeUrl, "Relative Url", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RelativeUrl, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.RelativeUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherEmails, "Other Emails", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.OtherEmails, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OtherEmails, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateRange, "Dashboard Default Range", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.DateRange, EnumHelper.GetSelectList(typeof(EBP.Business.Enums.DashboardPeriods)), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DateRange, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SalesGroupBy, "Sales GroupBy", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.SalesGroupBy, EnumHelper.GetSelectList(typeof(EBP.Business.Enums.SalesGroupBy)), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SalesGroupBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" /> @Html.ValidationMessage("Result", new { @class = "text-success" })
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $('#OtherEmails').multiple_emails();
+
+    //$(document).ready(function () {
+    //    _this = $('#DateFrom');
+    //    var dateFormat = _this.val();
+    //    if (dateFormat != "") {
+    //        _this.datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('mm-dd-yy', new Date(dateFormat))
+    //    }
+    //    else
+    //        _this.datepicker({
+    //            dateFormat: 'mm-dd-yy'
+    //        });
+
+
+    //    _thisTo = $('#DateTo');
+    //    var dateFormatTo = _thisTo.val();
+    //    if (dateFormatTo != "") {
+    //        _thisTo.datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('mm-dd-yy', new Date(dateFormatTo))
+    //    }
+    //    else
+    //        _thisTo.datepicker({
+    //            dateFormat: 'mm-dd-yy'
+    //        });
+    //});
+
+
+
+    $(function () {
+        _this = $('#DateFrom');
+        var dateFormat = _this.val();
+        if (dateFormat != "") {
+            _this.datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('mm-dd-yy', new Date(dateFormat))
+        }
+        _this.datepicker({
+            dateFormat: 'mm-dd-yy'
+        });
+  
+     
+        _thisTo = $('#DateTo');
+        var dateFormatTo = _thisTo.val();
+        if (dateFormatTo != "") {
+            _thisTo.datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('mm-dd-yy', new Date(dateFormatTo))
+        }
+        _thisTo.datepicker({
+            dateFormat: 'mm-dd-yy'
+        });
+    });
+</script>

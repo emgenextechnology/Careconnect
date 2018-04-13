@@ -1,0 +1,229 @@
+﻿<style>
+    #boxscroll {
+        padding: 40px;
+        max-height: 220px;
+        width: 300px;
+        overflow: auto;
+        margin-bottom: 20px;
+    }
+
+    .unread {
+        background: #efefef;
+    }
+
+    .read {
+        box-shadow: inset 0px 0px 1px;
+    }
+
+    .head-nav li.dropdown.open {
+        border: none;
+    }
+
+    .fa.pull-right {
+        margin-top: 9px;
+    }
+
+    #boxscroll li.not-item {
+        padding: 9px 7px;
+        margin: 4px 5px;
+        border-radius: 9px;
+    }
+
+    #boxscroll .notificationLoading {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    #boxscroll li span.not-title {
+        position: relative;
+        outline: none;
+        background: #fff;
+        display: block;
+        top: 0;
+        clear: both;
+        padding: 4px;
+        border-bottom: 1px solid #cfcfcf;
+    }
+
+
+    .head-quick-results {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .results-info-left span.percentage {
+        font-size: 14px;
+        font-family: 'HelveticaNeueLTStd-Lt';
+    }
+
+    .head-quick-results ul li b span {
+        display: inline-block;
+    }
+
+    .green-results, .green-results span {
+        color: #64a637;
+    }
+
+    .red-results, .red-results span {
+        color: #d20821;
+    }
+
+    .head-quick-results ul li b {
+        display: inline-block;
+        vertical-align: baseline;
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+    .results-info-left {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .dropdown-menu > li > a {
+        white-space: inherit;
+    }
+</style>
+
+<div class="row" ng-controller="headerController">
+    <div class="col-md-2 col-sm-3"><h1 class="pull-left">{{controller}}</h1></div>
+    <div class="col-md-3 col-sm-5 head-right-profl pull-right">
+        <ul class="head-nav pull-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle " ng-class="{'badge1': Stats.NotificationCount > 0}" data-ng-model="Stats.NotificationCount" data-badge="{{Stats.NotificationCount}}" ng-click="getNotificationList()" data-toggle="dropdown">
+                    <img src="/Controlpanel/Content/images/notification.png" alt="Notification" width="16">
+                    <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu pull-right" id="boxscroll" style="padding:0;border-radius:8px">
+                    <li>
+                        <span class="not-title"><b> Notifications</b></span>
+                    </li>
+                    <li ng-repeat="item in notificationmodel.NotificationList.List" class="{{item.IsRead?'read':'unread'}} not-item">
+                        <a ng-click="redirect(item)" data-notifyid="item.NotificationId">{{item.Message}}</a>
+                        <span am-time-ago="item.CreatedOn | amUtc | amLocal"></span>
+                    </li>
+                    <li ng-show="notificationLoading" class="notificationLoading">
+                        <i class=" fa fa-spinner fa-spin ng-animate-disabled">
+                        </i>
+                    </li>
+                    <li ng-click="$event.stopPropagation();loadmore()" ng-show="seemore" style="text-align: center;border-top: 1px solid #dadada;"><b> see more</b></li>
+                </ul>
+            </li>
+            <li class="dropdown" ng-controller="authController">
+                <a class="dropdown-toggle" data-toggle="dropdown"><img onerror="this.src='/Assets/default_profile_pic.jpg'" ng-src="{{authData.FilePath}}" alt="User" width="32" height="32" class="img-circle user-thumb" />{{authData.fullName}}<i class="fa fa-angle-down pull-right" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-click="EditProfile()"><a>Profile</a></li>
+                    <li><a href="/{{authData.relativeUrl}}/NotificationSettings">Notification Settings</a></li>
+                    <li ng-show="showSettings('RDSETTINGS')"><a href="/Business">Settings</a></li>
+                    <li><a href="/{{authData.relativeUrl}}/ChangePassword">Change Password</a></li>
+                    <!--<li><a href="/Manage">Manage Account</a></li>-->
+                    <li><a ng-click="logout()">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<h1 class="pull-left">{{controller}}</h1>-->
+<!--<ul class="head-nav pull-right">
+    <li class="dropdown" ng-controller="headerController">
+        <a class="dropdown-toggle " ng-class="{'badge1': Stats.NotificationCount > 0}" data-ng-model="Stats.NotificationCount" data-badge="{{Stats.NotificationCount}}" ng-click="getNotificationList()" data-toggle="dropdown">
+            <img src="/Controlpanel/Content/images/notification.png" alt="Notification" width="16">
+            <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+        </a>
+        <ul class="dropdown-menu pull-right" id="boxscroll" style="padding:0;border-radius:8px">
+            <li>
+                <span class="not-title"><b> Notifications</b></span>
+            </li>
+            <li ng-repeat="item in notificationmodel.NotificationList.List" class="{{item.IsRead?'read':'unread'}} not-item">
+                <a ng-click="redirect(item)" data-notifyid="item.NotificationId">{{item.Message}}</a>
+                <span am-time-ago="item.CreatedOn | amUtc | amLocal"></span>
+            </li>
+            <li ng-show="notificationLoading" class="notificationLoading">
+                <i class=" fa fa-spinner fa-spin ng-animate-disabled">
+                </i>
+            </li>
+            <li ng-click="$event.stopPropagation();loadmore()" ng-show="seemore" style="text-align: center;border-top: 1px solid #dadada;"><b> see more</b></li>
+        </ul>
+    </li>
+    <li class="dropdown" ng-controller="authController">
+        <a class="dropdown-toggle" data-toggle="dropdown"><img onerror="this.src='/Assets/default_profile_pic.jpg'" ng-src="{{authData.FilePath}}" alt="User" width="32" height="32" class="img-circle user-thumb" />{{authData.fullName}}<i class="fa fa-angle-down pull-right" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-click="EditProfile()"><a>Profile</a></li>
+            <li><a href="/NotificationSettings">Notification Settings</a></li>
+            <li ng-show="showSettings('RDSETTINGS')"><a href="/{{authData.relativeUrl}}/settings">Settings</a></li>
+            <li><a href="/{{authData.relativeUrl}}/ChangePassword">Change Password</a></li>
+            <li><a ng-click="logout()">Logout</a></li>
+        </ul>
+    </li>
+</ul>-->
+<!--<div class="clearfix"></div>
+
+<div class="row head-quick-results collapse in" uib-collapse="isCollapsed" ng-show="showByPrevilege('RDDASH')" ng-controller="headerController">
+    <div class="col-lg-3 col-sm-6 result-box">
+        <ul class="result-list">
+            <li class="results-info-left green-results">
+                {{Stats.GrowsLeadsCount}}<span class="percentage">%</span> <img src="/Controlpanel/Content/images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" />
+            </li>
+            <li class="results-info-right">
+                {{Stats.LeadsCount| number}}<span>TOTAL LEADS</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-3 col-sm-6 result-box result-box-tablt-bord">
+        <ul class="result-list">
+            <li class="results-info-left red-results">
+                {{Stats.GrowsAccountsCount}}<span class="percentage">%</span> <img src="/Controlpanel/Content/images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" />
+            </li>
+            <li class="results-info-right">
+                {{Stats.AccountsCount| number}}<span>TOTAL ACCOUNTS</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-3 col-sm-6 result-box result-box-tablt-padd">
+        <ul class="result-list">
+            <li class="results-info-left green-results">
+                {{Stats.GrowsSalesCount}}<span class="percentage">%</span> <img src="/Controlpanel/Content/images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" />
+            </li>
+            <li class="results-info-right">
+                {{Stats.SalesCount| number}}<span>TOTAL SALES</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-3 col-sm-6 result-box">
+        <ul class="result-list">
+            <li class="results-info-left green-results">
+                {{Stats.GrowsTasksCount}}<span class="percentage">%</span> <img src="/Controlpanel/Content/images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" />
+            </li>
+            <li class="results-info-right">
+                {{Stats.TasksCount| number}}<span>TOTAL TASKS</span>
+            </li>
+        </ul>
+    </div>
+</div>-->
+<!--<a class="btn showdetails pull-right" ng-click="$root.isCollapsed = $root.callStatistics = !$root.isCollapsed" ng-show="showByPrevilege('RDDASH')"></a>-->
+
+<script>
+    $(function () {
+        $("#boxscroll").niceScroll({ cursorborder: "", cursorcolor: "#333" });
+    });
+</script>

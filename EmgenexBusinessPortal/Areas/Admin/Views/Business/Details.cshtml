@@ -1,0 +1,121 @@
+﻿@model EBP.Business.Database.BusinessMaster
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+    var db = new EBP.Business.Database.CareConnectCrmEntities();
+    var UserDetails = db.Users.Where(a => a.BusinessId == Model.Id);
+    var BusinessAdmin = UserDetails.Where(a => a.Roles.Any(r => r.Name == "BusinessAdmin"));
+    //var Users = UserDetails.Where(a => a.Roles.Any(r => r.Name != "BusinessAdmin"));
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BusinessMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Business Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName) @Html.DisplayFor(model => model.User.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName) @Html.DisplayFor(model => model.User1.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Active")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayName("Business Admin")
+        </dt>
+
+        <dd>
+            @foreach (var item in BusinessAdmin)
+            {
+                <span>Name: @item.FirstName @item.LastName</span><br />
+                <span>Email:@item.Email</span><br />
+                <span>UserName: @item.UserName</span><br />
+            }
+            <br />
+        </dd>
+        @*<dt>
+            @Html.DisplayName("Users")
+        </dt>
+
+        <dd >
+            <div class="col-md-12 userlist">
+                @foreach (var item in Users)
+                {
+                    <div class="col-md-4 userlist">
+
+
+                        <span>Name: @item.FirstName @item.LastName</span>
+                        <br />
+                        <span>Email:@item.Email</span>
+                        <br />
+                        <span>UserName: @item.UserName</span>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+        </dd>*@
+    </dl>
+</div>
+<style>
+    .clearfix
+    {
+            padding-bottom: 10px;
+    }
+    .userlist{
+        padding-left:0px!important;
+    }
+</style>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

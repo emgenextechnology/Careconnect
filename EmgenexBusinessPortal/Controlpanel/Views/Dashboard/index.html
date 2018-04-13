@@ -1,0 +1,442 @@
+﻿<!--<div ng-show="authData.isAuth"> Welcome! </div>-->
+<style>
+    #doughnut {
+        width: 270px !important;
+        height: 320px !important;
+    }
+
+    .funnel-graph {
+        margin-top: 170px;
+    }
+
+        .funnel-graph .graph-wrap {
+            /*width: 500px;*/
+            height: 100px;
+            margin: 0 auto;
+        }
+
+    .graph-wrap .graph-item {
+        height: 100px;
+        float: left;
+        min-width: 11%;
+    }
+
+    .funnel-graph-data {
+        margin-top: -100px;
+        text-align: center;
+        line-height: 20px;
+    }
+
+        .funnel-graph-data > b {
+            font-size: 23px;
+            color: black;
+        }
+
+        .funnel-graph-data .graph-line {
+            display: block;
+            width: 1px;
+            border: 1px solid #cfcfcf;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+    .graph-dot {
+        border-radius: 12px;
+        background: white;
+        height: 13px;
+        width: 13px;
+        display: block;
+        margin: 0 auto;
+        border: 4px solid;
+        box-shadow: 0px 0px 0 3px white;
+    }
+
+    .spinner-custom {
+        position: relative;
+        top: -1px;
+        margin-right: 10px;
+    }
+
+    .PreriodicTrends tr:last-child > td {
+        border-bottom: 0 !important;
+    }
+
+    .fontredcolor {
+        color: red;
+        font-weight: bold;
+    }
+      .fontgreencolor {
+        color: forestgreen;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="main-content-wrapper" ng-init="initDashboard()">
+
+    <div class="content-tophead">
+
+        <!--<ul class="print-links pull-left">
+            <li><a href="#"><img src="/Controlpanel/Content/images/email.png" alt="Email" width="15">Email</a></li>
+            <li><a href="#"><img src="/Controlpanel/Content/images/print.png" alt="Print" width="15">Print</a></li>
+            <li><a href="#"><img src="/Controlpanel/Content/images/download.png" alt="Download" width="13">Download</a></li>
+
+        </ul>-->
+
+        <div class="pull-right">
+
+            <ul class="print-links">
+                <li>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard ">
+                            <select ui-select2 ng-model="selectedPeriod" style="width:150px" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.DashboardPeriods">
+                                <option value="0">Select Periods</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown pull-right">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{DateRangeFilter.DateFrom|date:'MM/dd/yyyy'}}" placeholder="Date From" id="lblDateFrom" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblDateFrom" id="dropdownStart">
+                            <datetimepicker data-ng-model="DateRangeFilter.DateFrom"
+                                            data-datetimepicker-config="{ startView:'day', minView:'day',dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed'}"
+                                            data-on-set-time="startDateOnSetTime()"
+                                            data-before-render="startDateBeforeRender($dates)"></datetimepicker>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown pull-right">
+                        <input type="text" class="form-control datesingle-select select2 select2-container select2-container--default" value="{{DateRangeFilter.DateTo|date:'MM/dd/yyyy'}}" placeholder="Date To" id="lblDateTo" role="button" data-toggle="dropdown" />
+                        <ul class="dropdown-menu date-picker" role="menu" aria-labelledby="lblDateTo" id="dropdownEnd">
+                            <datetimepicker data-ng-model="DateRangeFilter.DateTo"
+                                            data-datetimepicker-config="{ startView:'day', minView:'day',dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
+                                            data-on-set-time="endDateOnSetTime()"
+                                            data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <!--<select class="form-control selectpicker">
+                <option>This Week</option>
+                <option>Pats Month</option>
+                <option>Past 3 Months</option>
+                <option>Past 6 Months</option>
+            </select>-->
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left drop-head"><i ng-show="Loader.PeriodicData" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Periodic Data Trends </h2>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard">
+
+                            <select ng-disabled="Loader.PeriodicData" ui-select2="select2OptionsService" ng-model="serviceGraphFilter.ServiceId" class="enrservice pull-right graphFilter" style="width:150px">
+                                <option value="0">All</option>
+                                <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+
+                            <select ng-disabled="Loader.PeriodicData" ui-select2="select2OptionsViewBy" class="graphFilter" ng-model="PeriodicTreandsFilter.ViewBy" style="width:150px" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.DashboardSalesViewBy">
+                                <option value="">View By</option>
+                            </select>
+                            <!--ng-show="serviceGraphFilter.ServiceId!='0'"-->
+                            <span ng-disabled="Loader.PeriodicData">
+                                <select ui-select2="select2OptionsDateType" ng-model="PeriodicTreandsFilter.DateType" class="graphFilter" style="width:150px" ng-options="selectedItem.Value as selectedItem.Text for selectedItem in lookUps.DashboardSalesDateType">
+                                    <option value="">Date Type</option>
+                                </select>
+                            </span>
+
+                            <select ng-disabled="Loader.PeriodicData" ui-select2="select2OptionsTotal" class="graphFilter" ng-model="PeriodicTreandsFilter.Total" style="width:150px" ng-options="selectedItem.Value as selectedItem.Text for selectedItem in lookUps.DashboardSalesTotal">
+                                <option value="">Total</option>
+                            </select>
+
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap" style="padding-top:45px" ng-show="datacolumns.length>0?true:false">
+                    <div class="col-md-9">
+                        <c3chart bindto-id="chart" chart-data="datapoints" chart-colors="colors" chart-columns="datacolumns" chart-x="datax" callback-function="chartCallback">
+                            <chart-axis>
+                                <chart-axis-x axis-id="x" axis-type="timeseries">
+                                    <chart-axis-x-tick tick-format="%YYYY-%MM" tick-format-function="tickFormatFunction" />
+                                </chart-axis-x>
+                            </chart-axis>
+                            <chart-size chart-height="400" chart-width="800" />
+                        </c3chart>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="legend">
+                            <li>Total Sales <br />{{totalSales}}</li>
+                            <li>Total Billed<br />{{totalBilled | currency:"$"}}</li>
+                            <li>Total Paid<br />{{totalPaid | currency:"$"}}</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <span ng-show="datacolumns.length>0?false:true" style="position: absolute;right: 550px;top: 250px;"><h1>No data found</h1></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt" ng-show="true">
+            <div class="widget-box" style="min-height:572px;padding-bottom:0">
+                <div class="widget-head">
+                    <h2 class="pull-left drop-head"><i ng-show="Loader.DataTrends" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Sales Snapshot</h2>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard">
+                            <select ui-select2="select2OptionsDisable" ng-model="periodicTrends.ServiceId" class="enrservice pull-right" style="width:150px">
+                                <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+
+                            </select>
+                        </fieldset>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="Loader.DataTrends==false&&DataTrendsmodel==null||DataTrendsmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;">
+                            <h1>No record found</h1>
+                        </span>
+                        <table class="table PreriodicTrends" ng-show="TopRepsmodel!=null&&TopRepsmodel.List.length>0" style="margin-bottom:0">
+                            <thead>
+                                <tr>
+                                    <th>Period</th>
+                                    <th>Count</th>
+                                    <th>Progress</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in DataTrendsmodel.List">
+                                    <td>{{item.Period}}</td>                                  
+
+                                    <!--<td ng-if="item.Count<0" class="fontredcolor">{{item.Count}} <i class="fa fa-long-arrow-down" aria-hidden="true"></i></td>
+                                    <td ng-if="item.Count>0" class="fontgreencolor">{{item.Count}} <i class="fa fa-long-arrow-up" aria-hidden="true"></i></td>-->
+                                    <td>{{item.Count}}</td>
+                                    <td ng-if="item.ProgressPercentage<0" class="fontredcolor" style="font-weight:normal">{{item.ProgressPercentage}}%  <i class="fa fa-long-arrow-down" aria-hidden="true"></i></td>
+                                    <td ng-if="item.ProgressPercentage>0" class="fontgreencolor" style="font-weight:normal">{{item.ProgressPercentage}}% <i class="fa fa-long-arrow-up" aria-hidden="true"></i></td>
+                                    <td ng-if="item.ProgressPercentage==0">{{item.ProgressPercentage}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt" ng-show="TopRepsmodel!=null">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left drop-head"><i ng-show="Loader.TopReps" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Top Reps</h2>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard">
+                            <select ui-select2="select2OptionsDisable" ng-model="repFilter.ServiceId" class="enrservice pull-right" style="width:150px">
+                                <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="Loader.TopReps==false&&TopRepsmodel==null||TopRepsmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="TopRepsmodel!=null&&TopRepsmodel.List.length>0">
+                            <thead>
+                                <tr>
+                                    <th>Rep Name</th>
+                                    <th>Rep Group</th>
+                                    <th>Sales </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in TopRepsmodel.List">
+                                    <td>{{item.Rep.RepName}}</td>
+                                    <td>{{item.Rep.RepGroup}}</td>
+                                    <td>{{item.SalesCount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--<a href="#" class="pull-right viewall-tbl">View All</a>-->
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left drop-head"><i ng-show="Loader.TopAccounts" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Top Accounts</h2>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard">
+                            <select ui-select2="select2OptionsDisable" ng-model="accountFilter.ServiceId" class="enrservice pull-right" style="width:150px">
+                                <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="!Loader.TopAccounts&&Topaccountmodel==null||Topaccountmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="Topaccountmodel!=null&&Topaccountmodel.List.length>0">
+                            <thead>
+                                <tr>
+                                    <th>Accounts</th>
+                                    <th>Sales</th>
+                                    <th>Sale Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in Topaccountmodel.List">
+                                    <td>{{item.Account.PracticeName}}</td>
+                                    <td>{{item.SalesCount}}</td>
+                                    <td>{{item.Account.RepName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#accounts" class="pull-right viewall-tbl" ng-show="Topaccountmodel!=null&&Topaccountmodel.List.length>0">View All</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left"><i ng-show="Loader.LatestLeads" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Latest Leads</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="leadmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="leadmodel.List.length!=0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>#Providers</th>
+                                    <!--<th>Location</th>-->
+                                    <th>Sales Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in leadmodel.List">
+                                    <td>{{lead.PracticeName}}</td>
+                                    <td>{{lead.ProvidersCount}}</td>
+                                    <!--<td><span class="locn nj-locn">NJ</span></td>-->
+                                    <td>{{lead.RepName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#leads" class="pull-right viewall-tbl" ng-show="leadmodel.List.length!=0">View All</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left"><i ng-show="Loader.LatestAccounts" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Latest Accounts</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="accountmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="accountmodel.List.length!=0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>#Providers</th>
+                                    <!--<th>Location</th>-->
+                                    <th>Sales Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="account in accountmodel.List">
+                                    <td>{{account.PracticeName}}</td>
+                                    <td>{{account.ProvidersCount}}</td>
+                                    <!--<td><span class="locn nj-locn">NJ</span></td>-->
+                                    <td>{{account.RepName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#accounts" class="pull-right viewall-tbl" ng-show="accountmodel.List.length!=0">View All</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head"><h2><i ng-show="Loader.LeadSummery" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Lead Summary</h2></div>
+                <div class="row widget-top-counter">
+                    <div class="col-sm-4 counter-seperator">{{LeadSummaryModel.ThisWeekCount| number}}<span class="period-spn">This Week</span></div>
+                    <div class="col-sm-4 counter-seperator">{{LeadSummaryModel.MonthToDate| number}}<span class="period-spn">Month to date</span></div>
+                    <div class="col-sm-4 counter-seperator"><div class="red-results">0<span class="percentage">%</span> <img src="/Controlpanel/Content/images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" /></div><span class="period-spn">Trend</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div style="height:355px" id="linegraph" class="linegraph">
+                            <canvas id="line" class="chart chart-line" chart-data="Leaddata"
+                                    chart-labels="Leadlabels" chart-series="Leadseries" chart-options="Leadoptions"
+                                    chart-dataset-override="LeaddatasetOverride" chart-colors="Leadcolors"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height: 572px;">
+                <div class="widget-head"><h2><i ng-show="Loader.LeadFunnel" class="fa fa-spinner fa-spin ng-animate-disabled spinner-custom"></i>Account Funnel</h2></div>
+                <div class="row widget-top-counter">
+                    <div class="col-sm-4 counter-seperator">{{LeadFunnelModel.ThisWeekCount| number}}<span class="period-spn">This Week</span></div>
+                    <div class="col-sm-4 counter-seperator">{{LeadFunnelModel.MonthToDate| number}}<span class="period-spn">Month to date</span></div>
+                    <div class="col-sm-4 counter-seperator"><div class="red-results">0<span class="percentage">%</span> <img src="/Controlpanel/Content/images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" /></div><span class="period-spn">Trend</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="linegraph" class="linegraph funnel-graph">
+                            <div class="graph-wrap">
+                                <div ng-attr-style="width:{{LeadFunnelModel.NewWidth}}%;background: #23659f;" class="graph-item">
+                                    <div class="funnel-graph-data">
+                                        <b>{{LeadFunnelModel.New}}%</b> <br>NEW
+                                        <span class="graph-line"></span>
+                                        <span class="graph-dot" style="border-color:#3a93bb"></span>
+                                    </div>
+                                </div>
+                                <div ng-attr-style="width:{{LeadFunnelModel.ActiveWidth}}%;background: #3a93bb;" class="graph-item">
+                                    <div class="funnel-graph-data">
+                                        <b>{{LeadFunnelModel.Active}}%</b> <br>ACTIVE
+                                        <span class="graph-line"></span>
+                                        <span class="graph-dot" style="border-color:#3a93bb"></span>
+                                    </div>
+                                </div>
+                                <div ng-attr-style="width:{{LeadFunnelModel.DormantWidth}}%;background: #65daee;" class="graph-item">
+                                    <div class="funnel-graph-data">
+                                        <b>{{LeadFunnelModel.Dormant}}%</b> <br>DORMANT
+                                        <span class="graph-line"></span>
+                                        <span class="graph-dot" style="border-color:#3a93bb"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

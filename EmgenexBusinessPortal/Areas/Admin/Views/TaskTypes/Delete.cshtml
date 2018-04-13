@@ -1,0 +1,65 @@
+﻿@model EBP.Business.Database.LookupTaskType
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Task Type</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Task Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskType)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName)
+        </dd>
+
+    </dl>
+    @Html.ValidationMessage("Error", new { @class = "text-danger" })
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

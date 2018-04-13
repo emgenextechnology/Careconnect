@@ -1,0 +1,322 @@
+﻿<!--<div ng-show="authData.isAuth"> Welcome! </div>-->
+<style>
+    #doughnut {
+        width: 270px !important;
+        height: 320px !important;
+    }
+
+    .funnel-graph {
+        margin-top: 170px;
+    }
+
+        .funnel-graph .graph-wrap {
+            /*width: 500px;*/
+            height: 100px;
+            margin: 0 auto;
+        }
+
+    .graph-wrap .graph-item {
+        height: 100px;
+        float: left;
+        min-width: 4%;
+    }
+
+    .funnel-graph-data {
+        margin-top: -100px;
+        text-align: center;
+        line-height: 20px;
+    }
+
+        .funnel-graph-data > b {
+            font-size: 26px;
+            color: black;
+        }
+
+        .funnel-graph-data .graph-line {
+            display: block;
+            width: 1px;
+            border: 1px solid #cfcfcf;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+    .graph-dot {
+        border-radius: 12px;
+        background: white;
+        height: 13px;
+        width: 13px;
+        display: block;
+        margin: 0 auto;
+        border: 4px solid;
+        box-shadow: 0px 0px 0 3px white;
+    }
+</style>
+<div class="main-content-wrapper" ng-init="init()">
+
+    <div class="content-tophead">
+        <ul class="print-links pull-left">
+            <li><a href="#"><img src="/Controlpanel/Content/images/email.png" alt="Email" width="15">Email</a></li>
+            <li><a href="#"><img src="/Controlpanel/Content/images/print.png" alt="Print" width="15">Print</a></li>
+            <li><a href="#"><img src="/Controlpanel/Content/images/download.png" alt="Download" width="13">Download</a></li>
+        </ul>
+
+        <div class="pull-right">
+            <fieldset class="selectpicker-dashboard">
+                <select class="form-control selectpicker">
+                    <option>This Week</option>
+                    <option>Pats Month</option>
+                    <option>Past 3 Months</option>
+                    <option>Past 6 Months</option>
+                </select>
+            </fieldset>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head"><h2>Sales Performance </h2></div>
+                <div class="row widget-top-counter">
+                    <div class="col-sm-4 counter-seperator">{{SalesPerformanceModel.ThisWeekCount| number}}<span class="period-spn">This Week</span></div>
+                    <div class="col-sm-4 counter-seperator">{{SalesPerformanceModel.TotalCount| number}}<span class="period-spn">Week to date</span></div>
+                    <div class="col-sm-4 counter-seperator"><div class="green-results">0<span class="percentage">%</span> <img src="/Controlpanel/Content/images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" /></div><span class="period-spn">Trend</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7" style="min-height: 294px;" ng-show="data.length>0?true:false">
+                        <canvas id="doughnut" height="250" width="230" class="chart chart-doughnut" chart-filltext="fillText" chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="options"></canvas>
+                        <span><h3 style="margin-left: 144px;margin-top: -172px; <!--padding-bottom: 144px;-->">SALES<br /><b>{{SalesPerformanceModel.TotalCount}}</b></h3></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <ul class="legend">
+                            <li ng-repeat="Service in ServiceName" ng-attr-style="border-left: 1.25em solid;border-color:{{colors[$index]}}">
+                                <span>{{Service}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head"><h2>Account Highlights</h2></div>
+                <div class="row widget-top-counter">
+                    <div class="col-sm-4 counter-seperator">{{AccountHighlightModel.ThisWeekCount| number}}<span class="period-spn">This Week</span></div>
+                    <div class="col-sm-4 counter-seperator">{{AccountHighlightModel.TotalCount| number}}<span class="period-spn">Week to date</span></div>
+                    <div class="col-sm-4 counter-seperator"><div class="red-results">0<span class="percentage">%</span> <img src="/Controlpanel/Content/images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" /></div><span class="period-spn">Trend</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div style="height:355px" id="linegraph" class="linegraph">
+                            <canvas id="line" class="chart chart-line" chart-data="AccountHighlightdata"
+                                    chart-labels="AccountHighlightlabels" chart-series="AccountHighlightseries" chart-options="AccountHighlightoptions"
+                                    chart-dataset-override="AccountHighlightdatasetOverride" chart-colors="AccountHighlightcolors"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left drop-head">Top Accounts</h2>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard">
+                            <select ui-select2="select2OptionsDisable" ng-model="accountFilter.ServiceId" class="enrservice pull-right" style="width:150px">
+                                <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="Topaccountmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="Topaccountmodel.List.length!=0">
+                            <thead>
+                                <tr>
+                                    <th>Accounts</th>
+                                    <th>#Providers</th>
+                                    <th>Sale Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="account in Topaccountmodel.List">
+                                    <td>{{account.PracticeName}}</td>
+                                    <td>{{account.ProvidersCount}}</td>
+                                    <td>{{account.RepName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#accounts" class="pull-right viewall-tbl" ng-show="Topaccountmodel.List.length!=0">View All</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt" ng-show="TopRepsmodel!=null">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left drop-head">Top Reps</h2>
+                    <div class="pull-right">
+                        <fieldset class="selectpicker-dashboard">
+                            <select ui-select2="select2OptionsDisable" ng-model="repFilter.ServiceId" class="enrservice pull-right" style="width:150px">
+                                <option ng-repeat="tag in lookUps.lookupServices" value="{{tag.Id}}">{{tag.Value}}</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="TopRepsmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="TopRepsmodel.List.length!=0">
+                            <thead>
+                                <tr>
+                                    <th>Rep Name</th>
+                                    <th>Rep Group</th>
+                                    <th>Accounts </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="Reps in TopRepsmodel.List">
+                                    <td>{{Reps.RepName}}</td>
+                                    <td>{{Reps.RepGroup}}</td>
+                                    <td>{{Reps.AccountsCount}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--<a href="#" class="pull-right viewall-tbl">View All</a>-->
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head"><h2>Lead Summary</h2></div>
+                <div class="row widget-top-counter">
+                    <div class="col-sm-4 counter-seperator">{{LeadSummaryModel.ThisWeekCount| number}}<span class="period-spn">This Week</span></div>
+                    <div class="col-sm-4 counter-seperator">{{LeadSummaryModel.TotalCount| number}}<span class="period-spn">Week to date</span></div>
+                    <div class="col-sm-4 counter-seperator"><div class="red-results">0<span class="percentage">%</span> <img src="/Controlpanel/Content/images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" /></div><span class="period-spn">Trend</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div style="height:355px" id="linegraph" class="linegraph">
+                            <canvas id="line" class="chart chart-line" chart-data="Leaddata"
+                                    chart-labels="Leadlabels" chart-series="Leadseries" chart-options="Leadoptions"
+                                    chart-dataset-override="LeaddatasetOverride" chart-colors="Leadcolors"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height: 572px;">
+                <div class="widget-head"><h2>Lead Funnel</h2></div>
+                <div class="row widget-top-counter">
+                    <div class="col-sm-4 counter-seperator">{{LeadFunnelModel.ThisWeekCount| number}}<span class="period-spn">This Week</span></div>
+                    <div class="col-sm-4 counter-seperator">{{LeadFunnelModel.TotalCount| number}}<span class="period-spn">Week to date</span></div>
+                    <div class="col-sm-4 counter-seperator"><div class="red-results">0<span class="percentage">%</span> <img src="/Controlpanel/Content/images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" /></div><span class="period-spn">Trend</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="linegraph" class="linegraph funnel-graph">
+                            <!--<img src="/Controlpanel/Content/images/funnel-graph-demo.jpg" alt="" class="img-responsive" />-->
+                            <div class="graph-wrap">
+                                <div ng-attr-style="width:{{LeadFunnelModel.New-4.5}}%;background: #23659f;" class="graph-item">
+                                    <div class="funnel-graph-data">
+                                        <b>{{LeadFunnelModel.New}}</b> <br>NEW
+                                        <span class="graph-line"></span>
+                                        <span class="graph-dot" style="border-color:#3a93bb"></span>
+                                    </div>
+                                </div>
+                                <div ng-attr-style="width:{{LeadFunnelModel.Active-4.5}}%;background: #3a93bb;" class="graph-item">
+                                    <div class="funnel-graph-data">
+                                        <b>{{LeadFunnelModel.Active}}</b> <br>ACTIVE
+                                        <span class="graph-line"></span>
+                                        <span class="graph-dot" style="border-color:#3a93bb"></span>
+                                    </div>
+                                </div>
+                                <div ng-attr-style="width:{{LeadFunnelModel.Dormant-4.5}}%;background: #65daee;" class="graph-item">
+                                    <div class="funnel-graph-data">
+                                        <b>{{LeadFunnelModel.Dormant}}</b> <br>DORMANT
+                                        <span class="graph-line"></span>
+                                        <span class="graph-dot" style="border-color:#3a93bb"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left">Latest Leads</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="leadmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="leadmodel.List.length!=0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>#Providers</th>
+                                    <!--<th>Location</th>-->
+                                    <th>Sales Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in leadmodel.List">
+                                    <td>{{lead.PracticeName}}</td>
+                                    <td>{{lead.ProvidersCount}}</td>
+                                    <!--<td><span class="locn nj-locn">NJ</span></td>-->
+                                    <td>{{lead.RepName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+</div>
+                    <a href="#leads" class="pull-right viewall-tbl" ng-show="leadmodel.List.length!=0">View All</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 widget-equal-hgt">
+            <div class="widget-box" style="min-height:572px">
+                <div class="widget-head">
+                    <h2 class="pull-left">Latest Accounts</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="line-table-wrap">
+                    <div class="table-responsive">
+                        <span ng-show="accountmodel.List.length==0" style="position: absolute;right: 170px;top: 250px;"><h1>No record found</h1></span>
+                        <table class="table" ng-show="accountmodel.List.length!=0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>#Providers</th>
+                                    <!--<th>Location</th>-->
+                                    <th>Sales Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="account in accountmodel.List">
+                                    <td>{{account.PracticeName}}</td>
+                                    <td>{{account.ProvidersCount}}</td>
+                                    <!--<td><span class="locn nj-locn">NJ</span></td>-->
+                                    <td>{{account.RepName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#accounts" class="pull-right viewall-tbl" ng-show="accountmodel.List.length!=0">View All</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿
+<style>
+    .histWrap .histCont {
+        padding-top: 5px;
+    }
+
+    h4.histHead {
+        padding: 14px;
+        background: #f7f7f7;
+        border-bottom: 2px solid #cfcfcf;
+        margin-top: 0;
+    }
+
+    .histWrap:last-child > .histCont {
+        border: 0;
+    }
+</style>
+
+<form name="taskForm" ng-submit="submitTask()" novalidate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" id="myModalLabel">{{data.ReferenceNumber}}</h4>
+        <div class="task-model-top pull-right">
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="CloseModal()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body-form modal-body-form-tast">
+        <div class="form-repeater-box-task">
+            <h4 class="histHead">{{data.Subject}}</h4>
+            <div class="row">
+                <div class="col-md-12 histWrap" ng-repeat="item in data.TaskLogList">
+                    <h5>{{item.Subject}} <span class="pull-right">Updated By :{{item.CreatedBy}} | Updated On :{{item.CreatedOn|date:'MM-dd-yyyy'}}</span> </h5>
+                    <div class="assign-name ng-scope histCont">
+                        <div class="assign-name-bx">
+                            <span class="assign-name-sngle ng-binding">
+                                <strong>To: </strong> {{parseUserList(item.AssignedToList)}}
+                            </span>
+                            <span ng-show="item.TargetDate==null"> <strong> Due on: </strong>No Due Date</span>
+                            <span ng-show="item.TargetDate!=null"> <strong> Due on: </strong>{{item.TargetDate|date:'MM-dd-yyyy h:mm a'}}</span>
+                            <span ng-show="item.AlertDate!=null" style="padding-left:20px"> <strong> Alert on: </strong>{{item.AlertDate|date:'MM-dd-yyyy'}}</span>
+                        </div>
+                        <div class="assign-name-bx" ng-hide="item.WatchersList==null">
+                            <span class="ng-binding">
+                                <strong>Cc:</strong> {{parseUserList(item.WatchersList)}}
+                            </span>
+                        </div>
+                        <div class="assign-name-bx" ng-hide="item.PracticeName==null">
+                            <span class="ng-binding">
+                                <strong>Account:</strong> {{item.PracticeName}}
+                            </span>
+                        </div>
+                        <div class="assign-name-bx">
+                            <span>
+                                <strong>Status:</strong> <span>{{item.Status}}</span>
+                            </span>
+                        </div>
+                        <!--{{item.Description}}-->
+                        <p ng-bind-html="item.Description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

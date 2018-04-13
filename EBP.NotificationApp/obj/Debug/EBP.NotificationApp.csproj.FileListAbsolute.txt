@@ -1,0 +1,15 @@
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EBP.NotificationApp.exe.config
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EBP.NotificationApp.exe
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EBP.NotificationApp.pdb
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EntityFramework.dll
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\Newtonsoft.Json.dll
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EntityFramework.xml
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\bin\Debug\Newtonsoft.Json.xml
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\obj\Debug\EBP.NotificationApp.csprojResolveAssemblyReference.cache
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\obj\Debug\EBP.NotificationApp.Notify.resources
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\obj\Debug\EBP.NotificationApp.Properties.Resources.resources
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\obj\Debug\EBP.NotificationApp.csproj.GenerateResource.Cache
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\obj\Debug\EBP.NotificationApp.exe
+C:\Works\Hubspire\Careconnect\SVN\EBP.NotificationApp\obj\Debug\EBP.NotificationApp.pdb

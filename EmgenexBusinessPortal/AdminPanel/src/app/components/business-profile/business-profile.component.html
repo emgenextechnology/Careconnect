@@ -1,0 +1,233 @@
+<div class="left-window">
+  <div class="left-window-header">
+    <span class="left-each-item-header">Search Business</span>
+  </div>
+  <div class="divider"></div>
+  <div class="input-field left-search-box seach-box">
+    <input type="text" class="validate" placeholder="Search Business" name="Keywords" (keyup.enter)="getBusinesses(searchFilter)"
+      [(ngModel)]="searchFilter.Keywords">
+    <a class="btn search-btn" (click)="getBusinesses(searchFilter)">
+      <i class="material-icons">search</i>
+    </a>
+    <input type="search" name="googlesearch">
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="right-window ">
+  <div class="common-table user-table">
+    <table class="striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="t-header">
+          <th mat-sort-header="BusinessName">Business Name</th>
+          <th mat-sort-header="CreatedOn">Created on</th>
+          <th mat-sort-header="CreatedUser">Created by</th>
+          <th mat-sort-header="UpdatedOn">Updated On</th>
+          <th mat-sort-header="UpdatedUser">Updated By</th>
+          <th mat-sort-header="IsActive">Active</th>
+          <th class="edit-delete-th">active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr *ngFor="let business of businesses; let i = index">
+          <td>
+            <a href="#details-business-mod" (click)="edit(business.Id)">
+              {{business.BusinessName}}
+            </a>
+          </td>
+          <td>{{business.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>{{business.CreatedUser}}</td>
+          <td>{{business.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>{{business.UpdatedUser}}</td>
+          <td>
+            <p>
+              <input type="checkbox" class="filled-in" id="filled-in-box-{{i}}" [checked]="business.IsActive" disabled="disabled">
+              <label for="filled-in-box-{{i}}"></label>
+            </p>
+          </td>
+          <td>
+            <div mat-icon-button [matMenuTriggerFor]="appMenu" class='dropdown-button btn edit-delete-btn'>
+              <img src="assets/images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon">
+            </div>
+            <mat-menu #appMenu="matMenu">
+              <ul class='dropdown-content-menu edit-delete-dropdown'>
+                <li>
+                  <a href="#edit-business-mod" (click)="edit(business.Id)">
+                    Edit
+                  </a>
+                </li>
+                <li>
+                  <a href="#details-business-mod" (click)="edit(business.Id)">
+                    Details
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="d1.open(); delete(business.Id)">
+                    Delete
+                  </a>
+                </li>
+              </ul>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator *ngIf="businesses?.length > 0" [length]="pageSize" [pageSize]="25" [pageSizeOptions]="[25,50,100,150,200]"
+      (page)="pageEvent = $event; getBusinesses(searchFilter, false)"></mat-paginator>
+  </div>
+</div>
+
+<div class="modal-button">
+  <div class="fixed-action-btn">
+    <div class=" mdl-fab-btn-wrap">
+      <span class="mdl-fab-txt">Add</span>
+      <a class="btn btn-floating btn-large sky-blue-color " href="#create-business-mod" (click)="openCreate()">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="all-modals">
+  <!-- create -->
+  <div id="create-business-mod" class="modal common-modal crt-role-modal">
+    <form #frmAddBusiness="ngForm">
+      <div class="modal-content">
+        <h4>Create Business</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="input-field col s12 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Business Name" name="businessname" [(ngModel)]="newBusinessProfile.BusinessName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero">
+            <input type="text" multi-line matInput class="exclude-default-style" placeholder="Description" name="Description" [(ngModel)]="newBusinessProfile.Description"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="First Name" name="firstname" [(ngModel)]="newBusinessProfile.FirstName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Middle Name" name="middlename" [(ngModel)]="newBusinessProfile.MiddleName">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Last Name" name="lastname" [(ngModel)]="newBusinessProfile.LastName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Email" name="email" [(ngModel)]="newBusinessProfile.Email"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Phone Number" name="phone" [(ngModel)]="newBusinessProfile.Phone"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="create(newBusinessProfile)" [disabled]="!frmAddBusiness.form.valid">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Edit -->
+  <div id="edit-business-mod" class="modal common-modal crt-role-modal">
+    <form #frmEditBusiness="ngForm">
+      <div class="modal-content">
+        <h4>Edit business</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+
+          <mat-form-field class="input-field col s12 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Business Name" name="businessname" [(ngModel)]="newBusinessProfile.BusinessName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero">
+            <input type="text" multi-line matInput class="exclude-default-style" placeholder="Description" name="Description" [(ngModel)]="newBusinessProfile.Description"
+              required>
+          </mat-form-field>
+
+          <div class="row s12 pad-lft-zero">
+            <mat-checkbox name="BusinessIsActive" [(ngModel)]="newBusinessProfile.IsActive">IsActive</mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="update(newBusinessProfile)" [disabled]="!frmEditBusiness.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Details -->
+  <div id="details-business-mod" class="modal common-modal crt-role-modal">
+    <div class="modal-content">
+      <div class="detail-page-wrapper">
+        <h3 class="details-header">
+          <span>business </span> Details</h3>
+        <div class="det-modal-close-btn right">
+          <img src="assets/images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Business Name</b>
+          <span class="dtl-itm-vlue">{{newBusinessProfile.BusinessName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Description</b>
+          <span class="dtl-itm-vlue">{{newBusinessProfile.Description}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">IsActive</b>
+          <span class="dtl-itm-vlue">
+            <input type="checkbox" class="filled-in" name="IsActive" id="IsActive" [checked]="newBusinessProfile.IsActive" disabled="disabled">
+            <label for="IsActive"></label>
+          </span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created On</b>
+          <span class="dtl-itm-vlue">{{newBusinessProfile.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated On</b>
+          <span class="dtl-itm-vlue">{{newBusinessProfile.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created By</b>
+          <span class="dtl-itm-vlue">{{newBusinessProfile.CreatedUser}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated By</b>
+          <span class="dtl-itm-vlue">{{newBusinessProfile.Updateduser}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete -->
+<eui-dialog #d1 panelCls="mydlg" headerCls="mydlg-header" footerCls="mydlg-footer" [modal]="true" borderType="none" closed="true">
+  <eui-panel-header>Please Confirm</eui-panel-header>
+  <p style="text-align:center;margin:50px 0;font-size:16px">Are you sure you want to continue?</p>
+  <eui-panel-footer>
+    <eui-button-group style="width:100%;height:50px">
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();deleteConfirm()">Yes</eui-linkbutton>
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();">No</eui-linkbutton>
+    </eui-button-group>
+  </eui-panel-footer>
+</eui-dialog>

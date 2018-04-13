@@ -1,0 +1,42 @@
+﻿
+<div class="lead-info-top">
+    <h2 class="pull-left"><i ng-show="loadingDetails" class="fa fa-spinner fa-spin ng-animate-disabled"></i><span>{{currentMarketing.Name}}</span></h2>
+    <span class="close-cross pull-right"><a id="task-info-close" ng-click="hideDetailsView()"><img src="/Controlpanel/Content/images/cross-white.png" alt="Close" width="16"></a></span>
+    <div class="pull-right lead-btn-group" ng-hide="currentMarketing==null">
+        <a class="btn" ng-click="editMarketing(currentMarketing.Id)"><img src="/Controlpanel/Content/images/edit.png" alt="Edit" width="18" ng-hide="loadingEdit"><i ng-show="loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Edit </a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="info-repeater-box">
+    <div class="info-box-head">Marketing Details</div>
+    <div class="row info-additional" ng-show="loadingData">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-2"><strong>Id#</strong></div>
+            <div class="col-md-9 col-lg-10">{{currentMarketing.Id}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-2"><strong>Name</strong></div>
+            <div class="col-md-9 col-lg-10">{{currentMarketing.Name}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-2"><strong>Description</strong></div>
+            <div class="col-md-9 col-lg-10">{{currentMarketing.Description}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-2"><strong>created On</strong></div>
+            <div class="col-md-9 col-lg-10">{{currentMarketing.CreatedOn|date:'MM-dd-yyyy'}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-2"><strong>Updated On</strong></div>
+            <div class="col-md-9 col-lg-10">{{currentMarketing.UpdatedOn|date:'MM-dd-yyyy'}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-2"><strong>Attachments</strong></div>
+            <div class="col-md-9 col-lg-10">
+                <div class="col-md-2" ng-repeat="filename in  currentMarketing.FilesList">
+                    <img id="imageAttachment" ng-src="{{filename.FilePath}}" height="100" width="100" alt="Tag" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

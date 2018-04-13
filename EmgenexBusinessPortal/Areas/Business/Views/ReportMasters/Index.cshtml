@@ -1,0 +1,83 @@
+﻿@model IEnumerable<EBP.Business.Database.ReportMaster>
+
+@{
+    ViewBag.Title = "Report Master";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report Master</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Rep Name")
+        </th>
+        <th>
+            @Html.DisplayName("Provider")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LookupEnrolledService.ServiceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Practice.PracticeName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CollectedDate)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayName("Created By")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </th>
+        <th>
+            @Html.DisplayName("Updated By")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User2.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provider.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LookupEnrolledService.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Practice.PracticeName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.CollectedDate)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User1.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,37 @@
+import { QueryList, EventEmitter, ElementRef } from '@angular/core';
+import { TabPanelComponent } from './tab-panel.component';
+export declare class TabsComponent {
+    panels: QueryList<TabPanelComponent>;
+    containerRef: ElementRef;
+    headerRef: ElementRef;
+    headerWidth: number;
+    headerHeight: number;
+    tabWidth: number;
+    tabHeight: number;
+    tabPosition: string;
+    plain: boolean;
+    narrow: boolean;
+    justified: boolean;
+    border: boolean;
+    tabSelect: EventEmitter<{}>;
+    tabUnselect: EventEmitter<{}>;
+    tabClose: EventEmitter<{}>;
+    selectedIndexChange: EventEmitter<{}>;
+    readonly containerCls: string;
+    readonly headerCls: string;
+    readonly bodyCls: string;
+    isHorizontal(): boolean;
+    private _selectedIndex;
+    selectedIndex: number;
+    readonly usedPanels: TabPanelComponent[];
+    ngAfterViewInit(): void;
+    onClickTab(panel: any, event: any): void;
+    onCloseTab(panel: any, event: any): void;
+    initPanels(): void;
+    initSelectedPanel(): void;
+    select(index: number): void;
+    unselect(index: number): void;
+    getPanel(index: number): TabPanelComponent;
+    getPanelIndex(tab: TabPanelComponent): number;
+    getSelectedPanel(): TabPanelComponent;
+}

@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmgenexBusinessPortal", "EmgenexBusinessPortal\EmgenexBusinessPortal.csproj", "{E2737E15-D073-451F-A1D6-28B9DA4799C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.Business", "EBP.Business\EBP.Business.csproj", "{54EDDFFB-B71A-4254-86AC-E407192CC4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.Identity", "GM.Identity\GM.Identity.csproj", "{9D8E95CE-AC69-4BEE-B738-1867BA0BBAD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.Api", "EBP.Api\EBP.Api.csproj", "{F427003A-B7FF-4B72-BF35-48403A371A8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{59D5ABC7-B56D-4E54-B0CE-188F206D58C9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.Scheduler", "EBP.Scheduler\EBP.Scheduler.csproj", "{9EE5A060-0BBB-47DE-BC35-1974B78FF09E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.DataMigration", "EBP.DataMigration\EBP.DataMigration.csproj", "{783FCEBD-FD83-4434-BA98-06346EB1CAC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.NotificationApp", "EBP.NotificationApp\EBP.NotificationApp.csproj", "{654570A9-AC06-4750-986B-DA7343F79122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.BoxImports", "BoxImports\EBP.BoxImports.csproj", "{AB09A452-1A0C-481A-9219-1C5B4C681071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.FtpImports", "EBP.FtpImports\EBP.FtpImports.csproj", "{A862F3EC-19D2-4D2B-8DF6-9E04C1A09995}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.WindowsService", "EBP.WindowsService\EBP.WindowsService.csproj", "{B749BF10-00DC-44E1-BC65-F2CA57B8B1C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBP.SalesReportImport", "EBP.SalesReportImport\EBP.SalesReportImport.csproj", "{9053D5B3-7E42-49B0-9D76-5B3625C17292}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2737E15-D073-451F-A1D6-28B9DA4799C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2737E15-D073-451F-A1D6-28B9DA4799C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2737E15-D073-451F-A1D6-28B9DA4799C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2737E15-D073-451F-A1D6-28B9DA4799C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EDDFFB-B71A-4254-86AC-E407192CC4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EDDFFB-B71A-4254-86AC-E407192CC4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EDDFFB-B71A-4254-86AC-E407192CC4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EDDFFB-B71A-4254-86AC-E407192CC4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D8E95CE-AC69-4BEE-B738-1867BA0BBAD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D8E95CE-AC69-4BEE-B738-1867BA0BBAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D8E95CE-AC69-4BEE-B738-1867BA0BBAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D8E95CE-AC69-4BEE-B738-1867BA0BBAD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F427003A-B7FF-4B72-BF35-48403A371A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F427003A-B7FF-4B72-BF35-48403A371A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F427003A-B7FF-4B72-BF35-48403A371A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F427003A-B7FF-4B72-BF35-48403A371A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE5A060-0BBB-47DE-BC35-1974B78FF09E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE5A060-0BBB-47DE-BC35-1974B78FF09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE5A060-0BBB-47DE-BC35-1974B78FF09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE5A060-0BBB-47DE-BC35-1974B78FF09E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783FCEBD-FD83-4434-BA98-06346EB1CAC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783FCEBD-FD83-4434-BA98-06346EB1CAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783FCEBD-FD83-4434-BA98-06346EB1CAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783FCEBD-FD83-4434-BA98-06346EB1CAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{654570A9-AC06-4750-986B-DA7343F79122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654570A9-AC06-4750-986B-DA7343F79122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654570A9-AC06-4750-986B-DA7343F79122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654570A9-AC06-4750-986B-DA7343F79122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB09A452-1A0C-481A-9219-1C5B4C681071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB09A452-1A0C-481A-9219-1C5B4C681071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB09A452-1A0C-481A-9219-1C5B4C681071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB09A452-1A0C-481A-9219-1C5B4C681071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A862F3EC-19D2-4D2B-8DF6-9E04C1A09995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A862F3EC-19D2-4D2B-8DF6-9E04C1A09995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A862F3EC-19D2-4D2B-8DF6-9E04C1A09995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A862F3EC-19D2-4D2B-8DF6-9E04C1A09995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B749BF10-00DC-44E1-BC65-F2CA57B8B1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B749BF10-00DC-44E1-BC65-F2CA57B8B1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B749BF10-00DC-44E1-BC65-F2CA57B8B1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B749BF10-00DC-44E1-BC65-F2CA57B8B1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9053D5B3-7E42-49B0-9D76-5B3625C17292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9053D5B3-7E42-49B0-9D76-5B3625C17292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9053D5B3-7E42-49B0-9D76-5B3625C17292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9053D5B3-7E42-49B0-9D76-5B3625C17292}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

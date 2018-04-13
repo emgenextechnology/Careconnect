@@ -1,0 +1,16 @@
+﻿<fields>
+  <ReportMaster>
+    <PatientFirstName>PatientFirstName</PatientFirstName>
+    <PatientId>PatientID</PatientId>
+    <PatientLastName>PatientLastName</PatientLastName>
+    <SpecimenCollectionDate>SpecimenCollectionDate</SpecimenCollectionDate>
+    <SpecimenReceivedDate>SpecimenReceivedDate</SpecimenReceivedDate>
+    <ReportedDate>MaxOfReportedDate</ReportedDate>
+    <PracticeName>ClinicName</PracticeName>
+    <ProviderFirstName>PhysicianFirstName</ProviderFirstName>
+    <ProviderLastName>PhysicianLastName</ProviderLastName>
+    <ProviderNpi>PhysicianNPINumber</ProviderNpi>
+    <RepFirstName></RepFirstName>
+    <RepLastName></RepLastName>
+  </ReportMaster>
+</fields>

@@ -1,0 +1,36 @@
+import { ViewContainerRef, ComponentFactoryResolver, ComponentRef, EventEmitter, Renderer2 } from '@angular/core';
+import { TooltipContentComponent } from './tooltip-content.component';
+export declare class TooltipDirective {
+    viewContainer: ViewContainerRef;
+    resolver: ComponentFactoryResolver;
+    renderer: Renderer2;
+    content: string | TooltipContentComponent;
+    position: string;
+    trackMouse: boolean;
+    deltaX: number;
+    deltaY: number;
+    showDelay: number;
+    hideDelay: number;
+    showEvent: string;
+    hideEvent: string;
+    tooltipCls: string;
+    tooltipStyle: Object;
+    tooltipShow: EventEmitter<{}>;
+    tooltipHide: EventEmitter<{}>;
+    tooltipRef: ComponentRef<TooltipContentComponent>;
+    tooltip: TooltipContentComponent;
+    showTimer: any;
+    hideTimer: any;
+    showHandler: any;
+    hideHandler: any;
+    constructor(viewContainer: ViewContainerRef, resolver: ComponentFactoryResolver, renderer: Renderer2);
+    ngAfterViewInit(): void;
+    ngOnDestroy(): void;
+    bindEvents(): void;
+    unbindEvents(): void;
+    clearTimeouts(): void;
+    show(): void;
+    hide(): void;
+    clean(): void;
+    onMouseMove(event: any): void;
+}

@@ -1,0 +1,35 @@
+﻿<fields>
+  <ReportMaster>
+    <PatientFirstName></PatientFirstName>
+    <PatientId></PatientId>
+    <PatientLastName></PatientLastName>
+    <SpecimenCollectionDate>Date Sample Taken</SpecimenCollectionDate>
+    <SpecimenReceivedDate>Date Sample Received</SpecimenReceivedDate>
+    <ReportedDate>Date Sample Reported</ReportedDate>
+    <PracticeName>Account Name</PracticeName>
+    <ProviderFirstName>Clinician^1</ProviderFirstName>
+    <ProviderLastName>Clinician^2</ProviderLastName>
+    <ProviderNpi></ProviderNpi>
+    <RepFirstName>Rep^1</RepFirstName>
+    <RepLastName>Rep^2</RepLastName>
+    <EmgenexLocationId></EmgenexLocationId>
+    <SpecimenId>TRF ID</SpecimenId>
+  </ReportMaster>
+
+  <BillingInfo>
+    
+  </BillingInfo>
+  
+  <StaticColumns>
+    <CollectedDate DisplayName="Date Sample Taken" IsVisible="true" SummaryFilter="true"></CollectedDate>
+    <ReceivedDate DisplayName="Date Sample Received" IsVisible="true" SummaryFilter="true"></ReceivedDate>
+    <ReportedDate DisplayName="Date Sample Reported" IsVisible="true" SummaryFilter="true"></ReportedDate>
+    <WrittenOn DisplayName="Written On" IsVisible="true"></WrittenOn>
+    <Practice DisplayName="Account Name" IsVisible="true"></Practice>
+    <Provider DisplayName="Clinician" IsVisible="true"></Provider>
+    <SalesTeam DisplayName="Sales Team" IsVisible="true"></SalesTeam>
+    <RepName DisplayName="Rep" IsVisible="true"></RepName>
+    <Patient DisplayName="Patient" IsVisible="false"></Patient>
+    <SpecimenId DisplayName="TRF ID" IsVisible="true"></SpecimenId>
+  </StaticColumns>
+</fields>

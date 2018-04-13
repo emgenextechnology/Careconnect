@@ -1,0 +1,137 @@
+﻿@model IEnumerable<EBP.Business.Database.BusinessMaster>
+
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Business Name")
+        </th>
+        <th>
+            @Html.DisplayName("Created By")
+        </th>
+        <th>
+            @Html.DisplayName("Created On")
+        </th>
+        <th>
+            @Html.DisplayName("Updated By")
+        </th>
+        <th>
+            @Html.DisplayName("Updated On")
+        </th>
+        <th>
+            @Html.DisplayName("Active")
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User1.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<div class="col-sm-12 col-xs-12">
+    @if (ViewBag.TotalPage > 1)
+    {
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li>
+                    @Ajax.ActionLink("First", "Index", "Business", new { page = 1, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "BusinessListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+                <li>
+                    @Ajax.ActionLink("Previous", "Index", "Business", new { page = (ViewBag.CurrentPage - 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "BusinessListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+            }
+
+            @for (var page = (int)ViewBag.StartPage; page <= (int)ViewBag.EndPage; page++)
+            {
+                <li class="@(page == ViewBag.CurrentPage ? "active" : "")">
+                    @Ajax.ActionLink(@page.ToString(), "Index", "Business", new { page = @page, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "BusinessListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPage)
+            {
+                <li>
+                    @Ajax.ActionLink("Next", "Index", "Business", new { page = (ViewBag.CurrentPage + 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "BusinessListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Last", "Index", "Business", new { page = (ViewBag.TotalPage), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "BusinessListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+        </ul>
+    }
+</div>

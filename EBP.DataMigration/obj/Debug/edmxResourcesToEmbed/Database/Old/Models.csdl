@@ -1,0 +1,1771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EPMDevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AccessLevel">
+    <Key>
+      <PropertyRef Name="AccessId" />
+    </Key>
+    <Property Name="AccessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccessLevel1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeadId" Type="Int32" Nullable="false" />
+    <Property Name="EnrollDate" Type="DateTime" Precision="3" />
+    <Property Name="AccountStatus" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AcctExec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="AccountServices" Relationship="Self.FK_AccountService_Account" FromRole="Account" ToRole="AccountService" />
+  </EntityType>
+  <EntityType Name="AccountService">
+    <Key>
+      <PropertyRef Name="AccountServiceId" />
+    </Key>
+    <Property Name="AccountServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_AccountService_Account" FromRole="AccountService" ToRole="Account" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_AccountService_Services" FromRole="AccountService" ToRole="Services" />
+  </EntityType>
+  <EntityType Name="AccountUploading">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="Int32" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LocationUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreateOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AddressTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Line1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Line2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsSecondery" Type="Boolean" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="AddressIdentifier" Type="Guid" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="AddressType" Relationship="Self.FK_Address_AddressType" FromRole="Address" ToRole="AddressType" />
+    <NavigationProperty Name="State1" Relationship="Self.FK_Address_States" FromRole="Address" ToRole="States" />
+    <NavigationProperty Name="Phones" Relationship="Self.FK_Phone_Address" FromRole="Address" ToRole="Phone" />
+    <NavigationProperty Name="PracticeContacts" Relationship="Self.FK_PracticeContact_Address" FromRole="Address" ToRole="PracticeContact" />
+    <NavigationProperty Name="PracticeProviderLocations" Relationship="Self.FK_PracticeProviderLocation_Address" FromRole="Address" ToRole="PracticeProviderLocation" />
+  </EntityType>
+  <EntityType Name="AddressType">
+    <Key>
+      <PropertyRef Name="AddressTypeId" />
+    </Key>
+    <Property Name="AddressTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AddressType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_AddressType" FromRole="AddressType" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Alert_Lead">
+    <Key>
+      <PropertyRef Name="AlertId" />
+    </Key>
+    <Property Name="AlertId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeadId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Alert">
+    <Key>
+      <PropertyRef Name="AlertsId" />
+    </Key>
+    <Property Name="AlertsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HelpReqId" Type="Int32" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsRead" Type="Int32" />
+    <Property Name="AlertsIdentifier" Type="Guid" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BoardCertification">
+    <Key>
+      <PropertyRef Name="BoardCertficationId" />
+    </Key>
+    <Property Name="BoardCertficationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CratedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CountryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="States" Relationship="Self.FK_States_Countries" FromRole="Countries" ToRole="States" />
+  </EntityType>
+  <EntityType Name="Degree">
+    <Key>
+      <PropertyRef Name="DegreeId" />
+    </Key>
+    <Property Name="DegreeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DegreeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Providers" Relationship="Self.FK_Provider_Degree" FromRole="Degree" ToRole="Provider" />
+  </EntityType>
+  <EntityType Name="Dept">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeptManagerId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Dept_Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptId" Type="Int32" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EnrolledService">
+    <Key>
+      <PropertyRef Name="EnrolledServiceId" />
+    </Key>
+    <Property Name="EnrolledServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnrolledServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActice" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EntityType">
+    <Key>
+      <PropertyRef Name="EntityTypeId" />
+    </Key>
+    <Property Name="EntityTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Fellowship">
+    <Key>
+      <PropertyRef Name="FellowShipId" />
+    </Key>
+    <Property Name="FellowShipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Formulation">
+    <Key>
+      <PropertyRef Name="FormulationId" />
+    </Key>
+    <Property Name="FormulationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="HelpItemOrder">
+    <Key>
+      <PropertyRef Name="HelpItem" />
+    </Key>
+    <Property Name="HelpItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="HelpId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="ItemType" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HelpPriority">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Createdate" Type="DateTime" Precision="3" />
+    <Property Name="Modifydate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HelpPriorityType">
+    <Key>
+      <PropertyRef Name="PriorityId" />
+    </Key>
+    <Property Name="PriorityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="HelpRequest">
+    <Key>
+      <PropertyRef Name="HRId" />
+    </Key>
+    <Property Name="HRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HelpId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HelpTypeId" Type="Int32" Nullable="false" />
+    <Property Name="TaskDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="TargetDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateClose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RequestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AssignedTo" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AccountId" Type="Int32" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Alert" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AlertDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HelpType">
+    <Key>
+      <PropertyRef Name="HelpTypeId" />
+    </Key>
+    <Property Name="HelpTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HelpDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="InsurancePlan">
+    <Key>
+      <PropertyRef Name="InsurancePlanId" />
+    </Key>
+    <Property Name="InsurancePlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InsurancePlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="InsurancePlanType">
+    <Key>
+      <PropertyRef Name="InsurancePlanTypeId" />
+    </Key>
+    <Property Name="InsurancePlanTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InsurancePlanTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemDesciption" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OrderType" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Lead">
+    <Key>
+      <PropertyRef Name="LeadId" />
+    </Key>
+    <Property Name="LeadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeId" Type="Int32" Nullable="false" />
+    <Property Name="LeadSource" Type="Int32" Nullable="false" />
+    <Property Name="LeadServiceIntrest" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="OtherLeadSource" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LeadSource">
+    <Key>
+      <PropertyRef Name="LeadSourceId" />
+    </Key>
+    <Property Name="LeadSourceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeadSource1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Licence">
+    <Key>
+      <PropertyRef Name="LicenceId" />
+    </Key>
+    <Property Name="LicenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LicenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="State1" Relationship="Self.FK_Licence_States" FromRole="Licence" ToRole="States" />
+  </EntityType>
+  <EntityType Name="Marketing">
+    <Key>
+      <PropertyRef Name="MarketingId" />
+    </Key>
+    <Property Name="MarketingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Categories" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Note_Lead">
+    <Key>
+      <PropertyRef Name="NoteLeadId" />
+    </Key>
+    <Property Name="NoteLeadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoteId" Type="Int32" Nullable="false" />
+    <Property Name="LeadId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Note" Relationship="Self.FK_Note_Lead_Notes" FromRole="Note_Lead" ToRole="Notes" />
+  </EntityType>
+  <EntityType Name="Note">
+    <Key>
+      <PropertyRef Name="NotesId" />
+    </Key>
+    <Property Name="NotesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="ScriptId" Type="Int32" />
+    <Property Name="HelpRequestId" Type="Int32" />
+    <Property Name="NotesTypeId" Type="Int32" />
+    <Property Name="NotesDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NotesIdentifier" Type="Guid" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Note_Lead" Relationship="Self.FK_Note_Lead_Notes" FromRole="Notes" ToRole="Note_Lead" />
+    <NavigationProperty Name="NoteType" Relationship="Self.FK_Notes_NoteTypes" FromRole="Notes" ToRole="NoteTypes" />
+  </EntityType>
+  <EntityType Name="NoteType">
+    <Key>
+      <PropertyRef Name="NoteTypeId" />
+    </Key>
+    <Property Name="NoteTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoteTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Notes" Relationship="Self.FK_Notes_NoteTypes" FromRole="NoteTypes" ToRole="Notes" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Pid" />
+    </Key>
+    <Property Name="Pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PatientFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PatientLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PatientDOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PaymentType">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PgxReport1">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SpecimenID" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CollectedDt" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ReceivedDt" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Reported" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Clinician" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="RepId" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="RepName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="PracticeName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InsurancePlan" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="InsuarancePlanType" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="NpiNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PayerName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ReimbursementAmt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Phone">
+    <Key>
+      <PropertyRef Name="PhoneId" />
+    </Key>
+    <Property Name="PhoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneTypeId" Type="Int32" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AddressId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_Phone_Address" FromRole="Phone" ToRole="Address" />
+    <NavigationProperty Name="PhoneType" Relationship="Self.FK_Phone_PhoneType" FromRole="Phone" ToRole="PhoneType" />
+  </EntityType>
+  <EntityType Name="PhoneNumber">
+    <Key>
+      <PropertyRef Name="PhoneNumberId" />
+    </Key>
+    <Property Name="PhoneNumberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PhoneType">
+    <Key>
+      <PropertyRef Name="PhoneTypeId" />
+    </Key>
+    <Property Name="PhoneTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Phones" Relationship="Self.FK_Phone_PhoneType" FromRole="PhoneType" ToRole="Phone" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="PraticeId" />
+    </Key>
+    <Property Name="PraticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PracticeType" Type="Int32" Nullable="false" />
+    <Property Name="PracticeSpecialityType" Type="Int32" />
+    <Property Name="EntrolledServicesId" Type="Int32" />
+    <Property Name="PrefMethodofContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RepNameId" Type="Int32" />
+    <Property Name="RepGroupId" Type="Int32" />
+    <Property Name="RprtDeliveryPreference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PracEmail" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="PracFax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Faxno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastActivityDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PracticeContacts" Relationship="Self.FK_PracticeContact_Practice" FromRole="Practice" ToRole="PracticeContact" />
+  </EntityType>
+  <EntityType Name="Practice_SpecialityType">
+    <Key>
+      <PropertyRef Name="SpId" />
+    </Key>
+    <Property Name="SpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecialityId" Type="Int32" />
+    <Property Name="PracticeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PracticeContact">
+    <Key>
+      <PropertyRef Name="PracticeContactId" />
+    </Key>
+    <Property Name="PracticeContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" Nullable="false" />
+    <Property Name="PracticeOther" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BillingContact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BillingContactPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ManagerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ManagerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BillingContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="officedayshrs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="Primaryaddrss" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_PracticeContact_Address" FromRole="PracticeContact" ToRole="Address" />
+    <NavigationProperty Name="Practice" Relationship="Self.FK_PracticeContact_Practice" FromRole="PracticeContact" ToRole="Practice" />
+  </EntityType>
+  <EntityType Name="PracticeProvider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Practiceid" Type="Int32" />
+    <Property Name="Providerid" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Provider" Relationship="Self.FK_PracticeProvider_Provider" FromRole="PracticeProvider" ToRole="Provider" />
+  </EntityType>
+  <EntityType Name="PracticeProviderLocation">
+    <Key>
+      <PropertyRef Name="PracticeProviderLocationId" />
+    </Key>
+    <Property Name="PracticeProviderLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="ProviderId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_PracticeProviderLocation_Address" FromRole="PracticeProviderLocation" ToRole="Address" />
+    <NavigationProperty Name="Provider" Relationship="Self.FK_PracticeProviderLocation_Provider" FromRole="PracticeProviderLocation" ToRole="Provider" />
+  </EntityType>
+  <EntityType Name="PracticeSpecialityType">
+    <Key>
+      <PropertyRef Name="PracticeSpecialityTypeId" />
+    </Key>
+    <Property Name="PracticeSpecialityTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeSpecialityType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PracticeType">
+    <Key>
+      <PropertyRef Name="PracticeTypeId" />
+    </Key>
+    <Property Name="PracticeTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Privilege">
+    <Key>
+      <PropertyRef Name="PrevilegeId" />
+    </Key>
+    <Property Name="PrevilegeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrevilegeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrivilegeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="ProviderId" />
+    </Key>
+    <Property Name="ProviderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NPI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Degree" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ProviderIdentifier" Type="Guid" />
+    <Property Name="PrimaryAddressIdentifier" Type="Guid" />
+    <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="ProviderEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Degree1" Relationship="Self.FK_Provider_Degree" FromRole="Provider" ToRole="Degree" />
+    <NavigationProperty Name="PracticeProviders" Relationship="Self.FK_PracticeProvider_Provider" FromRole="Provider" ToRole="PracticeProvider" />
+    <NavigationProperty Name="PracticeProviderLocations" Relationship="Self.FK_PracticeProviderLocation_Provider" FromRole="Provider" ToRole="PracticeProviderLocation" />
+  </EntityType>
+  <EntityType Name="Rep">
+    <Key>
+      <PropertyRef Name="RepId" />
+    </Key>
+    <Property Name="RepId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepsId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="Int32" />
+    <Property Name="RepGroupsId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RepGroupId" Type="Int32" />
+    <Property Name="MangerId" Type="Int32" />
+    <Property Name="RepStatusId" Type="Int32" Nullable="false" />
+    <Property Name="SignonDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="EmployeeStatusId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RepGroup">
+    <Key>
+      <PropertyRef Name="RepGroupId" />
+    </Key>
+    <Property Name="RepGroupId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RepGId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RepGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ManagerName" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="RId" />
+    </Key>
+    <Property Name="RId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RepId" Type="Int32" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="RepName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RepGroupName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PracticeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ReportId" Type="Int32" />
+    <Property Name="InsurancePlanId" Type="Int32" />
+    <Property Name="InsuarancePlanTypeId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ReportStatu">
+    <Key>
+      <PropertyRef Name="ReportStatusId" />
+    </Key>
+    <Property Name="ReportStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ReportType">
+    <Key>
+      <PropertyRef Name="ReportTypeId" />
+    </Key>
+    <Property Name="ReportTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RepStatu">
+    <Key>
+      <PropertyRef Name="RepStatusId" />
+    </Key>
+    <Property Name="RepStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepStatusType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Role_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityTypeId" Type="Int32" />
+    <Property Name="ParentRoleId" Type="Int32" />
+    <Property Name="Status_Id" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Modified_On" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="Int32" />
+    <NavigationProperty Name="StatusType" Relationship="Self.FK_Roles_StatusTypes" FromRole="Roles" ToRole="StatusTypes" />
+  </EntityType>
+  <EntityType Name="RxcReport">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateReceived" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Rxno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ScriptType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ScriptNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Formulations" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DateFilled" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RxcPlan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InsPaid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="NpiNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RxCScript">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateReceived" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ScriptType" Type="Int32" />
+    <Property Name="ScriptNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Formulations" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Staus" Type="Int32" />
+    <Property Name="DateFilled" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RxPlan" Type="Int32" />
+    <Property Name="Payement" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RepId" Type="Int32" />
+    <Property Name="RepName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RepGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="ReportId" Type="Int32" />
+    <Property Name="InsurencePlanId" Type="Int32" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InsurancePlanTypeId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RxcStatu">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LabId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RxPlanType">
+    <Key>
+      <PropertyRef Name="RxPlanId" />
+    </Key>
+    <Property Name="RxPlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RxPlanType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ScriptType">
+    <Key>
+      <PropertyRef Name="ScrtptTypeId" />
+    </Key>
+    <Property Name="ScrtptTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScriptTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SecurityLevel">
+    <Key>
+      <PropertyRef Name="SecLvlTypeId" />
+    </Key>
+    <Property Name="SecLvlTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SecLvlTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServiceDecription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="AccountServices" Relationship="Self.FK_AccountService_Services" FromRole="Services" ToRole="AccountService" />
+  </EntityType>
+  <EntityType Name="ServiceStatusType">
+    <Key>
+      <PropertyRef Name="ServiceStatusTypeId" />
+    </Key>
+    <Property Name="ServiceStatusTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="ServiceTypeId" />
+    </Key>
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="StateCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_States" FromRole="States" ToRole="Address" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_States_Countries" FromRole="States" ToRole="Countries" />
+    <NavigationProperty Name="Licences" Relationship="Self.FK_Licence_States" FromRole="States" ToRole="Licence" />
+  </EntityType>
+  <EntityType Name="StatusType">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Creatd_On" Type="DateTime" Precision="3" />
+    <Property Name="Creatd_By" Type="Int32" />
+    <Property Name="Modified_On" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="Int32" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Roles_StatusTypes" FromRole="StatusTypes" ToRole="Roles" />
+    <NavigationProperty Name="StatusTypes1" Relationship="Self.FK_StatusTypes_StatusTypes" FromRole="StatusTypes" ToRole="StatusTypes1" />
+    <NavigationProperty Name="StatusType2" Relationship="Self.FK_StatusTypes_StatusTypes" FromRole="StatusTypes1" ToRole="StatusTypes" />
+    <NavigationProperty Name="tblGroups" Relationship="Self.FK_tblGroup_StatusTypes" FromRole="StatusTypes" ToRole="tblGroup" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="AssignedTo" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsRead" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="Group_Id" />
+    </Key>
+    <Property Name="Group_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Group_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status_Id" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Modified_On" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="Int32" />
+    <NavigationProperty Name="StatusType" Relationship="Self.FK_tblGroup_StatusTypes" FromRole="tblGroup" ToRole="StatusTypes" />
+  </EntityType>
+  <EntityType Name="tblLocation">
+    <Key>
+      <PropertyRef Name="Address_Id" />
+    </Key>
+    <Property Name="Address_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address_Type_Id" Type="Int32" />
+    <Property Name="Line_1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Line_2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="State_Id" Type="Int32" />
+    <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Office_Hours" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Modified_on" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblService">
+    <Key>
+      <PropertyRef Name="Service_Id" />
+    </Key>
+    <Property Name="Service_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Service_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status_Id" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Modified_On" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Toxicology">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SpecimenID" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CollectedDt" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ReceivedDt" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Reported" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Clinician" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="RepId" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="RepName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="PracticeName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InsurancePlan" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="InsuarancePlanType" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="NpiNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PayerName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Middle_Initial" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="Role_Id" Type="Int32" />
+    <Property Name="Group_Id" Type="Int32" />
+    <Property Name="Dept" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Work_Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Home_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Address_Id" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Status_Id" Type="Int32" />
+    <Property Name="ManagerId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="newPassword" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="InspaidAccess" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Access">
+    <Key>
+      <PropertyRef Name="PermissionId" />
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="Access1" />
+    </Key>
+    <Property Name="PermissionId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Access1" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="AccountId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AccountProvider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="AccountId" Type="Int32" />
+    <Property Name="ProviderId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AccountStatusType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="ActypeId" />
+    </Key>
+    <Property Name="ActypeId" Type="Int32" Nullable="false" />
+    <Property Name="AcName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AcStatus" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AcctNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AcctId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="ActionId" />
+      <PropertyRef Name="ActionType" />
+      <PropertyRef Name="ActionDescription" />
+    </Key>
+    <Property Name="ActionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ActionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ActionDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" />
+    <Property Name="AdminName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ContactInfo">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="OtherPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LinkedIn" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Skype" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SecoundryEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AssistantPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AssistantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ContactNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ContactId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FolderId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Doctype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LocationUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Owner" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Trash" Type="Boolean" />
+    <Property Name="IsDeleted" Type="DateTime" Precision="3" />
+    <Property Name="RepGroupId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AccessId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Entity">
+    <Key>
+      <PropertyRef Name="EntityId" />
+      <PropertyRef Name="EntityName" />
+    </Key>
+    <Property Name="EntityId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EntityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Folder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HelpNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HelpId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LeadContact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Degree" Type="Int32" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReportsTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Assistant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrgId" Type="Int32" />
+    <Property Name="Dob" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="HomeAdders" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Owner" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LeadNote">
+    <Key>
+      <PropertyRef Name="NotesId" />
+    </Key>
+    <Property Name="NotesId" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LeadId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LeadPracticeProvider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="LeadId" Type="Int32" />
+    <Property Name="PracticeProviderId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="LeadStage">
+    <Key>
+      <PropertyRef Name="StageId" />
+    </Key>
+    <Property Name="StageId" Type="Int32" Nullable="false" />
+    <Property Name="StageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LeadStatu">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LeadTask">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="TaskTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Decription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="LeadId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="PermissionId" />
+      <PropertyRef Name="Entity" />
+      <PropertyRef Name="PrivilegeId" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="PermissionId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Entity" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PrivilegeId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider_BoardCert">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="BoardCertId" Type="Int32" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Provider_Fellowship">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="FellowshipId" Type="Int32" />
+    <Property Name="ExpairyDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProviderNote">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProviderId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Rep_Srvc_Map">
+    <Key>
+      <PropertyRef Name="Rep_Id" />
+      <PropertyRef Name="Srvc_Id" />
+    </Key>
+    <Property Name="Rep_Id" Type="Int32" Nullable="false" />
+    <Property Name="Srvc_Id" Type="Int32" Nullable="false" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Modified_On" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_AccountService_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="AccountService" Type="Self.AccountService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="AccountService">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountService_Services">
+    <End Role="Services" Type="Self.Service" Multiplicity="1" />
+    <End Role="AccountService" Type="Self.AccountService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="AccountService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_AddressType">
+    <End Role="AddressType" Type="Self.AddressType" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressType">
+        <PropertyRef Name="AddressTypeId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="AddressTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_States">
+    <End Role="States" Type="Self.State" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocation_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="PracticeProviderLocation" Type="Self.PracticeProviderLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocation">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_States_Countries">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+    <End Role="States" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="States">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Provider_Degree">
+    <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+    <End Role="Provider" Type="Self.Provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Degree">
+        <PropertyRef Name="DegreeId" />
+      </Principal>
+      <Dependent Role="Provider">
+        <PropertyRef Name="Degree" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Licence_States">
+    <End Role="States" Type="Self.State" Multiplicity="1" />
+    <End Role="Licence" Type="Self.Licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Licence">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Note_Lead_Notes">
+    <End Role="Notes" Type="Self.Note" Multiplicity="1" />
+    <End Role="Note_Lead" Type="Self.Note_Lead" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notes">
+        <PropertyRef Name="NotesId" />
+      </Principal>
+      <Dependent Role="Note_Lead">
+        <PropertyRef Name="NoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_NoteTypes">
+    <End Role="NoteTypes" Type="Self.NoteType" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTypes">
+        <PropertyRef Name="NoteTypeId" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="NotesTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_PhoneType">
+    <End Role="PhoneType" Type="Self.PhoneType" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhoneType">
+        <PropertyRef Name="PhoneTypeId" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PhoneTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="PraticeId" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProvider_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="PracticeProvider" Type="Self.PracticeProvider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="ProviderId" />
+      </Principal>
+      <Dependent Role="PracticeProvider">
+        <PropertyRef Name="Providerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocation_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="PracticeProviderLocation" Type="Self.PracticeProviderLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="ProviderId" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocation">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_StatusTypes">
+    <End Role="StatusTypes" Type="Self.StatusType" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypes">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusTypes_StatusTypes">
+    <End Role="StatusTypes" Type="Self.StatusType" Multiplicity="1" />
+    <End Role="StatusTypes1" Type="Self.StatusType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypes">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="StatusTypes1">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroup_StatusTypes">
+    <End Role="StatusTypes" Type="Self.StatusType" Multiplicity="0..1" />
+    <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypes">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="tblGroup">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EPMDevEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccessLevels" EntityType="Self.AccessLevel" />
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="AccountServices" EntityType="Self.AccountService" />
+    <EntitySet Name="AccountUploadings" EntityType="Self.AccountUploading" />
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="AddressTypes" EntityType="Self.AddressType" />
+    <EntitySet Name="Alert_Lead" EntityType="Self.Alert_Lead" />
+    <EntitySet Name="Alerts" EntityType="Self.Alert" />
+    <EntitySet Name="BoardCertifications" EntityType="Self.BoardCertification" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Degrees" EntityType="Self.Degree" />
+    <EntitySet Name="Depts" EntityType="Self.Dept" />
+    <EntitySet Name="Dept_Group" EntityType="Self.Dept_Group" />
+    <EntitySet Name="EnrolledServices" EntityType="Self.EnrolledService" />
+    <EntitySet Name="EntityTypes" EntityType="Self.EntityType" />
+    <EntitySet Name="Fellowships" EntityType="Self.Fellowship" />
+    <EntitySet Name="Formulations" EntityType="Self.Formulation" />
+    <EntitySet Name="HelpItemOrders" EntityType="Self.HelpItemOrder" />
+    <EntitySet Name="HelpPriorities" EntityType="Self.HelpPriority" />
+    <EntitySet Name="HelpPriorityTypes" EntityType="Self.HelpPriorityType" />
+    <EntitySet Name="HelpRequests" EntityType="Self.HelpRequest" />
+    <EntitySet Name="HelpTypes" EntityType="Self.HelpType" />
+    <EntitySet Name="InsurancePlans" EntityType="Self.InsurancePlan" />
+    <EntitySet Name="InsurancePlanTypes" EntityType="Self.InsurancePlanType" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <EntitySet Name="Leads" EntityType="Self.Lead" />
+    <EntitySet Name="LeadSources" EntityType="Self.LeadSource" />
+    <EntitySet Name="Licences" EntityType="Self.Licence" />
+    <EntitySet Name="Marketings" EntityType="Self.Marketing" />
+    <EntitySet Name="Note_Lead" EntityType="Self.Note_Lead" />
+    <EntitySet Name="Notes" EntityType="Self.Note" />
+    <EntitySet Name="NoteTypes" EntityType="Self.NoteType" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+    <EntitySet Name="PgxReport1" EntityType="Self.PgxReport1" />
+    <EntitySet Name="Phones" EntityType="Self.Phone" />
+    <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumber" />
+    <EntitySet Name="PhoneTypes" EntityType="Self.PhoneType" />
+    <EntitySet Name="Practices" EntityType="Self.Practice" />
+    <EntitySet Name="Practice_SpecialityType" EntityType="Self.Practice_SpecialityType" />
+    <EntitySet Name="PracticeContacts" EntityType="Self.PracticeContact" />
+    <EntitySet Name="PracticeProviders" EntityType="Self.PracticeProvider" />
+    <EntitySet Name="PracticeProviderLocations" EntityType="Self.PracticeProviderLocation" />
+    <EntitySet Name="PracticeSpecialityTypes" EntityType="Self.PracticeSpecialityType" />
+    <EntitySet Name="PracticeTypes" EntityType="Self.PracticeType" />
+    <EntitySet Name="Privileges" EntityType="Self.Privilege" />
+    <EntitySet Name="Providers" EntityType="Self.Provider" />
+    <EntitySet Name="Reps" EntityType="Self.Rep" />
+    <EntitySet Name="RepGroups" EntityType="Self.RepGroup" />
+    <EntitySet Name="Reports" EntityType="Self.Report" />
+    <EntitySet Name="ReportStatus" EntityType="Self.ReportStatu" />
+    <EntitySet Name="ReportTypes" EntityType="Self.ReportType" />
+    <EntitySet Name="RepStatus" EntityType="Self.RepStatu" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="RxcReports" EntityType="Self.RxcReport" />
+    <EntitySet Name="RxCScripts" EntityType="Self.RxCScript" />
+    <EntitySet Name="RxcStatus" EntityType="Self.RxcStatu" />
+    <EntitySet Name="RxPlanTypes" EntityType="Self.RxPlanType" />
+    <EntitySet Name="ScriptTypes" EntityType="Self.ScriptType" />
+    <EntitySet Name="SecurityLevels" EntityType="Self.SecurityLevel" />
+    <EntitySet Name="Services" EntityType="Self.Service" />
+    <EntitySet Name="ServiceStatusTypes" EntityType="Self.ServiceStatusType" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="StatusTypes" EntityType="Self.StatusType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <EntitySet Name="tblGroups" EntityType="Self.tblGroup" />
+    <EntitySet Name="tblLocations" EntityType="Self.tblLocation" />
+    <EntitySet Name="tblServices" EntityType="Self.tblService" />
+    <EntitySet Name="Toxicologies" EntityType="Self.Toxicology" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Accesses" EntityType="Self.Access" />
+    <EntitySet Name="AccountAddresses" EntityType="Self.AccountAddress" />
+    <EntitySet Name="AccountProviders" EntityType="Self.AccountProvider" />
+    <EntitySet Name="AccountStatusTypes" EntityType="Self.AccountStatusType" />
+    <EntitySet Name="AccountTypes" EntityType="Self.AccountType" />
+    <EntitySet Name="AcctNotes" EntityType="Self.AcctNote" />
+    <EntitySet Name="Actions" EntityType="Self.Action" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="ContactInfoes" EntityType="Self.ContactInfo" />
+    <EntitySet Name="ContactNotes" EntityType="Self.ContactNote" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <EntitySet Name="Entities" EntityType="Self.Entity" />
+    <EntitySet Name="Folders" EntityType="Self.Folder" />
+    <EntitySet Name="HelpNotes" EntityType="Self.HelpNote" />
+    <EntitySet Name="LeadContacts" EntityType="Self.LeadContact" />
+    <EntitySet Name="LeadNotes" EntityType="Self.LeadNote" />
+    <EntitySet Name="LeadPracticeProviders" EntityType="Self.LeadPracticeProvider" />
+    <EntitySet Name="LeadStages" EntityType="Self.LeadStage" />
+    <EntitySet Name="LeadStatus" EntityType="Self.LeadStatu" />
+    <EntitySet Name="LeadTasks" EntityType="Self.LeadTask" />
+    <EntitySet Name="Permissions" EntityType="Self.Permission" />
+    <EntitySet Name="Provider_BoardCert" EntityType="Self.Provider_BoardCert" />
+    <EntitySet Name="Provider_Fellowship" EntityType="Self.Provider_Fellowship" />
+    <EntitySet Name="ProviderNotes" EntityType="Self.ProviderNote" />
+    <EntitySet Name="Rep_Srvc_Map" EntityType="Self.Rep_Srvc_Map" />
+    <AssociationSet Name="FK_AccountService_Account" Association="Self.FK_AccountService_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="AccountService" EntitySet="AccountServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountService_Services" Association="Self.FK_AccountService_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="AccountService" EntitySet="AccountServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_AddressType" Association="Self.FK_Address_AddressType">
+      <End Role="AddressType" EntitySet="AddressTypes" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_States" Association="Self.FK_Address_States">
+      <End Role="States" EntitySet="States" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_Address" Association="Self.FK_Phone_Address">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Phone" EntitySet="Phones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Address" Association="Self.FK_PracticeContact_Address">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="PracticeContact" EntitySet="PracticeContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocation_Address" Association="Self.FK_PracticeProviderLocation_Address">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="PracticeProviderLocation" EntitySet="PracticeProviderLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Provider_Degree" Association="Self.FK_Provider_Degree">
+      <End Role="Degree" EntitySet="Degrees" />
+      <End Role="Provider" EntitySet="Providers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Licence_States" Association="Self.FK_Licence_States">
+      <End Role="States" EntitySet="States" />
+      <End Role="Licence" EntitySet="Licences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Note_Lead_Notes" Association="Self.FK_Note_Lead_Notes">
+      <End Role="Notes" EntitySet="Notes" />
+      <End Role="Note_Lead" EntitySet="Note_Lead" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_NoteTypes" Association="Self.FK_Notes_NoteTypes">
+      <End Role="NoteTypes" EntitySet="NoteTypes" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_PhoneType" Association="Self.FK_Phone_PhoneType">
+      <End Role="PhoneType" EntitySet="PhoneTypes" />
+      <End Role="Phone" EntitySet="Phones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Practice" Association="Self.FK_PracticeContact_Practice">
+      <End Role="Practice" EntitySet="Practices" />
+      <End Role="PracticeContact" EntitySet="PracticeContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProvider_Provider" Association="Self.FK_PracticeProvider_Provider">
+      <End Role="Provider" EntitySet="Providers" />
+      <End Role="PracticeProvider" EntitySet="PracticeProviders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocation_Provider" Association="Self.FK_PracticeProviderLocation_Provider">
+      <End Role="Provider" EntitySet="Providers" />
+      <End Role="PracticeProviderLocation" EntitySet="PracticeProviderLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_StatusTypes" Association="Self.FK_Roles_StatusTypes">
+      <End Role="StatusTypes" EntitySet="StatusTypes" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusTypes_StatusTypes" Association="Self.FK_StatusTypes_StatusTypes">
+      <End Role="StatusTypes" EntitySet="StatusTypes" />
+      <End Role="StatusTypes1" EntitySet="StatusTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroup_StatusTypes" Association="Self.FK_tblGroup_StatusTypes">
+      <End Role="StatusTypes" EntitySet="StatusTypes" />
+      <End Role="tblGroup" EntitySet="tblGroups" />
+    </AssociationSet>
+    <EntitySet Name="Practice_serviceId" EntityType="EPMDevModel.Practice_serviceId" />
+    <EntitySet Name="PracticeAddresses" EntityType="EPMDevModel.PracticeAddress" />
+    <EntitySet Name="PatientPgxreportMaps" EntityType="EPMDevModel.PatientPgxreportMap" />
+  </EntityContainer>
+  <EntityType Name="Practice_serviceId">
+    <Key>
+      <PropertyRef Name="NewTempId" />
+    </Key>
+    <Property Name="LeadServiceID" Type="Int32" />
+    <Property Name="EnrolledSercvicedId" Type="Int32" />
+    <Property Name="PracticeID" Type="Int32" />
+    <Property Name="NewTempId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="PracticeAddress">
+    <Key>
+      <PropertyRef Name="NewTempId" />
+    </Key>
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="Address" Type="Int32" />
+    <Property Name="NewTempId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="PatientPgxreportMap">
+    <Key>
+      <PropertyRef Name="NewTempId" />
+    </Key>
+    <Property Name="PatientID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ScriptID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProviderID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reporttype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PatientIdFix" Type="Int32" />
+    <Property Name="NewTempId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+</Schema>

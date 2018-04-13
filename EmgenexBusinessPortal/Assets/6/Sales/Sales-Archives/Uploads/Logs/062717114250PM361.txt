@@ -1,0 +1,8 @@
+Patient Id	:	0	Patient Name	:	 	Practice Name	:	A Plus Medical
+Record successfully inserted
+Finance data successfully inserted
+
+Number of rows Inserted 	:	1	
+Number of rows Inserted 	:	0	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	0

@@ -1,0 +1,118 @@
+﻿
+<div class="lead-info-top">
+    <h2 class="pull-left"><i ng-show="loadingDetails" class="fa fa-spinner fa-spin ng-animate-disabled"></i><span>Additional details</span></h2>
+    <span class="close-cross pull-right"><a id="task-info-close" ng-click="hideDetailsView()"><img src="/Controlpanel/Content/images/cross-white.png" alt="Close" width="16"></a></span>
+    <div class="clearfix"></div>
+</div>
+
+<div class="info-repeater-box lead-dtl-wrpbx row" style="margin-left:10px;">
+    <div class="info-additional info-ld-addtn {{currentSales.FinanceDataList.length>1?'col-md-6':'row'}}" ng-show="loadingData" style="margin-left:-10px">
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.CollectedDate!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{collectedDatePlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.CollectionDate|date:'MM-dd-yyyy'}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.ReceivedDate!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{receivedDatePlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.ReceivedDate|date:'MM-dd-yyyy'}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.Practice!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{practicePlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.Practice}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.Provider!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{providerPlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.Provider}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.SpecimenId!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{specimenPlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.SpecimenId}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-4 col-lg-4"><strong>{{providerPlchldr}} NPI</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.NPI}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-4 col-lg-4"><strong>Script Type</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.ServiceName}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-hide="currentSales.IsRep!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{patientPlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.Patient}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-hide="currentSales.IsRep!=null">
+            <div class="col-md-4 col-lg-4"><strong>Patient Id</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.PatientId>0?currentSales.PatientId:''}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.SalesTeam!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{salesTeamPlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.RepGroup}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.RepName!=null">
+            <div class="col-md-4 col-lg-4"><strong>{{repPlchldr}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.RepName}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.BilledDate!=null">
+            <div class="col-md-4 col-lg-4"><strong>Billed Date</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.BilledDate | date:'MM-dd-yyyy'}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.PaidDate!=null">
+            <div class="col-md-4 col-lg-4"><strong>Paid Date</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.PaidDate | date:'MM-dd-yyyy'}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.Charges!=null">
+            <div class="col-md-4 col-lg-4"><strong>Billed Amount</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.Charges | currency:"$"}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.PaidAmount!=null">
+            <div class="col-md-4 col-lg-4"><strong>Paid Amount</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.PaidAmount | currency:"$"}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.AdjustAmount!=null">
+            <div class="col-md-4 col-lg-4"><strong>Adjust Amount</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.AdjustAmount | currency:"$"}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="salesFilter.Columns.AdjustReason!=null">
+            <div class="col-md-4 col-lg-4"><strong>Adjust Reason</strong></div>
+            <div class="col-md-8 col-lg-8">{{currentSales.AdjustReason}}</div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-repeat="reportItem in currentSales.ReportColumnValues" ng-if="reportItem.ColumnType==1">
+            <div class="col-md-4 col-lg-4"><strong>{{reportItem.DisplayName.length>0?reportItem.DisplayName:reportItem.ColumnName}}</strong></div>
+            <div class="col-md-8 col-lg-8">{{reportItem.Value}}</div>
+        </div>
+    </div>
+    <div ng-show="currentSales.FinanceDataList.length>1" style="margin-left:10px; overflow-x:scroll" class="info-additional info-ld-addtn col-md-6">
+        <table ng-show="currentSales.FinanceDataList.length>1" class="ListingTable table table-hover">
+            <thead>
+                <tr>
+                    <th ng-show="salesFilter.Columns.BilledDate">Billed Date</th>
+                    <th ng-show="salesFilter.Columns.PaidDate">PaidDate</th>
+                    <th ng-show="salesFilter.Columns.Charges">Charges</th>
+                    <th ng-show="salesFilter.Columns.PaidAmount">PaidAmount</th>
+                    <th ng-show="salesFilter.Columns.AdjustAmount">AdjustAmount</th>
+                    <th ng-show="salesFilter.Columns.AdjustReason">AdjustReason</th>
+                    <th ng-repeat="column in  currentSales.FinanceDataList[0].FinanceColumnValues" ng-show="salesFilter.Columns[column.ColumnName]">{{column.ColumnName}}</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="financeItem in currentSales.FinanceDataList">
+                <td ng-show="salesFilter.Columns.BilledDate">{{financeItem.BilledDate | date:'MM-dd-yyyy'}}</td>
+                <td ng-show="salesFilter.Columns.PaidDate">{{financeItem.PaidDate | date:'MM-dd-yyyy'}}</td>
+                <td ng-show="salesFilter.Columns.Charges">{{financeItem.Charges | currency:"$":2}}</td>
+                <td ng-show="salesFilter.Columns.PaidAmount">{{financeItem.PaidAmount | currency:"$":2}}</td>
+                <td ng-show="salesFilter.Columns.AdjustAmount">{{financeItem.AdjustAmount | currency:"$":2}}</td>
+                <td ng-show="salesFilter.Columns.AdjustReason">{{financeItem.AdjustReason}}</td>
+                <td ng-repeat="column in  financeItem.FinanceColumnValues" ng-show="salesFilter.Columns[column.ColumnName]">{{column.Value}}</td>
+            </tr>
+            <tr style="font-weight:bold">
+                <td ng-show="salesFilter.Columns.BilledDate"></td>
+                <td ng-show="salesFilter.Columns.PaidDate"></td>
+                <td ng-show="salesFilter.Columns.Charges">{{currentSales.Charges | currency:"$":2}}</td>
+                <td ng-show="salesFilter.Columns.PaidAmount">{{currentSales.PaidAmount | currency:"$":2}}</td>
+                <td ng-show="salesFilter.Columns.AdjustAmount">{{currentSales.AdjustAmount | currency:"$":2}}</td>
+                <td ng-show="salesFilter.Columns.AdjustReason"></td>
+                <td ng-repeat="column in  financeItem.FinanceColumnValues" ng-show="salesFilter.Columns[column.ColumnName]"></td>
+                <td ng-repeat="column in  currentSales.FinanceDataList[0].FinanceColumnValues" ng-show="salesFilter.Columns[column.ColumnName]"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>

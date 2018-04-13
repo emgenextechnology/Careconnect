@@ -1,0 +1,234 @@
+<style>
+  select {
+    display: block!important;
+    border-top: 0px !important;
+    border-bottom: 1px solid #cfcfcf;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    outline: none;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="left-window">
+  <div class="left-window-header">
+    <span class="left-each-item-header">Search State</span>
+    <span>Clear Filter<i class="fa fa-times" aria-hidden="true"></i></span>
+  </div>
+  <div class="divider"></div>
+  <div class="input-field left-search-box seach-box">
+    <input type="text" class="validate" placeholder="Search State" name="Keywords" (keyup.enter)="getAllStates(searchFilter)"
+      [(ngModel)]="searchFilter.Keywords">
+    <a class="btn search-btn" (click)="getAllStates(searchFilter)">
+      <i class="material-icons">search</i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="right-window ">
+  <div class="common-table user-table">
+    <table class="striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="t-header">
+          <th mat-sort-header="StateName">State Name</th>
+          <th mat-sort-header="StateCode">State Code</th>
+          <th mat-sort-header="CountryCode">Country Code</th>
+          <th mat-sort-header="IsActive">Active</th>
+          <th mat-sort-header="CreatedUser">Created by</th>
+          <th mat-sort-header="CreatedOn">Created on</th>
+          <th mat-sort-header="Updateduser">Updated By</th>
+          <th mat-sort-header="UpdatedOn">Updated On</th>
+          <th class="edit-delete-th">active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr *ngFor="let State of StateModel; let i = index">
+          <td>
+            <a href="#details-states-mod" (click)="edit(State.Id)">
+              {{State.StateName}}
+            </a>
+          </td>
+          <td>{{State.StateCode}}</td>
+          <td>{{State.CountryCode}}</td>
+          <td>
+            <p>
+              <input type="checkbox" class="filled-in" id="filled-in-box-{{i}}" [checked]="State.IsActive" disabled="disabled">
+              <label for="filled-in-box-{{i}}"></label>
+            </p>
+          </td>
+          <td>{{State.CreatedUser}}</td>
+          <td>{{State.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>{{State.Updateduser}}</td>
+          <td>{{State.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>
+            <a class='dropdown-button btn edit-delete-btn' href='#' attr.data-activates='dropdown-{{i}}' (mouseenter)="mouseEnter()">
+              <img src="assets/images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon">
+            </a>
+            <ul id='dropdown-{{i}}' class='dropdown-content edit-delete-dropdown'>
+              <li>
+                <a href="#edit-states-mod" (click)="edit(State.Id)">
+                  Edit
+                </a>
+              </li>
+              <li>
+                <a href="#details-states-mod" (click)="edit(State.Id)">
+                  Details
+                </a>
+              </li>
+              <li>
+                <a href="#" (click)="d1.open(); delete(State.Id)">
+                  Delete
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator *ngIf="StateModel?.length > 0" [length]="pageSize" [pageSize]="25" [pageSizeOptions]="[25,50,100,150,200]"
+      (page)="pageEvent = $event; getAllStates(searchFilter, false)"></mat-paginator>
+  </div>
+</div>
+
+<div class="modal-button">
+  <div class="fixed-action-btn">
+    <div class=" mdl-fab-btn-wrap">
+      <span class="mdl-fab-txt">Add</span>
+      <a class="btn btn-floating btn-large sky-blue-color " href="#create-states-mod" (click)="openCreate()">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="all-modals">
+  <!-- create -->
+  <div id="create-states-mod" class="modal common-modal crt-role-modal">
+    <form #frmAddState="ngForm">
+      <div class="modal-content">
+        <h4>Create State</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="CountryId" placeholder="Select Country" [(ngModel)]="newStatesModels.CountryId" required>
+              <mat-option *ngFor="let country of Countries;" [value]="country.Id">{{country.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="StateName" name="StateName" [(ngModel)]="newStatesModels.StateName"
+              required>
+          </mat-form-field>
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="StateCode" name="StateCode" [(ngModel)]="newStatesModels.StateCode"
+              required maxlength="2">
+          </mat-form-field>
+          <div class="row s12 pad-lft-zero">
+            <mat-checkbox name="StatesIsActive" [(ngModel)]="newStatesModels.IsActive">IsActive</mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="create(newStatesModels)" [disabled]="!frmAddState.form.valid">Create</button>
+      </div>
+    </form>
+  </div>
+  <!-- Edit -->
+  <div id="edit-states-mod" class="modal common-modal crt-role-modal">
+    <form #frmEditState="ngForm">
+      <div class="modal-content">
+        <h4>Edit State</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="CountryId" placeholder="Select Country" [(ngModel)]="newStatesModels.CountryId" required>
+              <mat-option *ngFor="let country of Countries;" [value]="country.Id">{{country.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="StateName" name="StateName" [(ngModel)]="newStatesModels.StateName"
+              required>
+          </mat-form-field>
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="StateCode" name="StateCode" [(ngModel)]="newStatesModels.StateCode"
+              required maxlength="2">
+          </mat-form-field>
+          <div class="row s12 pad-lft-zero">
+            <mat-checkbox name="StatesIsActive" [(ngModel)]="newStatesModels.IsActive">IsActive</mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="update(newStatesModels)" [disabled]="!frmEditState.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+  <!-- Details -->
+  <div id="details-states-mod" class="modal common-modal crt-role-modal">
+    <div class="modal-content">
+      <div class="detail-page-wrapper">
+        <h3 class="details-header">
+          <span>State </span> Details</h3>
+        <div class="det-modal-close-btn right">
+          <img src="assets/images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">State Name</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.StateName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">State Code</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.StateCode}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Country Code</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.CountryCode}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">IsActive</b>
+          <span class="dtl-itm-vlue">
+            <input type="checkbox" class="filled-in" name="IsActive" id="IsActive" [checked]="newStatesModels.IsActive" disabled="disabled">
+            <label for="IsActive"></label>
+          </span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created On</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated On</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created By</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.CreatedUser}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated By</b>
+          <span class="dtl-itm-vlue">{{newStatesModels.Updateduser}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- Delete -->
+<eui-dialog #d1 panelCls="mydlg" headerCls="mydlg-header" footerCls="mydlg-footer" [modal]="true" borderType="none" closed="true">
+  <eui-panel-header>Please Confirm</eui-panel-header>
+  <p style="text-align:center;margin:50px 0;font-size:16px">Are you sure you want to continue?</p>
+  <eui-panel-footer>
+    <eui-button-group style="width:100%;height:50px">
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();deleteConfirm()">Yes</eui-linkbutton>
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();">No</eui-linkbutton>
+    </eui-button-group>
+  </eui-panel-footer>
+</eui-dialog>

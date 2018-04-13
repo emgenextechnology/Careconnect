@@ -1,0 +1,22 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="CloseModal()">
+        <span style="color:black" aria-hidden="true">×</span>
+    </button>
+    <div class="share-stuff-header">
+        <!--<img src="/Controlpanel/Content/images/report-icon-orange.png" width="30" alt="Alert" class="pull-left" />-->
+        <b class="pull-left" style="margin:6px 0 0 3px"><i style="color: orange;font-size: 22px;" class="fa fa-exclamation-triangle" aria-hidden="true"></i> Warning</b>
+    </div>
+
+</div>
+
+<div class="modal-body add-wishlist-modal-body">
+    <ul style="list-style-type:disc;padding-left: 16px;margin-bottom:10px" ng-show="isArray">
+        <li ng-repeat="item in message" style="color:red">
+            {{ item }}.
+        </li>
+    </ul>
+    <p ng-if="!isArray">{{message}}</p>
+    <div class="wishlist-modal-footer">
+        <button type="button" class="btn wishlist-modal-continew" ng-click="OK()">OK </button>
+    </div>
+</div>

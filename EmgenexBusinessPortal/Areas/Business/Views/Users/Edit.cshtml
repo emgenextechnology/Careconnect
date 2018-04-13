@@ -1,0 +1,201 @@
+﻿@model  EmgenexBusinessPortal.Models.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+
+    var stateList = new EBP.Business.Database.CareConnectCrmEntities().LookupStates.Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.StateName }).OrderBy(a => a.Text).ToList();
+
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Edit User Form.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedOn)
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.MiddleName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", autocomplete = "off" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "required", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.WorkEmail, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.WorkEmail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WorkEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HomePhone, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.HomePhone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HomePhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.AdditionalPhone, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.AdditionalPhone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AdditionalPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(m => m.AddressLine1, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.AddressLine2, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StateId, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+
+                @Html.DropDownList("StateId", stateList, "Select", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Zip, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Zip, new { @class = "form-control", autocomplete = "off", @maxlength = "5" })
+                @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.StartDate, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.StartDate, "{0:mm-dd-yyyy}", new { @class = "form-control", placeholder = "MM-dd-yyyy", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Roles", new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @foreach (var item in Model.RolesList)
+                {
+                    <span class="col-md-4">
+                        <input type="checkbox" name="selectedRoles" value="@item.Value" id="RolesList.@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        <label for="RolesList.@item.Value" class="chklabel">@item.Text</label>
+                    </span>
+                }
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Departments", new { @class = "control-label col-md-2" })
+            <div class=" col-md-6">
+                @foreach (var item in Model.Departments)
+                {
+                    <span class="col-md-4">
+                        <input type="checkbox" name="selectedDepartments" value="@item.Value" id="pribilege.@item.Value" checked="@item.Selected" class="checkbox-inline " />
+                        <label for="pribilege.@item.Value" class="chklabel">@item.Text</label>
+                    </span>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class=" col-md-8">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    $(function () {
+        _this = $('#StartDate');
+        var dateFormat = _this.val();
+        if (dateFormat != "") {
+            //_this.val($.datepicker.formatDate('mm-dd-yy', new Date(dateFormat)));
+            _this.datepicker({dateFormat: 'mm-dd-yy'}).datepicker('mm-dd-yy', new Date(dateFormat))
+        }
+        _this.datepicker({
+            dateFormat: 'mm-dd-yy'
+        });
+    });
+    //$('#PhoneNumber').mask("(999) 999-9999");
+    //$('#HomePhone').mask("(999) 999-9999");
+    //$('#AdditionalPhone').mask("(999) 999-9999");
+    $("#PhoneNumber").inputmask({
+        "mask": "(999) 999-9999",
+    });
+    $("#HomePhone").inputmask({
+        "mask": "(999) 999-9999",
+    });
+    $("#AdditionalPhone").inputmask({
+        "mask": "(999) 999-9999",
+    });
+</script>

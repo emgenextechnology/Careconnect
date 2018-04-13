@@ -1,0 +1,180 @@
+﻿@model EmgenexBusinessPortal.Models.DepartmentPrivilegesModel
+@{
+    ViewBag.Title = "Privileges";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Privileges of @Model.User.FirstName</h2>
+
+<div class="DepRole" style="width:100%; border:1px solid #ccc; float:left; padding:10px">
+    <div style="float:left; width:40%; border-right:1px solid #ccc; margin-right:10%; padding-right:10%">
+        <h5> Privilages assigned through Departments </h5>
+        <hr />
+        @foreach (var item in @Model.UserDepartments)
+        {
+            <b> @item.DepartmentName</b><br />
+
+            foreach (var Privileges in @item.Privileges)
+            {
+                <input type="checkbox" name="SelectedPrivileges" value="@Privileges.Value" id="Privileges.@Privileges.Value" checked="@Privileges.Value" class="checkbox-inline" disabled />
+                <label class="chklabel" for="Privileges.@Privileges.Value">@Privileges.Text</label><br />
+            }
+            <br />
+        }
+    </div>
+    <div style="float:right; width:50%;">
+        <h5> Privilages assigned through Roles </h5>
+        <hr />
+        @foreach (var item in @Model.UserRoles)
+        {
+            <b>  @item.DepartmentName</b><br />
+            foreach (var Privileges in @item.Privileges)
+            {
+                <input type="checkbox" name="SelectedPrivileges" value="@Privileges.Value" id="Privileges.@Privileges.Value" checked="@Privileges.Value" class="checkbox-inline" disabled />
+                <label class="chklabel" for="Privileges.@Privileges.Value">@Privileges.Text</label><br />
+            }
+            <br />
+        }
+    </div>
+</div>
+
+<div id="UserPrivileges" style="width:100%; border:1px solid #ccc; float:left; padding:10px">
+    Additional Privileges
+    <hr />
+    <br />
+    <table class="permissionTab">
+        <thead>
+            <tr>
+                <td>Privilege</td>
+                <td>Allow </td>
+                <td>Deny</td>
+            </tr>
+        </thead>
+        @foreach (var item in @Model.Modules)
+        {
+            <tr>
+                <td>
+                    <strong>
+                        @if (!string.IsNullOrEmpty(@item.ModuleName))
+                        { @item.ModuleName}
+                        else
+                        {<text>Others</text>}
+                    </strong>
+                </td>
+            </tr>
+            foreach (var Privileges in @item.UserPrivileges)
+            {
+                bool Allow = false, Deny = false;
+                if (Privileges.Deny == null)
+                {
+                    Allow = Deny = false;
+                }
+                else
+                    if (Privileges.Deny == true)
+                {
+                    Allow = false;
+                    Deny = true;
+                }
+                else
+                {
+                    Allow = true;
+                    Deny = false;
+                }
+                <tr>
+                    <td><label class="chklabel" for="Privileges.@Privileges.Id">@Privileges.Name</label></td>
+                    <td class="allow">
+                        <input type="checkbox" name="SelectedPrivileges" value="@Privileges.Id"
+                               id="Privileges.@Privileges.Id" checked="@Allow"
+                               data-notactive="@Privileges.Id" class="checkbox-inline" data-privtype="Allow" />
+                    </td>
+                    <td class="deny">
+                        <input type="checkbox" name="SelectedPrivileges" value="@Privileges.Id"
+                               id="Privileges.@Privileges.Id" checked="@Deny"
+                               data-notactive="@Privileges.Id" class="checkbox-inline" data-privtype="Deny" />
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <button id="btnSubmitPrivilege">Submit</button><span id="ResultSuccess" style="color:green"></span><span id="ResultFailed" style="color:Red"></span>    <label id='loadingPrivilege' style='display:none'>Loading...</label>
+
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+
+    //var values = $.unique($('input[type="checkbox"]', '.DepRole').map(function () { return $(this).val(); }).get());
+
+    //values.forEach(function (value, index) {
+    //    if ($('input[type="checkbox"][value="' + value + '"]:checked', '.deny', '.permissionTab').length > 0) {
+    //        $('input[type="checkbox"][value="' + value + '"]:checked', '.DepRole').prop("checked", false);
+    //    }
+    //});
+
+    $('input[type="checkbox"]', '.allow', '.permissionTab').click(function () {
+        $('input[type="checkbox"][value="' + this.value + '"]', '.DepRole')
+                .prop("checked", true)
+        if (this.checked)
+            $('input[type="checkbox"][value="' + this.value + '"]', '.deny', '.permissionTab')
+        .prop("checked", false);
+    });
+
+    $('input[type="checkbox"]', '.deny', '.permissionTab').click(function () {
+        $('input[type="checkbox"][value="' + this.value + '"]', '.DepRole')
+                .prop("checked", false);
+        if (this.checked)
+            $('input[type="checkbox"][value="' + this.value + '"]', '.allow', '.permissionTab')
+        .prop("checked", false);
+    });
+
+    $('#btnSubmitPrivilege').click(function () {
+
+        var jsonArray = new Array();
+        var userId = '@Model.UserId';
+
+        @*
+        var privilegeIds = $.unique($('input[type="checkbox"]', '.permissionTab').map(function () { return $(this).val(); }).get());
+
+        privilegeIds.forEach(function (value, index) {
+            var objAllow = $('input[type="checkbox"][value="' + value + '"]', '.allow', '.permissionTab');
+            var objDeny = $('input[type="checkbox"][value="' + value + '"]', '.deny', '.permissionTab');
+            var isDeny = (objAllow.prop("checked") === false && objDeny.prop("checked") === false) ? null : (objDeny.prop("checked") === true ? true : false);
+            jsonArray.push({ Id: value, Deny: isDeny, UserId: userId });
+        });*@
+
+        if ($('#UserPrivileges').find('input:checked').length > 0) {
+            $('#UserPrivileges').find('input:checked').each(function (index, element) {
+                jsonArray.push({ Id: $(element).val(), Deny: $(element).data('privtype') == 'Deny', UserId: userId });
+
+            });
+        }
+        else {
+            jsonArray.push({ Id: 0, Deny: false, UserId: userId });
+        }
+        $("#ResultSuccess").text('');
+        $("#ResultFailed").text('');
+        $('#loadingPrivilege').show();
+        $.ajax({
+            type: "POST",
+            url: "/Business/Users/SetPrivileges",
+            data: { entity: jsonArray },
+            success: function (data) {
+                if (data.message == "Sucessfully Saved") {
+                    $("#ResultFailed").text('');
+                    $("#ResultSuccess").text(data.message);
+
+                }
+                else {
+                    $("#ResultSuccess").text('');
+                    $("#ResultFailed").text(data.message)
+                }
+                $('#loadingPrivilege').hide();
+            }
+            //success: success,
+            //dataType: dataType
+        });
+    });
+
+</script>

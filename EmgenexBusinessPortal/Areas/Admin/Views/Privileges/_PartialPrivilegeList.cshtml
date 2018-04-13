@@ -1,0 +1,108 @@
+﻿@model IEnumerable<EBP.Business.Database.Privilege>
+
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayName("Privilege Key")
+        </th>
+        <th>
+            @Html.DisplayName("Modules")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrivilegeKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModulesMaster.Title)
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<div class="col-sm-12 col-xs-12">
+    @if (ViewBag.TotalPage > 1)
+    {
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li>
+                    @Ajax.ActionLink("First", "Index", "Privileges", new { page = 1, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "PrivilegesListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+                <li>
+                    @Ajax.ActionLink("Previous", "Index", "Privileges", new { page = (ViewBag.CurrentPage - 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "PrivilegesListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+
+
+                </li>
+            }
+
+            @for (var page = (int)ViewBag.StartPage; page <= (int)ViewBag.EndPage; page++)
+            {
+                <li class="@(page == ViewBag.CurrentPage ? "active" : "")">
+                    @Ajax.ActionLink(@page.ToString(), "Index", "Privileges", new { page = @page, IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "PrivilegesListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPage)
+            {
+                <li>
+                    @Ajax.ActionLink("Next", "Index", "Privileges", new { page = (ViewBag.CurrentPage + 1), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "PrivilegesListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Last", "Index", "Privileges", new { page = (ViewBag.TotalPage), IsPartial = true, SearchKey = ViewBag.SearchKey }, new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "PrivilegesListing",
+                   OnSuccess = "OnSuccess",
+                   OnBegin = "OnBegin"
+               })
+                </li>
+            }
+        </ul>
+    }
+</div>

@@ -1,0 +1,481 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset=" utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Careconnect CRM</title>
+    <link rel="stylesheet" href="/Controlpanel/Content/css/font-awesome.min.css" />
+    <link href="/Controlpanel/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/custom.css" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/floating-nav.css" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/awesome-bootstrap-checkbox.css" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/select2.min.css" />
+    <link rel="stylesheet" href="/Controlpanel/Content/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="/Controlpanel/Plugins/DataTable/css/angular-datatables.css" />
+    <link rel="stylesheet" href="/Controlpanel/Plugins/Datepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" href="~/Controlpanel/Content/css/placeholder-title-transition.css" />
+
+    <script>
+        var baseUrl = "";
+        var serviceBase = baseUrl + '/';
+    </script>
+
+    <style>
+        .txtWithLbl {
+            padding-top: 14px !important;
+        }
+
+        .lblWithTxt {
+            margin-left: 2px;
+            top: -10px;
+            font-weight: 700;
+            padding: 3px;
+            float: left;
+            position: absolute;
+            font-size: 12px;
+            background: #fff;
+        }
+
+        .today button {
+            background-color: #BCBCBC;
+        }
+
+        .slide-left.ng-enter,
+        .slide-left.ng-leave {
+            z-index: 102;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            -webkit-transition: -webkit-transform .7s ease-in-out;
+            transition: transform .7s ease-in-out;
+        }
+
+        .slide-left.ng-enter {
+            z-index: 101;
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+
+            .slide-left.ng-enter.ng-enter-active {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+        .slide-left.ng-leave {
+            z-index: 100;
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+            .slide-left.ng-leave.ng-leave-active {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+
+        .loading {
+            min-height: 20px;
+            min-width: 50px;
+            background-image: url('Content/images/loading.gif');
+            position: absolute;
+        }
+
+        .ng-submitted .ng-invalid:not(label):not(form) {
+            border-bottom: 2px solid #f00 !important;
+            /*border-color: #f00 !important;*/
+            border-radius: 0;
+        }
+
+        .ng-submitted .ng-invalid + span {
+            border-bottom: 1px solid #f00;
+            border-color: #f00 !important;
+            border-radius: 0;
+        }
+
+        [ng-click] {
+            cursor: pointer;
+        }
+
+        .filter-toggle-check .btn img.bottom-icon {
+            display: block !important;
+        }
+
+        .margin-top-10 {
+            margin-top: 10px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 34px !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 38px;
+        }
+
+        .select2-container {
+            min-height: 40px;
+        }
+
+            .select2-container .select2-selection--single {
+                height: 40px;
+            }
+
+        .row-centered {
+            text-align: center;
+        }
+
+        .col-centered {
+            display: inline-block;
+            float: none;
+            margin-right: -4px;
+            text-align: left;
+        }
+
+        .listbox-lead .table-responsive {
+            min-height: 500px;
+        }
+
+        .margin-bottom-20 {
+            margin-bottom: 20px;
+        }
+
+        .checkbox, .radio {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .lead-top-search_fixed {
+            position: fixed;
+            z-index: 9999;
+            background: #f0f8ff;
+            top: 0;
+            width: 94%;
+        }
+
+        .filter-lead_fixed {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+        }
+
+        .scroll_padding {
+            padding-bottom: 100px;
+        }
+    </style>
+
+    <link href="~/Controlpanel/Plugins/ui-select/common.css" rel="stylesheet" />
+</head>
+<body ng-app="careconnect">
+
+
+    <script>
+        var currentUserName = '@User.Identity.Name';
+    </script>
+
+    
+
+
+    <link href="/Controlpanel/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+    <link href="/Content/style.css" rel="stylesheet" />
+    <div class="container">
+        <div class="common-login-page">
+            <div class="careconnect-logo">
+                <a href="#"><img src="@ViewBag.Logo" onerror="this.src='/Assets/Logo_Not_Available.jpg';" class="img-responsive"></a> @ViewBag.businessName Login
+            </div>
+
+            @using (Html.BeginForm("BusinessLogin", "Account", new { returnUrl = "/" + @ViewBag.RelativeUrl }))
+            {
+                <div class="common-login-form">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.Hidden("RelativeUrl", (string)@ViewBag.RelativeUrl)
+                    @Html.Hidden("ReturnRedirictUrl")
+                    <div class="form-group">
+
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control formbox user-img", id = "cc-username", required = "required", placeholder = "User name" } })
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control formbox pass-img", id = "cc-password", required = "required", placeholder = "Password" } })
+                    </div>
+                    <button type="submit" class="btn btn-default cc-btn">Login</button>
+                    <div class="Remembercheckbox">
+                        @Html.CheckBoxFor(model => model.RememberMe)@Html.LabelFor(model => model.RememberMe)
+                        @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="checkbox">
+                        @Html.ActionLink("Forgot Password", "ForgotPassword", "Account")<br />
+                    </div>
+                    <br />
+                    <p align="justify">
+                        NOTICE TO ALL USERS:
+                        This system is restricted solely to authorized users and may be monitored for administrative and security reasons. The user expressly consents to such monitoring. Any use of this system must be in compliance with careconnectsystems’ policies and applicable laws. Unauthorized users or any unauthorized use may subject the user to criminal and civil penalties under state, federal, or other applicable domestic and foreign laws.
+
+                        When a PDF file is viewed, a copy of the file may be automatically saved to your workstation depending on your web browser. To prevent the unlawful viewing or distribution of protected health information that may be included in a PDF, these files should be managed in accordance with your organization's privacy or security policies.
+                    </p>
+                </div>
+            }
+            <span class="copy"><a href="#"><img src="/Controlpanel/Content/images/careconnect-logo.png" class="img-responsive"></a></span>
+        </div>
+    </div>@Scripts.Render("~/bundles/jquery")
+
+    <script>
+        $(function () {
+            var hashVal = window.location.hash;
+            if (hashVal.length > 0) {
+                $('#ReturnRedirictUrl').val(hashVal);
+            }
+        });
+    </script>
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<script src="/Controlpanel/Scripts/select2.full.js"></script>*@
+
+    @*<script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>*@
+    @*<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js?2"></script>*@
+    <script type="text/javascript" src="//tinymce.cachefly.net/4.3/tinymce.min.js"></script>
+    @*<script src="~/Controlpanel/Scripts/tinymce.min.js"></script>*@
+    @*<script src="~/Controlpanel/Scripts/jquery.tinymce.min.js"></script>*@
+
+    <script src="~/Scripts/angular.min.js"></script>
+
+    <script src="~/Controlpanel/Scripts/angular-sanitize.min.js"></script>
+    <script src="~/Controlpanel/Scripts/select.min.js"></script>
+    <script src="~/Controlpanel/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/angular-animate.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-base64-upload.js"></script>
+    <script src="~/Scripts/angular-cookies.min.js"></script>
+
+    <script src="~/Controlpanel/Plugins/Moment/moment.min.js"></script>
+    <script src="~/Controlpanel/Plugins/Moment/angular-moment.js"></script>
+    <script src="~/Controlpanel/Plugins/Masking/masks.js?i=0"></script>
+    <script src="~/Controlpanel/Plugins/Datepicker/js/datetimepicker.js"></script>
+    <script src="~/Controlpanel/Plugins/Datepicker/js/datetimepicker.templates.js"></script>
+    <script src="~/Controlpanel/Scripts/tiny.js"></script>
+    <script src="~/Controlpanel/Plugins/NiceScroll/jquery.nicescroll.min.js"></script>
+    <script src="/Controlpanel/Plugins/Select2/select2.js"></script>
+
+
+    <script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+
+    <script>
+        var careconnect;
+        var careconnect = angular.module("careconnect", ["ui.bootstrap", 'chart.js', 'ngRoute', 'ui.select2', 'ui.mask', 'ui.select', 'ngSanitize', 'clear-input',
+            'ui.bootstrap.datetimepicker',
+            'angularMoment',
+            'LocalStorageModule',
+            'naif.base64',
+            'ngCookies', 'ui.tinymce'
+        ])
+        .filter('tel', function () {
+            return function (tel) {
+                if (!tel) { return ''; }
+
+                var value = tel.toString().trim().replace(/^\+/, '');
+
+                if (value.match(/[^0-9]/)) {
+                    return tel;
+                }
+
+                var country, city, number;
+
+                switch (value.length) {
+                    case 10: // +1PPP####### -> C (PPP) ###-####
+                        country = 1;
+                        city = value.slice(0, 3);
+                        number = value.slice(3);
+                        break;
+
+                    case 11: // +CPPP####### -> CCC (PP) ###-####
+                        country = value[0];
+                        city = value.slice(1, 4);
+                        number = value.slice(4);
+                        break;
+
+                    case 12: // +CCCPP####### -> CCC (PP) ###-####
+                        country = value.slice(0, 3);
+                        city = value.slice(3, 5);
+                        number = value.slice(5);
+                        break;
+
+                    default:
+                        return tel;
+                }
+
+                if (country == 1) {
+                    country = "";
+                }
+
+                number = number.slice(0, 3) + '-' + number.slice(3);
+
+                return (country + " (" + city + ") " + number).trim();
+            };
+        })
+        .filter('dateSuffix', function ($filter) {
+            var suffixes = ["th", "st", "nd", "rd"];
+            return function (input) {
+                if (input == null)
+                    return null;
+                var dtfilter = $filter('date')(input, 'MMM dd');
+                var month = dtfilter.slice(0, 3);
+                var day = parseInt(dtfilter.slice(-2));
+                var relevantDigits = (day < 30) ? day % 20 : day % 30;
+                var suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
+                return month + " " + day + suffix + " ";
+            };
+        })
+        //.directive('elemReady', function ($parse) {
+        //    return {
+        //        restrict: 'A',
+        //        link: function ($scope, elem, attrs) {
+        //            elem.ready(function () {
+        //                $scope.$apply(function () {
+        //                    var func = $parse(attrs.elemReady);
+        //                    func($scope);
+        //                })
+        //            })
+        //        }
+        //    }
+        //})
+        //.directive('jqdatepicker', function ($filter) {
+        //    return {
+        //        restrict: 'A',
+        //        require: '?ngModel',
+        //        link: function (scope, element, attrs, input) {
+        //            if (!input) { return; } // If no ngModel then return;
+
+        //            element.datepicker(createCalendarOptions());
+        //            setInitialDateFormatOnInput();
+
+        //            function createCalendarOptions() {
+        //                if (!attrs.rsCalendarPopup) { return addRequiredJqueryFunction(defaultOptions); }
+        //                return formatOptions();
+        //            }
+
+        //            function formatOptions() {
+        //                var options = scope.$eval(attrs.rsCalendarPopup);
+        //                // Turn string into object above.
+        //                return addRequiredJqueryFunction(options);
+        //            }
+
+        //            function addRequiredJqueryFunction(options) {
+        //                options.onSelect = changeDate;
+        //                // add onSelect to passed in object and reference local changeDate function, which will update changes to input.$modelValue.
+        //                return options;
+        //            }
+
+        //            function changeDate(date) {
+        //                input.$setViewValue(date);
+        //            }
+
+        //            function setInitialDateFormatOnInput() {
+        //                setTimeout(function () {
+        //                    // This timeout is required to delay the directive for the input.modelValue to resolve.
+        //                    // However, there is no actual timeout time. This is a must to get
+        //                    // Angular to behave.
+        //                    element.datepicker("setDate", formatToJqueryUIDateFormat());
+        //                });
+        //            }
+
+        //            function formatToJqueryUIDateFormat() {
+        //                return $.datepicker.parseDate('yy-mm-dd', input.$modelValue);
+        //                // 'yy-mm-dd' is not the format you want the calendar to be
+        //                // it is the format the original date shows up as.
+        //                // you set your actual formatting using the calendar options at
+        //                // the top of this directive or inside the passed in options.
+        //                // The key is called dateFormat, in this case it's set as
+        //                // dateFormat: "MM d, yy" which makes June 30, 2015.
+        //            }
+        //        } // link
+        //    } // return
+        //})
+        ;//'ngAnimate',
+        //careconnect.config(function ($animateProvider) {
+
+        //    // ignore animations for any element with class `ng-animate-disabled`
+        //    $animateProvider.classNameFilter(/^((?!(ng-animate-disabled)).)*$/);ss
+
+        //});
+
+        moment.lang('en', {
+            relativeTime: {
+                future: "in %s",
+                past: "%s",
+                s: "%d Seconds",
+                m: " 1 Minute",
+                mm: " %d Minutes",
+                h: " 1 Hour",
+                hh: " %d Hours",
+                d: " 1 Day",
+                dd: " %d Days",
+                M: " 1 Month",
+                MM: " %d Months",
+                y: "1 Year",
+                yy: "%d Years"
+            }
+        });
+
+        function scrollToInvalid() {
+            element = document.getElementsByClassName("ng-invalid");
+            alignWithTop = true;
+            element.scrollIntoView(alignWithTop);
+        }
+
+
+        $(window).scroll(function () {
+
+            if ($(window).scrollTop() >= 186) {
+                $('.lead-top-search').addClass('lead-top-search_fixed');
+                $('#lead-list-wrap').addClass('scroll_padding');
+            }
+            else {
+                $('.lead-top-search').removeClass('lead-top-search_fixed');
+                $('#lead-list-wrap').removeClass('scroll_padding');
+            }
+        });
+
+    </script>
+
+    <script src="~/Controlpanel/Scripts/CareConnect/angular-local-storage.min.js"></script>
+    <script src="~/Scripts/clear.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Services/authInterceptorService.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/app.js"></script>
+
+    <script src="~/Controlpanel/Scripts/CareConnect/Services/authService.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Services/tokensManagerService.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Services/leadService.js"></script>
+
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/authController.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/headerController.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/leadController.js"></script>
+    <script src="/Controlpanel/Scripts/CareConnect/Controllers/accountController.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/tasksController.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/salesController.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/dashboardController.js"></script>
+    <script src="~/Controlpanel/Scripts/CareConnect/Controllers/marketingController.js"></script>
+    @*<script src="~/Controlpanel/Scripts/CareConnect/Controllers/testController.js"></script>*@
+    @*<script src="~/Controlpanel/Scripts/dataTables.bootstrap.min.js"></script>*@
+
+    <script src="~/Controlpanel/Scripts/Chart/Chart.js"></script>
+    <script src="~/Controlpanel/Scripts/Chart/angular-chart.min.js"></script>
+    @*<script src="~/Controlpanel/Scripts/Chart/Chart.bundle.js"></script>*@
+    <script src="~/Controlpanel/Scripts/select2.full.js"></script>
+</body>
+</html>

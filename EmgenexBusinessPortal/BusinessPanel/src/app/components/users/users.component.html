@@ -1,0 +1,522 @@
+<style>
+  select {
+    display: block!important;
+    border-top: 0px !important;
+    border-bottom: 1px solid #cfcfcf;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    outline: none;
+    margin-top: 10px;
+  }
+
+  [type="checkbox"].filled-in-fixS+label:after {
+    border: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  [type="checkbox"].filled-in-fix+label:after {
+    border-radius: 2px;
+  }
+
+  [type="checkbox"].filled-in-fix+label:before,
+  [type="checkbox"].filled-in-fix+label:after {
+    content: '';
+    left: 0;
+    position: absolute;
+    /* .1s delay is for check animation */
+    transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+    z-index: 1;
+  }
+
+  [type="checkbox"].filled-in-fix+label:before {
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    left: 6px;
+    top: 10px;
+    -webkit-transform: rotateZ(37deg);
+    transform: rotateZ(37deg);
+    -webkit-transform-origin: 20% 40%;
+    transform-origin: 100% 100%;
+  }
+
+  [type="checkbox"].filled-in-fix+label:after {
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid #9e9e9e;
+    top: 0px;
+    z-index: 0;
+  }
+
+  [type="checkbox"].filled-in-fix.chk-slct+label:before {
+    top: 0;
+    left: 1px;
+    width: 8px;
+    height: 13px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotateZ(37deg);
+    transform: rotateZ(37deg);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+  }
+
+  [type="checkbox"].filled-in-fix.chk-slct+label:after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+    z-index: 0;
+  }
+
+  [type="checkbox"].filled-in-fix.tabbed:focus+label:after {
+    border-radius: 2px;
+    border-color: #5a5a5a;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  [type="checkbox"].filled-in-fix.tabbed.chk-slct:focus+label:after {
+    border-radius: 2px;
+    background-color: #26a69a;
+    border-color: #26a69a;
+  }
+</style>
+<div class="left-window">
+  <div class="left-window-header">
+    <span class="left-each-item-header">Users</span>
+  </div>
+  <div class="divider"></div>
+  <div class="input-field left-search-box seach-box">
+    <input type="text" class="validate" placeholder="Enter Keyword" name="Keywords" (keyup.enter)="getAllUsers(searchFilter)"
+      [(ngModel)]="searchFilter.Keywords">
+    <a class="btn search-btn" (click)="getAllUsers(searchFilter)">
+      <i class="material-icons">search</i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="right-window ">
+  <div class="common-table user-table tab-pad-lft-zero">
+    <table class="striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="t-header">
+          <th data-field="image" class="user-image-header"> </th>
+          <th mat-sort-header="FirstName">Name</th>
+          <th mat-sort-header="Email"> Contact</th>
+          <th>Roles</th>
+          <th>Department</th>
+          <th mat-sort-header="IsActive">Active</th>
+          <th mat-sort-header="LastLoggedInTime">Last Logged In Time</th>
+          <th class="edit-delete-th">active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr *ngFor="let user of Users; let i = index">
+          <td *ngIf="!user.HasUserImage" class="user-image">
+            <span class="circle bg-sky-bleu">
+              <b>{{user.FirstName[0]}}</b>
+            </span>
+          </td>
+          <td *ngIf="user.HasUserImage" class="user-image">
+            <span class="circle">
+              <img src="{{user.FilePath}}" (error)="user.HasUserImage = false" class="responsive-img circle" alt="{{user.FirstName}}">
+            </span>
+          </td>
+          <td>
+            <a href="#details-users-mod" (click)="edit(user.Id)">
+              {{user.FirstName}} {{user.MiddleName}} {{user.LastName}}
+            </a>
+            <span class="sub-txt">@{{user.UserName}}</span>
+          </td>
+          <td>{{user.Email}}
+            <span class="sub-txt">{{user.PhoneNumber}}</span>
+          </td>
+          <td>
+            <span *ngFor="let item of user.UserRoleNames; let isLast=last">
+              {{item}}{{isLast ? '' : ', '}}
+            </span>
+          </td>
+          <td>
+            <span *ngFor="let item of user.UserDepartmentName; let isLast=last">
+              {{item}}{{isLast ? '' : ', '}}
+            </span>
+          </td>
+          <td>
+            <p>
+              <mat-checkbox [(ngModel)]="user.IsActive" (change)="toggleStatus(user.Id)"></mat-checkbox>
+            </p>
+          </td>
+          <td>{{user.LastLoggedInTime!=null?user.LastLoggedInTime:'Not Available'}}</td>
+          <td>
+            <div mat-icon-button [matMenuTriggerFor]="appMenu" class='dropdown-button btn edit-delete-btn'>
+              <img src="assets/images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon">
+            </div>
+            <mat-menu #appMenu="matMenu">
+              <ul class='dropdown-content-menu edit-delete-dropdown'>
+                <li>
+                  <a class="waves-effect" [routerLink]="['/users', user.Id,'privileges']">Privileges</a>
+                </li>
+                <li>
+                  <a href="#user-changepassword-mod" (click)="edit(user.Id)">
+                    Change Password
+                  </a>
+                </li>
+                <li>
+                  <a href="#edit-users-mod" (click)="edit(user.Id)">
+                    Edit
+                  </a>
+                </li>
+                <li>
+                  <a href="#details-users-mod" (click)="edit(user.Id)">
+                    Details
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="d1.open(); delete(user.Id)">
+                    Delete
+                  </a>
+                </li>
+              </ul>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator *ngIf="Users?.length > 0" [length]="pageSize" [pageSize]="25" [pageSizeOptions]="[25,50,100,150,200]" (page)="pageEvent = $event; getAllUsers(searchFilter, false)"></mat-paginator>
+  </div>
+</div>
+
+<div class="modal-button">
+  <div class="fixed-action-btn">
+    <div class=" mdl-fab-btn-wrap">
+      <span class="mdl-fab-txt">Add</span>
+      <a class="btn btn-floating btn-large sky-blue-color " href="#create-user-mod" (click)="openCreate()">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="all-modals">
+  <!-- create -->
+  <div id="create-user-mod" class="modal common-modal crt-role-modal">
+    <form #frmAddUser="ngForm">
+      <div class="modal-content">
+        <h4>Create User</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="First Name" name="FirstName" [(ngModel)]="newUserModel.FirstName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Middle Name" name="MiddleName" [(ngModel)]="newUserModel.MiddleName">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Last Name" name="LastName" [(ngModel)]="newUserModel.LastName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Email" name="Email" [(ngModel)]="newUserModel.Email"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Phone Number" name="PhoneNumber" [(ngModel)]="newUserModel.PhoneNumber"
+              required mask="(000) 000-0000">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Work Email" name="WorkEmail" [(ngModel)]="newUserModel.WorkEmail">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Home Phone" name="HomePhone" [(ngModel)]="newUserModel.HomePhone" mask="(000) 000-0000">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Additional Phone" name="AdditionalPhone" [(ngModel)]="newUserModel.AdditionalPhone">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Address Line1" name="AddressLine1" [(ngModel)]="newUserModel.AddressLine1">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Address Line2" name="AddressLine2" [(ngModel)]="newUserModel.AddressLine2">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="City" name="City" [(ngModel)]="newUserModel.City">
+          </mat-form-field>
+          <div class="row">
+            <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+              <mat-select name="StateId" placeholder="Select State" [(ngModel)]="newUserModel.StateId">
+                <mat-option *ngFor="let state of States" [value]="state.Id">{{state.Value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Zip" name="Zip" [(ngModel)]="newUserModel.Zip">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input required="false" class="exclude-default-style" matInput [matDatepicker]="picker" name="startdate" placeholder="Start Date" [(ngModel)]="newUserModel.StartDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row chk-box-wrapper">
+          <h5>Select Role</h5>
+          <div class="modal-chk-box col" [ngClass]="(userRole.IsSalesRep && userRole.Selected) ? 'm12' : 'm4' " *ngFor="let userRole of UserRoles; let i = index">
+            <label class="lbl-checkbox-fix">
+              <mat-checkbox [name]="userRole.Value" [(ngModel)]="userRole.Selected" [(checked)]="userRole.Selected" (change)="bindUsers(userRole.IsSalesRep && userRole.Selected)">{{userRole.Text}}</mat-checkbox>
+            </label>
+            <div *ngIf="userRole.IsSalesRep && userRole.Selected" class="col m8 right role-salesrep">
+              <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+                <mat-select name="RepGroupId" placeholder="Select Sales Team" [(ngModel)]="newUserModel.RepGroupId">
+                  <mat-option *ngFor="let salesTeam of SalesTeamLookup;" [value]="salesTeam.Id">{{salesTeam.Value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="row chk-box-wrapper">
+          <h5>Select Department</h5>
+          <div class="modal-chk-box col m4" *ngFor="let departments of Departments; let i = index">
+            <label class="lbl-checkbox-fix">
+              <mat-checkbox [name]="departments.Value" [(ngModel)]="departments.Selected" [(checked)]="departments.Selected">{{departments.Text}}</mat-checkbox>
+            </label>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="create(newUserModel,UserRoles,Departments)"
+          [disabled]="!frmAddUser.form.valid">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Edit -->
+  <div id="edit-users-mod" class="modal common-modal crt-role-modal">
+    <form #frmEditUser="ngForm">
+      <div class="modal-content">
+        <h4>Edit User</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="First Name" name="FirstName" [(ngModel)]="newUserModel.FirstName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6  pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Middle Name" name="MiddleName" [(ngModel)]="newUserModel.MiddleName">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Last Name" name="LastName" [(ngModel)]="newUserModel.LastName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="User Name" name="UserName" [(ngModel)]="newUserModel.UserName"
+              readonly>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Email" name="Email" [(ngModel)]="newUserModel.Email"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Phone Number" name="PhoneNumber" [(ngModel)]="newUserModel.PhoneNumber"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Work Email" name="WorkEmail" [(ngModel)]="newUserModel.WorkEmail">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Home Phone" name="HomePhone" [(ngModel)]="newUserModel.HomePhone">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Additional Phone" name="AdditionalPhone" [(ngModel)]="newUserModel.AdditionalPhone">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Address Line1" name="AddressLine1" [(ngModel)]="newUserModel.AddressLine1">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Address Line2" name="AddressLine2" [(ngModel)]="newUserModel.AddressLine2">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="City" name="City" [(ngModel)]="newUserModel.City">
+          </mat-form-field>
+
+          <div class="row">
+            <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+              <mat-select name="StateId" placeholder="Select State" [(ngModel)]="newUserModel.StateId">
+                <mat-option *ngFor="let state of States" [value]="state.Id">{{state.Value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Zip" name="Zip" [(ngModel)]="newUserModel.Zip">
+          </mat-form-field>
+          <mat-form-field class="input-field col s6 pad-rht-zero">
+            <input class="exclude-default-style" matInput [matDatepicker]="picker1" name="StartDateCal" placeholder="Start Date" [(ngModel)]="newUserModel.StartDateCal">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="row s12 pad-lft-zero">
+          <h5>Select Role</h5>
+          <div class="modal-chk-box col m4" *ngFor="let userRole of newUserModel.UserRoles; let i = index">
+            <label class="lbl-checkbox-fix">
+              <mat-checkbox [name]="userRole.Value" [(checked)]="userRole.Selected" (change)="userRole.Selected = !userRole.Selected">{{userRole.Text}}</mat-checkbox>
+            </label>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="row s12 pad-lft-zero">
+          <h5>Select Department</h5>
+          <div class="modal-chk-box col m4" *ngFor="let departments of newUserModel.UserDepartments; let i = index">
+            <label class="lbl-checkbox-fix">
+              <mat-checkbox [name]="departments.Value" [(checked)]="departments.Selected" (change)="departments.Selected = !departments.Selected">{{departments.Text}}</mat-checkbox>
+            </label>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="update(newUserModel)" [disabled]="!frmEditUser.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Details -->
+  <div id="details-users-mod" class="modal common-modal crt-role-modal">
+    <div class="modal-content">
+      <div class="detail-page-wrapper">
+        <h3 class="details-header">
+          <span>User </span> Details</h3>
+        <div class="det-modal-close-btn right">
+          <img src="assets/images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Last Logged in Time</b>
+          <span class="dtl-itm-vlue">{{newUserModel.LastLoggedInTime!=null?newUserModel.LastLoggedInTime:'Not Available'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">First Name</b>
+          <span class="dtl-itm-vlue">{{newUserModel.FirstName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Middle Name</b>
+          <span class="dtl-itm-vlue">{{newUserModel.MiddleName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Last Name</b>
+          <span class="dtl-itm-vlue">{{newUserModel.LastName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Email</b>
+          <span class="dtl-itm-vlue">{{newUserModel.Email}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Phone Number</b>
+          <span class="dtl-itm-vlue">{{newUserModel.PhoneNumber}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">UserName</b>
+          <span class="dtl-itm-vlue">{{newUserModel.UserName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Roles</b>
+          <span class="dtl-itm-vlue">
+            <span *ngFor="let item of newUserModel.UserRoleNames; let isLast=last">
+              {{item}}{{isLast ? '' : ', '}}
+            </span>
+          </span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Department</b>
+          <span class="dtl-itm-vlue">
+            <span *ngFor="let item of newUserModel.UserDepartmentName; let isLast=last">
+              {{item}}{{isLast ? '' : ', '}}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Password -->
+  <div id="user-changepassword-mod" class="modal common-modal crt-role-modal">
+    <form #frmSetPassword="ngForm">
+      <div class="modal-content">
+        <h4>Change password of {{newUserModel.FirstName}}</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <p>
+          <small>Note: Passwords must have at least one special character, one digit and one uppercase character.</small>
+        </p>
+        <div class="row">
+          <input type="text" hidden id="changePasswordUserId" name="UserId" class="validate" [value]="newUserModel.Id">
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="NewPassword" name="NewPassword" [(ngModel)]="newSetPasswordModel.NewPassword"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="ConfirmPassword" name="ConfirmPassword" [(ngModel)]="newSetPasswordModel.ConfirmPassword"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="setPassword(newSetPasswordModel)" [disabled]="!frmSetPassword.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete -->
+<eui-dialog #d1 panelCls="mydlg" headerCls="mydlg-header" footerCls="mydlg-footer" [modal]="true" borderType="none" closed="true">
+  <eui-panel-header>Please Confirm</eui-panel-header>
+  <p style="text-align:center;margin:50px 0;font-size:16px">Are you sure you want to continue?</p>
+  <eui-panel-footer>
+    <eui-button-group style="width:100%;height:50px">
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();deleteConfirm()">Yes</eui-linkbutton>
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();">No</eui-linkbutton>
+    </eui-button-group>
+  </eui-panel-footer>
+</eui-dialog>

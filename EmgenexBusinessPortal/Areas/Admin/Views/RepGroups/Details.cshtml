@@ -1,0 +1,83 @@
+﻿@model EBP.Business.Database.LookupRepGroup
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rep Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RepGroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepGroupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Decription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Decription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LookupRepGroupStatu.StatusType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookupRepGroupStatu.StatusType)
+        </dd>
+
+        <dt>            
+            @Html.Label("Manaher Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User2.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User2.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

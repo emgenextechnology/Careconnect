@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2a2eb7cec9f435ab7518f6548d6b4d4" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="CRMStagingModel.Account" Width="1.5" PointX="13.5" PointY="105.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.Address" Width="1.5" PointX="11.25" PointY="99.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.BusinessMaster" Width="1.5" PointX="8.25" PointY="113" />
+        <EntityTypeShape EntityType="CRMStagingModel.Department" Width="1.5" PointX="19.5" PointY="99.25" />
+        <EntityTypeShape EntityType="CRMStagingModel.DepartmentPrivilege" Width="1.5" PointX="24.75" PointY="93.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.Lead" Width="1.5" PointX="18.75" PointY="111.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupCountry" Width="1.5" PointX="8.25" PointY="122.25" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupDegree" Width="1.5" PointX="8.25" PointY="94.375" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupDocumentType" Width="1.5" PointX="16.5" PointY="95.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupEnrolledService" Width="1.5" PointX="19.5" PointY="92.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupLeadSource" Width="1.5" PointX="8.25" PointY="130.25" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupMarketingCategory" Width="1.5" PointX="18.5" PointY="104.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupNotificationType" Width="1.5" PointX="8.25" PointY="102.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupPracticeSpecialityType" Width="1.5" PointX="8.25" PointY="126.375" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupPracticeType" Width="1.5" PointX="8.25" PointY="109.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupState" Width="1.5" PointX="16.5" PointY="114.375" />
+        <EntityTypeShape EntityType="CRMStagingModel.LookupTaskType" Width="1.5" PointX="13.5" PointY="110.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.MarketingAttachment" Width="1.5" PointX="33" PointY="99.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.MarketingDocument" Width="1.5" PointX="24.75" PointY="111" />
+        <EntityTypeShape EntityType="CRMStagingModel.ModulesMaster" Width="1.5" PointX="8.25" PointY="80.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.Note" Width="1.5" PointX="8.25" PointY="84.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.Phone" Width="1.5" PointX="16.5" PointY="90.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.Practice" Width="1.5" PointX="10.5" PointY="106.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.PracticeAddressMapper" Width="1.5" PointX="22.5" PointY="99.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.PracticeContact" Width="1.5" PointX="13.5" PointY="90.25" />
+        <EntityTypeShape EntityType="CRMStagingModel.PracticePracticeSpecialityMapper" Width="1.5" PointX="12.75" PointY="115.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.PracticeProviderLocationMapper" Width="1.5" PointX="20.75" PointY="104.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.PracticeProviderMapper" Width="1.5" PointX="21.75" PointY="92" />
+        <EntityTypeShape EntityType="CRMStagingModel.PracticeServiceMapper" Width="1.5" PointX="21.75" PointY="96" />
+        <EntityTypeShape EntityType="CRMStagingModel.Privilege" Width="1.5" PointX="10.5" PointY="95.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.Provider" Width="1.5" PointX="13.5" PointY="96" />
+        <EntityTypeShape EntityType="CRMStagingModel.Rep" Width="1.5" PointX="18.75" PointY="87.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.RepGroup" Width="1.5" PointX="16.5" PointY="109.25" />
+        <EntityTypeShape EntityType="CRMStagingModel.RepgroupManagerMapper" Width="1.5" PointX="24.75" PointY="89.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.ReportColumn" Width="1.5" PointX="21.75" PointY="109.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.ReportColumnValue" Width="1.5" PointX="33" PointY="103.25" />
+        <EntityTypeShape EntityType="CRMStagingModel.ReportFinance" Width="1.5" PointX="23.75" PointY="104.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.ReportMaster" Width="1.5" PointX="26.75" PointY="102.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.ReportStaticColumnConfig" Width="1.5" PointX="21.75" PointY="125.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.RepServiceMapper" Width="1.5" PointX="24.75" PointY="97.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.RolePrivilege" Width="1.5" PointX="8.25" PointY="99.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.Role" Width="1.5" PointX="0.75" PointY="98.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.SalesDepartmentPrivilege" Width="1.5" PointX="29" PointY="105.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.SalesRolePrivilege" Width="1.5" PointX="3" PointY="99" />
+        <EntityTypeShape EntityType="CRMStagingModel.SalesUserPrivilege" Width="1.5" PointX="30" PointY="94.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.Task" Width="1.5" PointX="27.75" PointY="115.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.TaskAttachment" Width="1.5" PointX="32" PointY="108.125" />
+        <EntityTypeShape EntityType="CRMStagingModel.TaskItemOrder" Width="1.5" PointX="38" PointY="107.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.TaskItem" Width="1.5" PointX="27.75" PointY="111" />
+        <EntityTypeShape EntityType="CRMStagingModel.TaskLog" Width="1.5" PointX="36" PointY="95.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.TaskUser" Width="1.5" PointX="35" PointY="107.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.TaskUserAlert" Width="1.5" PointX="36" PointY="102.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserClaim" Width="1.5" PointX="8.25" PointY="77.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserColumnVisibility" Width="1.5" PointX="27.75" PointY="97.5" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserDepartment" Width="1.5" PointX="27.75" PointY="92.875" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserLogin" Width="1.5" PointX="8.25" PointY="106.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserNotificationMapper" Width="1.5" PointX="16.5" PointY="99.75" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserPrivilege" Width="1.5" PointX="15.75" PointY="104.625" />
+        <EntityTypeShape EntityType="CRMStagingModel.UserProfile" Width="1.5" PointX="30.75" PointY="99" />
+        <EntityTypeShape EntityType="CRMStagingModel.User" Width="1.5" PointX="6" PointY="87.125" />
+        <AssociationConnector Association="CRMStagingModel.FK_Accounts_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Accounts_Leads" />
+        <AssociationConnector Association="CRMStagingModel.FK_Accounts_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Accounts_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Address_State" />
+        <AssociationConnector Association="CRMStagingModel.FK_Address_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Address_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Phone_Address" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeAddressMapper_Address" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeContact_Address" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderLocationMapper_Address" />
+        <AssociationConnector Association="CRMStagingModel.FK_BusinessMaster_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_BusinessMaster_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Department_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Leads_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupDocumentType_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupEnrolledServices_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupMarketingCategory_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupTaskType_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingDocuments_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Practice_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepGroup_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumns_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportFinance_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Roles_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Task_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserColumnVisibility_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserPrivileges_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Users_BusinessMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Department_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Department_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_DepartmentPrivileges_Department" />
+        <AssociationConnector Association="CRMStagingModel.FK_SalesDepartmentPrivileges_Department" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserDepartments_Department" />
+        <AssociationConnector Association="CRMStagingModel.FK_DepartmentPrivileges_DepartmentPrivileges" />
+        <AssociationConnector Association="CRMStagingModel.FK_DepartmentPrivileges_Privileges" />
+        <AssociationConnector Association="CRMStagingModel.FK_DepartmentPrivileges_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_DepartmentPrivileges_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Leads_LeadSource" />
+        <AssociationConnector Association="CRMStagingModel.FK_Leads_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_Leads_Rep1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Leads_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Leads_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupCountry_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupCountry_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_State_Country" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupDegree_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupDegree_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Provider_Degree" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupDocumentType_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupDocumentType_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingDocuments_DocumentType" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupServices_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupServices_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeServiceMapper_LookupEnrolledServices" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumns_LookupEnrolledServices" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportFinance_LookupEnrolledServices" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_LookupEnrolledServices" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportStaticColumnConfig_LookupEnrolledServices" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepServiceMapper_Services" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserColumnVisibility_LookupEnrolledServices" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupLeadSource_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupLeadSource_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupMarketingCategory_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupMarketingCategory_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingDocuments_MarketingCategory" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupNotificationType_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupNotificationType_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserNotificationMapper_LookupNotificationType" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupPracticeSpecialityType_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupPracticeSpecialityType_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticePracticeSpecialityMapper_PracticeSpecialityType" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupPracticeType_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupPracticeType_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Practice_PracticeType" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupState_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupState_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserProfile_LookupState" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupTaskType_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_LookupTaskType_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequest_TaskRequestType" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequestItemOrder_TaskRequestType" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequestItems_TaskRequestType" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequestItems_TaskRequestType1" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingAttachments_MarketingDocuments" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingAttachments_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingDocuments_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_MarketingDocuments_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_ModulesMaster_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_ModulesMaster_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Privileges_ModulesMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_Notes_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Notes_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Phone_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Phone_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Practice_Rep1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Practice_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Practice_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeAddressMapper_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeContact_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticePracticeSpecialityMapper_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderLocationMapper_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderMapper_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeServiceMapper_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskLog_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequest_Practice" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeAddressMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeAddressMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeContact_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeContact_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticePracticeSpecialityMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticePracticeSpecialityMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderLocationMapper_Provider" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderLocationMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderLocationMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderMapper_Provider" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeProviderMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeServiceMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_PracticeServiceMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Privileges_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Privileges_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_RolePrivilege_Privileges" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserPermissions_Permissions" />
+        <AssociationConnector Association="CRMStagingModel.FK_Provider_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Provider_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_Provider" />
+        <AssociationConnector Association="CRMStagingModel.FK_Rep_RepGroup" />
+        <AssociationConnector Association="CRMStagingModel.FK_Rep_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Rep_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_Rep_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_Rep" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepServiceMapper_Rep" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepGroup_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepGroup_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepGroup_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepgroupManagerMapper_RepGroup" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepgroupManagerMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepgroupManagerMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepgroupManagerMapper_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumns_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumns_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumnValue_ReportColumns" />
+        <AssociationConnector Association="CRMStagingModel.FK_SalesDepartmentPrivileges_ReportColumns" />
+        <AssociationConnector Association="CRMStagingModel.FK_SalesRolePrivileges_ReportColumns" />
+        <AssociationConnector Association="CRMStagingModel.FK_SalesUserPrivileges_ReportColumns" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumnValue_ReportMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumnValue_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportColumnValue_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportFinance_ReportMaster" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportFinance_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportFinance_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_ReportMaster_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepServiceMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_RepServiceMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_RolePrivilege_RolePrivilege" />
+        <AssociationConnector Association="CRMStagingModel.FK_RolePrivilege_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_SalesRolePrivileges_Roles" />
+        <AssociationConnector Association="CRMStagingModel.FK_SalesUserPrivileges_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Task_RequestedBy" />
+        <AssociationConnector Association="CRMStagingModel.FK_Task_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_Task_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskAttachments_Task" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskLog_Task" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequestItemOrder_TaskRequest" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUser_Task" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUserAlert_Task" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskAttachments_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskItemOrder_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskItemOrder_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskRequestItemOrder_TaskRequestItems" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskItems_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskItems_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskLog_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUser_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUser_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUser_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUserAlert_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUserAlert_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_TaskUserAlert_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_dbo_UserClaims_dbo_Users_UserId" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserColumnVisibility_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserColumnVisibility_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserDepartments_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserDepartments_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserDepartments_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_dbo_UserLogins_dbo_Users_UserId" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserNotificationMapper_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserNotificationMapper_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserNotificationMapper_Users2" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserPrivileges_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserPrivileges_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserProfile_Users" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserProfile_Users1" />
+        <AssociationConnector Association="CRMStagingModel.FK_UserProfile_Users2" />
+        <AssociationConnector Association="CRMStagingModel.UserRoles" />
+        <EntityTypeShape EntityType="CRMStagingModel.Notification" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="CRMStagingModel.NotificationUser" Width="1.5" PointX="3" PointY="1.25" />
+        <AssociationConnector Association="CRMStagingModel.FK_NotificationUser_Notification" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

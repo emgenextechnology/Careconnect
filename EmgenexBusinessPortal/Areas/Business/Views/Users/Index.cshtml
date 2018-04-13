@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EBP.Business.Database.User>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+}
+
+<h2>Users</h2>
+
+<p>
+    <div class="row col-md-12">
+        <div class="col-md-6">
+            @Html.ActionLink("Create New", "Create")
+        </div>
+        @*<div class="col-md-2 col-xs-3 hidden-xs  ">
+            @using (Html.BeginForm("Importexcel", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <label for="file-input" style="line-height:1.5; margin-bottom:0; font-weight:normal " class="btn btn-primary lead-add-btn">
+                    <span id="Spinloader" style='display:none'><i class="fa fa-spinner fa-spin "></i></span> 
+                    Import
+                </label>
+                <input id="file-input" type="file" name="files" onchange="this.form.submit($('#Spinloader').show())"  style="display:none">
+            }
+        </div>*@
+        <div class="col-md-4 col-xs-3 hidden-xs  ">
+            @using (Ajax.BeginForm("Index", "Users", new { IsPartial = true, @class = "input-group" }, new AjaxOptions
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "UsersListing",
+                OnSuccess = "OnSuccess",
+                OnBegin = "OnBegin"
+            }))
+            {
+                <div class="col-md-9">
+                    <input id="keywordtext1" type="text" class="form-control m-l-10 " name="SearchKey" placeholder="Enter Keyword">
+                </div>
+                <div class="col-md-3">
+                    <span class="input-group-btn">
+                        <button class="btn" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</p>
+<label id='loading' style='display:none'>Loading...</label>
+<div id="UsersListing">
+    @Html.Partial("_PartialUsersList", Model)
+</div>
+<script>
+    function OnBegin() {
+        $('#loading').show();
+    }
+    function OnSuccess() {
+        $('#loading').hide();
+    }
+</script>

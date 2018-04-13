@@ -1,0 +1,94 @@
+Patient Id	:	1	Patient Name	:	aaa bb	Practice Name	:	Advanced Metabolic Medicine
+Saving or accepting changes failed because more than one entity of type 'EBP.Business.Database.ReportColumnValue' have the same primary key value. Ensure that explicitly set primary key values are unique. Ensure that database-generated primary keys are configured correctly in the database and in the Entity Framework model. Use the Entity Designer for Database First/Model First configuration. Use the 'HasDatabaseGeneratedOption" fluent API or 'DatabaseGeneratedAttribute' for Code First configuration. 
+
+Patient Id	:	1000036	Patient Name	:	FName Lname	Practice Name	:	A Plus Medical
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	1111111	Patient Name	:	FNAME LANAME	Practice Name	:	Mind Body Wellness Professionals
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16911	Patient Name	:	Maria Rodriguez	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Patel Kunj	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Morris Cori	Practice Name	:	Newtown Behavioral
+Saving or accepting changes failed because more than one entity of type 'EBP.Business.Database.ReportColumnValue' have the same primary key value. Ensure that explicitly set primary key values are unique. Ensure that database-generated primary keys are configured correctly in the database and in the Entity Framework model. Use the Entity Designer for Database First/Model First configuration. Use the 'HasDatabaseGeneratedOption" fluent API or 'DatabaseGeneratedAttribute' for Code First configuration. 
+
+Patient Id	:	0	Patient Name	:	Houghton Grant	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Lowden Ellea	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Connell Richard	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Adler Jay	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Chonka Cait	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Lobis Erin	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Egan Neil	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Vayner Boris	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Booth Lynn	Practice Name	:	Newtown Behavioral
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Pagan Carmen	Practice Name	:	Medical First
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Peterson Dor	Practice Name	:	Medical First
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Jones Henry	Practice Name	:	
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Seda David	Practice Name	:	New York Spine and Sport Rehabilitation Center
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Thompson Sherry	Practice Name	:	New York Spine and Sport Rehabilitation Medicine
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Wallace Robert	Practice Name	:	Skin Smart Dermatology
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Brown Kimberly	Practice Name	:	Spine & Joint Pain Center
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	0	Patient Name	:	Turiello Lisa	Practice Name	:	Spine & Joint Pain Center
+Record successfully updated
+Finance data successfully inserted
+
+Number of rows Inserted 	:	0	
+Number of rows Inserted 	:	21	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	2

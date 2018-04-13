@@ -1,0 +1,38 @@
+﻿@model EmgenexBusinessPortal.Models.BusinessLoginViewModel
+
+@{
+    ViewBag.Title = "BusinessLogin";
+    Layout = null;
+}
+<style>
+    .Remembercheckbox {
+        text-align: center;
+        font-size: 18px;
+        color: #4c4c4c;
+    }
+
+        .Remembercheckbox label, .radio label {
+            min-height: 20px;
+            padding-left: 20px;
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+</style>
+
+
+<link href="/Content/style.css" rel="stylesheet" />
+<div class="container">
+    <div class="common-login-page">
+        <div class="careconnect-logo">
+            <a href="#"><img src="@ViewBag.Logo" onerror="this.src='/Assets/Logo_Not_Available.jpg';" class="img-responsive"></a>
+        </div>
+        <div class="common-login-form">
+            <div class="careconnect-logo">
+                Hi {{authData.fullName}}, You don't have enough permission to view the dashboard. Please contact Administrator!
+            </div>
+        </div>
+
+        <span class="copy"><a href="#"><img src="/Controlpanel/Content/images/careconnect-logo.png" class="img-responsive"></a></span>
+    </div>
+</div>

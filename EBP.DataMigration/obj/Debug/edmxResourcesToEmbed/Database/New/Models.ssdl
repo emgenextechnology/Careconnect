@@ -1,0 +1,3881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRMStagingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadId" Type="int" Nullable="false" />
+    <Property Name="EnrolledDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressTypeId" Type="int" Nullable="false" />
+    <Property Name="Line1" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Line2" Type="nvarchar" MaxLength="500" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsSecondery" Type="bit" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="BusinessMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="About" Type="nvarchar" MaxLength="500" />
+    <Property Name="RelativeUrl" Type="varchar" MaxLength="100" />
+    <Property Name="DomainUrl" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="DepartmentPrivileges">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+      <PropertyRef Name="PrivilegeId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="PrivilegeId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Leads">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" Nullable="false" />
+    <Property Name="LeadSourceId" Type="int" />
+    <Property Name="RepId" Type="int" />
+    <Property Name="LeadServiceIntrest" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="LeadStatus" Type="int" Nullable="false" />
+    <Property Name="HasFlag" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OtherLeadSource" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsConverted" Type="bit" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryCode" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupDegree">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DegreeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupDocumentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupEnrolledServices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceDecription" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupLeadSource">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupMarketingCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupPracticeSpecialityType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeSpecialityType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupPracticeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupState">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="StateCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupTaskType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskType" Type="nvarchar(max)" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="MarketingAttachments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MarketingId" Type="int" />
+    <Property Name="FileName" Type="varchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="MarketingDocuments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DocumentTypeId" Type="int" />
+    <Property Name="Url" Type="nvarchar(max)" />
+    <Property Name="Trash" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="BusinessId" Type="int" />
+  </EntityType>
+  <EntityType Name="ModulesMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParentTypeId" Type="int" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TargetId" Type="int" Nullable="false" />
+    <Property Name="TargetType" Type="int" Nullable="false" />
+    <Property Name="NotificationType" Type="int" Nullable="false" />
+    <Property Name="CreatedUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProfilePicUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotificationUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NotificationId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsRead" Type="bit" />
+    <Property Name="IsSent" Type="bit" />
+  </EntityType>
+  <EntityType Name="Phone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneTypeId" Type="int" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Extension" Type="nvarchar" MaxLength="10" />
+    <Property Name="AddressId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PracticeTypeId" Type="int" />
+    <Property Name="PracticeSpecialityType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactPreferenceId" Type="int" />
+    <Property Name="RepId" Type="int" />
+    <Property Name="ReportDeliveryPreference" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReportDeliveryFax" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="225" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastActivityDate" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="OldId" Type="int" />
+    <Property Name="EntrolledServicesId" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeAddressMapper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="AddressId" Type="int" />
+    <Property Name="PracticeOther" Type="nvarchar" MaxLength="500" />
+    <Property Name="BillingContact" Type="nvarchar" MaxLength="20" />
+    <Property Name="BillingContactPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ManagerEmail" Type="nvarchar" MaxLength="255" />
+    <Property Name="ManagerPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="BillingContactEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="officedayshrs" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticePracticeSpecialityMapper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeSpecialityId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeProviderLocationMapper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="AddressId" Type="int" />
+    <Property Name="ProviderId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeProviderMapper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" Nullable="false" />
+    <Property Name="ProviderId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeServiceMapper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnrolledServiceId" Type="int" Nullable="false" />
+    <Property Name="PracticeId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Privileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModuleId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="PrivilegeKey" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NPI" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DegreeId" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ProviderEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="Rep">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RepGroupId" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="SignonDate" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="RepGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="ManagerId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="ReportColumns">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="ColumnName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsMandatory" Type="bit" />
+    <Property Name="DisplayInFilter" Type="bit" />
+    <Property Name="ShowInGrid" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ReportColumnValue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnId" Type="int" Nullable="false" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ReportMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="PatientFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PatientLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SpecimenCollectionDate" Type="datetime" />
+    <Property Name="SpecimenReceivedDate" Type="datetime" />
+    <Property Name="ReportedDate" Type="datetime" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="PracticeName" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="ProviderFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProviderLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProviderNpi" Type="nvarchar" MaxLength="50" />
+    <Property Name="RepId" Type="int" />
+    <Property Name="RepFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RepLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OldId" Type="int" />
+    <Property Name="IsColumnValuesImported" Type="bit" />
+    <Property Name="OldReportId" Type="int" />
+  </EntityType>
+  <EntityType Name="RepServiceMapper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="RolePrivilege">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="PrivilegeId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <EntityType Name="SalesDepartmentPrivileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnId" Type="int" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SalesRolePrivileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SalesUserPrivileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsDeny" Type="bit" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="250" />
+    <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaskRequestTypeId" Type="int" Nullable="false" />
+    <Property Name="TaskDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="PriorityTypeId" Type="int" />
+    <Property Name="TargetDate" Type="datetime" />
+    <Property Name="ClosingDate" Type="datetime" />
+    <Property Name="RequestedBy" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="TaskAttachments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskId" Type="int" />
+    <Property Name="FileName" Type="varchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="TaskItemOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskRequestId" Type="int" Nullable="false" />
+    <Property Name="TaskRequestItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="RequestTypeId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="TaskItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemDesciption" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TaskRequestTypeId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="TaskLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskId" Type="int" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="250" />
+    <Property Name="AlertDate" Type="datetime" />
+    <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaskRequestTypeId" Type="int" Nullable="false" />
+    <Property Name="TaskDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="PriorityTypeId" Type="int" />
+    <Property Name="TargetDate" Type="datetime" />
+    <Property Name="ClosingDate" Type="datetime" />
+    <Property Name="RequestedBy" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="AssignedTo" Type="varchar(max)" />
+    <Property Name="Watchers" Type="varchar(max)" />
+    <Property Name="Action" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="Files" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="TaskUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsWatcher" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="TaskUserAlert">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="AlertDate" Type="datetime" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="TempProviderMigrationData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewId" Type="int" />
+    <Property Name="OldId" Type="int" />
+    <Property Name="NPI" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserColumnVisibility">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ModuleId" Type="int" Nullable="false" />
+    <Property Name="ColumnName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserDepartments">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPrivileges">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="PrivilegeId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="PrivilegeId" Type="int" Nullable="false" />
+    <Property Name="IsDeny" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="BusinessId" Type="int" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Startdate" Type="datetime" />
+    <Property Name="WorkEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="HomePhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdditionalPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressLine1" Type="nvarchar" MaxLength="500" />
+    <Property Name="AddressLine2" Type="nvarchar" MaxLength="500" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="BusinessId" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="OldId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Accounts_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Leads">
+    <End Role="Leads" Type="Self.Leads" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Leads">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="LeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_State">
+    <End Role="LookupState" Type="Self.LookupState" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupState">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessMaster_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessMaster">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessMaster_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessMaster">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserClaims_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserClaims" Type="Self.UserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserLogins_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserLogins" Type="Self.UserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserRoles_dbo_Roles_RoleId">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserRoles_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentPrivileges_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="DepartmentPrivileges" Type="Self.DepartmentPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentPrivileges">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentPrivileges_DepartmentPrivileges">
+    <End Role="DepartmentPrivileges" Type="Self.DepartmentPrivileges" Multiplicity="1" />
+    <End Role="DepartmentPrivileges1" Type="Self.DepartmentPrivileges" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentPrivileges">
+        <PropertyRef Name="DepartmentId" />
+        <PropertyRef Name="PrivilegeId" />
+      </Principal>
+      <Dependent Role="DepartmentPrivileges1">
+        <PropertyRef Name="DepartmentId" />
+        <PropertyRef Name="PrivilegeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentPrivileges_Privileges">
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="1" />
+    <End Role="DepartmentPrivileges" Type="Self.DepartmentPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privileges">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentPrivileges">
+        <PropertyRef Name="PrivilegeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentPrivileges_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="DepartmentPrivileges" Type="Self.DepartmentPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentPrivileges">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentPrivileges_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="DepartmentPrivileges" Type="Self.DepartmentPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentPrivileges">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Leads" Type="Self.Leads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leads">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_LeadSource">
+    <End Role="LookupLeadSource" Type="Self.LookupLeadSource" Multiplicity="0..1" />
+    <End Role="Leads" Type="Self.Leads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupLeadSource">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leads">
+        <PropertyRef Name="LeadSourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="1" />
+    <End Role="Leads" Type="Self.Leads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leads">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_Rep1">
+    <End Role="Rep" Type="Self.Rep" Multiplicity="0..1" />
+    <End Role="Leads" Type="Self.Leads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leads">
+        <PropertyRef Name="RepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Leads" Type="Self.Leads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leads">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Leads" Type="Self.Leads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leads">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupCountry_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupCountry" Type="Self.LookupCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupCountry">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupCountry_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupCountry" Type="Self.LookupCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupCountry">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupDegree_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupDegree" Type="Self.LookupDegree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupDegree">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupDegree_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupDegree" Type="Self.LookupDegree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupDegree">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupDocumentType_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="LookupDocumentType" Type="Self.LookupDocumentType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupDocumentType">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupDocumentType_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupDocumentType" Type="Self.LookupDocumentType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupDocumentType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupDocumentType_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupDocumentType" Type="Self.LookupDocumentType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupDocumentType">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupEnrolledServices_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="1" />
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupEnrolledServices">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupLeadSource_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupLeadSource" Type="Self.LookupLeadSource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupLeadSource">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupLeadSource_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupLeadSource" Type="Self.LookupLeadSource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupLeadSource">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupMarketingCategory_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="LookupMarketingCategory" Type="Self.LookupMarketingCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupMarketingCategory">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupMarketingCategory_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupMarketingCategory" Type="Self.LookupMarketingCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupMarketingCategory">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupMarketingCategory_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupMarketingCategory" Type="Self.LookupMarketingCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupMarketingCategory">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupPracticeSpecialityType_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupPracticeSpecialityType" Type="Self.LookupPracticeSpecialityType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupPracticeSpecialityType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupPracticeSpecialityType_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupPracticeSpecialityType" Type="Self.LookupPracticeSpecialityType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupPracticeSpecialityType">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupPracticeType_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupPracticeType" Type="Self.LookupPracticeType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupPracticeType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupPracticeType_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupPracticeType" Type="Self.LookupPracticeType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupPracticeType">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupServices_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupEnrolledServices">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupServices_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupEnrolledServices">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupState_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupState" Type="Self.LookupState" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupState">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupState_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupState" Type="Self.LookupState" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupState">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupTaskType_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="1" />
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupTaskType">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupTaskType_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupTaskType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookupTaskType_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupTaskType">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingAttachments_MarketingDocuments">
+    <End Role="MarketingDocuments" Type="Self.MarketingDocuments" Multiplicity="0..1" />
+    <End Role="MarketingAttachments" Type="Self.MarketingAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarketingDocuments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingAttachments">
+        <PropertyRef Name="MarketingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingAttachments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="MarketingAttachments" Type="Self.MarketingAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingAttachments">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingDocuments_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="MarketingDocuments" Type="Self.MarketingDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingDocuments">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingDocuments_DocumentType">
+    <End Role="LookupDocumentType" Type="Self.LookupDocumentType" Multiplicity="0..1" />
+    <End Role="MarketingDocuments" Type="Self.MarketingDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDocumentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingDocuments">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingDocuments_MarketingCategory">
+    <End Role="LookupMarketingCategory" Type="Self.LookupMarketingCategory" Multiplicity="1" />
+    <End Role="MarketingDocuments" Type="Self.MarketingDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupMarketingCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingDocuments">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingDocuments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="MarketingDocuments" Type="Self.MarketingDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingDocuments">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarketingDocuments_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="MarketingDocuments" Type="Self.MarketingDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarketingDocuments">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModulesMaster_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ModulesMaster" Type="Self.ModulesMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ModulesMaster">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModulesMaster_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ModulesMaster" Type="Self.ModulesMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ModulesMaster">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationUser_Notification">
+    <End Role="Notification" Type="Self.Notification" Multiplicity="1" />
+    <End Role="NotificationUser" Type="Self.NotificationUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NotificationUser">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_PracticeType">
+    <End Role="LookupPracticeType" Type="Self.LookupPracticeType" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupPracticeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="PracticeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_Rep1">
+    <End Role="Rep" Type="Self.Rep" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="RepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeAddressMapper_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="PracticeAddressMapper" Type="Self.PracticeAddressMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeAddressMapper">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeAddressMapper_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticeAddressMapper" Type="Self.PracticeAddressMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeAddressMapper">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeAddressMapper_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PracticeAddressMapper" Type="Self.PracticeAddressMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeAddressMapper">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeAddressMapper_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PracticeAddressMapper" Type="Self.PracticeAddressMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeAddressMapper">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="UpdateBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticePracticeSpecialityMapper_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticePracticeSpecialityMapper" Type="Self.PracticePracticeSpecialityMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticePracticeSpecialityMapper">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticePracticeSpecialityMapper_PracticeSpecialityType">
+    <End Role="LookupPracticeSpecialityType" Type="Self.LookupPracticeSpecialityType" Multiplicity="0..1" />
+    <End Role="PracticePracticeSpecialityMapper" Type="Self.PracticePracticeSpecialityMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupPracticeSpecialityType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticePracticeSpecialityMapper">
+        <PropertyRef Name="PracticeSpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticePracticeSpecialityMapper_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PracticePracticeSpecialityMapper" Type="Self.PracticePracticeSpecialityMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticePracticeSpecialityMapper">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticePracticeSpecialityMapper_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PracticePracticeSpecialityMapper" Type="Self.PracticePracticeSpecialityMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticePracticeSpecialityMapper">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocationMapper_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="PracticeProviderLocationMapper" Type="Self.PracticeProviderLocationMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocationMapper">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocationMapper_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticeProviderLocationMapper" Type="Self.PracticeProviderLocationMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocationMapper">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocationMapper_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="PracticeProviderLocationMapper" Type="Self.PracticeProviderLocationMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocationMapper">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocationMapper_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PracticeProviderLocationMapper" Type="Self.PracticeProviderLocationMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocationMapper">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocationMapper_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PracticeProviderLocationMapper" Type="Self.PracticeProviderLocationMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocationMapper">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderMapper_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="1" />
+    <End Role="PracticeProviderMapper" Type="Self.PracticeProviderMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderMapper">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderMapper_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="PracticeProviderMapper" Type="Self.PracticeProviderMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderMapper">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderMapper_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PracticeProviderMapper" Type="Self.PracticeProviderMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderMapper">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderMapper_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PracticeProviderMapper" Type="Self.PracticeProviderMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeProviderMapper">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeServiceMapper_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="1" />
+    <End Role="PracticeServiceMapper" Type="Self.PracticeServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeServiceMapper">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeServiceMapper_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PracticeServiceMapper" Type="Self.PracticeServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeServiceMapper">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeServiceMapper_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PracticeServiceMapper" Type="Self.PracticeServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeServiceMapper">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Privileges_ModulesMaster">
+    <End Role="ModulesMaster" Type="Self.ModulesMaster" Multiplicity="0..1" />
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModulesMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Privileges">
+        <PropertyRef Name="ModuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Privileges_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Privileges">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Privileges_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Privileges">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Provider_Degree">
+    <End Role="LookupDegree" Type="Self.LookupDegree" Multiplicity="0..1" />
+    <End Role="Provider" Type="Self.Provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDegree">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Provider">
+        <PropertyRef Name="DegreeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Provider_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Provider" Type="Self.Provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Provider">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Provider_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Provider" Type="Self.Provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Provider">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rep_RepGroup">
+    <End Role="RepGroup" Type="Self.RepGroup" Multiplicity="0..1" />
+    <End Role="Rep" Type="Self.Rep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RepGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rep">
+        <PropertyRef Name="RepGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rep_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Rep" Type="Self.Rep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rep">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rep_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Rep" Type="Self.Rep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rep">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rep_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Rep" Type="Self.Rep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rep">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepGroup_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="RepGroup" Type="Self.RepGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepGroup">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepGroup_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RepGroup" Type="Self.RepGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepGroup">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepGroup_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="RepGroup" Type="Self.RepGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepGroup">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepGroup_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RepGroup" Type="Self.RepGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepGroup">
+        <PropertyRef Name="ManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumns_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="1" />
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumns">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumns_LookupEnrolledServices">
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="1" />
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupEnrolledServices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumns">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumns_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumns">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumns_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumns">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumnValue_ReportColumns">
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="1" />
+    <End Role="ReportColumnValue" Type="Self.ReportColumnValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportColumns">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumnValue">
+        <PropertyRef Name="ColumnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumnValue_ReportMaster">
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="0..1" />
+    <End Role="ReportColumnValue" Type="Self.ReportColumnValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumnValue">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumnValue_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ReportColumnValue" Type="Self.ReportColumnValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumnValue">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportColumnValue_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ReportColumnValue" Type="Self.ReportColumnValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportColumnValue">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_LookupEnrolledServices">
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupEnrolledServices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_Rep">
+    <End Role="Rep" Type="Self.Rep" Multiplicity="0..1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="RepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportMaster_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ReportMaster" Type="Self.ReportMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportMaster">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepServiceMapper_Rep">
+    <End Role="Rep" Type="Self.Rep" Multiplicity="1" />
+    <End Role="RepServiceMapper" Type="Self.RepServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepServiceMapper">
+        <PropertyRef Name="RepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepServiceMapper_Services">
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="1" />
+    <End Role="RepServiceMapper" Type="Self.RepServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupEnrolledServices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepServiceMapper">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepServiceMapper_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RepServiceMapper" Type="Self.RepServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepServiceMapper">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepServiceMapper_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="RepServiceMapper" Type="Self.RepServiceMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepServiceMapper">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePrivilege_Privileges">
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="1" />
+    <End Role="RolePrivilege" Type="Self.RolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privileges">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePrivilege">
+        <PropertyRef Name="PrivilegeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePrivilege_RolePrivilege">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="RolePrivilege" Type="Self.RolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePrivilege">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePrivilege_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RolePrivilege" Type="Self.RolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePrivilege">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDepartmentPrivileges_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="SalesDepartmentPrivileges" Type="Self.SalesDepartmentPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDepartmentPrivileges">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDepartmentPrivileges_ReportColumns">
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="1" />
+    <End Role="SalesDepartmentPrivileges" Type="Self.SalesDepartmentPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportColumns">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesDepartmentPrivileges">
+        <PropertyRef Name="ColumnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesRolePrivileges_ReportColumns">
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="1" />
+    <End Role="SalesRolePrivileges" Type="Self.SalesRolePrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportColumns">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesRolePrivileges">
+        <PropertyRef Name="ColumnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesRolePrivileges_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="SalesRolePrivileges" Type="Self.SalesRolePrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesRolePrivileges">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesUserPrivileges_ReportColumns">
+    <End Role="ReportColumns" Type="Self.ReportColumns" Multiplicity="1" />
+    <End Role="SalesUserPrivileges" Type="Self.SalesUserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportColumns">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesUserPrivileges">
+        <PropertyRef Name="ColumnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesUserPrivileges_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="SalesUserPrivileges" Type="Self.SalesUserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesUserPrivileges">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Role="LookupCountry" Type="Self.LookupCountry" Multiplicity="1" />
+    <End Role="LookupState" Type="Self.LookupState" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupCountry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LookupState">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_RequestedBy">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="RequestedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskAttachments_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+    <End Role="TaskAttachments" Type="Self.TaskAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskAttachments">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskAttachments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TaskAttachments" Type="Self.TaskAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskAttachments">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskItemOrder_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskItemOrder" Type="Self.TaskItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemOrder">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskItemOrder_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TaskItemOrder" Type="Self.TaskItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemOrder">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskItems_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskItems_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLog_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="TaskLog" Type="Self.TaskLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskLog">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLog_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+    <End Role="TaskLog" Type="Self.TaskLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskLog">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskLog_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskLog" Type="Self.TaskLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskLog">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequest_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequest_TaskRequestType">
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupTaskType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="TaskRequestTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequestItemOrder_TaskRequest">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="TaskItemOrder" Type="Self.TaskItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemOrder">
+        <PropertyRef Name="TaskRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequestItemOrder_TaskRequestItems">
+    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="1" />
+    <End Role="TaskItemOrder" Type="Self.TaskItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemOrder">
+        <PropertyRef Name="TaskRequestItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequestItemOrder_TaskRequestType">
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="0..1" />
+    <End Role="TaskItemOrder" Type="Self.TaskItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupTaskType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemOrder">
+        <PropertyRef Name="RequestTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequestItems_TaskRequestType">
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="0..1" />
+    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupTaskType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="TaskRequestTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskRequestItems_TaskRequestType1">
+    <End Role="LookupTaskType" Type="Self.LookupTaskType" Multiplicity="0..1" />
+    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupTaskType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="TaskRequestTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUser_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="TaskUser" Type="Self.TaskUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUser">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUser_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskUser" Type="Self.TaskUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUser_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskUser" Type="Self.TaskUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUser">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUser_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TaskUser" Type="Self.TaskUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUser">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUserAlert_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="TaskUserAlert" Type="Self.TaskUserAlert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUserAlert">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUserAlert_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskUserAlert" Type="Self.TaskUserAlert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUserAlert">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUserAlert_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskUserAlert" Type="Self.TaskUserAlert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUserAlert">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskUserAlert_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TaskUserAlert" Type="Self.TaskUserAlert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskUserAlert">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserColumnVisibility_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="1" />
+    <End Role="UserColumnVisibility" Type="Self.UserColumnVisibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserColumnVisibility">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserColumnVisibility_LookupEnrolledServices">
+    <End Role="LookupEnrolledServices" Type="Self.LookupEnrolledServices" Multiplicity="1" />
+    <End Role="UserColumnVisibility" Type="Self.UserColumnVisibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupEnrolledServices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserColumnVisibility">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserColumnVisibility_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserColumnVisibility" Type="Self.UserColumnVisibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserColumnVisibility">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserColumnVisibility_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserColumnVisibility" Type="Self.UserColumnVisibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserColumnVisibility">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDepartments_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="UserDepartments" Type="Self.UserDepartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDepartments">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDepartments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserDepartments" Type="Self.UserDepartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDepartments">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDepartments_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserDepartments" Type="Self.UserDepartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDepartments">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDepartments_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserDepartments" Type="Self.UserDepartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDepartments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPermissions_Permissions">
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privileges">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="PrivilegeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPrivileges_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPrivileges_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPrivileges_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_LookupState">
+    <End Role="LookupState" Type="Self.LookupState" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupState">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_BusinessMaster">
+    <End Role="BusinessMaster" Type="Self.BusinessMaster" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRMStagingModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessMaster" EntityType="Self.BusinessMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentPrivileges" EntityType="Self.DepartmentPrivileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupCountry" EntityType="Self.LookupCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupDegree" EntityType="Self.LookupDegree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupDocumentType" EntityType="Self.LookupDocumentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupEnrolledServices" EntityType="Self.LookupEnrolledServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupLeadSource" EntityType="Self.LookupLeadSource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupMarketingCategory" EntityType="Self.LookupMarketingCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupPracticeSpecialityType" EntityType="Self.LookupPracticeSpecialityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupPracticeType" EntityType="Self.LookupPracticeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupState" EntityType="Self.LookupState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupTaskType" EntityType="Self.LookupTaskType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarketingAttachments" EntityType="Self.MarketingAttachments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarketingDocuments" EntityType="Self.MarketingDocuments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModulesMaster" EntityType="Self.ModulesMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NotificationUser" EntityType="Self.NotificationUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice" EntityType="Self.Practice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeAddressMapper" EntityType="Self.PracticeAddressMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeContact" EntityType="Self.PracticeContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticePracticeSpecialityMapper" EntityType="Self.PracticePracticeSpecialityMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeProviderLocationMapper" EntityType="Self.PracticeProviderLocationMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeProviderMapper" EntityType="Self.PracticeProviderMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeServiceMapper" EntityType="Self.PracticeServiceMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privileges" EntityType="Self.Privileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rep" EntityType="Self.Rep" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepGroup" EntityType="Self.RepGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportColumns" EntityType="Self.ReportColumns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportColumnValue" EntityType="Self.ReportColumnValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportMaster" EntityType="Self.ReportMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepServiceMapper" EntityType="Self.RepServiceMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePrivilege" EntityType="Self.RolePrivilege" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesDepartmentPrivileges" EntityType="Self.SalesDepartmentPrivileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesRolePrivileges" EntityType="Self.SalesRolePrivileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesUserPrivileges" EntityType="Self.SalesUserPrivileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskAttachments" EntityType="Self.TaskAttachments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskItemOrder" EntityType="Self.TaskItemOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskItems" EntityType="Self.TaskItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskLog" EntityType="Self.TaskLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskUser" EntityType="Self.TaskUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskUserAlert" EntityType="Self.TaskUserAlert" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TempProviderMigrationData" EntityType="Self.TempProviderMigrationData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserColumnVisibility" EntityType="Self.UserColumnVisibility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDepartments" EntityType="Self.UserDepartments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPrivileges" EntityType="Self.UserPrivileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Accounts_BusinessMaster" Association="Self.FK_Accounts_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Leads" Association="Self.FK_Accounts_Leads">
+      <End Role="Leads" EntitySet="Leads" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Users" Association="Self.FK_Accounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Users1" Association="Self.FK_Accounts_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_State" Association="Self.FK_Address_State">
+      <End Role="LookupState" EntitySet="LookupState" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_Users1" Association="Self.FK_Address_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessMaster_Users" Association="Self.FK_BusinessMaster_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessMaster_Users1" Association="Self.FK_BusinessMaster_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserClaims_dbo_Users_UserId" Association="Self.FK_dbo_UserClaims_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserClaims" EntitySet="UserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserLogins_dbo_Users_UserId" Association="Self.FK_dbo_UserLogins_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserLogins" EntitySet="UserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserRoles_dbo_Roles_RoleId" Association="Self.FK_dbo_UserRoles_dbo_Roles_RoleId">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserRoles_dbo_Users_UserId" Association="Self.FK_dbo_UserRoles_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_BusinessMaster" Association="Self.FK_Department_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_Users" Association="Self.FK_Department_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_Users1" Association="Self.FK_Department_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentPrivileges_Department" Association="Self.FK_DepartmentPrivileges_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="DepartmentPrivileges" EntitySet="DepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentPrivileges_DepartmentPrivileges" Association="Self.FK_DepartmentPrivileges_DepartmentPrivileges">
+      <End Role="DepartmentPrivileges" EntitySet="DepartmentPrivileges" />
+      <End Role="DepartmentPrivileges1" EntitySet="DepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentPrivileges_Privileges" Association="Self.FK_DepartmentPrivileges_Privileges">
+      <End Role="Privileges" EntitySet="Privileges" />
+      <End Role="DepartmentPrivileges" EntitySet="DepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentPrivileges_Users" Association="Self.FK_DepartmentPrivileges_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DepartmentPrivileges" EntitySet="DepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentPrivileges_Users1" Association="Self.FK_DepartmentPrivileges_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DepartmentPrivileges" EntitySet="DepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_BusinessMaster" Association="Self.FK_Leads_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Leads" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_LeadSource" Association="Self.FK_Leads_LeadSource">
+      <End Role="LookupLeadSource" EntitySet="LookupLeadSource" />
+      <End Role="Leads" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_Practice" Association="Self.FK_Leads_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="Leads" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_Rep1" Association="Self.FK_Leads_Rep1">
+      <End Role="Rep" EntitySet="Rep" />
+      <End Role="Leads" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_Users" Association="Self.FK_Leads_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Leads" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_Users1" Association="Self.FK_Leads_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Leads" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupCountry_Users" Association="Self.FK_LookupCountry_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupCountry" EntitySet="LookupCountry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupCountry_Users1" Association="Self.FK_LookupCountry_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupCountry" EntitySet="LookupCountry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupDegree_Users" Association="Self.FK_LookupDegree_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupDegree" EntitySet="LookupDegree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupDegree_Users1" Association="Self.FK_LookupDegree_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupDegree" EntitySet="LookupDegree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupDocumentType_BusinessMaster" Association="Self.FK_LookupDocumentType_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="LookupDocumentType" EntitySet="LookupDocumentType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupDocumentType_Users" Association="Self.FK_LookupDocumentType_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupDocumentType" EntitySet="LookupDocumentType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupDocumentType_Users1" Association="Self.FK_LookupDocumentType_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupDocumentType" EntitySet="LookupDocumentType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupEnrolledServices_BusinessMaster" Association="Self.FK_LookupEnrolledServices_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupLeadSource_Users" Association="Self.FK_LookupLeadSource_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupLeadSource" EntitySet="LookupLeadSource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupLeadSource_Users1" Association="Self.FK_LookupLeadSource_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupLeadSource" EntitySet="LookupLeadSource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupMarketingCategory_BusinessMaster" Association="Self.FK_LookupMarketingCategory_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="LookupMarketingCategory" EntitySet="LookupMarketingCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupMarketingCategory_Users" Association="Self.FK_LookupMarketingCategory_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupMarketingCategory" EntitySet="LookupMarketingCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupMarketingCategory_Users1" Association="Self.FK_LookupMarketingCategory_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupMarketingCategory" EntitySet="LookupMarketingCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupPracticeSpecialityType_Users" Association="Self.FK_LookupPracticeSpecialityType_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupPracticeSpecialityType" EntitySet="LookupPracticeSpecialityType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupPracticeSpecialityType_Users1" Association="Self.FK_LookupPracticeSpecialityType_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupPracticeSpecialityType" EntitySet="LookupPracticeSpecialityType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupPracticeType_Users" Association="Self.FK_LookupPracticeType_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupPracticeType" EntitySet="LookupPracticeType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupPracticeType_Users1" Association="Self.FK_LookupPracticeType_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupPracticeType" EntitySet="LookupPracticeType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupServices_Users" Association="Self.FK_LookupServices_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupServices_Users1" Association="Self.FK_LookupServices_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupState_Users" Association="Self.FK_LookupState_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupState" EntitySet="LookupState" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupState_Users1" Association="Self.FK_LookupState_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupState" EntitySet="LookupState" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupTaskType_BusinessMaster" Association="Self.FK_LookupTaskType_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupTaskType_Users" Association="Self.FK_LookupTaskType_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookupTaskType_Users1" Association="Self.FK_LookupTaskType_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingAttachments_MarketingDocuments" Association="Self.FK_MarketingAttachments_MarketingDocuments">
+      <End Role="MarketingDocuments" EntitySet="MarketingDocuments" />
+      <End Role="MarketingAttachments" EntitySet="MarketingAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingAttachments_Users" Association="Self.FK_MarketingAttachments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MarketingAttachments" EntitySet="MarketingAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingDocuments_BusinessMaster" Association="Self.FK_MarketingDocuments_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="MarketingDocuments" EntitySet="MarketingDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingDocuments_DocumentType" Association="Self.FK_MarketingDocuments_DocumentType">
+      <End Role="LookupDocumentType" EntitySet="LookupDocumentType" />
+      <End Role="MarketingDocuments" EntitySet="MarketingDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingDocuments_MarketingCategory" Association="Self.FK_MarketingDocuments_MarketingCategory">
+      <End Role="LookupMarketingCategory" EntitySet="LookupMarketingCategory" />
+      <End Role="MarketingDocuments" EntitySet="MarketingDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingDocuments_Users" Association="Self.FK_MarketingDocuments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MarketingDocuments" EntitySet="MarketingDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarketingDocuments_Users1" Association="Self.FK_MarketingDocuments_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MarketingDocuments" EntitySet="MarketingDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModulesMaster_Users" Association="Self.FK_ModulesMaster_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ModulesMaster" EntitySet="ModulesMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModulesMaster_Users1" Association="Self.FK_ModulesMaster_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ModulesMaster" EntitySet="ModulesMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_Users" Association="Self.FK_Notes_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_Users1" Association="Self.FK_Notes_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationUser_Notification" Association="Self.FK_NotificationUser_Notification">
+      <End Role="Notification" EntitySet="Notification" />
+      <End Role="NotificationUser" EntitySet="NotificationUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_Address" Association="Self.FK_Phone_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_Users" Association="Self.FK_Phone_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_Users1" Association="Self.FK_Phone_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_BusinessMaster" Association="Self.FK_Practice_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_PracticeType" Association="Self.FK_Practice_PracticeType">
+      <End Role="LookupPracticeType" EntitySet="LookupPracticeType" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_Rep1" Association="Self.FK_Practice_Rep1">
+      <End Role="Rep" EntitySet="Rep" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_Users" Association="Self.FK_Practice_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_Users1" Association="Self.FK_Practice_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeAddressMapper_Address" Association="Self.FK_PracticeAddressMapper_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="PracticeAddressMapper" EntitySet="PracticeAddressMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeAddressMapper_Practice" Association="Self.FK_PracticeAddressMapper_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeAddressMapper" EntitySet="PracticeAddressMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeAddressMapper_Users" Association="Self.FK_PracticeAddressMapper_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeAddressMapper" EntitySet="PracticeAddressMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeAddressMapper_Users1" Association="Self.FK_PracticeAddressMapper_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeAddressMapper" EntitySet="PracticeAddressMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Address" Association="Self.FK_PracticeContact_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="PracticeContact" EntitySet="PracticeContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Practice" Association="Self.FK_PracticeContact_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeContact" EntitySet="PracticeContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Users" Association="Self.FK_PracticeContact_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeContact" EntitySet="PracticeContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Users1" Association="Self.FK_PracticeContact_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeContact" EntitySet="PracticeContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticePracticeSpecialityMapper_Practice" Association="Self.FK_PracticePracticeSpecialityMapper_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticePracticeSpecialityMapper" EntitySet="PracticePracticeSpecialityMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticePracticeSpecialityMapper_PracticeSpecialityType" Association="Self.FK_PracticePracticeSpecialityMapper_PracticeSpecialityType">
+      <End Role="LookupPracticeSpecialityType" EntitySet="LookupPracticeSpecialityType" />
+      <End Role="PracticePracticeSpecialityMapper" EntitySet="PracticePracticeSpecialityMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticePracticeSpecialityMapper_Users" Association="Self.FK_PracticePracticeSpecialityMapper_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticePracticeSpecialityMapper" EntitySet="PracticePracticeSpecialityMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticePracticeSpecialityMapper_Users1" Association="Self.FK_PracticePracticeSpecialityMapper_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticePracticeSpecialityMapper" EntitySet="PracticePracticeSpecialityMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocationMapper_Address" Association="Self.FK_PracticeProviderLocationMapper_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="PracticeProviderLocationMapper" EntitySet="PracticeProviderLocationMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocationMapper_Practice" Association="Self.FK_PracticeProviderLocationMapper_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeProviderLocationMapper" EntitySet="PracticeProviderLocationMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocationMapper_Provider" Association="Self.FK_PracticeProviderLocationMapper_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="PracticeProviderLocationMapper" EntitySet="PracticeProviderLocationMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocationMapper_Users" Association="Self.FK_PracticeProviderLocationMapper_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeProviderLocationMapper" EntitySet="PracticeProviderLocationMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocationMapper_Users1" Association="Self.FK_PracticeProviderLocationMapper_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeProviderLocationMapper" EntitySet="PracticeProviderLocationMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderMapper_Practice" Association="Self.FK_PracticeProviderMapper_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeProviderMapper" EntitySet="PracticeProviderMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderMapper_Provider" Association="Self.FK_PracticeProviderMapper_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="PracticeProviderMapper" EntitySet="PracticeProviderMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderMapper_Users" Association="Self.FK_PracticeProviderMapper_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeProviderMapper" EntitySet="PracticeProviderMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderMapper_Users1" Association="Self.FK_PracticeProviderMapper_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeProviderMapper" EntitySet="PracticeProviderMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeServiceMapper_Practice" Association="Self.FK_PracticeServiceMapper_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeServiceMapper" EntitySet="PracticeServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeServiceMapper_Users" Association="Self.FK_PracticeServiceMapper_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeServiceMapper" EntitySet="PracticeServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeServiceMapper_Users1" Association="Self.FK_PracticeServiceMapper_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PracticeServiceMapper" EntitySet="PracticeServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Privileges_ModulesMaster" Association="Self.FK_Privileges_ModulesMaster">
+      <End Role="ModulesMaster" EntitySet="ModulesMaster" />
+      <End Role="Privileges" EntitySet="Privileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Privileges_Users" Association="Self.FK_Privileges_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Privileges" EntitySet="Privileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Privileges_Users1" Association="Self.FK_Privileges_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Privileges" EntitySet="Privileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Provider_Degree" Association="Self.FK_Provider_Degree">
+      <End Role="LookupDegree" EntitySet="LookupDegree" />
+      <End Role="Provider" EntitySet="Provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Provider_Users" Association="Self.FK_Provider_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Provider" EntitySet="Provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Provider_Users1" Association="Self.FK_Provider_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Provider" EntitySet="Provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rep_RepGroup" Association="Self.FK_Rep_RepGroup">
+      <End Role="RepGroup" EntitySet="RepGroup" />
+      <End Role="Rep" EntitySet="Rep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rep_Users" Association="Self.FK_Rep_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Rep" EntitySet="Rep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rep_Users1" Association="Self.FK_Rep_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Rep" EntitySet="Rep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rep_Users2" Association="Self.FK_Rep_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Rep" EntitySet="Rep" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepGroup_BusinessMaster" Association="Self.FK_RepGroup_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="RepGroup" EntitySet="RepGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepGroup_Users" Association="Self.FK_RepGroup_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepGroup" EntitySet="RepGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepGroup_Users1" Association="Self.FK_RepGroup_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepGroup" EntitySet="RepGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepGroup_Users2" Association="Self.FK_RepGroup_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepGroup" EntitySet="RepGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumns_BusinessMaster" Association="Self.FK_ReportColumns_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumns_LookupEnrolledServices" Association="Self.FK_ReportColumns_LookupEnrolledServices">
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumns_Users" Association="Self.FK_ReportColumns_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumns_Users1" Association="Self.FK_ReportColumns_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumnValue_ReportColumns" Association="Self.FK_ReportColumnValue_ReportColumns">
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+      <End Role="ReportColumnValue" EntitySet="ReportColumnValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumnValue_ReportMaster" Association="Self.FK_ReportColumnValue_ReportMaster">
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+      <End Role="ReportColumnValue" EntitySet="ReportColumnValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumnValue_Users" Association="Self.FK_ReportColumnValue_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ReportColumnValue" EntitySet="ReportColumnValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportColumnValue_Users1" Association="Self.FK_ReportColumnValue_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ReportColumnValue" EntitySet="ReportColumnValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_BusinessMaster" Association="Self.FK_ReportMaster_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_LookupEnrolledServices" Association="Self.FK_ReportMaster_LookupEnrolledServices">
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_Practice" Association="Self.FK_ReportMaster_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_Provider" Association="Self.FK_ReportMaster_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_Rep" Association="Self.FK_ReportMaster_Rep">
+      <End Role="Rep" EntitySet="Rep" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_Users" Association="Self.FK_ReportMaster_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportMaster_Users1" Association="Self.FK_ReportMaster_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ReportMaster" EntitySet="ReportMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepServiceMapper_Rep" Association="Self.FK_RepServiceMapper_Rep">
+      <End Role="Rep" EntitySet="Rep" />
+      <End Role="RepServiceMapper" EntitySet="RepServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepServiceMapper_Services" Association="Self.FK_RepServiceMapper_Services">
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+      <End Role="RepServiceMapper" EntitySet="RepServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepServiceMapper_Users" Association="Self.FK_RepServiceMapper_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepServiceMapper" EntitySet="RepServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepServiceMapper_Users1" Association="Self.FK_RepServiceMapper_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepServiceMapper" EntitySet="RepServiceMapper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePrivilege_Privileges" Association="Self.FK_RolePrivilege_Privileges">
+      <End Role="Privileges" EntitySet="Privileges" />
+      <End Role="RolePrivilege" EntitySet="RolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePrivilege_RolePrivilege" Association="Self.FK_RolePrivilege_RolePrivilege">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="RolePrivilege" EntitySet="RolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePrivilege_Users" Association="Self.FK_RolePrivilege_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RolePrivilege" EntitySet="RolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_BusinessMaster" Association="Self.FK_Roles_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDepartmentPrivileges_Department" Association="Self.FK_SalesDepartmentPrivileges_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="SalesDepartmentPrivileges" EntitySet="SalesDepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDepartmentPrivileges_ReportColumns" Association="Self.FK_SalesDepartmentPrivileges_ReportColumns">
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+      <End Role="SalesDepartmentPrivileges" EntitySet="SalesDepartmentPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesRolePrivileges_ReportColumns" Association="Self.FK_SalesRolePrivileges_ReportColumns">
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+      <End Role="SalesRolePrivileges" EntitySet="SalesRolePrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesRolePrivileges_Roles" Association="Self.FK_SalesRolePrivileges_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="SalesRolePrivileges" EntitySet="SalesRolePrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesUserPrivileges_ReportColumns" Association="Self.FK_SalesUserPrivileges_ReportColumns">
+      <End Role="ReportColumns" EntitySet="ReportColumns" />
+      <End Role="SalesUserPrivileges" EntitySet="SalesUserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesUserPrivileges_Users" Association="Self.FK_SalesUserPrivileges_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SalesUserPrivileges" EntitySet="SalesUserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+      <End Role="LookupCountry" EntitySet="LookupCountry" />
+      <End Role="LookupState" EntitySet="LookupState" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_BusinessMaster" Association="Self.FK_Task_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_RequestedBy" Association="Self.FK_Task_RequestedBy">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Users" Association="Self.FK_Task_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Users1" Association="Self.FK_Task_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskAttachments_Task" Association="Self.FK_TaskAttachments_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskAttachments" EntitySet="TaskAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskAttachments_Users" Association="Self.FK_TaskAttachments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskAttachments" EntitySet="TaskAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskItemOrder_Users" Association="Self.FK_TaskItemOrder_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskItemOrder" EntitySet="TaskItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskItemOrder_Users1" Association="Self.FK_TaskItemOrder_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskItemOrder" EntitySet="TaskItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskItems_Users" Association="Self.FK_TaskItems_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskItems_Users1" Association="Self.FK_TaskItems_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLog_Practice" Association="Self.FK_TaskLog_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="TaskLog" EntitySet="TaskLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLog_Task" Association="Self.FK_TaskLog_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskLog" EntitySet="TaskLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskLog_Users" Association="Self.FK_TaskLog_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskLog" EntitySet="TaskLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequest_Practice" Association="Self.FK_TaskRequest_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequest_TaskRequestType" Association="Self.FK_TaskRequest_TaskRequestType">
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequestItemOrder_TaskRequest" Association="Self.FK_TaskRequestItemOrder_TaskRequest">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskItemOrder" EntitySet="TaskItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequestItemOrder_TaskRequestItems" Association="Self.FK_TaskRequestItemOrder_TaskRequestItems">
+      <End Role="TaskItems" EntitySet="TaskItems" />
+      <End Role="TaskItemOrder" EntitySet="TaskItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequestItemOrder_TaskRequestType" Association="Self.FK_TaskRequestItemOrder_TaskRequestType">
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+      <End Role="TaskItemOrder" EntitySet="TaskItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequestItems_TaskRequestType" Association="Self.FK_TaskRequestItems_TaskRequestType">
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskRequestItems_TaskRequestType1" Association="Self.FK_TaskRequestItems_TaskRequestType1">
+      <End Role="LookupTaskType" EntitySet="LookupTaskType" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUser_Task" Association="Self.FK_TaskUser_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskUser" EntitySet="TaskUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUser_Users" Association="Self.FK_TaskUser_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskUser" EntitySet="TaskUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUser_Users1" Association="Self.FK_TaskUser_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskUser" EntitySet="TaskUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUser_Users2" Association="Self.FK_TaskUser_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskUser" EntitySet="TaskUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUserAlert_Task" Association="Self.FK_TaskUserAlert_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskUserAlert" EntitySet="TaskUserAlert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUserAlert_Users" Association="Self.FK_TaskUserAlert_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskUserAlert" EntitySet="TaskUserAlert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUserAlert_Users1" Association="Self.FK_TaskUserAlert_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskUserAlert" EntitySet="TaskUserAlert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskUserAlert_Users2" Association="Self.FK_TaskUserAlert_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskUserAlert" EntitySet="TaskUserAlert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserColumnVisibility_BusinessMaster" Association="Self.FK_UserColumnVisibility_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="UserColumnVisibility" EntitySet="UserColumnVisibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserColumnVisibility_LookupEnrolledServices" Association="Self.FK_UserColumnVisibility_LookupEnrolledServices">
+      <End Role="LookupEnrolledServices" EntitySet="LookupEnrolledServices" />
+      <End Role="UserColumnVisibility" EntitySet="UserColumnVisibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserColumnVisibility_Users" Association="Self.FK_UserColumnVisibility_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserColumnVisibility" EntitySet="UserColumnVisibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserColumnVisibility_Users1" Association="Self.FK_UserColumnVisibility_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserColumnVisibility" EntitySet="UserColumnVisibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDepartments_Department" Association="Self.FK_UserDepartments_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="UserDepartments" EntitySet="UserDepartments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDepartments_Users" Association="Self.FK_UserDepartments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDepartments" EntitySet="UserDepartments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDepartments_Users1" Association="Self.FK_UserDepartments_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDepartments" EntitySet="UserDepartments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDepartments_Users2" Association="Self.FK_UserDepartments_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDepartments" EntitySet="UserDepartments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPermissions_Permissions" Association="Self.FK_UserPermissions_Permissions">
+      <End Role="Privileges" EntitySet="Privileges" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPrivileges_BusinessMaster" Association="Self.FK_UserPrivileges_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPrivileges_Users" Association="Self.FK_UserPrivileges_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPrivileges_Users1" Association="Self.FK_UserPrivileges_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_LookupState" Association="Self.FK_UserProfile_LookupState">
+      <End Role="LookupState" EntitySet="LookupState" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Users" Association="Self.FK_UserProfile_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Users1" Association="Self.FK_UserProfile_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Users2" Association="Self.FK_UserProfile_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_BusinessMaster" Association="Self.FK_Users_BusinessMaster">
+      <End Role="BusinessMaster" EntitySet="BusinessMaster" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

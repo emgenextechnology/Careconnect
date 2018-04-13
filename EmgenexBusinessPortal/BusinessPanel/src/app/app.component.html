@@ -1,0 +1,90 @@
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a style="color: black" routerLink="/" class="logo">
+                <img src="{{CurrentBusinessModel.LogoUrl}}" alt="logo" height="29"/>
+            </a>
+            <ul class="right profile-nav">
+                <li>
+                    <a href="#" class="dropdown-button profile-name-circle" data-activates='profile-dropdown'>{{CurrentBusinessModel?.FullName[0]}}</a>
+                    <ul id='profile-dropdown' class='dropdown-content'>
+                        <li>
+                            <a class="login-pro-wrap">
+                                <div class="log-prof-pic left">
+                                    <a *ngIf="!hasProfileImage" href="#" class="dropdown-button profile-name-circle" data-activates='profile-dropdown'>{{CurrentBusinessModel?.FullName[0]}}</a>
+                                    <img *ngIf="hasProfileImage" src="{{CurrentBusinessModel.FilePath}}" (error)="hasProfileImage = false" height="40" width="40" class="circle" alt="{{CurrentBusinessModel.FullName}}">
+                                </div>
+                                <div class="profile-details">
+                                    <b class="prof-name">{{CurrentBusinessModel.FullName}}</b>
+                                    <span class="login-mailid">{{CurrentBusinessModel.Email}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="redirectToPortal()">CRM</a>
+                        </li>
+                        <li>
+                            <a (click)="logOff()">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="side-collapse">
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <a href="admin-console.html" class="slider-brand-logo">
+                <img src="assets/images/logo.png" class="responsive-img" alt="slider-brand-logo">
+            </a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/">Dashboard</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/business-profile">Business Profile</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/departments">Departments</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/document-types">Document Types</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/location-settings">Location Settings</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/roles">Roles</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/sales-reps">Sales Reps</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/sales-team">Sales Team</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/services">Services</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/task-types">Task Types</a>
+        </li>
+        <li>
+            <a class="waves-effect" routerLink="/users">Users</a>
+        </li>
+    </ul>
+    <div class="slider-menu">
+        <a href="#" data-activates="slide-out" class="button-collapse slide-collapse-btn" style="float: left">
+            <i class="material-icons left">menu</i>
+            <span class="page-name">{{title}}</span>
+        </a>
+        <angular-loader style="float: left;margin-top: 11px;margin-left: 10px;"></angular-loader>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

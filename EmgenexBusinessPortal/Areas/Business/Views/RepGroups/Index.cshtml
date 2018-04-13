@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EBP.Business.Database.RepGroup>
+
+@{
+    ViewBag.Title = "SalesTeam";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+<h2>Sales Team</h2>
+<p>
+    <div class="row col-md-12">
+        <div class="col-md-8">
+            @Html.ActionLink("Create New", "Create")
+        </div>
+        <div class="col-md-4 col-xs-3 hidden-xs  ">
+
+            @using (Ajax.BeginForm("Index", "RepGroups", new { IsPartial = true, @class = "input-group" }, new AjaxOptions
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "RepGroupListing",
+                OnSuccess = "OnSuccess",
+                OnBegin = "OnBegin"
+            }))
+            {
+                <div class="col-md-9">
+                    <input id="keywordtext1" type="text" class="form-control m-l-10 " name="SearchKey" placeholder="Enter Sales Team Name">
+                </div>
+                <div class="col-md-3">
+                    <span class="input-group-btn">
+                        <button class="btn" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</p>
+<br />
+<label id='loading' style='display:none'>Loading...</label>
+<div id="RepGroupListing">
+    @Html.Partial("_PartialRepGroupList", Model)
+</div>
+<script>
+    function OnBegin() {
+        $('#loading').show();
+    }
+    function OnSuccess() {
+        $('#loading').hide();
+    }
+</script>
+
+

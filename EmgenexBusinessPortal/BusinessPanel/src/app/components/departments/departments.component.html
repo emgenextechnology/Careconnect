@@ -1,0 +1,308 @@
+<style>
+  [type="checkbox"].filled-in-fixS+label:after {
+    border: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  [type="checkbox"].filled-in-fix+label:after {
+    border-radius: 2px;
+  }
+
+  [type="checkbox"].filled-in-fix+label:before,
+  [type="checkbox"].filled-in-fix+label:after {
+    content: '';
+    left: 0;
+    position: absolute;
+    /* .1s delay is for check animation */
+    transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+    z-index: 1;
+  }
+
+  [type="checkbox"].filled-in-fix+label:before {
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    left: 6px;
+    top: 10px;
+    -webkit-transform: rotateZ(37deg);
+    transform: rotateZ(37deg);
+    -webkit-transform-origin: 20% 40%;
+    transform-origin: 100% 100%;
+  }
+
+  [type="checkbox"].filled-in-fix+label:after {
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid #9e9e9e;
+    top: 0px;
+    z-index: 0;
+  }
+
+  [type="checkbox"].filled-in-fix.chk-slct+label:before {
+    top: 0;
+    left: 1px;
+    width: 8px;
+    height: 13px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotateZ(37deg);
+    transform: rotateZ(37deg);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+  }
+
+  [type="checkbox"].filled-in-fix.chk-slct+label:after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+    z-index: 0;
+  }
+
+  [type="checkbox"].filled-in-fix.tabbed:focus+label:after {
+    border-radius: 2px;
+    border-color: #5a5a5a;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  [type="checkbox"].filled-in-fix.tabbed.chk-slct:focus+label:after {
+    border-radius: 2px;
+    background-color: #26a69a;
+    border-color: #26a69a;
+  }
+</style>
+<div class="left-window">
+  <div class="left-window-header">
+    <span class="left-each-item-header">Departments</span>
+  </div>
+  <div class="divider"></div>
+  <div class="input-field left-search-box seach-box">
+    <input type="text" class="validate" placeholder="Enter Keyword" name="Keywords" (keyup.enter)="getAllDepartments(searchFilter)"
+      [(ngModel)]="searchFilter.Keywords">
+    <a class="btn search-btn" (click)="getAllDepartments(searchFilter)">
+      <i class="material-icons">search</i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="right-window ">
+  <div class="common-table user-table">
+    <table class="striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="t-header">
+          <th mat-sort-header="DepartmentName">Department Name</th>
+          <th mat-sort-header="IsActive">Active</th>
+          <th mat-sort-header="CreatedByName">Created by</th>
+          <th mat-sort-header="CreatedOn">Created on</th>
+          <th mat-sort-header="UpdatedByName">Updated By</th>
+          <th mat-sort-header="UpdatedOn">Updated On</th>
+          <th class="edit-delete-th">active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr *ngFor="let Department of Departments; let i = index">
+          <td>
+            <a href="#details-departments-mod" (click)="edit(Department.Id)">{{Department.DepartmentName}}</a>
+          </td>
+          <td>
+            <p>
+              <input type="checkbox" class="filled-in" id="filled-in-box-{{i}}" [checked]="Department.IsActive" disabled>
+              <label for="filled-in-box-{{i}}"></label>
+            </p>
+          </td>
+          <td>{{Department.CreatedByName}}</td>
+          <td>{{Department.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>{{Department.UpdatedByName}}</td>
+          <td>{{Department.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>
+            <div mat-icon-button [matMenuTriggerFor]="appMenu" class='dropdown-button btn edit-delete-btn'>
+              <img src="assets/images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon">
+            </div>
+            <mat-menu #appMenu="matMenu">
+              <ul class='dropdown-content-menu edit-delete-dropdown'>
+                <li>
+                  <a href="#edit-departments-mod" (click)="edit(Department.Id)">
+                    Edit
+                  </a>
+                </li>
+                <li>
+                  <a href="#details-departments-mod" (click)="edit(Department.Id)">
+                    Details
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="d1.open(); delete(Department.Id)">
+                    Delete
+                  </a>
+                </li>
+              </ul>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator *ngIf="Departments?.length > 0" [length]="pageSize" [pageSize]="25" [pageSizeOptions]="[25,50,100,150,200]"
+      (page)="pageEvent = $event; getAllDepartments(searchFilter, false)"></mat-paginator>
+  </div>
+</div>
+
+<div class="modal-button">
+  <div class="fixed-action-btn">
+    <div class=" mdl-fab-btn-wrap">
+      <span class="mdl-fab-txt">Add</span>
+      <a class="btn btn-floating btn-large sky-blue-color " href="#create-departments-mod" (click)="openCreate()">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="all-modals">
+  <!-- Create -->
+  <div id="create-departments-mod" class="modal common-modal crt-role-modal">
+    <form #frmAddDepartment="ngForm">
+      <div class="modal-content">
+        <h4>Edit Department</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Department Name" name="Name" [(ngModel)]="newDepartmentModel.DepartmentName"
+              required>
+          </mat-form-field>
+          <mat-form-field class="input-field col s6  pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Description" name="Description" [(ngModel)]="newDepartmentModel.Description"
+              required>
+          </mat-form-field>
+          <div class="row s12 pad-lft-zero">
+            <h5 class="select-privilege">Select Privileges</h5>
+            <div class="chk-box-wrapper" *ngFor="let departmentPrivilege of Privileges">
+              <h5>{{departmentPrivilege.ModuleName==null?'Others':departmentPrivilege.ModuleName}}</h5>
+              <div class="form-group" *ngFor="let privilege of departmentPrivilege.Privileges; let i = index">
+                <label class="lbl-checkbox-fix">
+                  <mat-checkbox [name]="privilege.Value" [(ngModel)]="privilege.Selected" [(checked)]="privilege.Selected">{{privilege.Text}}</mat-checkbox>
+                </label>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="create(newDepartmentModel,Privileges)"
+          [disabled]="!frmAddDepartment.form.valid">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Edit -->
+  <div id="edit-departments-mod" class="modal common-modal crt-role-modal">
+    <form #frmEditdepartment="ngForm">
+      <div class="modal-content">
+        <h4>Edit Department</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="input-field col s6 pad-lft-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Department Name" name="Name" [(ngModel)]="newDepartmentModel.DepartmentName"
+              required>
+          </mat-form-field>
+          <mat-form-field class="input-field col s6  pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Description" name="Description" [(ngModel)]="newDepartmentModel.Description"
+              required>
+          </mat-form-field>
+          <div class="row s12 pad-lft-zero">
+            <mat-checkbox name="DepartmentIsActive" [(ngModel)]="newDepartmentModel.IsActive">IsActive</mat-checkbox>
+          </div>
+        </div>
+        <div class="row s12 pad-lft-zero">
+          <h5 class="select-privilege">Select Privileges</h5>
+          <div class="chk-box-wrapper" *ngFor="let departmentPrivilege of newDepartmentModel.DepartmentPrivilege">
+            <h5>{{departmentPrivilege.ModuleName==null?'Others':departmentPrivilege.ModuleName}}</h5>
+            <div class="form-group" *ngFor="let privilege of departmentPrivilege.Privileges; let i = index">
+              <label class="lbl-checkbox-fix">
+                <mat-checkbox [name]="privilege.Value" [(checked)]="privilege.Selected" (change)="privilege.Selected = !privilege.Selected">{{privilege.Text}}</mat-checkbox>
+              </label>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="update(newDepartmentModel)" [disabled]="!frmEditdepartment.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Details -->
+  <div id="details-departments-mod" class="modal common-modal crt-role-modal">
+    <div class="modal-content">
+      <div class="detail-page-wrapper">
+        <h3 class="details-header">
+          <span>Department </span> Details</h3>
+        <div class="det-modal-close-btn right">
+          <img src="assets/images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Department</b>
+          <span class="dtl-itm-vlue">{{newDepartmentModel.DepartmentName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Description</b>
+          <span class="dtl-itm-vlue">{{newDepartmentModel.Description}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created On</b>
+          <span class="dtl-itm-vlue">{{newDepartmentModel.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created By</b>
+          <span class="dtl-itm-vlue">{{newDepartmentModel.CreatedByName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated On</b>
+          <span class="dtl-itm-vlue">{{newDepartmentModel.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated By</b>
+          <span class="dtl-itm-vlue">{{newDepartmentModel.UpdatedByName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Users</b>
+          <span class="dtl-itm-vlue">
+            <span *ngFor="let item of newDepartmentModel.Users; let isLast=last">
+              {{item}}{{isLast ? '' : ', '}}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete -->
+<eui-dialog #d1 panelCls="mydlg" headerCls="mydlg-header" footerCls="mydlg-footer" [modal]="true" borderType="none" closed="true">
+  <eui-panel-header>Please Confirm</eui-panel-header>
+  <p style="text-align:center;margin:50px 0;font-size:16px">Are you sure you want to continue?</p>
+  <eui-panel-footer>
+    <eui-button-group style="width:100%;height:50px">
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();deleteConfirm()">Yes</eui-linkbutton>
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();">No</eui-linkbutton>
+    </eui-button-group>
+  </eui-panel-footer>
+</eui-dialog>

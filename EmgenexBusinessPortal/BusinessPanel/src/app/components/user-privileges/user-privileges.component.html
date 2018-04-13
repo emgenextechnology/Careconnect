@@ -1,0 +1,103 @@
+<style>
+  td {
+    padding: 0;
+  }
+
+  .busines-form-footer {
+    padding-left: 10px;
+  }
+  .business-profile{
+    margin-top: 0;
+  }
+  .business-profile .busines-form-footer{
+    margin-top: 0;
+  }
+</style>
+
+<section class="business-profile-page">
+  <div class="business-profile z-depth-2">
+    <div class="row">
+      <div class="col m12">
+        <h2 style="padding-left: 0">
+          <b>Privilages assigned through Departments</b>
+        </h2>
+        <hr>
+      </div>
+      <div class="col m12">
+        <div class="chk-box-wrapper" *ngFor="let userDepartments of NewUserPrivileges.UserDepartments">
+          {{userDepartments.DepartmentName}}
+          <div class="clearfix"></div>
+          <div class="modal-chk-box col s3" *ngFor="let Privilege of userDepartments.Privileges;">
+            <input type="checkbox" class="filled-in" id="dept-chk-bx-{{Privilege.Value}}" [checked]="true" disabled />
+            <label for="dept-chk-bx-{{Privilege.Value}}">{{Privilege.Text}}</label>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col m12">
+        <h2 style="padding-left: 0">
+          <b>Privilages assigned through Roles</b>
+        </h2>
+        <hr>
+      </div>
+      <div class="col m12">
+        <div class="chk-box-wrapper" *ngFor="let userRoles of NewUserPrivileges.UserRoles">
+          {{userRoles.DepartmentName}}
+          <div class="clearfix"></div>
+          <div class="modal-chk-box col s3" *ngFor="let Privilege of userRoles.Privileges;">
+            <input type="checkbox" class="filled-in" id="dept-chk-bx-{{Privilege.Value}}" [checked]="true" disabled />
+            <label for="dept-chk-bx-{{Privilege.Value}}">{{Privilege.Text}}</label>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col m12">
+        <h2 style="padding-left: 0">
+          <b>Additional Privileges</b>
+        </h2>
+        <hr>
+      </div>
+      <div class="col m12">
+        <table class="permissionTab">
+          <thead>
+            <tr>
+              <td>Privilege</td>
+              <td>Allow </td>
+              <td>Deny</td>
+            </tr>
+          </thead>
+          <tbody *ngFor="let userPrivileges of NewUserPrivileges.Modules">
+            <tr>
+              <td>
+                <strong>
+                  {{userPrivileges.ModuleName}}
+                </strong>
+              </td>
+            </tr>
+            <tr *ngFor="let Privilege of userPrivileges.UserPrivileges; let i = index">
+              <td>
+                <label class="chklabel">{{Privilege.Name}}</label>
+              </td>
+              <td class="allow">
+                <mat-checkbox [(ngModel)]="Privilege.Allow" (change)="Privilege.Deny = Privilege.Deny ? !Privilege.Allow : false; Privilege.Deny = (Privilege.Deny==false && Privilege.Allow == false)?null:Privilege.Deny"></mat-checkbox>
+              </td>
+              <td class="deny">
+                <mat-checkbox [(ngModel)]="Privilege.Deny" (change)="Privilege.Allow = Privilege.Allow ? !Privilege.Deny : false; Privilege.Deny = (Privilege.Deny==false && Privilege.Allow == false)?null:Privilege.Deny"></mat-checkbox>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="busines-form-footer">
+      <button class="left btn waves-effect waves-light save-btn" (click)="update(NewUserPrivileges)">Save</button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</section>

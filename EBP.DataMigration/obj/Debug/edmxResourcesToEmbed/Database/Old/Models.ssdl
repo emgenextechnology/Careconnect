@@ -1,0 +1,2015 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EPMDevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Access' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Access">
+    <Key>
+      <PropertyRef Name="PermissionId" />
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="Access" />
+    </Key>
+    <Property Name="PermissionId" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="RoleId" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Access" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccessLevel">
+    <Key>
+      <PropertyRef Name="AccessId" />
+    </Key>
+    <Property Name="AccessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadId" Type="int" Nullable="false" />
+    <Property Name="EnrollDate" Type="datetime" />
+    <Property Name="AccountStatus" Type="int" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="AcctExec" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.AccountAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AccountAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="AccountId" Type="int" />
+    <Property Name="AddressId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.AccountProvider' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AccountProvider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="AccountId" Type="int" />
+    <Property Name="ProviderId" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountService">
+    <Key>
+      <PropertyRef Name="AccountServiceId" />
+    </Key>
+    <Property Name="AccountServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.AccountStatusTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AccountStatusTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.AccountType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="ActypeId" />
+    </Key>
+    <Property Name="ActypeId" Type="int" Nullable="false" />
+    <Property Name="AcName" Type="varchar" MaxLength="50" />
+    <Property Name="AcStatus" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountUploading">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Guid" Type="nvarchar(max)" />
+    <Property Name="LocationUrl" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreateOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.AcctNote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AcctNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="note" Type="varchar" MaxLength="50" />
+    <Property Name="AcctId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Action' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="ActionId" />
+      <PropertyRef Name="ActionType" />
+      <PropertyRef Name="ActionDescription" />
+    </Key>
+    <Property Name="ActionId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ActionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ActionDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressTypeId" Type="int" Nullable="false" />
+    <Property Name="Line1" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Line2" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="IsSecondery" Type="bit" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="AddressIdentifier" Type="uniqueidentifier" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="AddressType">
+    <Key>
+      <PropertyRef Name="AddressTypeId" />
+    </Key>
+    <Property Name="AddressTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressType" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" Nullable="false" />
+    <Property Name="AdminName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Alert_Lead">
+    <Key>
+      <PropertyRef Name="AlertId" />
+    </Key>
+    <Property Name="AlertId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Alerts">
+    <Key>
+      <PropertyRef Name="AlertsId" />
+    </Key>
+    <Property Name="AlertsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelpReqId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExpDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsRead" Type="int" />
+    <Property Name="AlertsIdentifier" Type="uniqueidentifier" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="BoardCertifications">
+    <Key>
+      <PropertyRef Name="BoardCertficationId" />
+    </Key>
+    <Property Name="BoardCertficationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CratedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.ContactInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ContactInfo">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="500" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+    <Property Name="HomePhone" Type="varchar" MaxLength="15" />
+    <Property Name="OtherPhone" Type="varchar" MaxLength="15" />
+    <Property Name="Mobile" Type="varchar" MaxLength="15" />
+    <Property Name="Website" Type="nvarchar" MaxLength="500" />
+    <Property Name="LinkedIn" Type="nvarchar" MaxLength="500" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="500" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="500" />
+    <Property Name="Fax" Type="varchar" MaxLength="50" />
+    <Property Name="SecoundryEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="AssistantPhone" Type="varchar" MaxLength="50" />
+    <Property Name="AssistantEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.ContactNote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ContactNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Note" Type="varchar(max)" />
+    <Property Name="ContactId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Degree">
+    <Key>
+      <PropertyRef Name="DegreeId" />
+    </Key>
+    <Property Name="DegreeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DegreeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Dept">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeptManagerId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Dept_Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptId" Type="int" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Documents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FolderId" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Doctype" Type="varchar" MaxLength="10" />
+    <Property Name="LocationUrl" Type="nvarchar(max)" />
+    <Property Name="Owner" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Trash" Type="bit" />
+    <Property Name="IsDeleted" Type="datetime" />
+    <Property Name="RepGroupId" Type="nvarchar" MaxLength="50" />
+    <Property Name="AccessId" Type="int" />
+  </EntityType>
+  <EntityType Name="EnrolledService">
+    <Key>
+      <PropertyRef Name="EnrolledServiceId" />
+    </Key>
+    <Property Name="EnrolledServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnrolledServiceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActice" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Entity">
+    <Key>
+      <PropertyRef Name="EntityId" />
+      <PropertyRef Name="EntityName" />
+    </Key>
+    <Property Name="EntityId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EntityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EntityType">
+    <Key>
+      <PropertyRef Name="EntityTypeId" />
+    </Key>
+    <Property Name="EntityTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Fellowship">
+    <Key>
+      <PropertyRef Name="FellowShipId" />
+    </Key>
+    <Property Name="FellowShipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Folder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Folder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Formulations">
+    <Key>
+      <PropertyRef Name="FormulationId" />
+    </Key>
+    <Property Name="FormulationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HelpItemOrder">
+    <Key>
+      <PropertyRef Name="HelpItem" />
+    </Key>
+    <Property Name="HelpItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="HelpId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="ItemType" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.HelpNote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HelpNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="50" />
+    <Property Name="HelpId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="HelpPriority">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Createdate" Type="datetime" />
+    <Property Name="Modifydate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="HelpPriorityType">
+    <Key>
+      <PropertyRef Name="PriorityId" />
+    </Key>
+    <Property Name="PriorityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PriorityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HelpRequest">
+    <Key>
+      <PropertyRef Name="HRId" />
+    </Key>
+    <Property Name="HRId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelpId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HelpTypeId" Type="int" Nullable="false" />
+    <Property Name="TaskDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="TargetDate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateClose" Type="nvarchar" MaxLength="50" />
+    <Property Name="RequestedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="AssignedTo" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="AccountId" Type="int" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Alert" Type="nvarchar(max)" />
+    <Property Name="AlertDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="HelpType">
+    <Key>
+      <PropertyRef Name="HelpTypeId" />
+    </Key>
+    <Property Name="HelpTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelpDescription" Type="varchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="InsurancePlan">
+    <Key>
+      <PropertyRef Name="InsurancePlanId" />
+    </Key>
+    <Property Name="InsurancePlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InsurancePlanName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="EditedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="InsurancePlanType">
+    <Key>
+      <PropertyRef Name="InsurancePlanTypeId" />
+    </Key>
+    <Property Name="InsurancePlanTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InsurancePlanTypeName" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="EditedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemDesciption" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="OrderType" Type="int" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.LeadContact' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeadContact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Degree" Type="int" />
+    <Property Name="Department" Type="varchar" MaxLength="50" />
+    <Property Name="ReportsTo" Type="varchar" MaxLength="50" />
+    <Property Name="Assistant" Type="varchar" MaxLength="50" />
+    <Property Name="OrgId" Type="int" />
+    <Property Name="Dob" Type="date" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="HomeAdders" Type="varchar" MaxLength="500" />
+    <Property Name="Owner" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.LeadNotes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeadNotes">
+    <Key>
+      <PropertyRef Name="NotesId" />
+    </Key>
+    <Property Name="NotesId" Type="int" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="500" />
+    <Property Name="LeadId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.LeadPracticeProvider' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeadPracticeProvider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="LeadId" Type="int" />
+    <Property Name="PracticeProviderId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Leads">
+    <Key>
+      <PropertyRef Name="LeadId" />
+    </Key>
+    <Property Name="LeadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" Nullable="false" />
+    <Property Name="LeadSource" Type="int" Nullable="false" />
+    <Property Name="LeadServiceIntrest" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="OtherLeadSource" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="LeadSource">
+    <Key>
+      <PropertyRef Name="LeadSourceId" />
+    </Key>
+    <Property Name="LeadSourceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.LeadStage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeadStage">
+    <Key>
+      <PropertyRef Name="StageId" />
+    </Key>
+    <Property Name="StageId" Type="int" Nullable="false" />
+    <Property Name="StageName" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.LeadStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeadStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.LeadTasks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LeadTasks">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="TaskTitle" Type="varchar" MaxLength="500" />
+    <Property Name="Decription" Type="varchar" MaxLength="500" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Status" Type="int" />
+    <Property Name="LeadId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Licence">
+    <Key>
+      <PropertyRef Name="LicenceId" />
+    </Key>
+    <Property Name="LicenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LicenceNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Marketing">
+    <Key>
+      <PropertyRef Name="MarketingId" />
+    </Key>
+    <Property Name="MarketingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Categories" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Note_Lead">
+    <Key>
+      <PropertyRef Name="NoteLeadId" />
+    </Key>
+    <Property Name="NoteLeadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoteId" Type="int" Nullable="false" />
+    <Property Name="LeadId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="NotesId" />
+    </Key>
+    <Property Name="NotesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="ScriptId" Type="int" />
+    <Property Name="HelpRequestId" Type="int" />
+    <Property Name="NotesTypeId" Type="int" />
+    <Property Name="NotesDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotesIdentifier" Type="uniqueidentifier" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="NoteTypes">
+    <Key>
+      <PropertyRef Name="NoteTypeId" />
+    </Key>
+    <Property Name="NoteTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoteTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Pid" />
+    </Key>
+    <Property Name="Pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" />
+    <Property Name="PatientFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PatientLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PatientDOB" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PatientPgxreportMap">
+    <Key>
+      <PropertyRef Name="NewTempId" />
+    </Key>
+    <Property Name="PatientID" Type="varchar" MaxLength="50" />
+    <Property Name="ScriptID" Type="varchar" MaxLength="50" />
+    <Property Name="ProviderID" Type="varchar" MaxLength="50" />
+    <Property Name="Reporttype" Type="varchar" MaxLength="50" />
+    <Property Name="PatientIdFix" Type="int" />
+    <Property Name="NewTempId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentTypes">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentType" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Permissions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Permissions">
+    <Key>
+      <PropertyRef Name="PermissionId" />
+      <PropertyRef Name="Entity" />
+      <PropertyRef Name="PrivilegeId" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="PermissionId" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Entity" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="PrivilegeId" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PgxReport1">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepGroup" Type="varchar" MaxLength="50" />
+    <Property Name="SpecimenID" Type="varchar" MaxLength="300" />
+    <Property Name="CollectedDt" Type="varchar" MaxLength="300" />
+    <Property Name="ReceivedDt" Type="varchar" MaxLength="300" />
+    <Property Name="Reported" Type="varchar" MaxLength="300" />
+    <Property Name="Clinician" Type="varchar" MaxLength="300" />
+    <Property Name="RepId" Type="varchar" MaxLength="300" />
+    <Property Name="RepName" Type="varchar" MaxLength="300" />
+    <Property Name="PracticeName" Type="varchar" MaxLength="300" />
+    <Property Name="ProviderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsurancePlan" Type="varchar" MaxLength="300" />
+    <Property Name="InsuarancePlanType" Type="varchar" MaxLength="1000" />
+    <Property Name="Status" Type="varchar" MaxLength="300" />
+    <Property Name="NpiNumber" Type="varchar" MaxLength="50" />
+    <Property Name="PayerName" Type="varchar" MaxLength="300" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="ReimbursementAmt" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Phone">
+    <Key>
+      <PropertyRef Name="PhoneId" />
+    </Key>
+    <Property Name="PhoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneTypeId" Type="int" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Extension" Type="nvarchar" MaxLength="10" />
+    <Property Name="AddressId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PhoneNumber">
+    <Key>
+      <PropertyRef Name="PhoneNumberId" />
+    </Key>
+    <Property Name="PhoneNumberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Extension" Type="nvarchar" MaxLength="6" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PhoneType">
+    <Key>
+      <PropertyRef Name="PhoneTypeId" />
+    </Key>
+    <Property Name="PhoneTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="PraticeId" />
+    </Key>
+    <Property Name="PraticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PracticeType" Type="int" Nullable="false" />
+    <Property Name="PracticeSpecialityType" Type="int" />
+    <Property Name="EntrolledServicesId" Type="int" />
+    <Property Name="PrefMethodofContact" Type="nvarchar" MaxLength="50" />
+    <Property Name="RepNameId" Type="int" />
+    <Property Name="RepGroupId" Type="int" />
+    <Property Name="RprtDeliveryPreference" Type="nvarchar" MaxLength="50" />
+    <Property Name="PracEmail" Type="nvarchar" MaxLength="225" />
+    <Property Name="PracFax" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Faxno" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastActivityDate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Practice_serviceId">
+    <Key>
+      <PropertyRef Name="NewTempId" />
+    </Key>
+    <Property Name="LeadServiceID" Type="int" />
+    <Property Name="EnrolledSercvicedId" Type="int" />
+    <Property Name="PracticeID" Type="int" />
+    <Property Name="NewTempId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Practice_SpecialityType">
+    <Key>
+      <PropertyRef Name="SpId" />
+    </Key>
+    <Property Name="SpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecialityId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeAddress">
+    <Key>
+      <PropertyRef Name="NewTempId" />
+    </Key>
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="Address" Type="int" />
+    <Property Name="NewTempId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PracticeContact">
+    <Key>
+      <PropertyRef Name="PracticeContactId" />
+    </Key>
+    <Property Name="PracticeContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="AddressId" Type="int" Nullable="false" />
+    <Property Name="PracticeOther" Type="nvarchar" MaxLength="500" />
+    <Property Name="BillingContact" Type="nvarchar" MaxLength="20" />
+    <Property Name="BillingContactPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="ManagerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ManagerEmail" Type="nvarchar" MaxLength="255" />
+    <Property Name="ManagerPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="BillingContactEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="officedayshrs" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="Primaryaddrss" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeProvider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Practiceid" Type="int" />
+    <Property Name="Providerid" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PracticeProviderLocation">
+    <Key>
+      <PropertyRef Name="PracticeProviderLocationId" />
+    </Key>
+    <Property Name="PracticeProviderLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="AddressId" Type="int" />
+    <Property Name="ProviderId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeSpecialityType">
+    <Key>
+      <PropertyRef Name="PracticeSpecialityTypeId" />
+    </Key>
+    <Property Name="PracticeSpecialityTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeSpecialityType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeType">
+    <Key>
+      <PropertyRef Name="PracticeTypeId" />
+    </Key>
+    <Property Name="PracticeTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Privileges">
+    <Key>
+      <PropertyRef Name="PrevilegeId" />
+    </Key>
+    <Property Name="PrevilegeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrevilegeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PrivilegeDescription" Type="nvarchar(max)" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="ProviderId" />
+    </Key>
+    <Property Name="ProviderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NPI" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Degree" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ProviderIdentifier" Type="uniqueidentifier" />
+    <Property Name="PrimaryAddressIdentifier" Type="uniqueidentifier" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="ProviderEmail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Provider_BoardCert' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Provider_BoardCert">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="BoardCertId" Type="int" />
+    <Property Name="ExpiryDate" Type="date" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Provider_Fellowship' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Provider_Fellowship">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="FellowshipId" Type="int" />
+    <Property Name="ExpairyDate" Type="date" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.ProviderNote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProviderNote">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Note" Type="varchar" MaxLength="100" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Rep">
+    <Key>
+      <PropertyRef Name="RepId" />
+    </Key>
+    <Property Name="RepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepsId" Type="nvarchar" MaxLength="10" />
+    <Property Name="User_Id" Type="int" />
+    <Property Name="RepGroupsId" Type="nvarchar" MaxLength="50" />
+    <Property Name="RepGroupId" Type="int" />
+    <Property Name="MangerId" Type="int" />
+    <Property Name="RepStatusId" Type="int" Nullable="false" />
+    <Property Name="SignonDate" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="EmployeeStatusId" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EPMDev.dbo.Rep_Srvc_Map' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Rep_Srvc_Map">
+    <Key>
+      <PropertyRef Name="Rep_Id" />
+      <PropertyRef Name="Srvc_Id" />
+    </Key>
+    <Property Name="Rep_Id" Type="int" Nullable="false" />
+    <Property Name="Srvc_Id" Type="int" Nullable="false" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Modified_On" Type="datetime" />
+    <Property Name="Modified_By" Type="int" />
+  </EntityType>
+  <EntityType Name="RepGroup">
+    <Key>
+      <PropertyRef Name="RepGroupId" />
+    </Key>
+    <Property Name="RepGroupId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RepGId" Type="nvarchar" MaxLength="50" />
+    <Property Name="RepGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Decription" Type="nvarchar(max)" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ManagerName" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="RId" />
+    </Key>
+    <Property Name="RId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportTypeId" Type="nvarchar" MaxLength="50" />
+    <Property Name="RepId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="RepName" Type="nvarchar" MaxLength="500" />
+    <Property Name="RepGroupName" Type="nvarchar" MaxLength="500" />
+    <Property Name="PracticeName" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProviderName" Type="nvarchar" MaxLength="500" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="InsurancePlanId" Type="int" />
+    <Property Name="InsuarancePlanTypeId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ReportStatus">
+    <Key>
+      <PropertyRef Name="ReportStatusId" />
+    </Key>
+    <Property Name="ReportStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepStatusName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdatedOn" Type="int" />
+  </EntityType>
+  <EntityType Name="ReportType">
+    <Key>
+      <PropertyRef Name="ReportTypeId" />
+    </Key>
+    <Property Name="ReportTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="RepStatus">
+    <Key>
+      <PropertyRef Name="RepStatusId" />
+    </Key>
+    <Property Name="RepStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepStatusType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="nvarchar" MaxLength="10" />
+    <Property Name="Role_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="SecurityTypeId" Type="int" />
+    <Property Name="ParentRoleId" Type="int" />
+    <Property Name="Status_Id" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Modified_On" Type="datetime" />
+    <Property Name="Modified_By" Type="int" />
+  </EntityType>
+  <EntityType Name="RxcReport">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateReceived" Type="nvarchar" MaxLength="300" />
+    <Property Name="Rxno" Type="nvarchar" MaxLength="50" />
+    <Property Name="ScriptType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ScriptNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Formulations" Type="nvarchar" MaxLength="100" />
+    <Property Name="Status" Type="nvarchar" MaxLength="500" />
+    <Property Name="DateFilled" Type="nvarchar" MaxLength="50" />
+    <Property Name="RxcPlan" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsPaid" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="NpiNumber" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RxCScript">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateReceived" Type="nvarchar" MaxLength="50" />
+    <Property Name="ScriptType" Type="int" />
+    <Property Name="ScriptNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="Formulations" Type="varchar" MaxLength="50" />
+    <Property Name="Staus" Type="int" />
+    <Property Name="DateFilled" Type="nvarchar" MaxLength="50" />
+    <Property Name="RxPlan" Type="int" />
+    <Property Name="Payement" Type="int" />
+    <Property Name="Notes" Type="varchar(max)" />
+    <Property Name="RepId" Type="int" />
+    <Property Name="RepName" Type="varchar" MaxLength="50" />
+    <Property Name="RepGroupName" Type="varchar" MaxLength="50" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="ProviderId" Type="int" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="InsurencePlanId" Type="int" />
+    <Property Name="FilePath" Type="varchar(max)" />
+    <Property Name="InsurancePlanTypeId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="EditedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="RxcStatus">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LabId" Type="int" />
+  </EntityType>
+  <EntityType Name="RxPlanTypes">
+    <Key>
+      <PropertyRef Name="RxPlanId" />
+    </Key>
+    <Property Name="RxPlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RxPlanType" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ScriptTypes">
+    <Key>
+      <PropertyRef Name="ScrtptTypeId" />
+    </Key>
+    <Property Name="ScrtptTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScriptTypeName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SecurityLevel">
+    <Key>
+      <PropertyRef Name="SecLvlTypeId" />
+    </Key>
+    <Property Name="SecLvlTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SecLvlTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceDecription" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="ServiceStatusTypes">
+    <Key>
+      <PropertyRef Name="ServiceStatusTypeId" />
+    </Key>
+    <Property Name="ServiceStatusTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ServiceTypes">
+    <Key>
+      <PropertyRef Name="ServiceTypeId" />
+    </Key>
+    <Property Name="ServiceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="StateCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="StatusTypes">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusType" Type="varchar" MaxLength="50" />
+    <Property Name="Creatd_On" Type="datetime" />
+    <Property Name="Creatd_By" Type="int" />
+    <Property Name="Modified_On" Type="datetime" />
+    <Property Name="Modified_By" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tasks">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="AssignedTo" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsRead" Type="int" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="Group_Id" />
+    </Key>
+    <Property Name="Group_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Group_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status_Id" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Modified_On" Type="datetime" />
+    <Property Name="Modified_By" Type="int" />
+  </EntityType>
+  <EntityType Name="tblLocation">
+    <Key>
+      <PropertyRef Name="Address_Id" />
+    </Key>
+    <Property Name="Address_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address_Type_Id" Type="int" />
+    <Property Name="Line_1" Type="nvarchar" MaxLength="300" />
+    <Property Name="Line_2" Type="nvarchar" MaxLength="300" />
+    <Property Name="City" Type="nvarchar" MaxLength="250" />
+    <Property Name="State_Id" Type="int" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="15" />
+    <Property Name="Office_Hours" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Modified_on" Type="datetime" />
+    <Property Name="Modified_By" Type="int" />
+  </EntityType>
+  <EntityType Name="tblServices">
+    <Key>
+      <PropertyRef Name="Service_Id" />
+    </Key>
+    <Property Name="Service_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Service_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Status_Id" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Modified_On" Type="datetime" />
+    <Property Name="Modified_By" Type="int" />
+  </EntityType>
+  <EntityType Name="Toxicology">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepGroup" Type="varchar" MaxLength="50" />
+    <Property Name="SpecimenID" Type="varchar" MaxLength="300" />
+    <Property Name="CollectedDt" Type="varchar" MaxLength="300" />
+    <Property Name="ReceivedDt" Type="varchar" MaxLength="300" />
+    <Property Name="Reported" Type="varchar" MaxLength="300" />
+    <Property Name="Clinician" Type="varchar" MaxLength="300" />
+    <Property Name="RepId" Type="varchar" MaxLength="300" />
+    <Property Name="RepName" Type="varchar" MaxLength="300" />
+    <Property Name="PracticeName" Type="varchar" MaxLength="300" />
+    <Property Name="ProviderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsurancePlan" Type="varchar" MaxLength="300" />
+    <Property Name="InsuarancePlanType" Type="varchar" MaxLength="1000" />
+    <Property Name="Status" Type="varchar" MaxLength="300" />
+    <Property Name="NpiNumber" Type="varchar" MaxLength="50" />
+    <Property Name="PayerName" Type="varchar" MaxLength="300" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Middle_Initial" Type="nvarchar" MaxLength="300" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="Role_Id" Type="int" />
+    <Property Name="Group_Id" Type="int" />
+    <Property Name="Dept" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Work_Email" Type="nvarchar" MaxLength="255" />
+    <Property Name="Home_Phone" Type="nvarchar" MaxLength="255" />
+    <Property Name="Phone_Number" Type="nvarchar" MaxLength="15" />
+    <Property Name="Address_Id" Type="int" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status_Id" Type="int" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="newPassword" Type="varbinary(max)" />
+    <Property Name="InspaidAccess" Type="bit" />
+  </EntityType>
+  <Association Name="FK_AccountService_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="AccountService" Type="Self.AccountService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="AccountService">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountService_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="AccountService" Type="Self.AccountService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="AccountService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_AddressType">
+    <End Role="AddressType" Type="Self.AddressType" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressType">
+        <PropertyRef Name="AddressTypeId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="AddressTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_States">
+    <End Role="States" Type="Self.States" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Licence_States">
+    <End Role="States" Type="Self.States" Multiplicity="1" />
+    <End Role="Licence" Type="Self.Licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Licence">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Note_Lead_Notes">
+    <End Role="Notes" Type="Self.Notes" Multiplicity="1" />
+    <End Role="Note_Lead" Type="Self.Note_Lead" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notes">
+        <PropertyRef Name="NotesId" />
+      </Principal>
+      <Dependent Role="Note_Lead">
+        <PropertyRef Name="NoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_NoteTypes">
+    <End Role="NoteTypes" Type="Self.NoteTypes" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTypes">
+        <PropertyRef Name="NoteTypeId" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="NotesTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_PhoneType">
+    <End Role="PhoneType" Type="Self.PhoneType" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhoneType">
+        <PropertyRef Name="PhoneTypeId" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PhoneTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeContact_Practice">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticeContact" Type="Self.PracticeContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="PraticeId" />
+      </Principal>
+      <Dependent Role="PracticeContact">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProvider_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="PracticeProvider" Type="Self.PracticeProvider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="ProviderId" />
+      </Principal>
+      <Dependent Role="PracticeProvider">
+        <PropertyRef Name="Providerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocation_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="PracticeProviderLocation" Type="Self.PracticeProviderLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocation">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PracticeProviderLocation_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="PracticeProviderLocation" Type="Self.PracticeProviderLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="ProviderId" />
+      </Principal>
+      <Dependent Role="PracticeProviderLocation">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Provider_Degree">
+    <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+    <End Role="Provider" Type="Self.Provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Degree">
+        <PropertyRef Name="DegreeId" />
+      </Principal>
+      <Dependent Role="Provider">
+        <PropertyRef Name="Degree" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_StatusTypes">
+    <End Role="StatusTypes" Type="Self.StatusTypes" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypes">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_States_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+    <End Role="States" Type="Self.States" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="States">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusTypes_StatusTypes">
+    <End Role="StatusTypes" Type="Self.StatusTypes" Multiplicity="1" />
+    <End Role="StatusTypes1" Type="Self.StatusTypes" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypes">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="StatusTypes1">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroup_StatusTypes">
+    <End Role="StatusTypes" Type="Self.StatusTypes" Multiplicity="0..1" />
+    <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusTypes">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="tblGroup">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EPMDevModelStoreContainer">
+    <EntitySet Name="AccessLevel" EntityType="Self.AccessLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountService" EntityType="Self.AccountService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountUploading" EntityType="Self.AccountUploading" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Alert_Lead" EntityType="Self.Alert_Lead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Alerts" EntityType="Self.Alerts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoardCertifications" EntityType="Self.BoardCertifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dept" EntityType="Self.Dept" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dept_Group" EntityType="Self.Dept_Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnrolledService" EntityType="Self.EnrolledService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntityType" EntityType="Self.EntityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fellowship" EntityType="Self.Fellowship" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Formulations" EntityType="Self.Formulations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpItemOrder" EntityType="Self.HelpItemOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpPriority" EntityType="Self.HelpPriority" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpPriorityType" EntityType="Self.HelpPriorityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpRequest" EntityType="Self.HelpRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpType" EntityType="Self.HelpType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InsurancePlan" EntityType="Self.InsurancePlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InsurancePlanType" EntityType="Self.InsurancePlanType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LeadSource" EntityType="Self.LeadSource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Licence" EntityType="Self.Licence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marketing" EntityType="Self.Marketing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Note_Lead" EntityType="Self.Note_Lead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteTypes" EntityType="Self.NoteTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientPgxreportMap" EntityType="Self.PatientPgxreportMap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PgxReport1" EntityType="Self.PgxReport1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhoneNumber" EntityType="Self.PhoneNumber" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhoneType" EntityType="Self.PhoneType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice" EntityType="Self.Practice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice_serviceId" EntityType="Self.Practice_serviceId" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice_SpecialityType" EntityType="Self.Practice_SpecialityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeAddress" EntityType="Self.PracticeAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeContact" EntityType="Self.PracticeContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeProvider" EntityType="Self.PracticeProvider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeProviderLocation" EntityType="Self.PracticeProviderLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeSpecialityType" EntityType="Self.PracticeSpecialityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeType" EntityType="Self.PracticeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privileges" EntityType="Self.Privileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rep" EntityType="Self.Rep" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepGroup" EntityType="Self.RepGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportStatus" EntityType="Self.ReportStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportType" EntityType="Self.ReportType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepStatus" EntityType="Self.RepStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RxcReport" EntityType="Self.RxcReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RxCScript" EntityType="Self.RxCScript" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RxcStatus" EntityType="Self.RxcStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RxPlanTypes" EntityType="Self.RxPlanTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScriptTypes" EntityType="Self.ScriptTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecurityLevel" EntityType="Self.SecurityLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceStatusTypes" EntityType="Self.ServiceStatusTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusTypes" EntityType="Self.StatusTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLocation" EntityType="Self.tblLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblServices" EntityType="Self.tblServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Toxicology" EntityType="Self.Toxicology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Access" EntityType="Self.Access" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Access].[PermissionId] AS [PermissionId], 
+    [Access].[RoleId] AS [RoleId], 
+    [Access].[Access] AS [Access]
+    FROM [dbo].[Access] AS [Access]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AccountAddress" EntityType="Self.AccountAddress" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AccountAddress].[Id] AS [Id], 
+    [AccountAddress].[AccountId] AS [AccountId], 
+    [AccountAddress].[AddressId] AS [AddressId]
+    FROM [dbo].[AccountAddress] AS [AccountAddress]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AccountProvider" EntityType="Self.AccountProvider" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AccountProvider].[Id] AS [Id], 
+    [AccountProvider].[AccountId] AS [AccountId], 
+    [AccountProvider].[ProviderId] AS [ProviderId]
+    FROM [dbo].[AccountProvider] AS [AccountProvider]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AccountStatusTypes" EntityType="Self.AccountStatusTypes" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AccountStatusTypes].[ID] AS [ID], 
+    [AccountStatusTypes].[StatusId] AS [StatusId], 
+    [AccountStatusTypes].[Description] AS [Description]
+    FROM [dbo].[AccountStatusTypes] AS [AccountStatusTypes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AccountType" EntityType="Self.AccountType" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AccountType].[ActypeId] AS [ActypeId], 
+    [AccountType].[AcName] AS [AcName], 
+    [AccountType].[AcStatus] AS [AcStatus], 
+    [AccountType].[CreateDate] AS [CreateDate], 
+    [AccountType].[ModifyDate] AS [ModifyDate], 
+    [AccountType].[UserId] AS [UserId]
+    FROM [dbo].[AccountType] AS [AccountType]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AcctNote" EntityType="Self.AcctNote" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AcctNote].[Id] AS [Id], 
+    [AcctNote].[note] AS [note], 
+    [AcctNote].[AcctId] AS [AcctId], 
+    [AcctNote].[CreateDate] AS [CreateDate], 
+    [AcctNote].[ModifyDate] AS [ModifyDate], 
+    [AcctNote].[UserId] AS [UserId]
+    FROM [dbo].[AcctNote] AS [AcctNote]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Action" EntityType="Self.Action" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Action].[ActionId] AS [ActionId], 
+    [Action].[ActionType] AS [ActionType], 
+    [Action].[ActionDescription] AS [ActionDescription]
+    FROM [dbo].[Action] AS [Action]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Admin].[AdminId] AS [AdminId], 
+    [Admin].[AdminName] AS [AdminName], 
+    [Admin].[Password] AS [Password]
+    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ContactInfo" EntityType="Self.ContactInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ContactInfo].[ContactId] AS [ContactId], 
+    [ContactInfo].[Email] AS [Email], 
+    [ContactInfo].[Phone] AS [Phone], 
+    [ContactInfo].[HomePhone] AS [HomePhone], 
+    [ContactInfo].[OtherPhone] AS [OtherPhone], 
+    [ContactInfo].[Mobile] AS [Mobile], 
+    [ContactInfo].[Website] AS [Website], 
+    [ContactInfo].[LinkedIn] AS [LinkedIn], 
+    [ContactInfo].[Facebook] AS [Facebook], 
+    [ContactInfo].[Skype] AS [Skype], 
+    [ContactInfo].[Fax] AS [Fax], 
+    [ContactInfo].[SecoundryEmail] AS [SecoundryEmail], 
+    [ContactInfo].[AssistantPhone] AS [AssistantPhone], 
+    [ContactInfo].[AssistantEmail] AS [AssistantEmail], 
+    [ContactInfo].[UserId] AS [UserId]
+    FROM [dbo].[ContactInfo] AS [ContactInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ContactNote" EntityType="Self.ContactNote" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ContactNote].[Id] AS [Id], 
+    [ContactNote].[Note] AS [Note], 
+    [ContactNote].[ContactId] AS [ContactId], 
+    [ContactNote].[CreateDate] AS [CreateDate], 
+    [ContactNote].[ModifyDate] AS [ModifyDate], 
+    [ContactNote].[UserId] AS [UserId]
+    FROM [dbo].[ContactNote] AS [ContactNote]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Documents" EntityType="Self.Documents" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Documents].[Id] AS [Id], 
+    [Documents].[FolderId] AS [FolderId], 
+    [Documents].[Name] AS [Name], 
+    [Documents].[Description] AS [Description], 
+    [Documents].[Doctype] AS [Doctype], 
+    [Documents].[LocationUrl] AS [LocationUrl], 
+    [Documents].[Owner] AS [Owner], 
+    [Documents].[CreateDate] AS [CreateDate], 
+    [Documents].[ModifyDate] AS [ModifyDate], 
+    [Documents].[UserId] AS [UserId], 
+    [Documents].[Trash] AS [Trash], 
+    [Documents].[IsDeleted] AS [IsDeleted], 
+    [Documents].[RepGroupId] AS [RepGroupId], 
+    [Documents].[AccessId] AS [AccessId]
+    FROM [dbo].[Documents] AS [Documents]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Entity" EntityType="Self.Entity" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Entity].[EntityId] AS [EntityId], 
+    [Entity].[EntityName] AS [EntityName]
+    FROM [dbo].[Entity] AS [Entity]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Folder" EntityType="Self.Folder" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Folder].[Id] AS [Id], 
+    [Folder].[Name] AS [Name], 
+    [Folder].[ParentId] AS [ParentId], 
+    [Folder].[CreateDate] AS [CreateDate], 
+    [Folder].[ModifyDate] AS [ModifyDate], 
+    [Folder].[UserId] AS [UserId]
+    FROM [dbo].[Folder] AS [Folder]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HelpNote" EntityType="Self.HelpNote" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HelpNote].[Id] AS [Id], 
+    [HelpNote].[Note] AS [Note], 
+    [HelpNote].[HelpId] AS [HelpId], 
+    [HelpNote].[CreateDate] AS [CreateDate], 
+    [HelpNote].[ModifyDate] AS [ModifyDate], 
+    [HelpNote].[UserId] AS [UserId]
+    FROM [dbo].[HelpNote] AS [HelpNote]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeadContact" EntityType="Self.LeadContact" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LeadContact].[ContactId] AS [ContactId], 
+    [LeadContact].[FirstName] AS [FirstName], 
+    [LeadContact].[LastName] AS [LastName], 
+    [LeadContact].[Title] AS [Title], 
+    [LeadContact].[Degree] AS [Degree], 
+    [LeadContact].[Department] AS [Department], 
+    [LeadContact].[ReportsTo] AS [ReportsTo], 
+    [LeadContact].[Assistant] AS [Assistant], 
+    [LeadContact].[OrgId] AS [OrgId], 
+    [LeadContact].[Dob] AS [Dob], 
+    [LeadContact].[Description] AS [Description], 
+    [LeadContact].[HomeAdders] AS [HomeAdders], 
+    [LeadContact].[Owner] AS [Owner], 
+    [LeadContact].[CreateDate] AS [CreateDate], 
+    [LeadContact].[ModifyDate] AS [ModifyDate], 
+    [LeadContact].[UserId] AS [UserId]
+    FROM [dbo].[LeadContact] AS [LeadContact]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeadNotes" EntityType="Self.LeadNotes" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LeadNotes].[NotesId] AS [NotesId], 
+    [LeadNotes].[Note] AS [Note], 
+    [LeadNotes].[LeadId] AS [LeadId], 
+    [LeadNotes].[CreateDate] AS [CreateDate], 
+    [LeadNotes].[ModifyDate] AS [ModifyDate], 
+    [LeadNotes].[UserId] AS [UserId]
+    FROM [dbo].[LeadNotes] AS [LeadNotes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeadPracticeProvider" EntityType="Self.LeadPracticeProvider" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LeadPracticeProvider].[Id] AS [Id], 
+    [LeadPracticeProvider].[LeadId] AS [LeadId], 
+    [LeadPracticeProvider].[PracticeProviderId] AS [PracticeProviderId], 
+    [LeadPracticeProvider].[CreateDate] AS [CreateDate], 
+    [LeadPracticeProvider].[ModifyDate] AS [ModifyDate]
+    FROM [dbo].[LeadPracticeProvider] AS [LeadPracticeProvider]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeadStage" EntityType="Self.LeadStage" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LeadStage].[StageId] AS [StageId], 
+    [LeadStage].[StageName] AS [StageName], 
+    [LeadStage].[Status] AS [Status], 
+    [LeadStage].[CreateDate] AS [CreateDate], 
+    [LeadStage].[ModifyDate] AS [ModifyDate], 
+    [LeadStage].[UserId] AS [UserId]
+    FROM [dbo].[LeadStage] AS [LeadStage]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeadStatus" EntityType="Self.LeadStatus" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LeadStatus].[StatusId] AS [StatusId], 
+    [LeadStatus].[StatusName] AS [StatusName], 
+    [LeadStatus].[Status] AS [Status], 
+    [LeadStatus].[CreateDate] AS [CreateDate], 
+    [LeadStatus].[ModifyDate] AS [ModifyDate], 
+    [LeadStatus].[UserId] AS [UserId]
+    FROM [dbo].[LeadStatus] AS [LeadStatus]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LeadTasks" EntityType="Self.LeadTasks" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LeadTasks].[TaskId] AS [TaskId], 
+    [LeadTasks].[TaskTitle] AS [TaskTitle], 
+    [LeadTasks].[Decription] AS [Decription], 
+    [LeadTasks].[DueDate] AS [DueDate], 
+    [LeadTasks].[Status] AS [Status], 
+    [LeadTasks].[LeadId] AS [LeadId], 
+    [LeadTasks].[CreateDate] AS [CreateDate], 
+    [LeadTasks].[ModifyDate] AS [ModifyDate], 
+    [LeadTasks].[UserId] AS [UserId]
+    FROM [dbo].[LeadTasks] AS [LeadTasks]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Permissions" EntityType="Self.Permissions" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Permissions].[PermissionId] AS [PermissionId], 
+    [Permissions].[Entity] AS [Entity], 
+    [Permissions].[PrivilegeId] AS [PrivilegeId], 
+    [Permissions].[Description] AS [Description]
+    FROM [dbo].[Permissions] AS [Permissions]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Provider_BoardCert" EntityType="Self.Provider_BoardCert" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Provider_BoardCert].[id] AS [id], 
+    [Provider_BoardCert].[ProviderId] AS [ProviderId], 
+    [Provider_BoardCert].[BoardCertId] AS [BoardCertId], 
+    [Provider_BoardCert].[ExpiryDate] AS [ExpiryDate], 
+    [Provider_BoardCert].[CreateDate] AS [CreateDate], 
+    [Provider_BoardCert].[ModifyDate] AS [ModifyDate], 
+    [Provider_BoardCert].[UserId] AS [UserId]
+    FROM [dbo].[Provider_BoardCert] AS [Provider_BoardCert]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Provider_Fellowship" EntityType="Self.Provider_Fellowship" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Provider_Fellowship].[id] AS [id], 
+    [Provider_Fellowship].[ProviderId] AS [ProviderId], 
+    [Provider_Fellowship].[FellowshipId] AS [FellowshipId], 
+    [Provider_Fellowship].[ExpairyDate] AS [ExpairyDate], 
+    [Provider_Fellowship].[CreateDate] AS [CreateDate], 
+    [Provider_Fellowship].[ModifyDate] AS [ModifyDate], 
+    [Provider_Fellowship].[UserId] AS [UserId]
+    FROM [dbo].[Provider_Fellowship] AS [Provider_Fellowship]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProviderNote" EntityType="Self.ProviderNote" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProviderNote].[id] AS [id], 
+    [ProviderNote].[Note] AS [Note], 
+    [ProviderNote].[ProviderId] AS [ProviderId], 
+    [ProviderNote].[CreateDate] AS [CreateDate], 
+    [ProviderNote].[ModifyDate] AS [ModifyDate], 
+    [ProviderNote].[UserId] AS [UserId]
+    FROM [dbo].[ProviderNote] AS [ProviderNote]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Rep_Srvc_Map" EntityType="Self.Rep_Srvc_Map" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Rep_Srvc_Map].[Rep_Id] AS [Rep_Id], 
+    [Rep_Srvc_Map].[Srvc_Id] AS [Srvc_Id], 
+    [Rep_Srvc_Map].[Created_On] AS [Created_On], 
+    [Rep_Srvc_Map].[Created_By] AS [Created_By], 
+    [Rep_Srvc_Map].[Modified_On] AS [Modified_On], 
+    [Rep_Srvc_Map].[Modified_By] AS [Modified_By]
+    FROM [dbo].[Rep_Srvc_Map] AS [Rep_Srvc_Map]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AccountService_Account" Association="Self.FK_AccountService_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountService" EntitySet="AccountService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountService_Services" Association="Self.FK_AccountService_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="AccountService" EntitySet="AccountService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_AddressType" Association="Self.FK_Address_AddressType">
+      <End Role="AddressType" EntitySet="AddressType" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_States" Association="Self.FK_Address_States">
+      <End Role="States" EntitySet="States" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Licence_States" Association="Self.FK_Licence_States">
+      <End Role="States" EntitySet="States" />
+      <End Role="Licence" EntitySet="Licence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Note_Lead_Notes" Association="Self.FK_Note_Lead_Notes">
+      <End Role="Notes" EntitySet="Notes" />
+      <End Role="Note_Lead" EntitySet="Note_Lead" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_NoteTypes" Association="Self.FK_Notes_NoteTypes">
+      <End Role="NoteTypes" EntitySet="NoteTypes" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_Address" Association="Self.FK_Phone_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_PhoneType" Association="Self.FK_Phone_PhoneType">
+      <End Role="PhoneType" EntitySet="PhoneType" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Address" Association="Self.FK_PracticeContact_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="PracticeContact" EntitySet="PracticeContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeContact_Practice" Association="Self.FK_PracticeContact_Practice">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeContact" EntitySet="PracticeContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProvider_Provider" Association="Self.FK_PracticeProvider_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="PracticeProvider" EntitySet="PracticeProvider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocation_Address" Association="Self.FK_PracticeProviderLocation_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="PracticeProviderLocation" EntitySet="PracticeProviderLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PracticeProviderLocation_Provider" Association="Self.FK_PracticeProviderLocation_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="PracticeProviderLocation" EntitySet="PracticeProviderLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Provider_Degree" Association="Self.FK_Provider_Degree">
+      <End Role="Degree" EntitySet="Degree" />
+      <End Role="Provider" EntitySet="Provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_StatusTypes" Association="Self.FK_Roles_StatusTypes">
+      <End Role="StatusTypes" EntitySet="StatusTypes" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusTypes_StatusTypes" Association="Self.FK_StatusTypes_StatusTypes">
+      <End Role="StatusTypes" EntitySet="StatusTypes" />
+      <End Role="StatusTypes1" EntitySet="StatusTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroup_StatusTypes" Association="Self.FK_tblGroup_StatusTypes">
+      <End Role="StatusTypes" EntitySet="StatusTypes" />
+      <End Role="tblGroup" EntitySet="tblGroup" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

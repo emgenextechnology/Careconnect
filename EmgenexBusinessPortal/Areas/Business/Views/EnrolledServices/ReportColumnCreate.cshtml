@@ -1,0 +1,112 @@
+﻿@model EmgenexBusinessPortal.Areas.Business.Models.ReportColumnModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ReportColumn</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.ServiceId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ColumnName, "Column Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ColumnName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.ColumnName, "", new { @class = "text-danger" })
+                @Html.ValidationMessage("Error", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayName, "Display Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "text-danger" })
+                @Html.ValidationMessage("Error", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ColumnType, "Column Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.ColumnType, EmgenexBusinessPortal.Helpers.LookUps.GetSalesColumnType(), htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InputType, "Input Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.InputType, EmgenexBusinessPortal.Helpers.LookUps.GetInputType(), htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsMandatory, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="checkbox">
+                    @Html.CheckBox("IsMandatory")
+                    @Html.ValidationMessageFor(model => model.IsMandatory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayInFilter, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.CheckBox("DisplayInFilter")
+                @Html.ValidationMessageFor(model => model.DisplayInFilter, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShowInGrid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.CheckBox("ShowInGrid")
+                @Html.ValidationMessageFor(model => model.ShowInGrid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RolePrivileges, "Role Privileges", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.ListBoxFor(model => model.RolePrivileges, (IEnumerable<SelectListItem>)ViewBag.RolePrivilegesList, new { @class = "js-example-basic-multiple form-control", multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.RolePrivileges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartmentPrivileges, "Department Privileges", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.ListBoxFor(model => model.DepartmentPrivileges, (IEnumerable<SelectListItem>)ViewBag.DepartmentPrivilegesList, new { @class = "js-example-basic-multiple form-control", multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.DepartmentPrivileges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserPrivileges, "User Privileges", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.ListBoxFor(model => model.UserPrivileges, (IEnumerable<SelectListItem>)ViewBag.UserPrivilegesList, new { @class = "js-example-basic-multiple form-control", multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.UserPrivileges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ReportColumns", new {id=Model.ServiceId })
+</div>
+<script src="~/Scripts/select2/select2.min.js"></script>
+<link href="~/Scripts/select2/select2.css" rel="stylesheet" />
+<link href="~/Scripts/select2/select2-bootstrap.css" rel="stylesheet" />
+<script>
+    $(".js-example-basic-multiple").select2();
+</script>

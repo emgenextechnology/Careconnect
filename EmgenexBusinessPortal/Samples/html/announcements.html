@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Announcements</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/floating-nav.css">
+    <link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker3.min.css" />
+</head>
+<body>
+<div id="container-floating">
+  <div class="nd3 nds">
+    <a href="#" data-toggle="modal" data-target="#addtask"><span class="tool-tip-flticn"><strong>Add Task</strong></span>
+    <p class="letter"><img src="images/task-icon-white.png" width="22" alt=""/></p></a>
+  </div>
+  <div class="nd2 nds">
+    <a href="#" data-toggle="modal" data-target="#addlead"><span class="tool-tip-flticn"><strong>Add Lead</strong></span>
+    <p class="letter"><img src="images/lead-icon-white.png" width="22" alt=""/></p></a>
+  </div>
+  <div class="nd1 nds">
+    <a href="#" data-toggle="modal" data-target="#addaccount"><span class="tool-tip-flticn"><strong>Add Account</strong></span>
+    <p class="letter"><img src="images/accounts-icon-white.png" width="22" alt=""/></p></a>
+  </div>
+
+  <div id="floating-button" onclick="newmail()">
+    <p class="plus">+</p>
+    <img class="edit" src="images/edit.png">
+  </div>
+</div>
+<div class="modal fade" id="addaccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Create a new account</h4>
+      </div>
+      <div class="modal-body-form addaccount-form-wrap">
+        <div class="form-repeater-box">
+          <h2>General Information</h2>
+          <div class="repeatingsection-location">
+          <div class="row">
+            <div class="col-sm-3 field-box">
+              <fieldset class="form-group error-input">
+                  <div class='input-group date' id='accountdate-select'>
+                    <input type="text" class="form-control" placeholder="The date">
+                    <span class="input-group-addon">
+                        <img src="images/date-picker.png" alt="Date" width="14">
+                    </span>
+                  </div>
+             </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group error-input">
+                <input type="text" class="form-control" id="" placeholder="Enter your account name">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group error-input">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Select the type</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Enter first line of your address">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Enter second line of your address">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group error-input">
+                 <select class="form-control city-multiple" multiple="multiple">
+                  <option value="city1">City 1</option>
+                  <option value="city2">City 2</option>
+                  <option value="city3">City 3</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control state-multiple" multiple="multiple">
+                  <option value="state1">State 1</option>
+                  <option value="state2">State 2</option>
+                  <option value="state3">State 3</option>
+                 </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Enter your zip code">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Enter your phone">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Enter Ext">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Enter your fax">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Manager name">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="email" class="form-control" id="" placeholder="Manager email">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Manager phone">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Billing contact">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="email" class="form-control" id="" placeholder="Billing contact email">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Billing contact phone">
+              </fieldset>
+            </div>
+          </div>
+          <!-- <a href="#" class="cancel-location remove-repeat">- Remove Location</a> -->
+          </div>
+          <a href="#" class="add-location add-repat">Add Additional section</a>
+        </div>
+        <div class="form-repeater-box">
+          <h2>Services</h2>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Choose enrolled services</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Report delivery performance</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box">
+          <h2>Provider</h2>
+          <div class="repeatingsection-provider">
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="First Name">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Middle Name">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Last Name">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Select the degree</option>
+                  <option>Degree 1</option>
+                  <option>Degree 2</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Enter #NPI">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 field-box">
+              <div class="radio">
+                  <span class="same-loctn-title">Location Same As Practice</span>
+                  <label class="md-radio-group" for="radio3">
+                    <input type="radio" name="smoke" id="radio3" class="md-radiobox" checked="checked" />
+                    <span class="md-check-radio"></span>Yes
+                  </label>
+                  <label class="md-radio-group" for="radio4">
+                    <input type="radio" name="smoke" id="radio4" class="md-radiobox"/>
+                    <span class="md-check-radio"></span>No
+                  </label>
+              </div>
+            </div>
+          </div>
+          
+          </div>
+        </div>
+        <div class="form-repeater-box">
+          <h2>Account Manager(s)</h2>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Team</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <input type="text" class="form-control" id="" placeholder="Enter Rep's name (s)">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 field-box">
+              <fieldset class="form-group">
+                 <textarea class="form-control" id="" placeholder="Add notes"></textarea>
+              </fieldset>
+            </div>
+          </div> 
+        </div>
+        <div class="form-repeater-box">
+          <h2>Other options</h2>
+          <div class="options-box"><a href="#"><img src="images/plus-grey.png" alt="Add task" width="14">Add task</a>
+          <a href="#"><img src="images/close-grey.png" alt="Close account" width="14">Close account</a>
+          <a href="#"><img src="images/pdf.png" alt="Close account" width="18">Add PDF</a></div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-form-submit">Create new account</button>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="addlead"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add Lead</h4>
+      </div>
+      <div class="modal-body-form">
+        <div class="form-repeater-box">
+          <h2>Account</h2>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Account Name">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Choose Practice Type</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <select class="form-control speciality-multiple" multiple="multiple">
+                  <option value="Speciality1">Speciality 1</option>
+                  <option value="Speciality2">Speciality 2</option>
+                  <option value="Speciality3">Speciality 3</option>
+                </select>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Address Line 1">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Address Line 2">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <select class="form-control city-multiple" multiple="multiple">
+                  <option value="city1">City 1</option>
+                  <option value="city2">City 2</option>
+                  <option value="city3">City 3</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control state-multiple" multiple="multiple">
+                  <option value="state1">State 1</option>
+                  <option value="state2">State 2</option>
+                  <option value="state3">State 3</option>
+                 </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Zip Code">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Phone Number">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Ext">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Fax">
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box">
+          <h2>Additional Locations</h2>
+          <div class="repeatingsection-location">
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Address Line 1">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Address Line 2">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control city-multiple" multiple="multiple">
+                  <option value="city1">City 1</option>
+                  <option value="city2">City 2</option>
+                  <option value="city3">City 3</option>
+                </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control state-multiple" multiple="multiple">
+                  <option value="state1">State 1</option>
+                  <option value="state2">State 2</option>
+                  <option value="state3">State 3</option>
+                 </select>
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Zip Code">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Phone Number">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="tel" class="form-control" id="" placeholder="Ext">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Manager Name">
+              </fieldset>
+            </div>
+          </div>
+          <a href="#" class="cancel-location remove-repeat">- Remove Location</a>
+          </div>
+          <a href="#" class="add-location add-repat">+ Add Location</a>
+        </div>
+        <div class="form-repeater-box">
+          <h2>Provider</h2>
+          <div class="repeatingsection-provider">
+          <div class="row">
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="First Name">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Middle Name">
+              </fieldset>
+            </div>
+            <div class="col-sm-4 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Last Name">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Degree</option>
+                  <option>Degree 1</option>
+                  <option>Degree 2</option>
+                </select>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 field-box">
+              <fieldset class="form-group">
+                <input type="text" class="form-control" id="" placeholder="NPI#">
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 field-box">
+              <div class="radio">
+                  <span class="same-loctn-title">Location Same As Practice</span>
+                  <label class="md-radio-group" for="radio5">
+                    <input type="radio" name="smoke" id="radio5" class="md-radiobox" checked="checked" />
+                    <span class="md-check-radio"></span>Yes
+                  </label>
+                  <label class="md-radio-group" for="radio6">
+                    <input type="radio" name="smoke" id="radio6" class="md-radiobox"/>
+                    <span class="md-check-radio"></span>No
+                  </label>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="cancel-provider remove-repeat">- Remove Provider</a>
+          </div>
+          <a href="#" class="add-provider add-repat">+ Add Provider</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-form-submit">Submit</button>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="addtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-header task-model-header">
+        <h4 class="modal-title pull-left" id="myModalLabel">ID:HLP345512</h4>
+        <div class="task-model-top pull-right">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="pull-right btn btn-default">Send</button>
+          <a href="#" class="pull-right"><img src="images/attach.png" alt="Attach" width="20">Attach</a>
+          <a href="#" class="pull-right"><img src="images/warning.png" alt="Warning" width="17">High Priority</a>
+          <a href="#" class="pull-right"><img src="images/edit-grey.png" alt="Notes" width="14">Notes</a>
+          <a href="#" class="pull-right"><img src="images/alert.png" alt="Alert" width="16">Alert</a>
+          <a href="#" class="pull-right"><img src="images/date-picker.png" alt="Date" width="14">Date</a>
+        </div>
+      </div>
+      <div class="modal-body-form modal-body-form-tast">
+        <div class="form-repeater-box-task">
+          <div class="row">
+            <div class="col-sm-12 field-box">
+                <label>From: </label><span class="defined-input">Dima Shvedun</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box-task">
+          <div class="row">
+            <div class="col-sm-12 field-box filed-box-task">
+                <label>To: </label><input type="text" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box-task task-multi-wrap">
+          <div class="row">
+            <div class="col-sm-12 field-box">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Select the request type</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box-task">
+          <div class="row">
+            <div class="col-sm-12 field-box">
+                <label>Subject: </label><span class="defined-input">HLP345512</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box-task task-multi-wrap">
+          <div class="row">
+            <div class="col-sm-6 field-box">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Choose an account</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+            </div>
+            <div class="col-sm-6 field-box right-task-select">
+                 <select class="form-control selectpicker">
+                  <option value="" disabled="" selected="" hidden="">Choose a lead</option>
+                  <option>Multi Speciality</option>
+                  <option>Single Speciality</option>
+                  <option>Other</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-repeater-box-task">
+          <div class="row">
+            <div class="col-sm-12 field-box">
+                <textarea class="form-control" placeholder="Description of your request"></textarea>
+            </div>
+          </div>
+        </div>  
+      </div>
+  </div>
+</div>
+<div class="content-wrapper">
+<div class="row wrapper-row">
+
+<div class="left-sidebar">
+    <ul>
+      <li class="top-left-bar"><a href="#"><span class="bar-wrap"><span class="bar"></span></span></a></li>
+      <li>
+        <a href="dashboard.html">
+          <span class="nav-ico"><img src="images/dashboard-icon-orange.png" alt="" class="bottom-icon" /><img src="images/dashboard-icon-white.png" alt="" class="top-icon" /></span>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="leads.html">
+          <span class="nav-ico"><img src="images/lead-icon-orange.png" alt="" class="bottom-icon" /><img src="images/lead-icon-white.png" alt="" class="top-icon" /></span>
+          Leads
+        </a>
+      </li>
+      <li>
+        <a href="accounts.html">
+          <span class="nav-ico"><img src="images/accounts-icon-orange.png" alt="" class="bottom-icon" /><img src="images/accounts-icon-white.png" alt="" class="top-icon" /></span>
+        Accounts
+        </a>
+      </li>
+      <li>
+        <a href="tasks.html">
+          <span class="nav-ico badge1" data-badge="6"><img src="images/task-icon-orange.png" alt="" class="bottom-icon" /><img src="images/task-icon-white.png" alt="" class="top-icon" /></span>
+          Tasks
+        </a>
+      </li>
+      <li>
+        <a href="sales.html">
+          <span class="nav-ico"><img src="images/sales-icon-orange.png" alt="" class="bottom-icon" /><img src="images/sales-icon-white.png" alt="" class="top-icon" /></span>
+          Sales
+        </a>
+      </li>
+      <li>
+        <a href="announcements.html" class="active">
+          <span class="nav-ico"><img src="images/news-icon-orange.png" alt="" class="bottom-icon" /><img src="images/news-icon-white.png" alt="" class="top-icon" /></span>
+          News
+        </a>
+      </li>
+      <li>
+        <a href="marketing.html">
+          <span class="nav-ico"><img src="images/marketing-icon-orange.png" alt="" class="bottom-icon" /><img src="images/marketing-icon-white.png" alt="" class="top-icon" /></span>
+          Marketing
+        </a>
+      </li>
+    </ul>
+</div>
+<div class="right-side-wrap">
+    <header class="navbar navbar-full navbar-light bg-faded">
+            <h1 class="pull-left">Announcements</h1>     
+            <ul class="head-nav pull-right">
+                <li><a href="#" class="badge1" data-badge="2"><img src="images/notification.png" alt="Notification" width="16"></a></li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><img src="images/user.jpg" alt="User" width="32" height="32" class="img-circle user-thumb" />Dima Shvedun <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></a>
+    <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+                </li>
+            </ul> 
+                       
+    </header>
+    <div class="lead-top-search">
+      <div class="row ">
+        <div class="col-lg-5 col-sm-12 leads-result">
+          3 matching criteria
+        </div>
+        <div class="col-lg-7 col-sm-12">
+        <div class="row">
+        <div class="col-lg-6 col-sm-6 add-lnk-outerwrap">
+          <div class="pull-right add-lnk-wrp">
+          <a href="#" class="btn btn-primary lead-add-btn" data-toggle="modal" data-target="#addaccount"><span>+</span> Add Announcement</a>          
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 srch-bx">
+          <form action="" method="">
+          <div class="pull-left input-group search-lead search-announce">
+            <input class="form-control" placeholder="Search Announcements" name="" id="" type="text">
+            <div class="input-group-btn">
+              <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+          <form>
+        </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    <div class="report-content-wrap">
+      <div class="row">
+        <div class="col-md-10 col-sm-12">
+          <div class="report-list-box">
+              <div class="report-date">1 Feb 2016</div>
+              <h3>What Is Cataract Surgery And How Does It Work</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat eros a auctor tristique. Quisque rutrum lectus ac sodales varius. Pellentesque pretium interdum nulla in facilisis. Pellentesque lacus mauris, placerat ac sem id, egestas imperdiet urna. Ut non dui enim. Etiam hendrerit, dui pulvinar imperdiet tempor, turpis massa ullamcorper erat, sit amet iaculis dui leo quis odio. Nunc lacus nibh, rhoncus a tempor non, consequat ut arcu. Vestibulum imperdiet velit augue, et auctor risus pellentesque mattis. Sed dapibus ipsum ut porta fermentum. Sed ultrices ut justo non ullamcorper. Morbi tellus nulla, accumsan ut arcu nec, ultricies feugiat neque. Donec mauris est, finibus et lacus ac, dapibus laoreet nisl. Donec sed ligula mattis, semper nisl vel, condimentum diam. </p>
+              <div class="report-bottom">
+                <div class="reported-thumb pull-left"><img src="images/user.jpg" alt="User" width="28" height="28" class="img-circle"></div>
+                <div class="reported-name pull-left">Lucy Clayton</div>
+                <div class="reported-date pull-left">14 Apr 2016</div>
+                <div class="clearfix"></div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-10 col-sm-12">
+          <div class="report-list-box">
+              <div class="report-date">1 Feb 2016</div>
+              <h3>What Is Cataract Surgery And How Does It Work</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat eros a auctor tristique. Quisque rutrum lectus ac sodales varius. Pellentesque pretium interdum nulla in facilisis. Pellentesque lacus mauris, placerat ac sem id, egestas imperdiet urna. Ut non dui enim. Etiam hendrerit, dui pulvinar imperdiet tempor, turpis massa ullamcorper erat, sit amet iaculis dui leo quis odio. Nunc lacus nibh, rhoncus a tempor non, consequat ut arcu. Vestibulum imperdiet velit augue, et auctor risus pellentesque mattis. Sed dapibus ipsum ut porta fermentum. Sed ultrices ut justo non ullamcorper. Morbi tellus nulla, accumsan ut arcu nec, ultricies feugiat neque. Donec mauris est, finibus et lacus ac, dapibus laoreet nisl. Donec sed ligula mattis, semper nisl vel, condimentum diam. </p>
+              <div class="report-bottom">
+                <div class="reported-thumb pull-left"><img src="images/user.jpg" alt="User" width="28" height="28" class="img-circle"></div>
+                <div class="reported-name pull-left">Lucy Clayton</div>
+                <div class="reported-date pull-left">14 Apr 2016</div>
+                <div class="clearfix"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+</div>
+
+</div>
+</div>
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/select2.full.js"></script>
+    <script>
+     $.fn.modal.Constructor.prototype.enforceFocus = function () {
+        var that = this
+            $(document).on('focusin.modal', function (e) {
+              if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
+                that.$element.focus()
+              }
+            })
+     };
+    </script>
+    <script src="js/scripts.js"></script>
+    <script>
+    var i=0;
+    if($(window).width()>=768 && $(window).width()<=1024){
+        $('#container-floating .nds').on("click",function(e){
+        $('#container-floating .nds').hide();
+        });
+        $('#floating-button').on("click",function(e){
+        if(i>0)
+        $('#container-floating .nds').toggle('show');
+        i++;
+        });
+      }
+    </script>
+    <script>   
+    $(document).ready(function(e){
+    $(".repname-multiple").select2({
+        placeholder: "Rep Name",
+      });
+      $(".groupname-multiple").select2({
+        placeholder: "Group",
+      });
+      $(".period-multiple").select2({
+        placeholder: "Period",
+      });
+      $(".city-multiple").select2({
+        placeholder: "Select City",
+      });
+      $(".state-multiple").select2({
+        placeholder: "Select State",
+      });
+      $(".speciality-multiple").select2({
+        placeholder: "Multi Speciality",
+      });
+
+    });
+    </script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+    $('#accountdate-select').datepicker({
+        orientation: "bottom auto",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    </script>
+</body>
+</html>

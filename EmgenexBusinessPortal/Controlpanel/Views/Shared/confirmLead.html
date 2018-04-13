@@ -1,0 +1,23 @@
+﻿<div class="modal-header">
+    <!--<button type="button" class="close closeInner" data-dismiss="modal" ng-click="cancelDeletepost()" aria-label="Close">
+        <span aria-hidden="true">
+            <img src="/taglorweb/images/cross.png" width="25" alt="Tag">
+        </span>
+    </button>-->
+    <div class="share-stuff-header" style="color:#f16000">Please confirm.</div>
+</div>
+
+<div class="modal-body add-wishlist-modal-body">
+    Please fill out the complete address or your information will not be saved. Would you like to continue without saving?
+    <ul style="list-style-type:disc;padding-left: 16px;margin-bottom:10px" ng-show="isArray">
+        <li ng-repeat="item in message" style="color:red">
+            {{ item }}.
+        </li>
+    </ul>
+    <p ng-if="!isArray">{{message}}</p>
+    <div class="wishlist-modal-footer">
+        <button type="button" class="btn wishlist-modal-continew" ng-click="yes()">Yes </button>
+
+        <button type="button" class="btn wishlist-modal-continew" ng-click="no()">No</button>
+    </div>
+</div>

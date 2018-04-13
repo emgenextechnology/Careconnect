@@ -1,0 +1,81 @@
+﻿@model EBP.Business.Database.Department
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Edit Department Form.</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.BusinessId)
+        <div class="form-group">
+            @Html.Label("Department Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DepartmentName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.CheckBox("IsActive")
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                Selected Privileges
+            </label>
+            <div class="col-md-6">
+                @foreach (var item in ViewBag.DepartmentPrivileges)
+                {
+                    <strong>
+                        @if (!string.IsNullOrEmpty(@item.ModuleName))
+                        { @item.ModuleName}
+                        else
+                        {<text>Others</text>}
+                    </strong>
+                    <br />
+                    foreach (var Privilege in item.Privileges)
+                    {
+                        var id = "privilage" + Privilege.Value;
+                        <input type="checkbox" name="selectedPrivileges" checked="@Privilege.Selected" value="@Privilege.Value" class="checkbox-inline" id="@id" />
+                        <label for="@id" class="control-label chklabel">@Privilege.Text</label>
+                    }<br />
+                }
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.StatusId)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

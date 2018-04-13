@@ -1,0 +1,14 @@
+﻿<fields>
+
+  <ReportFinance>
+    <ReportKey>Patient Acct</ReportKey>
+
+    <BilledDate DisplayName="Billed Date" SummaryFilter="true">Billed Date</BilledDate>
+    <PaidDate DisplayName="Paid Date" SummaryFilter="true">Paid Date</PaidDate>
+    <Charges>Charges</Charges>
+    <PaidAmount>Paid Amount</PaidAmount>
+    <AdjustAmount DisplayName="Amount Adjust" SummaryGroupBy="true">Amount Adjust</AdjustAmount>
+    <AdjustReason DisplayName="Adjust Reason" SummaryGroupBy="true">Adjust Reason</AdjustReason>
+  </ReportFinance>
+  
+</fields>

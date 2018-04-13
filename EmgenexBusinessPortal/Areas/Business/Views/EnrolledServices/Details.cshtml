@@ -1,0 +1,86 @@
+﻿@model EBP.Business.Database.LookupEnrolledService
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Services</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Service Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Active")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Import Mode")
+        </dt>
+
+        <dd>
+            @{var ImportMode = EBP.Business.Enums.EnumHelper.GetEnumName<EBP.Business.Enums.ServiceReportImportModes>(Model.ImportMode.HasValue ? Model.ImportMode.Value : (int)EBP.Business.Enums.ServiceReportImportModes.FileSystem);}
+            @ImportMode
+        </dd>
+
+        @if (Model.ImportMode == (int)EBP.Business.Enums.ServiceReportImportModes.BoxAPI)
+        {
+            <dt>
+                @Html.DisplayName("Box Url")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BoxUrl)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayName("Created On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

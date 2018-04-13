@@ -1,0 +1,23 @@
+﻿<fields>
+	<Users>
+		<FirstName>First Name</FirstName>
+		<MiddleName>Middle Name</MiddleName>
+		<LastName>Last Name</LastName>
+		<Email>Email</Email>
+		<Phone>Phone</Phone>
+		<WorkEmail>Work Email</WorkEmail>
+		<HomePhone>Home Phone</HomePhone>
+		<AdditionalPhone>Additional Phone</AdditionalPhone>
+		<AddressLine1>AddressLine1</AddressLine1>
+		<AddressLine2>AddressLine2</AddressLine2>
+		<City>City</City>
+		<State>State</State>
+		<Zip>Zip</Zip>
+		<StartDate>StartDate</StartDate>
+		<Role>Select User Role</Role>
+		<Department>Department</Department>
+		<Username>Username</Username>
+		<SalesTeam>Sales Team</SalesTeam>
+		<Services>Services</Services>
+	</Users>
+</fields>

@@ -1,0 +1,64 @@
+﻿<div class="row ">
+    <div class="col-lg-5 col-sm-12 leads-result">
+        <i ng-show="accountLoading || loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i>{{model.Pager.TotalCount| number}} Accounts <span style="font-family:inherit" ng-show="affectedFilterCount>0"> matching <span>{{affectedFilters.join(' | ')}}</span></span>
+    </div>
+    <div class="col-lg-7 col-sm-12">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 add-lnk-outerwrap">
+                <div class="pull-right add-lnk-wrp">
+                    <a ng-click="newAccount()" class="btn btn-primary lead-add-btn" ng-show="showByPrevilege('WRACNT')">  <i ng-show="addingAccount" class="fa fa-spinner fa-spin ng-animate-disabled"></i> <span ng-hide="addingAccount">+</span> Add Account</a>
+                </div>
+                <a class="btn btn-primary pull-right filter-toggle-btn" ng-click="toggleFilter();"><i class="fa fa-filter"></i> Filter</a>
+                <div class="btn-group pull-right filter-toggle-check" data-toggle="buttons-checkbox">
+                    <button class="btn" id="colors-1-toggle-1"> <!--uib-tooltip="Task associated with account" tooltip-placement="bottom"-->
+                        <img src="/Controlpanel/Content/images/{{accountFilter.HasTask==true?'blue':'grey'}}-round-tick.png" alt="" width="26" class="bottom-icon" ng-click="((accountFilter.HasTask==false)||(accountFilter.HasTask==null))?accountFilter.HasTask=true:accountFilter.HasTask=null" />
+                    </button>
+                    <button class="btn active" id="colors-1-toggle-0"> <!--uib-tooltip="Flag" tooltip-placement="bottom"-->
+                        <img src="/Controlpanel/Content/images/{{accountFilter.HasFlag==true?'red':'grey'}}-flag.png" alt="" width="26" class="bottom-icon" ng-click="((accountFilter.HasFlag==false)||(accountFilter.HasFlag==null))?accountFilter.HasFlag=true:accountFilter.HasFlag=null" /><!--<img src="/Controlpanel/Content/images/grey-flag.png" alt="" width="26" class="top-icon" />-->
+                    </button>
+                    <button class="btn active" id="colors-1-toggle-0>" <!--uib-tooltip="Accounts with Sales Activity" tooltip-placement="bottom"-->
+                        <img src="/Controlpanel/Content/images/sales-icon-{{accountFilter.HasReports==true?'orange':'grey'}}.png" alt="" width="26" class="bottom-icon" ng-click="((accountFilter.HasReports==false)||(accountFilter.HasReports==null))?accountFilter.HasReports=true:accountFilter.HasReports=null" /><!--<img src="/Controlpanel/Content/images/grey-flag.png" alt="" width="26" class="top-icon" />-->
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 srch-bx">
+                <div class="pull-left input-group search-lead">
+                    <input class="form-control" placeholder="Search Accounts" name="" id="" type="text" ng-model="accountFilter.PracticeName" clearable>
+                    <div class="input-group-btn">
+                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="pull-right dropdown" uib-dropdown>
+                    <a class="settings-icon" uib-dropdown-toggle><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-form" uib-dropdown-menu>
+                        <li><h3>Visible Columns</h3></li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS1" ng-model="show.Account"><label for="checkboxS1"></label><span class="select-title">Account</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS2" ng-model="show.EnrolledDate"><label for="checkboxS2"></label><span class="select-title">Enrolled Date</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS3" ng-model="show.Services"><label for="checkboxS3"></label><span class="select-title">Services</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS4" ng-model="show.Provider"><label for="checkboxS4"></label><span class="select-title">Provider</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.RepGroup"><label for="checkboxS5"></label><span class="select-title">Sales Team</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.RepName"><label for="checkboxS5"></label><span class="select-title">Rep Name</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.Status"><label for="checkboxS5"></label><span class="select-title">Status</span></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><input type="checkbox" id="checkboxS5" ng-model="show.Notes"><label for="checkboxS5"></label><span class="select-title">Notes</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

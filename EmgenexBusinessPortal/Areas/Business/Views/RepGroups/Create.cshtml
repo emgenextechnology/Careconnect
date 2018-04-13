@@ -1,0 +1,75 @@
+﻿@*@model EBP.Business.Database.RepGroup*@
+@model EmgenexBusinessPortal.Areas.Business.Models.RepGroupModel
+@using EmgenexBusinessPortal.Extension;
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sales Team</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.RepGroupName, "Sales Team", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RepGroupName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.RepGroupName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SalesDirectorId, "Sales Director", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @*@Html.DropDownList("SalesDirectorId", null, "Select", htmlAttributes: new { @class = "form-control"})*@
+                @Html.DropDownListFor(m => m.SalesDirectorId, EmgenexBusinessPortal.Helpers.LookUps.GetSalesDirectors(Context.GetCurrentBusinessId()), "Select", htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(model => model.SalesDirectorId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ManagerIds, "Manager", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group float-label-control col-md-6">
+                @Html.ListBoxFor(model => model.ManagerIds, (IEnumerable<SelectListItem>)ViewBag.Managers, new { @class = "js-example-basic-multiple form-control", multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.ManagerIds, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ManagerIds, "Manager", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="float-label-control col-md-6">
+                @Html.ListBoxFor(model => model.ManagerIds, EmgenexBusinessPortal.Helpers.LookUps.GetManagers(Context.GetCurrentBusinessId()), new { @class = "js-example-basic-multiple form-control", multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.ManagerIds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/select2/select2.min.js"></script>
+<link href="~/Scripts/select2/select2.css" rel="stylesheet" />
+<link href="~/Scripts/select2/select2-bootstrap.css" rel="stylesheet" />
+<script>
+    $(".js-example-basic-multiple").select2();
+</script>

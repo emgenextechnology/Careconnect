@@ -1,0 +1,162 @@
+﻿
+<div class="lead-content-wrapper slide-left" ng-init="init()">
+    <div class="lead-top-search ll" ng-include="'/Controlpanel/Views/tasks/taskHeader.html?i=21'">
+    </div>
+    <div class="row lead-list-wrap lead-list-wrap-white" id="lead-list-wrap">
+
+        <div class="col-lg-3 filter-lead" id="filter-lead" ng-show="showFilter">
+            <span class="close-cross pull-right"><a ng-click="toggleFilter();" id=" filter-lead-close"><img src="/Controlpanel/Content/images/cross-black.png" width="16"></a></span>
+            <div class="clearfix"></div>
+            <div class="filter-results">
+                <span class="filter-apply pull-left">{{affectedFilterCount}} Filters Applied</span>
+                <a class="reset-filter pull-right" ng-click="resetFilter()">Reset</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="filter-actionbox">
+
+                <fieldset class="form-group">
+                    <input type="text" ng-model="tasksFilter.ReferenceNumber" placeholder="Reference Number" class="form-control" style="background: white;height: 41px;border-color: #aaaaaa !important;" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="tasksFilter.RequestType" data-placeholder="Request Type">
+                        <option value="">Request Type</option>
+                        <option ng-repeat="tag in lookUps.TaskTypes" value="{{tag.Id}}">{{tag.Value}}</option>
+                        <option value="-1">None</option>
+                    </select>-->
+                    <ui-select ng-model="tasksFilter.RequestType" title="Request Type">
+                        <ui-select-match placeholder="Request Type" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.TaskTypes | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="tasksFilter.Status" data-placeholder="Status">
+                        <option value="">Status</option>
+                        <option ng-repeat="tag in lookUps.lookupTaskStatus" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="tasksFilter.Status" title="Status">
+                        <ui-select-match placeholder="Status" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupTaskStatus | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="tasksFilter.DueOn" data-placeholder="Due On">
+                        <option value="">Due On</option>
+                        <option ng-repeat="tag in lookUps.lookupPeriods" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="tasksFilter.DueOn" title="Due On">
+                        <ui-select-match placeholder="Due On" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupPeriods | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="tasksFilter.RequestedBy" data-placeholder="Requested by">
+                        <option value="">From</option>
+                        <option ng-repeat="tag in lookUps.lookupReps" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="tasksFilter.DueOn" title="Requested by">
+                        <ui-select-match placeholder="Requested by" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="tasksFilter.AssignedTo" data-placeholder="To">
+                        <option value="">To</option>
+                        <option ng-repeat="tag in lookUps.lookupReps" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="tasksFilter.AssignedTo" title="To">
+                        <ui-select-match placeholder="To" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <!--<select style="width: 400px;" ui-select2="select2Options" ng-model="tasksFilter.Priority" data-placeholder="Priority">
+                        <option value="">Priority</option>
+                        <option ng-repeat="tag in lookUps.TaskPriorities" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>-->
+                    <ui-select ng-model="tasksFilter.Priority" title="Priority">
+                        <ui-select-match placeholder="Priority" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.TaskPriorities | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="task-detail row {{listClass}}" ng-show="showDetails">
+            <div class="col-sm-6 col-md-4 task-detail-left">
+                <div class="task-detail-outer {{ task.TaskId==currentTask.TaskId?'grayouter':'' }}" ng-repeat="task in model.List" ng-click="showDetailsView(task)">
+                    <div class="task-list-box">
+                        <div class="row">
+                            <div class="col-sm-3 task-date-status">
+                                <div ng-show="task.StatusId!=3 && ((task.TargetDate!=null && !isDateFuture(task.TargetDate)) || task.TargetDate==null)" class="date-status black-status" style="min-height:50px">
+                                    <span ng-show="task.TargetDate==null" style="line-height: 34px;">No Due Date</span>
+                                    <span ng-show="task.TargetDate!=null"> Due on <span>{{task.TargetDate|date:'MM-dd-yyyy'}}</span></span>
+                                </div>
+                                <div ng-show="task.StatusId==3" class="date-status green-status" style="min-height:50px">
+                                    <span style="line-height: 34px;">Completed</span>
+                                </div>
+                                <div ng-show="task.StatusId!=3 && task.TargetDate!=null && isDateFuture(task.TargetDate)" class="date-status red-status" style="min-height:50px">
+                                    <span ng-show="task.TargetDate!=null"> Due on <span>{{task.TargetDate|date:'MM-dd-yyyy'}}</span></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9 task-created">
+                                <!--<span><strong>From:</strong> {{task.RequestedUser.Name}} on {{task.CreatedOn|date:'MM-dd-yyyy'}}</span>-->
+                                <span><strong>From:</strong> {{task.RequestedUsers.length>0?getNameArray(task.RequestedUsers):task.RequestedUser.Name}} on {{task.CreatedOn|date:'MM-dd-yyyy'}}</span>
+                                <span><strong>To:</strong> {{getNameArray(task.AssignedUsersList)}}</span>
+                            </div>
+                        </div>
+                        <h3>
+                            <i ng-show="task.PriorityTypeId==1" class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:18px; color:red; margin:0 3px"></i>
+                            <span class="task-red-star" ng-show="{{task.TaskType.length>0}}">
+                                {{task.TaskType}} -
+                            </span> {{task.Subject}}
+                        </h3>
+                        <p>{{task.ShortDescription | limitTo : 100}}<span ng-show="task.ShortDescription.length>100">...</span></p>
+                    </div>
+                </div>
+                <div class="paging-wrap">
+                    <div class="pull-left"> <uib-pagination total-items="model.Pager.TotalCount" ng-model="tasksFilter.CurrentPage" items-per-page="tasksFilter.PageSize" boundary-link-numbers="true" boundary-link-numbers="true" max-size="3" force-ellipses="true" rotate="false" class="pagination-sm"></uib-pagination> </div>
+                    <span ng-hide="showDetails" class="pull-left show-text">Showing {{model.Pager.Skip+1}} to {{(model.Pager.Skip + model.Pager.Take)>model.Pager.TotalCount?model.Pager.TotalCount:(model.Pager.Skip + model.Pager.Take)}} of {{model.Pager.TotalCount}} ({{model.Pager.TotalPage}} Pages)</span>
+                    <div class="row-count-drop pull-left" ng-hide="showDetails">
+                        <select class="form-control" ng-model="tasksFilter.PageSize">
+                            <option value="" disabled="" selected="" hidden="">Row Count</option>
+                            <option ng-selected="25==tasksFilter.PageSize">25</option>
+                            <option ng-selected="50==tasksFilter.PageSize">50</option>
+                            <option ng-selected="100==tasksFilter.PageSize">100</option>
+                            <option ng-selected="500==tasksFilter.PageSize">500</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-8 lead-info-wrap slide-left" ng-include="'/Controlpanel/Views/tasks/taskDetails.html?i=5021'" id="lead-info-wrap">
+            </div>
+        </div>
+    </div>
+</div>

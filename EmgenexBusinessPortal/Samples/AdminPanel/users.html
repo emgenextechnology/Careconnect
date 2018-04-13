@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Users</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="admin-console.html" class="logo"><img src="images/logo.png" class="responsive-img" alt="logo"></a>
+          <ul class="right profile-nav">
+            <li>
+              <a href="#" class="dropdown-button profile-name-circle" data-activates='profile-dropdown'>j</a>
+              <ul id='profile-dropdown' class='dropdown-content'>
+                <li>
+                  <a href="#!" class="login-pro-wrap">
+                    <div class="log-prof-pic left">
+                      <img src="images/roles.png" class="responsive-img circle" width="40" alt="admin-console-img">
+                    </div>
+                    <div class="profile-details">
+                      <b class="prof-name">Barbie Battershell</b>
+                      <span class="login-mailid">Barbie.emgenex@gmail.com</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </a>
+                </li>
+                <li><a href="admin-console.html">CRM</a></li>
+                <li><a href="#!">Settings</a></li>
+                <li><a href="#!">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="side-collapse">
+      <ul id="slide-out" class="side-nav">
+        <li><a href="admin-console.html" class="slider-brand-logo"><img src="images/logo.png" class="responsive-img" alt="slider-brand-logo"></a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+        <li><a class="waves-effect" href="admin-console.html">Dashboard</a></li>
+        <li><a class="waves-effect" href="business-profile.html">Business Profile</a></li>
+        <li><a class="waves-effect" href="roles.html">Roles</a></li>
+        <li><a class="waves-effect" href="departments.html">Departments</a></li>
+        <li><a class="waves-effect" href="sales-team.html">Sales Team</a></li>
+        <li><a class="waves-effect" href="users.html">Users</a></li>
+        <li><a class="waves-effect" href="sales-reps.html">Sales Reps</a></li>
+        <li><a class="waves-effect" href="services.html">Services</a></li>
+        <li><a class="waves-effect" href="marketing-category.html">Marketing Categories</a></li>
+        <li><a class="waves-effect" href="document-type.html">Document Types</a></li>
+        <li><a class="waves-effect" href="task-type.html">Task Types</a></li>
+        <li><a class="waves-effect" href="location-settings.html">Location ID Settings</a></li>
+        <li><a class="waves-effect" href="clinical-reports.html">Clinical-Reports</a></li>
+        <li><a class="waves-effect" href="notifications.html">Notification Settings</a></li>
+      </ul>
+      <div class="slider-menu">
+        <a href="#" data-activates="slide-out" class="button-collapse slide-collapse-btn"><i class="material-icons left">menu</i><span class="page-name">Users</span></a>
+        <div class="mob-filter-btn right">
+          <button type="button" class="filters-btn"><img src="images/filter-icon.png" class="responsive-img" alt="filter-icon" width="25"></button>
+        </div>
+      </div>
+    </div>
+    <section class="inner-page-wrapper">
+      <div class="left-window">
+        <div class="left-window-header">
+          <span class="left-each-item-header">Search</span>
+        </div>
+        <div class="divider"></div>
+        <div class="input-field left-search-box seach-box">
+          <input type="text" class="validate" placeholder="Search">
+          <a class="btn search-btn"><i class="material-icons">search</i></a>
+        </div>
+        <div class="left-window-overflow-wrapper">
+          <div class="select-outer-wrapper">
+            <div class="left-itm-label">
+              <label>Group</label>
+            </div>
+            <div class="input-field select-field">
+              <select>
+                <option value="" disabled selected>Sales Team</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="divider"></div>
+          <div class="select-outer-wrapper">
+            <div class="left-itm-label">
+              <label>Location</label>
+            </div>
+            <div class="input-field select-field">
+              <select>
+                <option value="" disabled selected>State</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="divider"></div>
+          <div class="select-outer-wrapper">
+            <div class="left-itm-label">
+              <label>Services</label>
+            </div>
+            <div class="input-field select-field">
+              <select>
+                <option value="" disabled selected>Services</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="divider"></div>
+          <div class="select-outer-wrapper">
+            <div class="left-itm-label">
+              <label>Role</label>
+            </div>
+            <div class="input-field select-field">
+              <select>
+                <option value="" disabled selected>Role</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="right-window ">
+        <div class="common-table user-table tab-pad-lft-zero">
+          <table class="striped">
+            <thead>
+              <tr class="t-header">
+                <th data-field="image" class="user-image-header"> </th>
+                <th data-field="name"><a href="#" class="order"><span>Name </span><img src="images/down-arrow.png" class="img-responsive order-arrow" width="15" alt="down-arrow"></a></th>
+                <th data-field="contact">Contact</th>
+                <th data-field="roles">Roles</th>
+                <th data-field="sales-team">Sales Team</th>
+                <th data-field="active">Active</th>
+                <th data-field="edit-delete" class="edit-delete-th">active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hidden-tr">
+                <td></td>
+              </tr>
+              <tr class="hidden-tr">
+                <td></td>
+              </tr>
+              <tr>
+                <td class="user-image"><span class="circle bg-sky-bleu"><b>B</b></span></td>
+                <td >Barbie Battershell
+                  <span class="sub-txt">@Barbie.emgenex@gmail.com</span>
+                </td>
+                <td >@Barbie.emgenex@gmail.com
+                  <span class="sub-txt">(890)	809-8908</span>
+                </td>
+                <td >Sales Rep</td>
+                <td >Team 1</td>
+                <td>
+                  <p>
+                    <input type="checkbox" class="filled-in" id="filled-in-box-1">
+                    <label for="filled-in-box-1"></label>
+                  </p>
+                </td>
+                <td>
+                  <a class='dropdown-button btn edit-delete-btn' href='#' data-activates='dropdown1'><img src="images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon"></a>
+                  <ul id='dropdown1' class='dropdown-content edit-delete-dropdown'>
+                    <li><a href="#!">Edit</a></li>
+                    <li><a href="#user-det-modal">Details</a></li>
+                    <li><a href="#!">Delete</a></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="user-image"><span class="circle"><img src="images/roles.png" class="responsive-img circle" alt="roles-icon"></span></td>
+                <td >MedReaders
+                  <span class="sub-txt">@Barbie.emgenex@gmail.com</span>
+                </td>
+                <td >@Barbie.emgenex@gmail.com
+                  <span class="sub-txt">(890)	809-8908</span>
+                </td>
+                <td >Sales Rep</td>
+                <td >Team 2</td>
+                <td>
+                  <p>
+                    <input type="checkbox" class="filled-in" id="filled-in-box-2">
+                    <label for="filled-in-box-2"></label>
+                  </p>
+                </td>
+                <td>
+                  <a class='dropdown-button btn edit-delete-btn' href='#' data-activates='dropdown2'><img src="images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon"></a>
+                  <ul id='dropdown2' class='dropdown-content edit-delete-dropdown'>
+                    <li><a href="#!">Edit</a></li>
+                    <li><a href="#user-det-modal">Details</a></li>
+                    <li><a href="#!">Delete</a></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="user-image">
+                  <span class="circle bg-violet">
+                  <b>B</b>
+                  </span>
+                </td>
+                <td >MedReaders
+                  <span class="sub-txt">@Barbie.emgenex@gmail.com</span>
+                </td>
+                <td >MedReaders
+                  <span class="sub-txt">@Barbie.emgenex@gmail.com</span>
+                </td>
+                <td >Sales Rep</td>
+                <td >Team 2</td>
+                <td>
+                  <p>
+                    <input type="checkbox" class="filled-in" id="filled-in-box-3">
+                    <label for="filled-in-box-3"></label>
+                  </p>
+                </td>
+                <td>
+                  <a class='dropdown-button btn edit-delete-btn' href='#' data-activates='dropdown3'><img src="images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon"></a>
+                  <ul id='dropdown3' class='dropdown-content edit-delete-dropdown'>
+                    <li><a href="#!">Edit</a></li>
+                    <li><a href="#user-det-modal">Details</a></li>
+                    <li><a href="#!">Delete</a></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <!-- Modal Links Starts -->
+    <div class="modal-button">
+      <div class="fixed-action-btn spin-close">
+        <div class="mdl-fab-btn-wrap">
+          <span class="mdl-fab-txt">Add</span>
+          <a class="btn-floating btn-large sky-blue-color ">
+          <i class="large material-icons">add</i>
+          </a>
+        </div>
+        <ul>
+          <li> <span class="mdl-btn-txt">User</span> 
+            <a class="btn-floating waves-effect waves-light  bg-red" href="#create-user-mod"><img src="images/add-user-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Sales Team</span> 
+            <a class="btn-floating waves-effect waves-light bg-violet" href="#create-sales-team-mod"><img src="images/sales-team-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Role</span> 
+            <a class="btn-floating waves-effect waves-light bg-green" href="#create-role-mod"><img src="images/role-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Task</span> 
+            <a class="btn-floating waves-effect waves-light light-ash-color" href="#create-task-mod"><img src="images/task-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Service</span> 
+            <a class="btn-floating waves-effect waves-light bg-brown-dark" href="#create-service-mod"><img src="images/services-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Department</span> 
+            <a class="btn-floating waves-effect waves-light bg-teal-dark" href="#create-department-mod"><img src="images/department-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Sales Rep</span> 
+            <a class="btn-floating waves-effect waves-light bg-lime-dark" href="#create-sales-rep-mod"><img src="images/sales-rep-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+          <li> <span class="mdl-btn-txt">Document</span> 
+            <a class="btn-floating waves-effect waves-light bg-yellow" href="#create-document-mod"><img src="images/document-icon.png" class="responsive-img" width="25" alt="add-user-icon"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="all-modals">
+      <!--Create Document Modal -->
+      <div id="create-document-mod" class="modal common-modal crt-role-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create Document Type</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="row">
+              <div class="input-field col s12 pad-lft-zero pad-rht-zero">
+                <input type="text" class="validate" placeholder="Document Type">
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+          </div>
+        </form>
+      </div>
+      <!--Create Sales Rep Modal -->
+      <div id="create-sales-rep-mod" class="modal common-modal crt-role-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create Sales Reps</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="row">
+              <div class="input-field col s12 scroll-select scroll-select pad-lft-zero pad-rht-zero">
+                <select>
+                  <option value="" disabled selected>User Name</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+              <div class="input-field col s12 scroll-select pad-lft-zero pad-rht-zero">
+                <select>
+                  <option value="" disabled selected>Sales Team</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+              <div class="input-field col s12 scroll-select pad-lft-zero pad-rht-zero">
+                <input disabled type="text" class="validate" placeholder="Manager">
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Services</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="sales-rep-chk-bx-1" checked="checked" />
+                    <label for="sales-rep-chk-bx-1">Pharmacogenetics</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="sales-rep-chk-bx-2"  />
+                    <label for="sales-rep-chk-bx-2">Toxicology</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+          </div>
+        </form>
+      </div>
+      <!--Create Department Modal -->
+      <div id="create-department-mod" class="modal common-modal crt-role-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create Department</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="row">
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="Department Name">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="Description">
+              </div>
+              <h5 class="select-privilege">Select Privileges</h5>
+              <div class="chk-box-wrapper">
+                <h5>Tasks</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-1" checked="checked" />
+                    <label for="dept-chk-bx-1">Read Task</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-2"  />
+                    <label for="dept-chk-bx-2">Write Task</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-3"  />
+                    <label for="dept-chk-bx-3">Read All Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-4"  />
+                    <label for="dept-chk-bx-4"> Edit All Task</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-5"  />
+                    <label for="dept-chk-bx-5">Delete All In Task</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Sales</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-7"  />
+                    <label for="dept-chk-bx-7">Read All Sales</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-8"  />
+                    <label for="dept-chk-bx-8">Read Sales</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-9"  />
+                    <label for="dept-chk-bx-9">Write Sales</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-25"  />
+                    <label for="dept-chk-bx-25">Sales Import</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Reps</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-10"  />
+                    <label for="dept-chk-bx-10">Create Rep</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-11"  />
+                    <label for="dept-chk-bx-11">Read All Reps</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>RepGroup </h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-12"  />
+                    <label for="dept-chk-bx-12">Create RepGroup</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-13"  />
+                    <label for="dept-chk-bx-13">Read All Rep Groups</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-26"  />
+                    <label for="dept-chk-bx-26">Manage Multiple Sales Team</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Practice</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-14"  />
+                    <label for="dept-chk-bx-14">Read All Practices</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Lead</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-15"  />
+                    <label for="dept-chk-bx-15">Read Lead</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-16"  />
+                    <label for="dept-chk-bx-16">Write Lead</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-17"  />
+                    <label for="dept-chk-bx-17">Read All Leads</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Accounts</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-18"  />
+                    <label for="dept-chk-bx-18">Write Account</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-19"  />
+                    <label for="dept-chk-bx-19">Read Account</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-20"  />
+                    <label for="dept-chk-bx-20">Read all accounts</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-21"  />
+                    <label for="dept-chk-bx-21">Edit Address Location</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Other</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-22"  />
+                    <label for="dept-chk-bx-22">Read RepList</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-23"  />
+                    <label for="dept-chk-bx-23">View dashboard</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="dept-chk-bx-24"  />
+                    <label for="dept-chk-bx-24">Read settings</label>
+                  </p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+          </div>
+        </form>
+      </div>
+      <!-- Create Service Modal -->
+      <div id="create-service-mod" class="modal common-modal crt-task-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create Service</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate task-type-inp" placeholder="Service Name">
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate task-type-inp" placeholder="Service Decription">
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate task-type-inp jscolor" value="ffffff" > 
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat modal-crt-btn">Cancel</a>
+          </div>
+        </form>
+      </div>
+      <!-- Create Sales Team Modal -->
+      <div id="create-sales-team-mod" class="modal common-modal crt-task-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create Sales Team</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate task-type-inp" placeholder="Sales Team Name">
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate task-type-inp" placeholder="Description">
+            </div>
+            <div class="input-field scroll-select manager-select">
+              <select multiple>
+                <option value="" disabled selected>Manager</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat modal-crt-btn">Cancel</a>
+          </div>
+        </form>
+      </div>
+      <!--User Create Modal -->
+      <div id="create-user-mod" class="modal common-modal crt-user-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create User</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="row create-user-inp-wrap">
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="First Name">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="Last Name">
+              </div>
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="Phone">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="Work Phone">
+              </div>
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="Email">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="Address Line">
+              </div>
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="Address Line 2">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="City">
+              </div>
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="State">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="Zip">
+              </div>
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="Start Date">
+              </div>
+            </div>
+            <div class="row">
+              <div class="chk-box-wrapper">
+                <h5>Select Role</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-1" checked="checked" />
+                    <label for="user-check-bx-1">Enterprise Admin</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-2"  />
+                    <label for="user-check-bx-2">IT Admin</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-3"  />
+                    <label for="user-check-bx-3">Labuser</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-4"  />
+                    <label for="user-check-bx-4">None</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-5"  />
+                    <label for="user-check-bx-5">Operations Admin</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-6"  />
+                    <label for="user-check-bx-6">Operations VP</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-7"  />
+                    <label for="user-check-bx-7">Pharmacy Admin</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-8" />
+                    <label for="user-check-bx-8">Pharmacy User</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-9"  />
+                    <label for="user-check-bx-9">Sales Director</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-10"  />
+                    <label for="user-check-bx-10">Sales Manager</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-11"  />
+                    <label for="user-check-bx-11">Sales Rep</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-12"  />
+                    <label for="user-check-bx-12">Task Contact</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Select Department</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-13"  />
+                    <label for="user-check-bx-13">Enterprise Admin</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-14"  />
+                    <label for="user-check-bx-14">External User</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-15"  />
+                    <label for="user-check-bx-15">IT</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-16"  />
+                    <label for="user-check-bx-16">Operations</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-17" />
+                    <label for="user-check-bx-17">Sales</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Sales Team</h5>
+                <div class="modal-chk-box col s12">
+                  <input type="text" class="validate" placeholder="Sales Team Name">
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Services</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-18" />
+                    <label for="user-check-bx-18">Pharmacogenetics</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-19" />
+                    <label for="user-check-bx-19">Compounding</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="user-check-bx-20"  />
+                    <label for="user-check-bx-20">Toxicology</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat modal-crt-btn">Cancel</a>
+          </div>
+        </form>
+      </div>
+      <!--Create Role Modal -->
+      <div id="create-role-mod" class="modal common-modal crt-role-modal">
+        <form>
+          <div class="modal-content">
+            <h4>Create roles</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="row">
+              <div class="input-field col s6 pad-lft-zero">
+                <input type="text" class="validate" placeholder="Role Name">
+              </div>
+              <div class="input-field col s6 pad-rht-zero">
+                <input type="text" class="validate" placeholder="Description">
+              </div>
+              <h5 class="select-privilege">Select Privileges</h5>
+              <div class="chk-box-wrapper">
+                <h5>Tasks</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-1" checked="checked" />
+                    <label for="role-chk-bx-1">View Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-2"  />
+                    <label for="role-chk-bx-2">View all Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-3"  />
+                    <label for="role-chk-bx-3">Delete  All Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-4"  />
+                    <label for="role-chk-bx-4">Create Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-5"  />
+                    <label for="role-chk-bx-5">Delete  All Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-6"  />
+                    <label for="role-chk-bx-6">All</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Sales</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-7"  />
+                    <label for="role-chk-bx-7">View Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-8"  />
+                    <label for="role-chk-bx-8">Create Tasks</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-9"  />
+                    <label for="role-chk-bx-9">View all Tasks</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Reps</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-10"  />
+                    <label for="role-chk-bx-10">Create Rep</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-11"  />
+                    <label for="role-chk-bx-11">View all Reps</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Sales Teams</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-12"  />
+                    <label for="role-chk-bx-12">Create Sales Teams</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-13"  />
+                    <label for="role-chk-bx-13">View all Sales Teams</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Practices</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-14"  />
+                    <label for="role-chk-bx-14">View All Practices</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Leads</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-15"  />
+                    <label for="role-chk-bx-15">View  Leads</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-16"  />
+                    <label for="role-chk-bx-16">View all Leads</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-17"  />
+                    <label for="role-chk-bx-17">Create Leads</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Accounts</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-18"  />
+                    <label for="role-chk-bx-18">View  Accounts</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-19"  />
+                    <label for="role-chk-bx-19">View all Accounts</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-20"  />
+                    <label for="role-chk-bx-20">Create Accounts</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-21"  />
+                    <label for="role-chk-bx-21">Edit Address Location</label>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="chk-box-wrapper">
+                <h5>Others</h5>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-22"  />
+                    <label for="role-chk-bx-22">View  REP List</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-23"  />
+                    <label for="role-chk-bx-23">View  Settings</label>
+                  </p>
+                </div>
+                <div class="modal-chk-box col m4">
+                  <p>
+                    <input type="checkbox" class="filled-in" id="role-chk-bx-24"  />
+                    <label for="role-chk-bx-24">View Dashboard</label>
+                  </p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+          </div>
+        </form>
+      </div>
+      <!--Create Task Modal Structure -->
+      <div id="create-task-mod" class="modal common-modal crt-task-modal z-depth-3">
+        <form>
+          <div class="modal-content">
+            <h4>Create task type</h4>
+            <div class="modal-close-btn right">
+              <img src="images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate task-type-inp" placeholder="Task type">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action waves-effect waves-green btn-flat modal-crt-btn">Create</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="detail-modal">
+      <div id="user-det-modal" class="modal">
+        <div class="modal-content">
+          <div class="detail-page-wrapper">
+          <h3 class="details-header"><span>User </span> Details</h3>
+          <div class="det-modal-close-btn right">
+            <img src="images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">First Name</b>
+            <span class="dtl-itm-vlue">Barbie</span>
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">Last Name</b>
+            <span class="dtl-itm-vlue">Battershell</span>
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">Email</b>
+            <span class="dtl-itm-vlue">barbie.emgenex@gmail.com</span>
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">Phone Number</b>
+            <span class="dtl-itm-vlue">(918) 527-9839</span>
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">UserName</b>
+            <span class="dtl-itm-vlue">barbie.emgenex@gmail.com</span>
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">Sales Director</b>
+            <span class="dtl-itm-vlue"></span>
+          </div>
+          <div class="each-detail">
+            <b class="dtl-itm-hdr">Roles</b>
+            <span class="dtl-itm-vlue">Sales Rep</span>
+          </div>
+           <div class="each-detail">
+            <b class="dtl-itm-hdr">Department</b>
+            <span class="dtl-itm-vlue">Sales</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/vendor/custom.js"></script>
+    <script type="text/javascript" src="js/vendor/jscolor.js"></script>
+  </body>
+</html>

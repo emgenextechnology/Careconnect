@@ -1,0 +1,415 @@
+﻿
+<style>
+    .select2-container {
+        min-height: 20px;
+    }
+
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+        border: none;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 20px;
+    }
+
+    .select2-container--default .select2-selection--multiple {
+        border: none;
+        background-color: transparent;
+    }
+
+    .filter-actionbox .select2-container, .modal .select2-container {
+        /*width: 92% !important;*/
+        float: left;
+        padding-top: 4px;
+    }
+
+    .selectNoBorder {
+        color: #888 !important;
+        box-shadow: none !important;
+        border: none !important;
+        -webkit-box-shadow: none;
+        background-color: transparent !important;
+        float: left !important;
+        padding-left: 0;
+    }
+
+    .select2-container--default .select2-selection--single {
+        color: #888 !important;
+        box-shadow: none !important;
+        border: none !important;
+        -webkit-box-shadow: none;
+        background-color: transparent !important;
+    }
+
+    .form-control:focus {
+        border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .attachementList {
+        float: right;
+    }
+
+    .attachementItem {
+        font-size: 25px;
+        float: left;
+        padding: 5px;
+        position: relative;
+    }
+
+        .attachementItem i {
+            font-size: 14px;
+            color: #555;
+            position: absolute;
+            top: -5px;
+            right: -1px;
+        }
+
+            .attachementItem i:hover {
+                font-size: 14px;
+                color: #ff006e;
+                position: absolute;
+                top: -5px;
+                right: -1px;
+            }
+
+    .task-model-top {
+        margin-right: 25px;
+    }
+
+
+        .task-model-top .button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #024b7e;
+            color: #ffffff;
+            border: 1px solid #90b9d4;
+            margin-right: 10px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+            .task-model-top .button, .task-model-top .button label {
+                cursor: pointer;
+            }
+
+                .task-model-top .button:hover {
+                    background-color: #4a90e2;
+                    border-color: #4a90e2;
+                    -webkit-transition: all 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+                }
+
+    .select2-container .select2-search--inline .select2-search__field {
+        margin-top: 3px;
+    }
+
+    textarea, input {
+        padding: 10px;
+    }
+
+    .task-model-top a {
+        padding: 5px 10px !important;
+    }
+
+    .edit-file-list-close {
+        left: -7px;
+        position: relative;
+        top: -6px;
+    }
+
+    .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+        float: right;
+        margin-left: 10px;
+        margin-top: -1px;
+    }
+
+    .form-repeater-box-task textarea {
+        height: 320px;
+    }
+
+    .modal-header {
+        background-color: #f2f2f2;
+    }
+
+    .modal-body-form {
+        background-color: #fff;
+    }
+
+    .modal-header .close {
+        color: white;
+        font-size: 28px;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 20px;
+    }
+
+    .select2-container .select2-selection--multiple {
+        min-height: inherit;
+    }
+
+    .ng-submitted .ng-invalid + span {
+        border-width: 2px;
+    }
+</style>
+
+<form name="taskForm" ng-submit="submitTask()" novalidate class="{{taskForm.$pristine?'':'unsaved-form'}}">
+    <div class="modal-header task-model-header-new">
+        <div class="task-model-btn">
+            <h4 class="modal-title pull-left" id="myModalLabel" ng-if="currentTask.TaskId!=null">{{currentTask.ReferenceNumber}}</h4>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="CloseModal()">
+                <span aria-hidden="true">×</span>
+            </button>
+
+            <div class="task-model-top pull-left">
+
+                <!--<button type="submit" data-dismiss="modal" aria-label="Close" class="pull-right btn btn-default" ng-disabled="taskForm.$pristine">Save <i ng-hide="sendSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i>  </button>-->
+
+                <div class="pull-right button">
+                    <label for="file-input" style="line-height:1.5; margin-bottom:0; font-weight:normal">
+                        <!--<img src="/Controlpanel/Content/images/attach.png" alt="Attach" width="20">-->
+                        Attach
+                    </label>
+                    <input id="file-input" type="file" ng-model="currentTask.files" ng-change="fileUpload(currentTask.files)" name="files" base-sixty-four-input multiple minsize="500" minnum="1" style="display:none">
+                </div>
+                <a href="" class="pull-right {{currentTask.setHighpriority}}" ng-click="setPriority();">
+                    High Priority                    
+                </a>
+
+                <div class="dropdown pull-right">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                        <span>
+                            Alert
+                            <!--<img src="/Controlpanel/Content/images/alert.png" alt="Alert" width="14">-->
+                            {{currentTask.AlertDate|date:'MMM dd yyyy'}}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="currentTask.AlertDate"
+                                        data-datetimepicker-config="{ dropdownSelector: '#dLabel', startView:'day', minView:'day' }"></datetimepicker>
+                    </ul>
+                </div>
+
+                <!--<div class="dropdown pull-right">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel1" role="button" data-toggle="dropdown" data-target="#" href="">
+                        <span>
+                            Due On
+                            {{currentTask.TargetDate|date:'MMM dd yyyy'}}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                        <datetimepicker data-ng-model="currentTask.TargetDate" data-datetimepicker-config="{ dropdownSelector: '#dLabel1', startView:'day', minView:'day' }"></datetimepicker>
+                    </ul>
+                </div>-->
+
+                <div class="dropdown pull-right">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel1" role="button" data-toggle="dropdown" data-target="#" href="">
+                        <span>
+                            Due On
+                            <!--<img src="/Controlpanel/Content/images/date-picker.png" alt="Date" width="14">-->
+                            {{currentTask.TargetDate | date:'MMM dd yyyy h:mm a'}}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                        <datetimepicker data-ng-model="currentTask.TargetDate" data-datetimepicker-config="{ dropdownSelector: '#dLabel1'}"></datetimepicker>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-model-top pull-right">
+                
+                <button type="submit" data-dismiss="modal" aria-label="Close" class="pull-right btn btn-default" ng-disabled="taskForm.$pristine">
+                    Save <i ng-hide="sendSpinner" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body-form modal-body-form-tast">
+
+        <!--<div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-12 field-box col-md-6">
+                    <label>From: </label><span style="margin-left: 36px;" class="defined-input">{{authData.fullName}}</span>
+                </div>
+                <div class="col-sm-12 field-box col-md-6">
+                    <ul class="attachementList" ng-show="base64Data.length>0">
+                        <li class="attachementItem fa fa-file{{fileType(item.filetype)}}" ng-repeat="item in base64Data" title="{{item.filename}}"><i class="fa fa-close" ng-click="removeAttachmentUp(item)"></i></li>
+                    </ul>
+                    <ul class="pull-right">
+                        <li ng-repeat="file in currentTask.FilesList" class="pull-left">
+                            <a href="{{file.FilePath}}" target="_blank" title="{{file.FileName}}">
+                                <i class="attachementItem fa fa-file{{fileType(file.FileType)}}"></i>
+                            </a>
+                            <i class="fa fa-close edit-file-list-close" ng-click="removeAttachment(file)"></i>
+                        </li>
+                    </ul>
+                    <label style="float:right">Attachments: </label>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-2 field-box tsk-lbl-lft">
+                    <label>To:</label>
+                </div>
+                <div class="col-sm-10 field-box">
+                    <fieldset class="form-group">
+                        <!--<select class="form-control" ui-select2 ng-model="currentTask.AssignedTo" data-placeholder="Select Users" required>
+                            <option ng-repeat="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.lookupReps" value="{{tag.Id}}">{{tag.Value}}</option>
+                        </select>-->
+                        <!--<select class="form-control" ui-select2 multiple ng-model="currentTask.AssignedTo" data-placeholder="Select Users" required>
+                            <option ng-repeat="tag in lookUps.lookupReps" value="{{tag.Id}}">{{tag.Value}}</option>
+                        </select>-->
+                        <select id="testSelect2" class="form-control" ui-select2 ng-model="currentTask.AssignedTo" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.lookupTaskUsers" data-placeholder="Select Users" placeholder="Select Users" name="To" required>
+                            <option value="">Select Users</option>
+                        </select>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-2 field-box tsk-lbl-lft">
+                    <label>Cc:</label>
+                </div>
+                <div class="col-sm-10 field-box">
+
+                    <select class="form-control" ui-select2 multiple ng-model="currentTask.Watchers" data-placeholder="Select Users">
+                        <!--="groupSetup"-->
+                        <option ng-repeat="tag in lookUps.lookupTaskUsers" value="{{tag.Id}}">{{tag.Value}}</option>
+                    </select>
+
+                    <!--<ui-select multiple ng-model="currentTask.Watchers" title="Select Users" name="test">
+                        <ui-select-match placeholder="Select Users" allow-clear="true">
+                            {{$select.selected.Value}}
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | filter: $select.search)">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>-->
+                    <!--{{currentTask.Watchers}}
+                    <ui-select ng-model="currentTask.Watchers" multiple>
+                        <ui-select-match placeholder="Choose...">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookUps.lookupReps | filter: $select.search)">
+                            <span>{{item.Value}}</span>
+                        </ui-select-choices>
+                    </ui-select>-->
+                    <!--<ui-select ng-model="e.$lookUps.lookupReps" multiple>
+                        <ui-select-match>{{ $select.selected.Value }}</ui-select-match>
+                        <ui-select-choices repeat="acct in lookUps.lookupReps | filter: $select.search">
+                            <span ng-bind-html="(acct.Value + ' - ' + acct.Id)
+                          | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>-->
+
+                </div>
+            </div>
+        </div>
+        <div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-2 field-box tsk-lbl-lft">
+                    <label>Subject:</label>
+                </div>
+                <div class="col-sm-10 field-box">
+                    <input type="text" class="form-control" ng-model="currentTask.Subject" ng-maxlength="250" maxlength="250" name="Subject" required placeholder="Enter The Subject" />
+                </div>
+            </div>
+        </div>
+        <div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-2 field-box tsk-lbl-lft">
+                    <label>Type:</label>
+                </div>
+                <div class="col-sm-10 field-box">
+                    <select class=" form-control selectNoBorder" ui-select2="{allowClear: true}" ng-model="currentTask.TaskRequestTypeId" data-placeholder="Select Task Type" ng-change="sType(currentTask.PracticeSpecialityTypeId)" ng-options="selectedItem.Id as selectedItem.Value for selectedItem in lookUps.TaskTypes">
+                        <option value="" disabled="" selected="">Select Task Type</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--<div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-2 field-box tsk-lbl-lft">
+                    <label>Account:</label>
+                </div>
+                <div class="col-sm-10 field-box">
+                    <select ng-disabled="$rootScope.isFromPractice==true" class="form-control selectNoBorder" ui-select2="{allowClear: true}" ng-model="currentTask.PracticeId" data-placeholder="Select Account" ng-options="selectedItem.Id as selectedItem.Name for selectedItem in lookupPracticeList">
+                        <option value="" disabled="" selected="">Select Account</option>
+                    </select>
+                    <i ng-show="practiceTypeSpinner" class="fa fa-spinner fa-spin ng-animate-disabled" style="right: 20px;position: absolute;top: 12px;"></i>
+                </div>
+            </div>
+        </div>-->
+        <div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-2 field-box tsk-lbl-lft">
+                    <label>Account:</label>
+                </div>
+                <div class="col-sm-10 field-box">
+                    <ui-select ng-model="currentTask.PracticeId" title="Select Account">
+                        <ui-select-match placeholder="Select Account" allow-clear="true">
+                            <span ng-bind="$select.selected.Value"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.Id as item in (lookupPracticeList | filter: $select.search)" refresh="getallAccounts($select.search)" minimum-input-length="1" refresh-delay="500">
+                            <span ng-bind="item.Value"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <i ng-show="practiceTypeSpinner" class="fa fa-spinner fa-spin ng-animate-disabled" style="right: 20px;position: absolute;top: 12px;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-task-repeat">
+            <div class="row">
+                <div class="col-sm-1 field-box tsk-lbl-lft">
+                    <label>Attachment:</label>
+                </div>
+
+                <div class="col-sm-10 field-box">
+                    <fieldset class="form-group">
+                        <div class="pull-left atchmnt-lst" ng-repeat="file in currentTask.FilesList">
+                            <a href="{{file.FilePath}}">{{file.FileName}}</a>
+                            <span ng-click="removeAttachment(file)">×</span>
+                        </div>
+                        <div ng-show="base64Data.length>0" class="pull-S atchmnt-lst" ng-repeat="item in base64Data">
+                            <a href="#">{{item.filename}}</a>
+                            <span ng-click="removeAttachmentUp(item)">×</span>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!--<div class="col-sm-12 field-box col-md-6">
+                    <ul class="attachementList" ng-show="base64Data.length>0">
+                        <li class="attachementItem fa fa-file{{fileType(item.filetype)}}" ng-repeat="item in base64Data" title="{{item.filename}}"><i class="fa fa-close" ng-click="removeAttachmentUp(item)"></i></li>
+                    </ul>
+                    <ul class="pull-right">
+                        <li ng-repeat="file in currentTask.FilesList" class="pull-left">
+                            <a href="{{file.FilePath}}" target="_blank" title="{{file.FileName}}">
+                                <i class="attachementItem fa fa-file{{fileType(file.FileType)}}"></i>
+                            </a>
+                            <i class="fa fa-close edit-file-list-close" ng-click="removeAttachment(file)"></i>
+                        </li>
+                    </ul>
+                    <label style="float:right">Attachments: </label>
+                </div>-->
+
+            </div>
+        </div>
+
+        <div class="box-task-repeat taskeditor-box">
+            <div class="row">
+                <div class="col-sm-12 field-box">
+                    <textarea style="min-height:200px" class="form-control" data-ui-tinymce id="tinymce" name="Task Description" data-ng-model="currentTask.TaskDescription" required>
+                        {{currentTask.TaskDescription}}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

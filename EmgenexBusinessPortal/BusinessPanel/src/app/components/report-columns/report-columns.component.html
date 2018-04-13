@@ -1,0 +1,347 @@
+<style>
+  select {
+    display: block!important;
+    border-top: 0px !important;
+    border-bottom: 1px solid #cfcfcf;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    outline: none;
+    margin-top: 10px;
+  }
+</style>
+<div class="left-window">
+  <div class="left-window-header">
+    <span class="left-each-item-header">Columns</span>
+  </div>
+  <div class="divider"></div>
+  <div class="input-field left-search-box seach-box">
+    <input type="text" class="validate" placeholder="Enter Keyword" name="Keywords" (keyup.enter)="getAllReportColumns(searchFilter)"
+      [(ngModel)]="searchFilter.KeyWords">
+    <a class="btn search-btn" (click)="getAllReportColumns(searchFilter)">
+      <i class="material-icons">search</i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="right-window ">
+  <div class="common-table user-table">
+    <table class="striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="t-header">
+          <th mat-sort-header="ColumnName">Column Name</th>
+          <th mat-sort-header="DisplayName">Display Name</th>
+          <th mat-sort-header="ColumnType">Column Type</th>
+          <th mat-sort-header="InputType">Input Type</th>
+          <th mat-sort-header="IsMandatory">IsMandatory</th>
+          <th mat-sort-header="CreatedBy">Created By</th>
+          <th mat-sort-header="CreatedOn">Created on</th>
+          <th mat-sort-header="UpdatedByName">Updated By</th>
+          <th mat-sort-header="UpdatedOn">Updated On</th>
+          <th class="edit-delete-th">active</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr *ngFor="let reportColumn of ReportColumns; let i = index">
+          <td>
+            <a href="#details-column-mod" (click)="edit(reportColumn.Id)">
+              {{reportColumn.ColumnName}}
+            </a>
+          </td>
+          <td>{{reportColumn.DisplayName}}</td>
+          <td>{{reportColumn.ColumnTypeName}}</td>
+          <td>{{reportColumn.InputName}}</td>
+          <td>
+            <p>
+              <input type="checkbox" class="filled-in" id="filled-in-box-{{i}}" [checked]="reportColumn.IsMandatory" disabled>
+              <label for="filled-in-box-{{i}}"></label>
+            </p>
+          </td>
+          <td>{{reportColumn.CreatedByName}}</td>
+          <td>{{reportColumn.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>{{reportColumn.UpdatedByName}}</td>
+          <td>{{reportColumn.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          <td>
+            <div mat-icon-button [matMenuTriggerFor]="appMenu" class='dropdown-button btn edit-delete-btn'>
+              <img src="assets/images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon">
+            </div>
+            <mat-menu #appMenu="matMenu">
+              <ul class='dropdown-content-menu edit-delete-dropdown'>
+                <li *ngIf="reportColumn.InputType == '2'">
+                  <a class="waves-effect" [routerLink]="['/services', reportColumn.ServiceId,'columns',reportColumn.Id,'column-lookup']">Column Lookups</a>
+                </li>
+                <li>
+                  <a href="#edit-column-mod" (click)="edit(reportColumn.Id)">
+                    Edit
+                  </a>
+                </li>
+                <li>
+                  <a href="#details-column-mod" (click)="edit(reportColumn.Id)">
+                    Details
+                  </a>
+                </li>
+                <li>
+                  <a href="#" (click)="d1.open(); delete(reportColumn.Id)">
+                    Delete
+                  </a>
+                </li>
+              </ul>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator *ngIf="ReportColumns?.length > 0" [length]="pageSize" [pageSize]="25" [pageSizeOptions]="[25,50,100,150,200]"
+      (page)="pageEvent = $event; getAllReportColumns(searchFilter, false)"></mat-paginator>
+  </div>
+</div>
+
+<div class="modal-button">
+  <div class="fixed-action-btn">
+    <div class=" mdl-fab-btn-wrap">
+      <span class="mdl-fab-txt">Add</span>
+      <a class="btn btn-floating btn-large sky-blue-color " href="#create-column-mod" (click)="openCreate()">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="all-modals">
+  <!-- Create -->
+  <div id="create-column-mod" class="modal common-modal crt-role-modal">
+    <form #frmAddcolumn="ngForm">
+      <div class="modal-content">
+        <h4>Create column</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Column Name" name="ColumnName" [(ngModel)]="newReportColumnModel.ColumnName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Display Name" name="DisplayName" [(ngModel)]="newReportColumnModel.DisplayName">
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="ColumnType" placeholder="Select Column Type" [(ngModel)]="newReportColumnModel.ColumnType">
+              <mat-option *ngFor="let columnType of SalesColumnTypeLookup;" [value]="columnType.Id">{{columnType.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="InputType" placeholder="Select Input Type" [(ngModel)]="newReportColumnModel.InputType">
+              <mat-option *ngFor="let inputType of SalesInputTypeLookup;" [value]="inputType.Id">{{inputType.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="input-field col s12 pad-lft-zero">
+            <input type="checkbox" class="filled-in" name="IsMandatory" id="IsMandatoryCreate" [(ngModel)]="newReportColumnModel.IsMandatory">
+            <label for="IsMandatoryCreate">IsMandatory</label>
+          </div>
+
+          <div class="input-field col s12 pad-lft-zero">
+            <input type="checkbox" class="filled-in" name="DisplayInFilter" id="DisplayInFilterCreate" [(ngModel)]="newReportColumnModel.DisplayInFilter">
+            <label for="DisplayInFilterCreate">DisplayInFilter</label>
+          </div>
+
+          <div class="input-field col s12 pad-lft-zero">
+            <input type="checkbox" class="filled-in" name="ShowInGrid" id="ShowInGridCreate" [(ngModel)]="newReportColumnModel.ShowInGrid">
+            <label for="ShowInGridCreate">ShowInGrid</label>
+          </div>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="RolePrivilegeIds" id="RolePrivilegeIds" placeholder="Select RolePrivileges" [formControl]="reportRolePrivilegeLookup"
+              multiple [(ngModel)]="newReportColumnModel.RolePrivilegeIds">
+              <mat-option *ngFor="let role of ReportRolePrivilegeLookup;" [value]="role.Id">{{role.Text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="DepartmentPrivilegeIds" id="DepartmentPrivilegeIds" placeholder="Select DepartmentPrivileges" [formControl]="reportDepartmentPrivilegeLookup"
+              multiple [(ngModel)]="newReportColumnModel.DepartmentPrivilegeIds">
+              <mat-option *ngFor="let department of ReportDepartmentPrivilegeLookup;" [value]="department.Id">{{department.Text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="UserPrivilegeIds" id="UserPrivilegeIds" placeholder="Select UserPrivileges" [formControl]="reportUserPrivilegeLookup"
+              multiple [(ngModel)]="newReportColumnModel.UserPrivilegeIds">
+              <mat-option *ngFor="let user of ReportUserPrivilegeLookup;" [value]="user.Id">{{user.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="create(newReportColumnModel)" [disabled]="!frmAddcolumn.form.valid">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Edit -->
+  <div id="edit-column-mod" class="modal common-modal crt-role-modal">
+    <form #frmEditcolumn="ngForm">
+      <div class="modal-content">
+        <h4>Edit column</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Column Name" name="ColumnName" [(ngModel)]="newReportColumnModel.ColumnName"
+              required>
+          </mat-form-field>
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Display Name" name="DisplayName" [(ngModel)]="newReportColumnModel.DisplayName">
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="ColumnType" placeholder="Select Column Type" [(ngModel)]="newReportColumnModel.ColumnType">
+              <mat-option *ngFor="let columnType of SalesColumnTypeLookup;" [value]="columnType.Id">{{columnType.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="InputType" placeholder="Select Input Type" [(ngModel)]="newReportColumnModel.InputType">
+              <mat-option *ngFor="let inputType of SalesInputTypeLookup;" [value]="inputType.Id">{{inputType.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="input-field col s12 pad-lft-zero">
+            <input type="checkbox" class="filled-in" name="IsMandatory" id="IsMandatory" [(ngModel)]="newReportColumnModel.IsMandatory">
+            <label for="IsMandatory">IsMandatory</label>
+          </div>
+
+          <div class="input-field col s12 pad-lft-zero">
+            <input type="checkbox" class="filled-in" name="DisplayInFilter" id="DisplayInFilter" [(ngModel)]="newReportColumnModel.DisplayInFilter">
+            <label for="DisplayInFilter">DisplayInFilter</label>
+          </div>
+
+          <div class="input-field col s12 pad-lft-zero">
+            <input type="checkbox" class="filled-in" name="ShowInGrid" id="ShowInGrid" [(ngModel)]="newReportColumnModel.ShowInGrid">
+            <label for="ShowInGrid">ShowInGrid</label>
+          </div>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="RolePrivilegeIds" id="RolePrivilegeIds" placeholder="Select RolePrivileges" [formControl]="reportRolePrivilegeLookup"
+              multiple [(ngModel)]="newReportColumnModel.RolePrivilegeIds">
+              <mat-option *ngFor="let role of ReportRolePrivilegeLookup;" [value]="role.Id">{{role.Text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="DepartmentPrivilegeIds" id="DepartmentPrivilegeIds" placeholder="Select DepartmentPrivileges" [formControl]="reportDepartmentPrivilegeLookup"
+              multiple [(ngModel)]="newReportColumnModel.DepartmentPrivilegeIds">
+              <mat-option *ngFor="let department of ReportDepartmentPrivilegeLookup;" [value]="department.Id">{{department.Text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+            <mat-select name="UserPrivilegeIds" id="UserPrivilegeIds" placeholder="Select UserPrivileges" [formControl]="reportUserPrivilegeLookup"
+              multiple [(ngModel)]="newReportColumnModel.UserPrivilegeIds">
+              <mat-option *ngFor="let user of ReportUserPrivilegeLookup;" [value]="user.Id">{{user.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="update(newReportColumnModel)" [disabled]="!frmEditcolumn.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Details -->
+  <div id="details-column-mod" class="modal common-modal crt-role-modal">
+    <div class="modal-content">
+      <div class="detail-page-wrapper">
+        <h3 class="details-header">
+          <span>Column </span> Details</h3>
+        <div class="det-modal-close-btn right">
+          <img src="assets/images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Service Name</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.ServiceName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Column Name</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.ColumnName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Display Name</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.DisplayName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Column Type</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.ColumnType}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Input Type</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.InputType}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">IsMandatory</b>
+          <span class="dtl-itm-vlue">
+            <input type="checkbox" class="filled-in" name="IsMandatory" id="IsMandatory" [checked]="newReportColumnModel.IsMandatory"
+              disabled="disabled">
+            <label for="IsMandatory"></label>
+          </span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">DisplayInFilter</b>
+          <span class="dtl-itm-vlue">
+            <input type="checkbox" class="filled-in" name="DisplayInFilter" id="DisplayInFilter" [checked]="newReportColumnModel.DisplayInFilter"
+              disabled="disabled">
+            <label for="DisplayInFilter"></label>
+          </span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">ShowInGrid</b>
+          <span class="dtl-itm-vlue">
+            <input type="checkbox" class="filled-in" name="ShowInGrid" id="ShowInGrid" [checked]="newReportColumnModel.ShowInGrid" disabled="disabled">
+            <label for="ShowInGrid"></label>
+          </span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created On</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.CreatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated On</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.UpdatedOn | date: 'MM/dd/yyyy hh:mm:ss a'}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Created By</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.CreatedByName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Updated By</b>
+          <span class="dtl-itm-vlue">{{newReportColumnModel.UpdatedByName}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete -->
+<eui-dialog #d1 panelCls="mydlg" headerCls="mydlg-header" footerCls="mydlg-footer" [modal]="true" borderType="none" closed="true">
+  <eui-panel-header>Please Confirm</eui-panel-header>
+  <p style="text-align:center;margin:50px 0;font-size:16px">Are you sure you want to continue?</p>
+  <eui-panel-footer>
+    <eui-button-group style="width:100%;height:50px">
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();deleteConfirm()">Yes</eui-linkbutton>
+      <eui-linkbutton class="f-full" [plain]="true" btnCls="mybtn" (click)="d1.close();">No</eui-linkbutton>
+    </eui-button-group>
+  </eui-panel-footer>
+</eui-dialog>

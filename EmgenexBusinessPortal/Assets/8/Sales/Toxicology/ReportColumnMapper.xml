@@ -1,0 +1,43 @@
+﻿<fields>
+  <ReportMaster HasMultipleFiles="True">
+    <PatientFirstName>Patient_Name^1</PatientFirstName>
+    <PatientId>Acct Nbr</PatientId>
+    <PatientLastName>Patient_Name^2</PatientLastName>
+    <SpecimenCollectionDate>Date_Collected</SpecimenCollectionDate>
+    <SpecimenReceivedDate>Date_Received</SpecimenReceivedDate>
+    <ReportedDate>Date_Reported</ReportedDate>
+    <PracticeName>Practice_Name</PracticeName>
+    <ProviderFirstName>Physician_Name^1</ProviderFirstName>
+    <ProviderLastName>Physician_Name^2</ProviderLastName>
+    <ProviderNpi>Provider_NPI</ProviderNpi>
+    <RepFirstName></RepFirstName>
+    <RepLastName></RepLastName>
+    <EmgenexLocationId></EmgenexLocationId>
+    <SpecimenId>Case_Number</SpecimenId>
+  </ReportMaster>
+
+  <ReportFinance>
+    <ReportKey>Case_Number</ReportKey>
+
+    <BilledDate DisplayName="Billed Date" SummaryFilter="true">Billed Date</BilledDate>
+    <PaidDate DisplayName="Paid Date" SummaryFilter="true">Paid Date</PaidDate>
+    <Charges>Amount Charge</Charges>
+    <PaidAmount DisplayName="Billed" SummaryGroupBy="true">Amount Payment</PaidAmount>
+    <AdjustAmount DisplayName="Amount Adjust" SummaryGroupBy="true">Amount Adjust</AdjustAmount>
+    <AdjustReason DisplayName="Adjust Reason" SummaryGroupBy="true">Adjust Reason</AdjustReason>
+  </ReportFinance>
+
+  <StaticColumns>
+    <Practice DisplayName="Practice" IsVisible="true"></Practice>
+    <Provider DisplayName="Provider" IsVisible="true"></Provider>
+    <SalesTeam DisplayName="Sales Team" IsVisible="true"></SalesTeam>
+    <RepName DisplayName="Rep" IsVisible="true"></RepName>
+    <Patient DisplayName="Subscriber" IsVisible="true"></Patient>
+    <BilledDate DisplayName="Billed Date" IsVisible="true"></BilledDate>
+    <PaidDate DisplayName="Paid Date" IsVisible="true"></PaidDate>
+    <Charges DisplayName="Charges" IsVisible="true"></Charges>
+    <PaidAmount DisplayName="Paid Amount" IsVisible="true"></PaidAmount>
+    <AdjustAmount DisplayName="Amount Adjust" IsVisible="true"></AdjustAmount>
+    <AdjustReason DisplayName="Amount Reason" IsVisible="true"></AdjustReason>
+  </StaticColumns>
+</fields>

@@ -1,0 +1,33 @@
+import { QueryList, EventEmitter } from '@angular/core';
+import { PaginationButtonComponent } from './pagination-button.component';
+import { PageTemplateDirective } from '../base/template-base';
+export declare class PaginationComponent {
+    buttons: QueryList<PaginationButtonComponent>;
+    pageTemplate: PageTemplateDirective;
+    pageList: number[];
+    loading: boolean;
+    showPageList: boolean;
+    showPageInfo: boolean;
+    showPageRefresh: boolean;
+    links: number;
+    beforePageText: string;
+    afterPageText: string;
+    displayMsg: string;
+    layout: string[];
+    pageChange: EventEmitter<{}>;
+    state: any;
+    _initialized: boolean;
+    private _total;
+    total: number;
+    private _pageSize;
+    pageSize: number;
+    private _pageNumber;
+    pageNumber: number;
+    ngAfterViewInit(): void;
+    readonly pageInfo: string;
+    readonly pageCount: number;
+    isButton(name: string): boolean;
+    adjustPage(): void;
+    selectPage(page: number): void;
+    refreshPage(): void;
+}

@@ -1,0 +1,90 @@
+﻿@model EBP.Business.Database.User
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+    var db = new EBP.Business.Database.CareConnectCrmEntities();
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("First Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Last Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Phone Number")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sales Director")
+        </dt>
+
+        <dd>
+            @db.Reps.Where(a => a.UserId == Model.Id).Select(a => a.RepGroup.User2.FirstName + " " + a.RepGroup.User2.LastName).FirstOrDefault()
+        </dd>
+        <dt>
+            @Html.DisplayName("Roles")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.Roles.Select(a => a.Name).ToArray())
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Department")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.UserDepartments2.Select(a => a.Department.DepartmentName).ToArray())
+        </dd>
+
+    </dl>
+    @Html.ValidationMessage("Error", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

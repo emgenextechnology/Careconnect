@@ -1,0 +1,102 @@
+﻿@model EBP.Business.Database.RepGroup
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+    var db = new EBP.Business.Database.CareConnectCrmEntities();
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sales Team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Sales Team")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepGroupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sales Director")
+        </dt>
+
+        <dd>
+            @if (Model.User2 != null && Model.User2.IsActive == true)
+            {
+                @Html.DisplayFor(model => model.User2.FirstName) @Html.DisplayFor(model => model.User2.LastName)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Manager")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.RepgroupManagerMappers.Where(a => a.User.IsActive == true).Select(a => a.User.FirstName + " " + a.User.LastName).ToArray())
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName) @Html.DisplayFor(model => model.User.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName) @Html.DisplayFor(model => model.User1.LastName)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.LookupRepGroupStatu.StatusType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LookupRepGroupStatu.StatusType)
+            </dd>*@
+        <dt>
+            @Html.DisplayName("Sales Reps")
+        </dt>
+
+        <dd>
+            @String.Join(", ", db.Reps.Where(a => a.User2.IsActive == true && a.RepGroupId == Model.Id).Select(p => p.User2.FirstName + " " + p.User2.LastName).ToArray())
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

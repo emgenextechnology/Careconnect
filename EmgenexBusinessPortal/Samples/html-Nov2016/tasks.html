@@ -1,0 +1,1306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tasks</title>
+    <!-- Bootstrap CSS -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+    <link rel="stylesheet" href="css/floating-nav.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker3.min.css" />
+</head>
+<body>
+    <div id="container-floating">
+        <div class="nd3 nds">
+            <a href="#" data-toggle="modal" data-target="#addtasknew">
+                <span class="tool-tip-flticn"><strong>Add Task</strong></span>
+                <p class="letter"><img src="images/task-icon-white.png" width="22" alt="" /></p>
+            </a>
+        </div>
+        <div class="nd2 nds">
+            <a href="#" data-toggle="modal" data-target="#addlead">
+                <span class="tool-tip-flticn"><strong>Add Lead</strong></span>
+                <p class="letter"><img src="images/lead-icon-white.png" width="22" alt="" /></p>
+            </a>
+        </div>
+        <div class="nd1 nds">
+            <a href="#" data-toggle="modal" data-target="#addaccount">
+                <span class="tool-tip-flticn"><strong>Add Account</strong></span>
+                <p class="letter"><img src="images/accounts-icon-white.png" width="22" alt="" /></p>
+            </a>
+        </div>
+        <div id="floating-button" onclick="newmail()">
+            <p class="plus">+</p>
+            <img class="edit" src="images/edit.png">
+        </div>
+    </div>
+    <div class="modal fade" id="addaccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Create a new account</h4>
+            </div>
+            <div class="modal-body-form addaccount-form-wrap">
+                <div class="form-repeater-box">
+                    <h2>General Information</h2>
+                    <div class="repeatingsection-location">
+                        <div class="row">
+                            <div class="col-sm-3 field-box">
+                                <fieldset class="form-group error-input">
+                                    <div class='input-group date' id='accountdate-select'>
+                                        <input type="text" class="form-control" placeholder="The date">
+                                        <span class="input-group-addon">
+                                            <img src="images/date-picker.png" alt="Date" width="14">
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group error-input">
+                                    <input type="text" class="form-control" id="" placeholder="Enter your account name">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group error-input">
+                                    <select class="form-control selectpicker">
+                                        <option value="" disabled="" selected="" hidden="">Select the type</option>
+                                        <option>Multi Speciality</option>
+                                        <option>Single Speciality</option>
+                                        <option>Other</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Enter first line of your address">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Enter second line of your address">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group error-input">
+                                    <select class="form-control city-multiple" multiple="multiple">
+                                        <option value="city1">City 1</option>
+                                        <option value="city2">City 2</option>
+                                        <option value="city3">City 3</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <select class="form-control state-multiple" multiple="multiple">
+                                        <option value="state1">State 1</option>
+                                        <option value="state2">State 2</option>
+                                        <option value="state3">State 3</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Enter your zip code">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Enter your phone">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Enter Ext">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Enter your fax">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Manager name">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="email" class="form-control" id="" placeholder="Manager email">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Manager phone">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Billing contact">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="email" class="form-control" id="" placeholder="Billing contact email">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Billing contact phone">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <!-- <a href="#" class="cancel-location remove-repeat">- Remove Location</a> -->
+                    </div>
+                    <a href="#" class="add-location add-repat">Add Additional section</a>
+                </div>
+                <div class="form-repeater-box">
+                    <h2>Services</h2>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control selectpicker">
+                                    <option value="" disabled="" selected="" hidden="">Choose enrolled services</option>
+                                    <option>Multi Speciality</option>
+                                    <option>Single Speciality</option>
+                                    <option>Other</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control selectpicker">
+                                    <option value="" disabled="" selected="" hidden="">Report delivery performance</option>
+                                    <option>Multi Speciality</option>
+                                    <option>Single Speciality</option>
+                                    <option>Other</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box">
+                    <h2>Provider</h2>
+                    <div class="repeatingsection-provider">
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="First Name">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Middle Name">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Last Name">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <select class="form-control selectpicker">
+                                        <option value="" disabled="" selected="" hidden="">Select the degree</option>
+                                        <option>Degree 1</option>
+                                        <option>Degree 2</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Enter #NPI">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 field-box">
+                                <div class="radio">
+                                    <span class="same-loctn-title">Location Same As Practice</span>
+                                    <label class="md-radio-group" for="radio3">
+                                        <input type="radio" name="smoke" id="radio3" class="md-radiobox" checked="checked" />
+                                        <span class="md-check-radio"></span>Yes
+                                    </label>
+                                    <label class="md-radio-group" for="radio4">
+                                        <input type="radio" name="smoke" id="radio4" class="md-radiobox" />
+                                        <span class="md-check-radio"></span>No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-repeater-box">
+                    <h2>Account Manager(s)</h2>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control selectpicker">
+                                    <option value="" disabled="" selected="" hidden="">Team</option>
+                                    <option>Multi Speciality</option>
+                                    <option>Single Speciality</option>
+                                    <option>Other</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Enter Rep's name (s)">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="" placeholder="Add notes"></textarea>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box">
+                    <h2>Other options</h2>
+                    <div class="options-box">
+                        <a href="#"><img src="images/plus-grey.png" alt="Add task" width="14">Add task</a>
+                        <a href="#"><img src="images/close-grey.png" alt="Close account" width="14">Close account</a>
+                        <a href="#"><img src="images/pdf.png" alt="Close account" width="18">Add PDF</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-form-submit">Create new account</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addlead" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Add Lead</h4>
+            </div>
+            <div class="modal-body-form">
+                <div class="form-repeater-box">
+                    <h2>Account</h2>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Account Name">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control selectpicker">
+                                    <option value="" disabled="" selected="" hidden="">Choose Practice Type</option>
+                                    <option>Multi Speciality</option>
+                                    <option>Single Speciality</option>
+                                    <option>Other</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control speciality-multiple" multiple="multiple">
+                                    <option value="Speciality1">Speciality 1</option>
+                                    <option value="Speciality2">Speciality 2</option>
+                                    <option value="Speciality3">Speciality 3</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Address Line 1">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Address Line 2">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control city-multiple" multiple="multiple">
+                                    <option value="city1">City 1</option>
+                                    <option value="city2">City 2</option>
+                                    <option value="city3">City 3</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control state-multiple" multiple="multiple">
+                                    <option value="state1">State 1</option>
+                                    <option value="state2">State 2</option>
+                                    <option value="state3">State 3</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Zip Code">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="tel" class="form-control" id="" placeholder="Phone Number">
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="tel" class="form-control" id="" placeholder="Ext">
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-4 field-box">
+                            <fieldset class="form-group">
+                                <input type="tel" class="form-control" id="" placeholder="Fax">
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box">
+                    <h2>Additional Locations</h2>
+                    <div class="repeatingsection-location">
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Address Line 1">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Address Line 2">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <select class="form-control city-multiple" multiple="multiple">
+                                        <option value="city1">City 1</option>
+                                        <option value="city2">City 2</option>
+                                        <option value="city3">City 3</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <select class="form-control state-multiple" multiple="multiple">
+                                        <option value="state1">State 1</option>
+                                        <option value="state2">State 2</option>
+                                        <option value="state3">State 3</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Zip Code">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Phone Number">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="tel" class="form-control" id="" placeholder="Ext">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Manager Name">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <a href="#" class="cancel-location remove-repeat">- Remove Location</a>
+                    </div>
+                    <a href="#" class="add-location add-repat">+ Add Location</a>
+                </div>
+                <div class="form-repeater-box">
+                    <h2>Provider</h2>
+                    <div class="repeatingsection-provider">
+                        <div class="row">
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="First Name">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Middle Name">
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Last Name">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <select class="form-control selectpicker">
+                                        <option value="" disabled="" selected="" hidden="">Degree</option>
+                                        <option>Degree 1</option>
+                                        <option>Degree 2</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 field-box">
+                                <fieldset class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="NPI#">
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 field-box">
+                                <div class="radio">
+                                    <span class="same-loctn-title">Location Same As Practice</span>
+                                    <label class="md-radio-group" for="radio5">
+                                        <input type="radio" name="smoke" id="radio5" class="md-radiobox" checked="checked" />
+                                        <span class="md-check-radio"></span>Yes
+                                    </label>
+                                    <label class="md-radio-group" for="radio6">
+                                        <input type="radio" name="smoke" id="radio6" class="md-radiobox" />
+                                        <span class="md-check-radio"></span>No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="cancel-provider remove-repeat">- Remove Provider</a>
+                    </div>
+                    <a href="#" class="add-provider add-repat">+ Add Provider</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-form-submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header task-model-header">
+                <h4 class="modal-title pull-left" id="myModalLabel">ID:HLP345512</h4>
+                <div class="task-model-top pull-right">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="pull-right btn btn-default">Send</button>
+                    <a href="#" class="pull-right"><img src="images/attach.png" alt="Attach" width="20">Attach</a>
+                    <a href="#" class="pull-right"><img src="images/warning.png" alt="Warning" width="17">High Priority</a>
+                    <a href="#" class="pull-right"><img src="images/edit-grey.png" alt="Notes" width="14">Notes</a>
+                    <a href="#" class="pull-right"><img src="images/alert.png" alt="Alert" width="16">Alert</a>
+                    <a href="#" class="pull-right"><img src="images/date-picker.png" alt="Date" width="14">Date</a>
+                </div>
+            </div>
+            <div class="modal-body-form modal-body-form-tast">
+                <div class="form-repeater-box-task">
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <label>From: </label><span class="defined-input">Dima Shvedun</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box-task">
+                    <div class="row">
+                        <div class="col-sm-12 field-box filed-box-task">
+                            <label>To: </label><input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box-task task-multi-wrap">
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <select class="form-control selectpicker">
+                                <option value="" disabled="" selected="" hidden="">Select the request type</option>
+                                <option>Multi Speciality</option>
+                                <option>Single Speciality</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box-task">
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <label>Subject: </label><span class="defined-input">HLP345512</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box-task task-multi-wrap">
+                    <div class="row">
+                        <div class="col-sm-6 field-box">
+                            <select class="form-control selectpicker">
+                                <option value="" disabled="" selected="" hidden="">Choose an account</option>
+                                <option>Multi Speciality</option>
+                                <option>Single Speciality</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 field-box right-task-select">
+                            <select class="form-control selectpicker">
+                                <option value="" disabled="" selected="" hidden="">Choose a lead</option>
+                                <option>Multi Speciality</option>
+                                <option>Single Speciality</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-repeater-box-task">
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <textarea class="form-control" placeholder="Description of your request"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addtasknew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header task-model-header-new">
+                <div class="task-model-btn">
+                    <a href="#" class="pull-left">Account</a>
+                    <a href="#" class="pull-left">Due Date</a>
+                    <a href="#" class="pull-left">Alert</a>
+                    <a href="#" class="pull-left">High Priority</a>
+                    <a href="#" class="pull-left">Attach</a>
+                    <a href="#" class="pull-left">Save</a>
+                </div>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="pull-right btn btn-default close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body-form-task">
+                <div class="box-task-repeat">
+                    <div class="row">
+                        <div class="col-sm-2 field-box">
+                            <label>To:</label>
+                        </div>
+                        <div class="col-sm-10 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control tomail-multiple" multiple="multiple">
+                                    <option value="toemail1">Francis Graves</option>
+                                    <option value="toemail2">Glen Miles</option>
+                                    <option value="toemail13">Harriett Higgins</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-task-repeat">
+                    <div class="row">
+                        <div class="col-sm-2 field-box">
+                            <label>Cc:</label>
+                        </div>
+                        <div class="col-sm-10 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control ccmail-multiple" multiple="multiple">
+                                    <option value="ccmail1">Francis Graves</option>
+                                    <option value="ccmail2">Glen Miles</option>
+                                    <option value="ccmail13">Harriett Higgins</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-task-repeat">
+                    <div class="row">
+                        <div class="col-sm-2 field-box">
+                            <label>Subject:</label>
+                        </div>
+                        <div class="col-sm-10 field-box">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Enter The Subject">
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-task-repeat">
+                    <div class="row">
+                        <div class="col-sm-2 field-box">
+                            <label>Type:</label>
+                        </div>
+                        <div class="col-sm-10 field-box">
+                            <fieldset class="form-group">
+                                <select class="form-control typemail-multiple" multiple="multiple">
+                                    <option value="typemail1">Help</option>
+                                    <option value="typemail2">Delivery</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-task-repeat">
+                    <div class="row">
+                        <div class="col-sm-2 field-box">
+                            <label>Attachment:</label>
+                        </div>
+                        <div class="col-sm-10 field-box">
+                            <fieldset class="form-group">
+                                <div class="pull-left atchmnt-lst"><span>brochure.pdf</span><a href="#">×</a></div><div class="pull-left atchmnt-lst"><span>brochure.jpg</span><a href="#">×</a></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-task-repeat taskeditor-box">
+                    <div class="row">
+                        <div class="col-sm-12 field-box">
+                            <textarea class="taskeditor"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="content-wrapper">
+        <div class="row wrapper-row">
+            <div class="left-sidebar">
+                <ul>
+                    <li class="top-left-bar"><a href="#"><span class="bar-wrap"><span class="bar"></span></span></a></li>
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="nav-ico"><img src="images/dashboard-icon-orange.png" alt="" class="bottom-icon" /><img src="images/dashboard-icon-white.png" alt="" class="top-icon" /></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="leads.html">
+                            <span class="nav-ico"><img src="images/lead-icon-orange.png" alt="" class="bottom-icon" /><img src="images/lead-icon-white.png" alt="" class="top-icon" /></span>
+                            Leads
+                        </a>
+                    </li>
+                    <li>
+                        <a href="accounts.html">
+                            <span class="nav-ico"><img src="images/accounts-icon-orange.png" alt="" class="bottom-icon" /><img src="images/accounts-icon-white.png" alt="" class="top-icon" /></span>
+                            Accounts
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tasks.html" class="active">
+                            <span class="nav-ico badge1" data-badge="6"><img src="images/task-icon-orange.png" alt="" class="bottom-icon" /><img src="images/task-icon-white.png" alt="" class="top-icon" /></span>
+                            Tasks
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sales.html">
+                            <span class="nav-ico"><img src="images/sales-icon-orange.png" alt="" class="bottom-icon" /><img src="images/sales-icon-white.png" alt="" class="top-icon" /></span>
+                            Sales
+                        </a>
+                    </li>
+                    <li>
+                        <a href="announcements.html">
+                            <span class="nav-ico"><img src="images/news-icon-orange.png" alt="" class="bottom-icon" /><img src="images/news-icon-white.png" alt="" class="top-icon" /></span>
+                            News
+                        </a>
+                    </li>
+                    <li>
+                        <a href="marketing.html">
+                            <span class="nav-ico"><img src="images/marketing-icon-orange.png" alt="" class="bottom-icon" /><img src="images/marketing-icon-white.png" alt="" class="top-icon" /></span>
+                            Marketing
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right-side-wrap">
+                <header class="navbar navbar-full navbar-light bg-faded">
+                    <h1 class="pull-left">Tasks</h1>
+                    <ul class="head-nav pull-right">
+                        <li><a href="#" class="badge1" data-badge="2"><img src="images/notification.png" alt="Notification" width="16"></a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown"><img src="images/user.jpg" alt="User" width="32" height="32" class="img-circle user-thumb" />Dima Shvedun <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <div class="row head-quick-results collapse in" id="viewstatus">
+                        <div class="col-lg-3 col-sm-6 result-box">
+                            <ul class="result-list">
+                                <li class="results-info-left green-results">
+                                    21<span class="percentage">%</span> <img src="images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" />
+                                </li>
+                                <li class="results-info-right">
+                                    1349<span>TOTAL LEADS</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 result-box result-box-tablt-bord">
+                            <ul class="result-list">
+                                <li class="results-info-left red-results">
+                                    6<span class="percentage">%</span> <img src="images/red-arrow-down.png" alt="Up" class="green-arrow-up" width="15" />
+                                </li>
+                                <li class="results-info-right">
+                                    1125<span>TOTAL ACCOUNTS</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 result-box result-box-tablt-padd">
+                            <ul class="result-list">
+                                <li class="results-info-left green-results">
+                                    13<span class="percentage">%</span> <img src="images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" />
+                                </li>
+                                <li class="results-info-right">
+                                    283 923<span>TOTAL SALES</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 result-box">
+                            <ul class="result-list">
+                                <li class="results-info-left green-results">
+                                    98<span class="percentage">%</span> <img src="images/green-arrow-up.png" alt="Up" class="green-arrow-up" width="15" />
+                                </li>
+                                <li class="results-info-right">
+                                    263<span>TOTAL DOs</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a class="btn showdetails pull-right" data-toggle="collapse" data-target="#viewstatus"></a>
+                </header>
+                <div class="lead-content-wrapper">
+                    <div class="lead-top-search">
+                        <div class="row ">
+                            <div class="col-lg-5 col-sm-12 leads-result">
+                                200 Tasks matching criteria
+                            </div>
+                            <div class="col-lg-7 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6 add-lnk-outerwrap">
+                                        <div class="pull-right add-lnk-wrp">
+                                            <a href="#" class="btn btn-primary lead-add-btn" data-toggle="modal" data-target="#addtasknew"><span>+</span> Add Task</a>
+                                        </div>
+                                        <a href="#" class="btn btn-primary pull-right filter-toggle-btn" id="filter-toggle-btn"><i class="fa fa-filter"></i> Filter</a>
+                                        <div class="btn-group pull-right filter-toggle-check" data-toggle="buttons-checkbox">
+                                            <button class="btn" id="colors-1-toggle-1">
+                                                <img src="images/blue-round-tick.png" alt="" width="26" class="bottom-icon" /><img src="images/grey-round-tick.png" alt="" width="26" class="top-icon" />
+                                            </button>
+                                            <button class="btn" id="colors-1-toggle-0">
+                                                <img src="images/red-flag.png" alt="" width="26" class="bottom-icon" /><img src="images/grey-flag.png" alt="" width="26" class="top-icon" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 srch-bx">
+                                        <form action="" method="">
+                                            <div class="pull-left input-group search-lead">
+                                                <input class="form-control" placeholder="Reference Numbers" name="" id="" type="text">
+                                                <div class="input-group-btn">
+                                                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                            <form>
+                                                <div class="pull-right dropdown">
+                                                    <a class="dropdown-toggle settings-icon" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i></a>
+                                                    <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                                        <li><h3>Visible Columns</h3></li>
+                                                        <li>
+                                                            <div class="checkbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label><span class="select-title">RX#</span>
+                                                        </li>
+                                                        <li>
+                                                            <div class="checkbox"><input type="checkbox" id="checkbox2"><label for="checkbox2"></label><span class="select-title">Request type</span>
+                                                        </li>
+                                                        <li>
+                                                            <div class="checkbox"><input type="checkbox" id="checkbox3"><label for="checkbox3"></label><span class="select-title">Requested by</span>
+                                                        </li>
+                                                        <li>
+                                                            <div class="checkbox"><input type="checkbox" id="checkbox4"><label for="checkbox4"></label><span class="select-title">Assigned to</span>
+                                                        </li>
+                                                        <li>
+                                                            <div class="checkbox"><input type="checkbox" id="checkbox5"><label for="checkbox5"></label><span class="select-title">Status</span>
+                                                        </li>
+                                                        <li>
+                                                            <div class="checkbox"><input type="checkbox" id="checkbox6"><label for="checkbox6"></label><span class="select-title">Due on</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row lead-list-wrap" id="lead-list-wrap">
+                        <div class="col-lg-3 filter-lead" id="filter-lead">
+                            <span class="close-cross pull-right"><a href="#" id="filter-lead-close"><img src="images/cross-black.png" width="16"></a></span>
+                            <div class="clearfix"></div>
+                            <div class="filter-results">
+                                <span class="filter-apply pull-left">2 Filters Applied</span>
+                                <a href="#" class="reset-filter pull-right">Reset</a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="filter-actionbox">
+                                <fieldset class="form-group">
+                                    <select class="requesttype-multiple" multiple="multiple">
+                                        <option value="1 Month">Delivery</option>
+                                        <option value="2 Month">Account orders</option>
+                                        <option value="3 Month">Physical review</option>
+                                        <option value="3 Month">In-service appointment</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <select class="taskstatus-multiple" multiple="multiple">
+                                        <option value="1 Month">New</option>
+                                        <option value="2 Month">In progress</option>
+                                        <option value="3 Month">Completed</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <select class="duedate-multiple" multiple="multiple">
+                                        <option value="1 Month">01/02/2016 - 01/03/2016</option>
+                                        <option value="2 Month">01/03/2016 - 01/04/2016</option>
+                                        <option value="3 Month">01/04/2016 - 01/05/2016</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <select class="requestedby-multiple" multiple="multiple">
+                                        <option value="1 Month">Glen Miles</option>
+                                        <option value="2 Month">Binoy Cherian</option>
+                                        <option value="3 Month">Francis Graves</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <select class="assignedto-multiple" multiple="multiple">
+                                        <option value="1 Month">Glen Miles</option>
+                                        <option value="2 Month">Binoy Cherian</option>
+                                        <option value="3 Month">Francis Graves</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <select class="priority-multiple" multiple="multiple">
+                                        <option value="1 Month">Normal</option>
+                                        <option value="2 Month">Medium</option>
+                                        <option value="3 Month">High</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 listbox-lead" id="listbox-lead">
+                            <div class="line-table-wrap">
+                                <div class="table-responsive">
+                                    <table id="leadtable" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>RX#</th>
+                                                <th>Request type</th>
+                                                <th>Requested by</th>
+                                                <th>Assigned to</th>
+                                                <th>Status</th>
+                                                <th>Due on</th>
+                                                <th class="empty-th"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="task-red-star task-name-lnk"><i class="fa fa-star"></i> 8871</td>
+                                                <td class="task-name-lnk">Delivery</td>
+                                                <td class="task-name-lnk">Glen Miles</td>
+                                                <td class="task-name-lnk">Francis Graves</td>
+                                                <td class="task-name-lnk">In Progress</td>
+                                                <td class="task-red-due task-name-lnk">Jan 5</td>
+                                                <td class="dots-td">
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><img src="images/dots.png" alt="User" width="4"></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#">Add</a></li>
+                                                            <li><a href="#">Edit</a></li>
+                                                            <li><a href="#">Flag</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="task-red-star task-name-lnk"><i class="fa fa-star"></i> 8871</td>
+                                                <td class="task-name-lnk">Delivery</td>
+                                                <td class="task-name-lnk">Glen Miles</td>
+                                                <td class="task-name-lnk">Francis Graves</td>
+                                                <td class="task-name-lnk">In Progress</td>
+                                                <td class="task-red-due task-name-lnk">Jan 5</td>
+                                                <td class="dots-td">
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><img src="images/dots.png" alt="User" width="4"></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#">Add</a></li>
+                                                            <li><a href="#">Edit</a></li>
+                                                            <li><a href="#">Flag</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="task-name-lnk">8871</td>
+                                                <td class="task-name-lnk">Delivery</td>
+                                                <td class="task-name-lnk">Glen Miles</td>
+                                                <td class="task-name-lnk">Francis Graves</td>
+                                                <td class="task-name-lnk">In Progress</td>
+                                                <td class="task-name-lnk">Jan 5</td>
+                                                <td class="dots-td">
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><img src="images/dots.png" alt="User" width="4"></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#">Add</a></li>
+                                                            <li><a href="#">Edit</a></li>
+                                                            <li><a href="#">Flag</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="task-name-lnk">8871</td>
+                                                <td class="task-name-lnk">Delivery</td>
+                                                <td class="task-name-lnk">Glen Miles</td>
+                                                <td class="task-name-lnk">Francis Graves</td>
+                                                <td class="task-name-lnk">In Progress</td>
+                                                <td class="task-name-lnk">Jan 5</td>
+                                                <td class="dots-td">
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><img src="images/dots.png" alt="User" width="4"></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#">Add</a></li>
+                                                            <li><a href="#">Edit</a></li>
+                                                            <li><a href="#">Flag</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="paging-wrap">
+                                    <ul class="pagination pull-left">
+                                        <li><a href="#" aria-label="First"><span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span></a></li>
+                                        <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">..</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+                                        <li><a href="#" aria-label="Last"><span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                    </ul>
+                                    <span class="pull-left show-text">Showing 1 to 12 of 12 (1 Pages)</span>
+                                    <div class="row-count-drop pull-left">
+                                        <select class="form-control selectpicker">
+                                            <option value="" disabled="" selected="" hidden="">Row Count</option>
+                                            <option>10</option>
+                                            <option>20</option>
+                                            <option>30</option>
+                                        </select>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 lead-info-wrap" id="task-info-wrap">
+                            <div class="task-detail row">
+                                <div class="col-sm-4 col-md-3 task-detail-left">
+                                    <div class="tasklistscroll">
+                                        <div class="row task-list-dtl">
+                                            <div class="col-sm-8 tsk-dtl-lft">
+                                                <div class="taskby">
+                                                    <h4><strong>From:</strong> Binoy Cherian</h4>
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas
+                                                </div>
+                                                <div class="taskfor">
+                                                    <span>DELIVERY - pls supply 001 kit</span>
+                                                    <p>I need a marketing brochure asap...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 tsk-date-rgt">
+                                                <span class="tsk-dt">Sep 19</span>
+                                                <span class="tsk-due tsk-due-red">Due 10th Aug</span>
+                                            </div>
+                                        </div>
+                                        <div class="row task-list-dtl task-lst-act">
+                                            <div class="col-sm-8 tsk-dtl-lft">
+                                                <div class="taskby">
+                                                    <h4><strong>From:</strong> Binoy Cherian</h4>
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas
+                                                </div>
+                                                <div class="taskfor">
+                                                    <span>DELIVERY - pls supply 001 kit</span>
+                                                    <p>I need a marketing brochure asap...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 tsk-date-rgt">
+                                                <span class="tsk-dt">Aug 9</span>
+                                                <span class="tsk-due tsk-due-org">Due Today</span>
+                                            </div>
+                                        </div>
+                                        <div class="row task-list-dtl">
+                                            <div class="col-sm-8 tsk-dtl-lft">
+                                                <div class="taskby">
+                                                    <h4><strong>From:</strong> Binoy Cherian</h4>
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas
+                                                </div>
+                                                <div class="taskfor">
+                                                    <span>DELIVERY - pls supply 001 kit</span>
+                                                    <p>I need a marketing brochure asap...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 tsk-date-rgt">
+                                                <span class="tsk-dt">Oct 12</span>
+                                            </div>
+                                        </div>
+                                        <div class="row task-list-dtl">
+                                            <div class="col-sm-8 tsk-dtl-lft">
+                                                <div class="taskby">
+                                                    <h4><strong>From:</strong> Binoy Cherian</h4>
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas
+                                                </div>
+                                                <div class="taskfor">
+                                                    <span>DELIVERY - pls supply 001 kit</span>
+                                                    <p>I need a marketing brochure asap...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 tsk-date-rgt">
+                                                <span class="tsk-dt">Sep 19</span>
+                                                <span class="tsk-due tsk-due-red">Due 10th Aug</span>
+                                            </div>
+                                        </div>
+                                        <div class="row task-list-dtl task-lst-act">
+                                            <div class="col-sm-8 tsk-dtl-lft">
+                                                <div class="taskby">
+                                                    <h4><strong>From:</strong> Binoy Cherian</h4>
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas
+                                                </div>
+                                                <div class="taskfor">
+                                                    <span>DELIVERY - pls supply 001 kit</span>
+                                                    <p>I need a marketing brochure asap...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 tsk-date-rgt">
+                                                <span class="tsk-dt">Aug 9</span>
+                                                <span class="tsk-due tsk-due-org">Due Today</span>
+                                            </div>
+                                        </div>
+                                        <div class="row task-list-dtl">
+                                            <div class="col-sm-8 tsk-dtl-lft">
+                                                <div class="taskby">
+                                                    <h4><strong>From:</strong> Binoy Cherian</h4>
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas
+                                                </div>
+                                                <div class="taskfor">
+                                                    <span>DELIVERY - pls supply 001 kit</span>
+                                                    <p>I need a marketing brochure asap...</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 tsk-date-rgt">
+                                                <span class="tsk-dt">Oct 12</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-md-9 task-detail-right">
+                                    <div class="tsk-dtl-top">
+                                        <h2 class="pull-left"><strong>#AA0012</strong> Help - Marketing Brochure</h2>
+                                        <div class="pull-right lead-btn-group">
+                                            <a href="#" class="btn"><img src="images/log-white.png" alt="Inactive" width="17">Log</a>
+                                            <a href="#" class="btn"><img src="images/warning-white.png" alt="Convert Account" width="18">High Priority</a>
+                                            <a href="#" class="btn"><img src="images/edit.png" alt="Edit" width="18">Edit</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="tasklistscroll">
+                                        <div class="tsk-dtl-cnt-wrp">
+                                            <div class="row tsk-dtl-assign">
+                                                <div class="col-sm-9 col-md-10 tsk-asn-lft">
+                                                    <strong>To:</strong> Jordan Smith<br />
+                                                    <strong>Cc:</strong> Fred Douglas<br />
+                                                    <strong>Status:</strong> Abbys Assisted Living<br />
+                                                    <strong>Status:</strong> New
+                                                </div>
+                                                <div class="col-sm-3 col-md-2 tsk-asn-rgt">
+                                                    <strong>Created on:</strong> 6/4/2016<br />
+                                                    <strong>Due on:</strong> 6/5/2016<br />
+                                                    <strong>Alert on:</strong> 10/5/2016
+                                                </div>
+                                            </div>
+                                            <div class="tsk-dtl-infobox">
+                                                Vivamus nec arcu fringilla, placerat eros ut, suscipit dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam varius, nisi quis.Vivamus nec arcu fringilla, placerat eros ut, suscipit dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam varius, nisi quis.
+                                            </div>
+                                            <div class="info-ldrepeater-box">
+                                                <div class="info-ldbox-head">Notes</div>
+                                                <div class="note-box-repeater">
+                                                    <div class="note-thumb-wrp"><img src="images/user.jpg" width="40" class="img-responsive img-circle" alt="User" /></div>
+                                                    <div class="note-info-wrp">
+                                                        <h3>Lucy Clayton<span>14 Apr 2016 5:35PM</span></h3>
+                                                        <p>Did you know that nearly half of the population of the devloped countries like USA and Canada suffer from the disorders caused by spastic colon? Did you know that nearly half of the population of the devloped countries like USA and Canada suffer from the disorders caused by spastic colon?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="note-box-repeater">
+                                                    <div class="note-thumb-wrp"><img src="images/user.jpg" width="40" class="img-responsive img-circle" alt="User" /></div>
+                                                    <div class="note-info-wrp">
+                                                        <h3>Lucy Clayton<span>14 Apr 2016 5:35PM</span></h3>
+                                                        <p>Did you know that nearly half of the population of the devloped countries like USA and Canada suffer from the disorders caused by spastic colon? Did you know that nearly half of the population of the devloped countries like USA and Canada suffer from the disorders caused by spastic colon?</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="note-inpbox">
+                                                <textarea class="form-control" placeholder="Comments"></textarea>
+                                                <input type="button" name="" value="Save Note" class="btn btn-default">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/select2.full.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".repname-multiple").select2({
+                placeholder: "Rep Name",
+            });
+            $(".groupname-multiple").select2({
+                placeholder: "Group",
+            });
+            $(".period-multiple").select2({
+                placeholder: "Period",
+            });
+            $(".city-multiple").select2({
+                placeholder: "Select City",
+            });
+            $(".state-multiple").select2({
+                placeholder: "Select State",
+            });
+            $(".requesttype-multiple").select2({
+                placeholder: "Request Type",
+            });
+            $(".taskstatus-multiple").select2({
+                placeholder: "Status",
+            });
+            $(".requestedby-multiple").select2({
+                placeholder: "Requested by",
+            });
+            $(".duedate-multiple").select2({
+                placeholder: "Due on",
+            });
+            $(".assignedto-multiple").select2({
+                placeholder: "Assigned to",
+            });
+            $(".priority-multiple").select2({
+                placeholder: "Priority",
+            });
+            $(".speciality-multiple").select2({
+                placeholder: "Multi Speciality",
+            });
+            $(".tomail-multiple").select2({
+                placeholder: "Select Name",
+            });
+            $(".ccmail-multiple").select2({
+                placeholder: "Select Names",
+            });
+            $(".typemail-multiple").select2({
+                placeholder: "Select Type",
+            });
+        });
+        $(document).ready(function () {
+            $(".showcommentbox").click(function () {
+                $(".comment-box").css("display", "block");
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $('#accountdate-select').datepicker({
+            orientation: "bottom auto",
+            autoclose: true,
+            todayHighlight: true,
+        });
+    </script>
+    <script>
+        //$(document).ready(function (e) {
+        //    $('.tasklistscroll').slimScroll({
+        //        position: 'right',
+        //        height: '100%',
+        //        railVisible: true,
+        //        railOpacity: 0.5,
+        //        alwaysVisible: true,
+        //        size: '5px',
+        //        wheelStep: 80,
+        //    });
+        //});
+    </script>
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '.taskeditor',
+            height: 200,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            content_css: '//www.tinymce.com/css/codepen.min.css'
+        });
+    </script>
+</body>
+</html>

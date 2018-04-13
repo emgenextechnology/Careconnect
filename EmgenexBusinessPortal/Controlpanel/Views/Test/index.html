@@ -1,0 +1,11 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <select ng-model="salesFilter.ServiceId" class="enrservice pull-right">
+        <option ng-repeat="tag in source" value="{{tag.Id}}" ng-selected="tag.Value=='Pharmacogenetics'; this.trigger('change')">{{tag.Value}}</option>
+    </select>
+</body>
+</html>

@@ -1,0 +1,114 @@
+﻿@model EBP.Business.Database.ReportColumn
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+    var db = new EBP.Business.Database.CareConnectCrmEntities();
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportColumn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Service Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookupEnrolledService.ServiceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Column Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColumnName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsMandatory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsMandatory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayInFilter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisplayInFilter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowInGrid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowInGrid)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated On")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Updated By")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayName("Role Privileges")
+        </dt>
+
+        <dd>
+          @String.Join(", ", Model.SalesRolePrivileges.Select(a => a.Role.Name).ToArray())
+        </dd>
+        <dt>
+            @Html.DisplayName("Department Privileges")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.SalesDepartmentPrivileges.Select(a => a.Department.DepartmentName).ToArray())
+        </dd>
+        <dt>
+            @Html.DisplayName("User Privileges")
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.SalesUserPrivileges.Select(a => a.User.FirstName + " " + a.User.LastName).ToArray())
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

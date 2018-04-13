@@ -1,0 +1,92 @@
+Patient Id	:	13821	Patient Name	:	Jaime Rodriguez	Practice Name	:	Aaron Krasner MD
+Record successfully updated
+Finance data successfully updated
+
+Patient Id	:	16855	Patient Name	:	Verine Minor	Practice Name	:	Dr. David M. Headley
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16852	Patient Name	:	Ollie Shorter	Practice Name	:	Dr. David M. Headley
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16851	Patient Name	:	Henry Scott	Practice Name	:	Dr. Godswill Okoji- Takoma
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16847	Patient Name	:	Lisa Truitt	Practice Name	:	Dr. David M. Headley
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16846	Patient Name	:	Gwendolyn Long	Practice Name	:	Dr. Godswill Okoji- Takoma
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16841	Patient Name	:	Dora Phelps	Practice Name	:	Dr. David M. Headley
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16836	Patient Name	:	Patsy Jackson	Practice Name	:	Dogwood Family Clinic
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16832	Patient Name	:	Peggy Graham	Practice Name	:	Tricity Pain Associates
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16833	Patient Name	:	Juanita Martinez	Practice Name	:	Vista Del Mar Health and Rehabilitation
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16831	Patient Name	:	Charles Piper	Practice Name	:	Shelby Residential and Vocational Services
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16830	Patient Name	:	Ronald Sprewer	Practice Name	:	Shelby Residential and Vocational Services
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16829	Patient Name	:	Martha Miller	Practice Name	:	Pharm-Care, Inc
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16828	Patient Name	:	Johnathan Short	Practice Name	:	Shelby Residential and Vocational Services
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16827	Patient Name	:	Helen Gregory	Practice Name	:	Pharm-Care, Inc
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16826	Patient Name	:	Evelyn Surwic	Practice Name	:	Pharm-Care, Inc
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16824	Patient Name	:	Alfred Becton	Practice Name	:	Shelby Residential and Vocational Services
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16823	Patient Name	:	Wilma Hunter	Practice Name	:	Pharm-Care, Inc
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16822	Patient Name	:	Sylvia Jordan	Practice Name	:	Pharm-Care, Inc
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16821	Patient Name	:	Roosevelt Robinson	Practice Name	:	Shelby Residential and Vocational Services
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16820	Patient Name	:	Beverly Carter	Practice Name	:	Kendall Medical Center
+Record successfully updated
+Finance data successfully inserted
+
+Patient Id	:	16819	Patient Name	:	Elizabeth Forsythe	Practice Name	:	Pharm-Care, Inc
+Record successfully updated
+Finance data successfully inserted
+
+Number of rows Inserted 	:	0	
+Number of rows Inserted 	:	22	
+Number of rows skiped 	:	0	
+Number of rows failed 	:	0

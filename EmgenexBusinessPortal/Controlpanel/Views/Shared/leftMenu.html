@@ -1,0 +1,54 @@
+﻿<ul>
+    <li class="top-left-bar"><a href="#" style="padding: 17px 5px;"><span class="bar-wrap"><span class="bar"></span></span></a></li>
+    <li>
+        <a href="#/" class="{{controller=='Dashboard'?'active':''}}">
+            <span class="nav-ico"><img src="/Controlpanel/Content/images/dashboard-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/dashboard-icon-white.png" alt="" class="top-icon" /></span>
+            Dashboard
+        </a>
+    </li>
+    <li ng-show="showByPrevilege('RDLD')">
+        <a href="#leads" class="{{controller=='Leads'?'active':''}}" ng-controller="leadController" ng-click="reloadLeads()">
+            <span class="nav-ico"><img src="/Controlpanel/Content/images/lead-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/lead-icon-white.png" alt="" class="top-icon" /></span>
+            Leads
+        </a>
+    </li>
+    <li ng-show="showByPrevilege('RDACNT')">
+        <a href="#accounts" class="{{controller=='Accounts'?'active':''}}" ng-controller="accountController" ng-click="reloadAccounts()">
+            <span class="nav-ico"><img src="/Controlpanel/Content/images/accounts-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/accounts-icon-white.png" alt="" class="top-icon" /></span>
+            Accounts
+        </a>
+    </li>
+    <li ng-show="showByPrevilege('RDTSK')">
+        <a href="#tasks" class="{{controller=='Tasks'?'active':''}}" ng-controller="tasksController" ng-click="reloadPage()">
+            <span class="nav-ico badge1"><img src="/Controlpanel/Content/images/task-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/task-icon-white.png" alt="" class="top-icon" /></span>
+            Tasks
+        </a>
+    </li>
+    <!--<li ng-show="showByPrevilege('RDTSK')">
+        <a href="#tasks" class="{{controller=='Tasks'?'active':''}}" ng-controller="tasksController" ng-click="reloadPage()">
+            <span class="nav-ico badge1"><img src="/Controlpanel/Content/images/task-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/task-icon-white.png" alt="" class="top-icon" /></span>
+            Tasks
+        </a>
+    </li>-->
+    <li ng-show="showByPrevilege('RDSLS')">
+        <!--ng-show="showByPrevilege('RSSL')">-->
+        <a href="#sales" class="{{controller=='Sales'?'active':''}}" ng-controller="salesController" ng-click="reloadPage()">
+            <span class="nav-ico"><img src="/Controlpanel/Content/images/sales-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/sales-icon-white.png" alt="" class="top-icon" /></span>
+            Sales
+        </a>
+    </li>
+    <!--<li ng-show="showByPrevilege('RDNWS')">
+        <a href="#announcements.html">
+            <span class="nav-ico"><img src="/Controlpanel/Content/images/news-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/news-icon-white.png" alt="" class="top-icon" /></span>
+            News
+        </a>
+    </li>-->
+    <!--<li ng-show="showByPrevilege('RDMRKT')">
+        
+        <a href="#marketing" class="{{controller=='Marketing'?'active':''}}" ng-controller="marketingController" ng-click="reloadPage()">
+            <span class="nav-ico"><img src="/Controlpanel/Content/images/marketing-icon-orange.png" alt="" class="bottom-icon" /><img src="/Controlpanel/Content/images/marketing-icon-white.png" alt="" class="top-icon" /></span>
+            Marketing
+        </a>
+    </li>-->
+</ul>
+<div style="position: absolute;bottom: 0;left: 10px;color: #fff;">V1.6.2</div>

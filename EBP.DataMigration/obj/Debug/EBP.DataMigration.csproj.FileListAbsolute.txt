@@ -1,0 +1,13 @@
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EBP.DataMigration.exe.config
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EBP.DataMigration.exe
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EBP.DataMigration.pdb
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EntityFramework.dll
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EntityFramework.SqlServer.dll
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EntityFramework.xml
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\bin\Debug\EntityFramework.SqlServer.xml
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\obj\Debug\EBP.DataMigration.csprojResolveAssemblyReference.cache
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\obj\Debug\EBP.DataMigration.Datamigrator.resources
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\obj\Debug\EBP.DataMigration.Properties.Resources.resources
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\obj\Debug\EBP.DataMigration.csproj.GenerateResource.Cache
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\obj\Debug\EBP.DataMigration.exe
+C:\Works\Hubspire\Careconnect\SVN\EBP.DataMigration\obj\Debug\EBP.DataMigration.pdb

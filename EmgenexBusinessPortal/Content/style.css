@@ -1,0 +1,48 @@
+/*body{height:100%;background-color: #f0f8ff;font-family: 'Source Sans Pro', sans-serif;}*/
+.common-login-page, .inner-width{width: 600px;border: 1px solid #d8e1ee;margin: auto;padding: 70px 100px;background: #fff;margin-top: 100px;}
+/*.common-login-page{width: 600px;border: 1px solid #d8e1ee;margin: auto;padding: 70px 100px;background: #fff;margin-top: 100px;}*/
+.careconnect-logo{text-align: center;font-size: 22px ;color: #868686;}
+.careconnect-logo img{margin: auto;margin-bottom: 5px;}
+.formbox{ border-width: 0 0 1px 0;box-shadow: none; border-color: #e1e1e1;padding-left: 30px;font-size: 18px;    background-position: 0 5px;}
+.formbox:focus{ outline: 0;box-shadow: none ;border-color: #e1e1e1;}
+.user-img{ background-image:url('/Controlpanel/Content/images/user.png');background-repeat:no-repeat ; }
+.pass-img{ background-image:url('/Controlpanel/Content/images/password.png');background-repeat:no-repeat ; }
+
+.formbox::-webkit-input-placeholder {font-size: 18px;color: #4c4c4c;}
+.formbox:-moz-placeholder{font-size: 18px;color: #4c4c4c;}
+.formbox::-moz-placeholder{font-size: 18px;color: #4c4c4c;}
+.formbox:-ms-input-placeholder{font-size: 18px;color: #4c4c4c;}
+.cc-btn{font-size: 18px; border-radius: 30px;background-color: #3b54a5; color: #fff;border-color: #3b54a5;width: 100%;height: 55px;margin-top: 20px;margin-bottom: 20px;}
+.cc-btn:focus, .cc-btn:hover{outline: 0;-webkit-transition: .5s ease;-moz-transition:  .5s ease;-o-transition:  .5s ease;transition:  .5s ease;color:#3b54a5;background-color: transparent;border-color: #3b54a5; }
+.cc-btn:active:focus {outline: 0;}
+.common-login-form .form-group{ margin-bottom: 30px; }
+.common-login-form{margin-top: 80px;}
+.common-login-form .checkbox{ text-align: center; font-size: 18px;color: #4c4c4c;}
+.check-style{background-color: #000;}
+.common-login-form .checkbox input[type=checkbox], .common-login-form .checkbox input[type=radio] {margin-top: 7px;}
+.copy{ text-align: center;display: block;font-size: 18px; color: #878787;margin-top: 90px; }
+.copy img{width: 160px;margin: auto;}
+
+/*===========PROFILE EDIT===========*/
+
+.profile-edit-page .formbox, .password-page .formbox{padding-left: 5px;}
+.profile-edit-page .form-group, .password-page .form-group{ margin-bottom: 20px; }
+.profile-img {text-align: center;margin-top: 20px;margin-bottom: 20px;}
+.profile-img .profile-photo{width: 100px;height: 100px;margin: auto;position: relative;}
+.profile-img label{cursor: pointer;}
+.password-page form{margin-top: 50px;}
+.password-page .form-group{ margin-bottom: 20px; }
+/*===========PROFILE EDIT===========*/
+
+/*@media only screen and (min-device-width : 768px) and (max-device-width : 991px){
+.careconnect-logo img{width: 250px;}
+.careconnect-logo{font-size: 16px;}
+.profile-img .profile-photo{width:70px;height: 70px;}
+.profile-img{margin-top: 10px;margin-bottom: 10px;}
+.common-login-page, .inner-width{width: 450px;padding: 30px 40px;margin-top: 70px;}
+.formbox::-webkit-input-placeholder {font-size: 14px;color: #4c4c4c;}
+.formbox:-moz-placeholder{font-size: 14px;color: #4c4c4c;}
+.formbox::-moz-placeholder{font-size: 14px;color: #4c4c4c;}
+.formbox:-ms-input-placeholder{font-size: 14px;color: #4c4c4c;}
+.cc-btn{height: 40px;}
+}*/

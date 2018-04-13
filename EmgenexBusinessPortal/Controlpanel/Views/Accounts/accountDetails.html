@@ -1,0 +1,215 @@
+﻿<style>
+    div#accounttaskswrap div.is-last-true {
+        border-bottom: 0;
+    }
+
+    .reduceleftmargin {
+        margin-left: -10px !important;
+    }
+</style>
+
+<div class="lead-info-top">
+    <h2 class="pull-left"><span>{{currentAccount.Practice.Name}}</span><i ng-show="loadingDetails" class="fa fa-spinner fa-spin ng-animate-disabled"></i></h2>
+    <span class="close-cross pull-right"><a ng-click="hideDetailsView()" id="lead-info-close"><img src="/Controlpanel/Content/images/cross-white.png" alt="Close" width="16"></a></span>
+    <div class="pull-right lead-btn-group" ng-hide="currentAccount==null">
+        <a class="btn" ng-click="addTask(currentAccount.Id)"><img src="/Controlpanel/Content/images/task-icon-white.png" alt="Add Task" width="20" ng-hide="addingToTask"><i ng-show="addingToTask" class="fa fa-spinner fa-spin ng-animate-disabled"></i>Add Task</a>
+        <a class="btn" ng-click="createAccountpdf(currentAccount.Id)"><i ng-show="AccountViewpdf" class="fa fa-spinner fa-spin ng-animate-disabled"></i><img src="/Controlpanel/Content/images/pdf-white.png" alt="PDF" width="18">PDF</a>
+        <a ng-click="setFlag()" class="btn {{currentAccount.HasFlag?'active':''}}"><img src="/Controlpanel/Content/images/white-flag.png" alt="Flag" width="18" ng-hide="loadingFlagUpdate"><i ng-show="loadingFlagUpdate" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Flag</a>
+        <a ng-click="setStatus()" class="btn" ng-show="showByPrevilege('WRACNT')">
+            <img src="/Controlpanel/Content/images/{{currentAccount.IsActive?'white-cross.png':'white-round-tick.png'}}" alt="Active/Inactive" width="17" ng-hide="loadingStatusUpdate">
+            <i ng-show="loadingStatusUpdate" class="fa fa-spinner fa-spin ng-animate-disabled"></i> {{currentAccount.IsActive?'Inactivate':'Activate'}}
+        </a>
+        <a class="btn" ng-click="editAccount(currentAccount.Id)"><img src="/Controlpanel/Content/images/edit.png" alt="Edit" width="18" ng-hide="loadingEdit"><i ng-show="loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i> Edit</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="lead-dtl-wrpbx">
+    <div class="info-ldrepeater-box col-md-12" style="padding:0;padding-left: 10px;">
+        <div ng-show="currentAccount.salesActivity.length > 0 || currentAccount.Tasks.length > 0" style="padding-left:0">
+            <div class="info-ldbox-head" style="margin-left: -10px;">Recent Activity</div>
+            <div class="row lead-loc-box col-md-6" style="padding:7px;margin-left: -10px;" ng-if="currentAccount.Tasks.length>0" id="accounttaskswrap">
+                <div class="tasklistscroll" style="overflow: hidden; width: auto; height: 100%;">
+                    <div class="row task-list-dtl is-last-{{currentAccount.Tasks.length == $index + 1}} {{task.TaskId==currentTask.TaskId?'task-lst-act':''}} {{task.StatusId == 3 ? 'completed':''}}" style="padding:7px 0" ng-repeat="task in currentAccount.Tasks" ng-click="showDetailsView(task)">
+                        <a href="#tasks/{{task.ReferenceNumber}}" style="color:inherit">
+                            <div class="col-sm-10 tsk-dtl-lft">
+                                <div class="taskby">
+                                    <h4 class="col-md-12" style="padding:0"><strong>From:</strong> {{task.RequestedUsers.length > 0 ? getNameArray(task.RequestedUsers) : task.RequestedUser.Name}}</h4>
+                                    <h4 class="col-md-12" style="margin-top:3px;padding:0"><strong>To:</strong> {{getNameArray(task.AssignedUsersList)}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 tsk-date-rgt">
+                                <span class="tsk-dt">{{task.CreatedOn | date:'MMM dd'}}</span>
+                                <span class="tsk-due {{task.IsToday ? 'tsk-due-org' : (isDateFuture(task.TargetDate) ? 'tsk-due-red' : 'tsk-due-org')}}" ng-show="task.TargetDate!=null && task.StatusId != 3">
+                                    Due {{task.IsToday ? 'Today' : (task.TargetDate|dateSuffix)}}
+                                </span>
+                                <span class="tsk-due tsk-due-grn" ng-show="task.StatusId == 3">Completed</span>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="taskfor">
+                                    <span>
+                                        <span class="taskSub"><i ng-show="task.PriorityTypeId==1" class="fa fa-exclamation-circle tsk-due-red" aria-hidden="true"></i>{{task.TaskType!=null ? task.TaskType + " - ":""}}{{task.Subject | limitTo : 80}}</span><!--<span ng-show="task.Subject.length > 23">...</span>-->
+                                    </span>
+                                    <p style="max-height:20px; overflow:hidden" ng-bind-html="task.ShortDescription | limitTo : 170"></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="width:100%;text-align:center;background:white">
+                        <i ng-show="tasksLoading || loadingEdit" class="fa fa-spinner fa-spin ng-animate-disabled"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row lead-loc-box col-md-6 {{currentAccount.Tasks.length<=0?'reduceleftmargin':''}}" style="padding-bottom:0;padding-top:3px; margin-left:10px" ng-if="currentAccount.salesActivity.length>0">
+                <table id="leadtable" class="ListingTable table table-hover" style="margin:0">
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>Specimen Id</th>
+                            <th>Collected</th>
+                            <th>Received</th>
+                            <th>Reported</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="sales in currentAccount.salesActivity" class="{{sales.ReportId == currentSales.ReportId && showDetails ? 'activelink' : ''}}">
+                            <td class="lead-name-lnk" ng-click="showSalesItem(sales.ReportId)">
+                                {{sales.Provider}}
+                            </td>
+                            <td class="lead-name-lnk" ng-click="showSalesItem(sales.ReportId)">
+                                {{sales.SpecimenId}}
+                            </td>
+                            <td class="lead-name-lnk" ng-click="showSalesItem(sales.ReportId)">
+                                {{sales['CollectionDate']|date:'MM-dd-yyyy'}}
+                            </td>
+                            <td class="lead-name-lnk" ng-click="showSalesItem(sales.ReportId)">
+                                {{sales['ReceivedDate']|date:'MM-dd-yyyy'}}
+                            </td>
+                            <td class="lead-name-lnk" ng-click="showSalesItem(sales.ReportId)">
+                                {{sales.ReportedDate|date:'MM-dd-yyyy'}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-ldrepeater-box">
+        <div class="info-ldbox-head">Locations ({{currentAccount.Practice.Address.length}})</div>
+        <div class="row row-eq-height info-address">
+            <div class="col-sm-6 col-md-3" ng-repeat="address in currentAccount.Practice.Address | orderBy: 'TypeId' as filtered_result" ng-if="address.TypeId==1">
+                <div class="row lead-loc-box">
+                    <div class="col-sm-2 adr-thmb-ld"><img src="/Controlpanel/Content/images/address-org-pin.png" width="35" alt="Location" /></div>
+                    <div class="col-sm-10 adr-rgt-ld">
+                        <address>
+                            {{address.Line1}}, {{address.Line2}}<br />{{address.City}}, {{address.State}} {{address.Zip}}<br />T: {{address.Phone[0].PhoneNumber | tel}} Ext: {{address.Phone[0].Extension}}
+                            <span ng-show="address.TypeId==1"><br />F: {{address.Fax | tel}}</span><br />
+                        </address>
+                        <span ng-if="address.ManagerName.length > 0 || address.ManagerEmaillength > 0 || (address.ManagerPhone!='' && address.ManagerPhone!=null)">Manager<br /></span>
+                        {{address.ManagerName}}<br ng-if="address.ManagerName.length > 0" />
+                        {{address.ManagerEmail}}<br ng-if="address.ManagerEmail.length > 0" />
+                        <span ng-if="address.ManagerPhone!='' && address.ManagerPhone!=null">T: {{address.ManagerPhone | tel}}</span>
+
+                        <span ng-if="address.BillingContact.length > 0 || address.BillingContactEmail.length > 0 || (address.BillingContactPhone!='' && address.BillingContactPhone!=null)"><br /><br />Billing<br /></span>
+                        {{address.BillingContact}}<br ng-if="address.BillingContact.length > 0" />
+                        {{address.BillingContactEmail}}<br ng-if="address.BillingContactEmail.length > 0" />
+                        <span ng-if="address.BillingContactPhone!='' && address.BillingContactPhone!=null">T: {{address.BillingContactPhone | tel}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3" ng-repeat="address in currentAccount.Practice.Address | orderBy: 'TypeId' as filtered_result" ng-if="address.TypeId!=1">
+                <div class="row lead-loc-box">
+                    <div class="col-sm-2 adr-thmb-ld"><img src="/Controlpanel/Content/images/address-pin.png" width="35" alt="Location" /></div>
+                    <div class="col-sm-10 adr-rgt-ld">
+                        <address>
+                            {{address.Line1}}, {{address.Line2}}<br />{{address.City}}, {{address.State}} {{address.Zip}}<br />T: {{address.Phone[0].PhoneNumber | tel}} Ext: {{address.Phone[0].Extension}}
+                            <br />F: {{address.Fax | tel}}<br />
+                        </address>
+                        <span ng-if="address.ManagerName.length > 0 || address.ManagerEmaillength > 0 || (address.ManagerPhone!='' && address.ManagerPhone!=null)">Manager<br /></span>
+                        {{address.ManagerName}}<br ng-if="address.ManagerName.length > 0" />
+                        {{address.ManagerEmail}}<br ng-if="address.ManagerEmail.length > 0" />
+                        <span ng-if="address.ManagerPhone!='' && address.ManagerPhone!=null">T: {{address.ManagerPhone | tel}}</span>
+
+                        <span ng-if="address.BillingContact.length > 0 || address.BillingContactEmail.length > 0 || (address.BillingContactPhone!='' && address.BillingContactPhone!=null)"><br /><br />Billing<br /></span>
+                        {{address.BillingContact}}<br ng-if="address.BillingContact.length > 0" />
+                        {{address.BillingContactEmail}}<br ng-if="address.BillingContactEmail.length > 0" />
+                        <span ng-if="address.BillingContactPhone!='' && address.BillingContactPhone!=null">T: {{address.BillingContactPhone | tel}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-ldrepeater-box">
+        <div class="info-ldbox-head">Providers ({{currentAccount.Practice.Providers.length}})</div>
+        <div class="row row-eq-height info-address">
+            <div class="col-sm-6 col-md-3" ng-repeat="provider in currentAccount.Practice.Providers">
+                <div class="row lead-loc-box">
+                    <div class="col-sm-2 adr-thmb-ld"><img src="/Controlpanel/Content/images/provider-icon.png" width="35" alt="Provider" /></div>
+                    <div class="col-sm-10 adr-rgt-ld">
+                        <address class="provider-name">
+                            <strong>{{provider.FirstName}} {{provider.LastName}}, {{provider.ShortCode==null?provider.DegreeName:provider.ShortCode}}</strong><br />NPI#{{provider.NPI}}
+                        </address>
+                        <address>
+                            {{provider.Address.Line1}}, {{provider.Address.Line2}}<br />{{provider.Address.City}}, {{provider.Address.State}} {{provider.Address.Zip}}<br />T: {{provider.Address.Phone[0].PhoneNumber | tel}} Ext: {{provider.Address.Phone[0].Extension}}<br />F: {{provider.Address.Fax | tel}}
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-ldrepeater-box">
+        <div class="info-ldbox-head">Additional Details</div>
+        <div class="col-md-6 info-ld-addtn">
+            <div class="col-sm-3 col-lg-4"><strong>Speciality Type</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.Practice.SpecialityTypeId<=0?'None':currentAccount.Practice.SpecialityTypeId==3?currentAccount.Practice.SpecialityType :currentAccount.Practice.Specialities.length==1? 'Single Speciality -':'Multi Speciality -'}} <span ng-repeat="spl in currentAccount.Practice.Specialities">{{spl.NewSpecialityName}}, </span></div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Sales Team</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.Rep.GroupName}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Rep Name</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.Rep.Name}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Manager Name</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.Rep.ManagerName}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Enrolled Date</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.EnrolledDate|date:'MM-dd-yyyy'}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Enrolled Services</strong></div>
+            <div class="col-sm-9 col-lg-8"><span ng-repeat="srv in currentAccount.ServiceNames">{{srv}}, </span></div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Report Delivery Email</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.Practice.ReportDeliveryEmail.length>0?currentAccount.Practice.ReportDeliveryEmail:'None'}}</div><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Report Delivery Fax</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.Practice.ReportDeliveryFax.length>0?currentAccount.Practice.ReportDeliveryFax:'None'}}</div><div class="clearfix"></div>
+
+            <div class="col-sm-3 col-lg-4"><strong>Created By</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.CreatedByName}}</div><br /><div class="clearfix"></div>
+            <div class="col-sm-3 col-lg-4"><strong>Created On</strong></div>
+            <div class="col-sm-9 col-lg-8">{{currentAccount.CreatedOn|date:'MM-dd-yyyy'}}</div><div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="info-ldrepeater-box" style="clear:both">
+        <div class="info-ldbox-head clearfix"><i ng-show="loadingNotes" class="fa fa-spinner fa-spin ng-animate-disabled"></i>Notes</div>
+        <div class="info-ld-addtn" ng-if="currentAccount.Notes.length>0">
+            <a ng-click="loadNotes()" ng-show="moreNotes" style="padding: 2px;text-align: center;width: 100%;display: block;background: #f1f1f1;border: 1px solid #e4e4e4;letter-spacing: 1px;">
+                <b>Show Previous Notes</b>
+            </a>
+            <div class="note-box-repeater" ng-repeat="note in currentAccount.Notes">
+                <div class="note-thumb-wrp">
+                    <img onerror="this.src='/Assets/default_profile_pic.jpg'" ng-src="{{note.UserDetails.ProfilePhoto}}" width="40" class="img-responsive" alt="User" />
+                </div>
+                <div class="note-info-wrp">
+                    <h3>
+                        {{note.UserDetails.Name}}
+                        <span ng-show="note.IsDayAgo">{{note.CreatedOn | date:'dd MMM yyyy h:mm a'}}</span>
+                        <span ng-hide="note.IsDayAgo" class="first" am-time-ago="note.CreatedOn | amUtc | amLocal"></span>
+                        <span ng-hide="note.IsDayAgo" style="margin:0"> ago</span>
+                    </h3>
+                    <p>{{note.Description}}</p>
+                </div>
+                <div ng-click="deleteNote(note)" class="fa fa-trash-o"></div>
+            </div>
+        </div>
+    </div>
+    <div class="note-inpbox" style="margin-top:10px">
+        <form name="noteForm" ng-submit="addNote()" novalidate>
+            <textarea class="form-control" placeholder="Enter Note" ng-model="note.Message"></textarea>
+            <button type="submit" class="btn btn-default pull-left" value="Save" ng-disabled="loadingNotes"><i ng-show="loadingNotes" class="fa fa-spinner fa-spin ng-animate-disabled"></i>Save</button>
+        </form>
+    </div>
+</div>

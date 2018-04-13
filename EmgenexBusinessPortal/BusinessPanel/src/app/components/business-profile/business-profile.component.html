@@ -1,0 +1,97 @@
+<style>
+  select {
+    display: block!important;
+    border-top: 0px !important;
+    border-bottom: 1px solid #cfcfcf;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    outline: none;
+    margin-top: 10px;
+  }
+</style>
+<section class="business-profile-page">
+  <div class="business-profile z-depth-2">
+    <!-- <h2>Business Profile</h2> -->
+    <form #frmEditTaskType="ngForm" class="business-profile-form">
+      <div class="business-logo">
+        <label for="file-input">
+          <img src="{{NewBusinessProfileModel.LogoPath}}" class="responsive-img business-logo-img center" width="300" alt="business-logo">
+        </label>
+        <input id="file-input" type="file" />
+      </div>
+      <div class="row">
+        <div class="col m6">
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Business Name" name="BusinessName" [(ngModel)]="NewBusinessProfileModel.BusinessName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" multi-line matInput class="exclude-default-style" placeholder="Address" name="Address" [(ngModel)]="NewBusinessProfileModel.Address">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="City" name="City" [(ngModel)]="NewBusinessProfileModel.City">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="State" name="State" [(ngModel)]="NewBusinessProfileModel.State">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Country" name="Country" [(ngModel)]="NewBusinessProfileModel.Country">
+          </mat-form-field>
+
+          <div class="row">
+            <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+              <mat-select name="DateRange" placeholder="Select Date Range" [(ngModel)]="NewBusinessProfileModel.DateRange">
+                <mat-option *ngFor="let dateRange of DateRange;" [value]="dateRange.Id">{{dateRange.Value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col m6">
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" multi-line matInput class="exclude-default-style" placeholder="Description" name="Description" [(ngModel)]="NewBusinessProfileModel.Description"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" multi-line matInput class="exclude-default-style" placeholder="About" name="About" [(ngModel)]="NewBusinessProfileModel.About">
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="Domain Url" name="DomainUrl" [(ngModel)]="NewBusinessProfileModel.DomainUrl">
+          </mat-form-field>
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="text" matInput class="exclude-default-style" placeholder="RelativeUrl" name="RelativeUrl" [(ngModel)]="NewBusinessProfileModel.RelativeUrl"
+              required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field col s12 pad-lft-zero pad-rht-zero">
+            <input type="email" matInput class="exclude-default-style" placeholder="Other Emails" name="OtherEmails" [(ngModel)]="NewBusinessProfileModel.OtherEmails"
+              style="width: 100%">
+          </mat-form-field>
+
+          <div class="row">
+            <mat-form-field class="col s12 scroll-select pad-lft-zero pad-rht-zero">
+              <mat-select name="SalesGroup" placeholder="Select sales Group" [(ngModel)]="NewBusinessProfileModel.SalesGroup">
+                <mat-option *ngFor="let salesGroupBy of SalesGroupBy;" [value]="salesGroupBy.Id">{{salesGroupBy.Value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="busines-form-footer">
+        <div class="active-not left">
+          <p>
+            <mat-checkbox name="BisinessProfilesIsActive" [(ngModel)]="NewBusinessProfileModel.IsActive">IsActive</mat-checkbox>
+          </p>
+          
+        </div>
+        <button class="right btn waves-effect waves-light save-btn" (click)="update(NewBusinessProfileModel)" [disabled]="!frmEditTaskType.form.valid">Save</button>
+        <div class="clearfix"></div>
+      </div>
+    </form>
+  </div>
+</section>

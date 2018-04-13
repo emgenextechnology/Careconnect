@@ -1,0 +1,173 @@
+<div class="left-window">
+  <div class="left-window-header">
+    <span class="left-each-item-header">Loction Setting</span>
+  </div>
+  <div class="divider"></div>
+  <div class="input-field left-search-box seach-box">
+    <input type="text" class="validate" placeholder="Enter Keyword" name="KeyWords" [(ngModel)]="searchFilter.KeyWords">
+    <a class="btn search-btn" (click)="getAllLocations(searchFilter)">
+      <i class="material-icons">search</i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="right-window ">
+  <div class="common-table user-table">
+    <table class="striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="t-header">
+          <th mat-sort-header="PracticeName">Practice Name</th>
+          <th mat-sort-header="Line1">Address 1</th>
+          <th mat-sort-header="Line2">Address 2</th>
+          <th mat-sort-header="City">City</th>
+          <th mat-sort-header="State">State</th>
+          <th mat-sort-header="Zip">Zip</th>
+          <th mat-sort-header="AddressTypeId">Address Type</th>
+          <th mat-sort-header="LocationId">LocationId</th>
+          <th class="edit-delete-th">active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr class="hidden-tr">
+          <td></td>
+        </tr>
+        <tr *ngFor="let location of Locations; let i = index">
+          <td>{{location.PracticeName}}</td>
+          <td>{{location.Line1}}</td>
+          <td>{{location.Line2}}</td>
+          <td>{{location.City}}</td>
+          <td>{{location.State}}</td>
+          <td>{{location.Zip}}</td>
+          <td>{{location.AddressType}}</td>
+          <td>{{location.LocationId}}</td>
+          <td>
+            <div mat-icon-button [matMenuTriggerFor]="appMenu" class='dropdown-button btn edit-delete-btn'>
+              <img src="assets/images/dots-icon.png" class="responsive-img" width="10" alt="dots-icon">
+            </div>
+            <mat-menu #appMenu="matMenu">
+              <ul class='dropdown-content-menu edit-delete-dropdown'>
+                <li>
+                  <a href="#edit-location-mod" (click)="edit(location.Id)">
+                    {{ location.LocationId !=null&&location.LocationId !="" ? 'Edit' : 'Add'}}
+                  </a>
+                </li>
+                <li>
+                  <a href="#details-location-mod" (click)="edit(location.Id)">
+                    Details
+                  </a>
+                </li>
+              </ul>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator *ngIf="Locations?.length > 0" [length]="pageSize" [pageSize]="25" [pageSizeOptions]="[25,50,100,150,200]"
+      (page)="pageEvent = $event; getAllLocations(searchFilter, false)"></mat-paginator>
+  </div>
+</div>
+
+<div class="all-modals">
+  <div id="edit-location-mod" class="modal common-modal crt-role-modal">
+    <form #frmEditlocation="ngForm">
+      <div class="modal-content">
+        <h4>Edit Location</h4>
+        <div class="modal-close-btn right">
+          <img src="assets/images/close-icon.png" class="responsive-img  modal-close " width="9" alt="close-icon">
+        </div>
+        <div class="row">
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">Practice Name</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.PracticeName}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">Address 1</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.Line1}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">Address 2</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.Line2}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">City</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.City}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">State</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.State}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">Zip</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.Zip}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">Address Type</b>
+            <br>
+            <span class="dtl-itm-vlue">{{newLocationModel.AddressType}}</span>
+          </div>
+          <div class="input-field col s12 pad-rht-zero">
+            <b class="dtl-itm-hdr">Location Id</b>
+            <br>
+            <input type="text" class="validate" placeholder="LocationId" name="LocationId" [(ngModel)]="newLocationModel.LocationId">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-action waves-effect waves-green btn-flat modal-crt-btn" (click)="update(newLocationModel)" [disabled]="!frmEditlocation.form.valid">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="details-location-mod" class="modal common-modal crt-role-modal">
+    <div class="modal-content">
+      <div class="detail-page-wrapper">
+        <h3 class="details-header">
+          <span>Location </span> Details</h3>
+        <div class="det-modal-close-btn right">
+          <img src="assets/images/white-close-icon.png" class="responsive-img  modal-close " width="20" alt="close-icon">
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Practice Name</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.PracticeName}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Address 1</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.Line1}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Address 2</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.Line2}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">City</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.City}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">State</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.State}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Zip</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.Zip}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Address Type</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.AddressType}}</span>
+        </div>
+        <div class="each-detail">
+          <b class="dtl-itm-hdr">Location Id</b>
+          <span class="dtl-itm-vlue">{{newLocationModel.LocationId}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

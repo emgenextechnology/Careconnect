@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+@model EmgenexBusinessPortal.Areas.Admin.Controllers.ViewModel
+
+<h2>Import</h2>
+
+<div style="width:100%; border:1px solid #ccc; float:left; padding:10px">
+    <div style="float:left; width:50%; border-right:1px solid #ccc; margin-right:10%; padding-right:10%">
+        <h5> Account Import </h5>
+        <hr />
+        @using (Html.BeginForm("Index", "Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BusinessId, "Select Business", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.BusinessId, EmgenexBusinessPortal.Helpers.LookUps.GetAllBusiness(), "Select", htmlAttributes: new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.IsAccount, new { @Value = true })
+                    @Html.Label("Import Account", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.File, new { type = "file", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-10">
+                        <input type="submit" value="Import" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div style="float:right; width:40%;">
+        <h5> User Import </h5>
+        <hr />
+        @using (Html.BeginForm("Index", "Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(m => m.IsAccount, new { @Value = false })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BusinessId, "Select Business", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.BusinessId, EmgenexBusinessPortal.Helpers.LookUps.GetAllBusiness(), "Select", htmlAttributes: new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Import Users", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.File, new { type = "file", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-10">
+                        <input type="submit" value="Import" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@if (Model != null && Model.FailedRecords.Count == 0 && Model.UserFailedRecords.Count == 0)
+{
+    <span style="color:green">Import Successfully Completed.</span>
+}
+@if (Model != null && Model.FailedRecords.Count > 0)
+{
+    <div style="width:100%; border:1px solid #ccc; float:left; padding:10px">
+        Failed Records
+        <hr />
+        <br />
+        <div class="col-md-12">
+            @foreach (var item in Model.FailedRecords)
+            {
+                <div class="col-md-4">
+                    <div style="margin-bottom: 20px;padding: 15px 15px 0px 15px;height: 150px;overflow: hidden; padding-bottom: 15px; border: 1px solid #e1e1e1;">
+                        <span>PracticeName: @item.PracticeName</span>
+                        <br />
+                        <span>NPI: @item.NPI</span>
+                        <br />
+                        <span>SalesRep: @item.SalesRep</span>
+                        <br />
+                        <span>SalesTeam: @item.SalesTeam</span>
+                        <br />
+                        <span>HasProvider: @item.HasProvider</span>
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@if (Model != null && Model.UserFailedRecords.Count > 0)
+{
+    <div style="width:100%; border:1px solid #ccc; float:left; padding:10px">
+        Failed Records
+        <hr />
+        <br />
+        <div class="col-md-12">
+            @foreach (var item in Model.UserFailedRecords)
+            {
+                <div class="col-md-6">
+                    <div style="margin-bottom: 20px;padding: 15px 15px 0px 15px;height: 150px;overflow: hidden; padding-bottom: 15px; border: 1px solid #e1e1e1;">
+                        <span>Name: @item.FirstName @item.MiddleName @item.LastName</span>
+                        <br />
+                        <span>Email: @item.Email</span>
+                        <br />
+                        <span>ErrorMessage: @item.ErrorMessage</span>
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+    @*@using (Html.BeginForm("Index", "AccountImport", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BusinessId, "Select Business", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.BusinessId, EmgenexBusinessPortal.Helpers.LookUps.GetAllBusiness(), "Select", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Import Account", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.File, new { type = "file" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Import" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model != null && Model.FailedRecords.Count > 0)
+        {
+            <div class="col-md-12">
+                <h4>Failed Records</h4>
+                @foreach (var item in Model.FailedRecords)
+                {
+                    <div class="col-md-4">
+                        <div style="margin-bottom: 20px;padding: 15px 15px 0px 15px;height: 150px;overflow: hidden; padding-bottom: 15px; border: 1px solid #e1e1e1;">
+                            <span>PracticeName: @item.PracticeName</span>
+                            <br />
+                            <span>NPI: @item.NPI</span>
+                            <br />
+                            <span>SalesRep: @item.SalesRep</span>
+                            <br />
+                            <span>SalesTeam: @item.SalesTeam</span>
+                            <br />
+                            <span>HasProvider: @item.HasProvider</span>
+                            <br />
+                        </div>
+                    </div>
+                }
+            </div>
+        }*@
